@@ -8,6 +8,8 @@ from pydantic import Field as FieldInfo
 from .._utils import PropertyInfo
 from .._models import BaseModel
 from .message_part import MessagePart
+from .shared.unknown_error import UnknownError
+from .shared.provider_auth_error import ProviderAuthError
 
 __all__ = [
     "Message",
@@ -20,10 +22,6 @@ __all__ = [
     "MetadataAssistantTokens",
     "MetadataAssistantTokensCache",
     "MetadataError",
-    "MetadataErrorProviderAuthError",
-    "MetadataErrorProviderAuthErrorData",
-    "MetadataErrorUnknownError",
-    "MetadataErrorUnknownErrorData",
     "MetadataErrorMessageOutputLengthError",
 ]
 
@@ -90,28 +88,6 @@ class MetadataAssistant(BaseModel):
     summary: Optional[bool] = None
 
 
-class MetadataErrorProviderAuthErrorData(BaseModel):
-    message: str
-
-    provider_id: str = FieldInfo(alias="providerID")
-
-
-class MetadataErrorProviderAuthError(BaseModel):
-    data: MetadataErrorProviderAuthErrorData
-
-    name: Literal["ProviderAuthError"]
-
-
-class MetadataErrorUnknownErrorData(BaseModel):
-    message: str
-
-
-class MetadataErrorUnknownError(BaseModel):
-    data: MetadataErrorUnknownErrorData
-
-    name: Literal["UnknownError"]
-
-
 class MetadataErrorMessageOutputLengthError(BaseModel):
     data: object
 
@@ -119,8 +95,7 @@ class MetadataErrorMessageOutputLengthError(BaseModel):
 
 
 MetadataError: TypeAlias = Annotated[
-    Union[MetadataErrorProviderAuthError, MetadataErrorUnknownError, MetadataErrorMessageOutputLengthError],
-    PropertyInfo(discriminator="name"),
+    Union[ProviderAuthError, UnknownError, MetadataErrorMessageOutputLengthError], PropertyInfo(discriminator="name")
 ]
 
 

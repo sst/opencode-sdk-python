@@ -5,6 +5,7 @@ from __future__ import annotations
 from .app import App as App
 from .model import Model as Model
 from .config import Config as Config
+from .shared import UnknownError as UnknownError, ProviderAuthError as ProviderAuthError
 from .message import Message as Message
 from .session import Session as Session
 from .keybinds import Keybinds as Keybinds

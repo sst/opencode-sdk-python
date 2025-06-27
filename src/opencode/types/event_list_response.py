@@ -10,6 +10,8 @@ from .message import Message
 from .session import Session
 from .._models import BaseModel
 from .message_part import MessagePart
+from .shared.unknown_error import UnknownError
+from .shared.provider_auth_error import ProviderAuthError
 
 __all__ = [
     "EventListResponse",
@@ -33,10 +35,6 @@ __all__ = [
     "EventSessionError",
     "EventSessionErrorProperties",
     "EventSessionErrorPropertiesError",
-    "EventSessionErrorPropertiesErrorProviderAuthError",
-    "EventSessionErrorPropertiesErrorProviderAuthErrorData",
-    "EventSessionErrorPropertiesErrorUnknownError",
-    "EventSessionErrorPropertiesErrorUnknownErrorData",
     "EventSessionErrorPropertiesErrorMessageOutputLengthError",
 ]
 
@@ -141,28 +139,6 @@ class EventSessionDeleted(BaseModel):
     type: Literal["session.deleted"]
 
 
-class EventSessionErrorPropertiesErrorProviderAuthErrorData(BaseModel):
-    message: str
-
-    provider_id: str = FieldInfo(alias="providerID")
-
-
-class EventSessionErrorPropertiesErrorProviderAuthError(BaseModel):
-    data: EventSessionErrorPropertiesErrorProviderAuthErrorData
-
-    name: Literal["ProviderAuthError"]
-
-
-class EventSessionErrorPropertiesErrorUnknownErrorData(BaseModel):
-    message: str
-
-
-class EventSessionErrorPropertiesErrorUnknownError(BaseModel):
-    data: EventSessionErrorPropertiesErrorUnknownErrorData
-
-    name: Literal["UnknownError"]
-
-
 class EventSessionErrorPropertiesErrorMessageOutputLengthError(BaseModel):
     data: object
 
@@ -170,11 +146,7 @@ class EventSessionErrorPropertiesErrorMessageOutputLengthError(BaseModel):
 
 
 EventSessionErrorPropertiesError: TypeAlias = Annotated[
-    Union[
-        EventSessionErrorPropertiesErrorProviderAuthError,
-        EventSessionErrorPropertiesErrorUnknownError,
-        EventSessionErrorPropertiesErrorMessageOutputLengthError,
-    ],
+    Union[ProviderAuthError, UnknownError, EventSessionErrorPropertiesErrorMessageOutputLengthError],
     PropertyInfo(discriminator="name"),
 ]
 

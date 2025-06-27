@@ -1,3 +1,9 @@
+# Shared Types
+
+```python
+from opencode.types import ProviderAuthError, UnknownError
+```
+
 # Event
 
 Types:
