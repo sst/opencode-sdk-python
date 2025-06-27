@@ -17,6 +17,3 @@ class SessionChatParams(TypedDict, total=False):
     parts: Required[Iterable[MessagePartParam]]
 
     provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
-
-    session_id: Required[Annotated[str, PropertyInfo(alias="sessionID")]]
-    """Session ID"""
