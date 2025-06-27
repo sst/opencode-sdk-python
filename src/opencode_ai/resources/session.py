@@ -174,6 +174,8 @@ class SessionResource(SyncAPIResource):
         Create and send a new message to a session
 
         Args:
+          session_id: Session ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -534,6 +536,8 @@ class AsyncSessionResource(AsyncAPIResource):
         Create and send a new message to a session
 
         Args:
+          session_id: Session ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
