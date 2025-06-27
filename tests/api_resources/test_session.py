@@ -179,7 +179,6 @@ class TestSession:
                 }
             ],
             provider_id="providerID",
-            session_id="sessionID",
         )
         assert_matches_type(Message, session, path=["response"])
 
@@ -196,7 +195,6 @@ class TestSession:
                 }
             ],
             provider_id="providerID",
-            session_id="sessionID",
         )
 
         assert response.is_closed is True
@@ -217,7 +215,6 @@ class TestSession:
                 }
             ],
             provider_id="providerID",
-            session_id="sessionID",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -241,7 +238,6 @@ class TestSession:
                     }
                 ],
                 provider_id="providerID",
-                session_id="sessionID",
             )
 
     @pytest.mark.skip()
@@ -629,7 +625,6 @@ class TestAsyncSession:
                 }
             ],
             provider_id="providerID",
-            session_id="sessionID",
         )
         assert_matches_type(Message, session, path=["response"])
 
@@ -646,7 +641,6 @@ class TestAsyncSession:
                 }
             ],
             provider_id="providerID",
-            session_id="sessionID",
         )
 
         assert response.is_closed is True
@@ -667,7 +661,6 @@ class TestAsyncSession:
                 }
             ],
             provider_id="providerID",
-            session_id="sessionID",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -691,7 +684,6 @@ class TestAsyncSession:
                     }
                 ],
                 provider_id="providerID",
-                session_id="sessionID",
             )
 
     @pytest.mark.skip()
