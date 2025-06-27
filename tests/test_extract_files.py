@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from opencode._types import FileTypes
-from opencode._utils import extract_files
+from opencode_ai._types import FileTypes
+from opencode_ai._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

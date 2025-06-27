@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from opencode._utils import PropertyInfo
-from opencode._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from opencode._models import BaseModel, construct_type
+from opencode_ai._utils import PropertyInfo
+from opencode_ai._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from opencode_ai._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

@@ -14,14 +14,14 @@ aiohappyeyeballs==2.6.1
     # via aiohttp
 aiohttp==3.12.8
     # via httpx-aiohttp
-    # via opencode
+    # via opencode-ai
 aiosignal==1.3.2
     # via aiohttp
 annotated-types==0.6.0
     # via pydantic
 anyio==4.4.0
     # via httpx
-    # via opencode
+    # via opencode-ai
 argcomplete==3.1.2
     # via nox
 async-timeout==5.0.1
@@ -37,7 +37,7 @@ dirty-equals==0.6.0
 distlib==0.3.7
     # via virtualenv
 distro==1.8.0
-    # via opencode
+    # via opencode-ai
 exceptiongroup==1.2.2
     # via anyio
     # via pytest
@@ -54,10 +54,10 @@ httpcore==1.0.2
     # via httpx
 httpx==0.28.1
     # via httpx-aiohttp
-    # via opencode
+    # via opencode-ai
     # via respx
 httpx-aiohttp==0.1.6
-    # via opencode
+    # via opencode-ai
 idna==3.4
     # via anyio
     # via httpx
@@ -90,7 +90,7 @@ propcache==0.3.1
     # via aiohttp
     # via yarl
 pydantic==2.10.3
-    # via opencode
+    # via opencode-ai
 pydantic-core==2.27.1
     # via pydantic
 pygments==2.18.0
@@ -114,7 +114,7 @@ six==1.16.0
     # via python-dateutil
 sniffio==1.3.0
     # via anyio
-    # via opencode
+    # via opencode-ai
 time-machine==2.9.0
 tomli==2.0.2
     # via mypy
@@ -123,7 +123,7 @@ typing-extensions==4.12.2
     # via anyio
     # via multidict
     # via mypy
-    # via opencode
+    # via opencode-ai
     # via pydantic
     # via pydantic-core
     # via pyright

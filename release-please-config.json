@@ -61,6 +61,6 @@
   ],
   "release-type": "python",
   "extra-files": [
-    "src/opencode/_version.py"
+    "src/opencode_ai/_version.py"
   ]
 }

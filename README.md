@@ -1,6 +1,6 @@
 # Opencode Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/opencode.svg?label=pypi%20(stable)>)](https://pypi.org/project/opencode/)
+[![PyPI version](<https://img.shields.io/pypi/v/opencode-ai.svg?label=pypi%20(stable)>)](https://pypi.org/project/opencode-ai/)
 
 The Opencode Python library provides convenient access to the Opencode REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -16,7 +16,7 @@ The REST API documentation can be found on [opencode.ai](https://opencode.ai/doc
 
 ```sh
 # install from PyPI
-pip install --pre opencode
+pip install --pre opencode-ai
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ pip install --pre opencode
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-from opencode import Opencode
+from opencode_ai import Opencode
 
 client = Opencode()
 
@@ -37,7 +37,7 @@ Simply import `AsyncOpencode` instead of `Opencode` and use `await` with each AP
 
 ```python
 import asyncio
-from opencode import AsyncOpencode
+from opencode_ai import AsyncOpencode
 
 client = AsyncOpencode()
 
@@ -59,15 +59,15 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre opencode[aiohttp]
+pip install --pre opencode-ai[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
 import asyncio
-from opencode import DefaultAioHttpClient
-from opencode import AsyncOpencode
+from opencode_ai import DefaultAioHttpClient
+from opencode_ai import AsyncOpencode
 
 
 async def main() -> None:
@@ -91,27 +91,27 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `opencode.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `opencode_ai.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `opencode.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `opencode_ai.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `opencode.APIError`.
+All errors inherit from `opencode_ai.APIError`.
 
 ```python
-import opencode
-from opencode import Opencode
+import opencode_ai
+from opencode_ai import Opencode
 
 client = Opencode()
 
 try:
     client.event.list()
-except opencode.APIConnectionError as e:
+except opencode_ai.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except opencode.RateLimitError as e:
+except opencode_ai.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except opencode.APIStatusError as e:
+except opencode_ai.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -139,7 +139,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from opencode import Opencode
+from opencode_ai import Opencode
 
 # Configure the default for all requests:
 client = Opencode(
@@ -157,7 +157,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from opencode import Opencode
+from opencode_ai import Opencode
 
 # Configure the default for all requests:
 client = Opencode(
@@ -209,7 +209,7 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from opencode import Opencode
+from opencode_ai import Opencode
 
 client = Opencode()
 response = client.event.with_raw_response.list()
@@ -219,9 +219,9 @@ event = response.parse()  # get the object that `event.list()` would have return
 print(event)
 ```
 
-These methods return an [`APIResponse`](https://github.com/sst/opencode-sdk-python/tree/main/src/opencode/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/sst/opencode-sdk-python/tree/main/src/opencode_ai/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/sst/opencode-sdk-python/tree/main/src/opencode/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/sst/opencode-sdk-python/tree/main/src/opencode_ai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -283,7 +283,7 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from opencode import Opencode, DefaultHttpxClient
+from opencode_ai import Opencode, DefaultHttpxClient
 
 client = Opencode(
     # Or use the `OPENCODE_BASE_URL` env var
@@ -306,7 +306,7 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from opencode import Opencode
+from opencode_ai import Opencode
 
 with Opencode() as client:
   # make requests here
@@ -334,8 +334,8 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import opencode
-print(opencode.__version__)
+import opencode_ai
+print(opencode_ai.__version__)
 ```
 
 ## Requirements

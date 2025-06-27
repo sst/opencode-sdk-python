@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from opencode import Opencode, AsyncOpencode
+from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
-from opencode.types import FileSearchResponse
+from opencode_ai.types import FileSearchResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

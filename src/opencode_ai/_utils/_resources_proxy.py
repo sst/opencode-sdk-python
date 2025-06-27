@@ -7,17 +7,17 @@ from ._proxy import LazyProxy
 
 
 class ResourcesProxy(LazyProxy[Any]):
-    """A proxy for the `opencode.resources` module.
+    """A proxy for the `opencode_ai.resources` module.
 
-    This is used so that we can lazily import `opencode.resources` only when
-    needed *and* so that users can just import `opencode` and reference `opencode.resources`
+    This is used so that we can lazily import `opencode_ai.resources` only when
+    needed *and* so that users can just import `opencode_ai` and reference `opencode_ai.resources`
     """
 
     @override
     def __load__(self) -> Any:
         import importlib
 
-        mod = importlib.import_module("opencode.resources")
+        mod = importlib.import_module("opencode_ai.resources")
         return mod
 
 

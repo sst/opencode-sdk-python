@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from opencode._qs import Querystring, stringify
+from opencode_ai._qs import Querystring, stringify
 
 
 def test_empty() -> None:

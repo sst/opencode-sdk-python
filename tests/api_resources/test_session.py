@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from opencode import Opencode, AsyncOpencode
+from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
-from opencode.types import (
+from opencode_ai.types import (
     Message,
     Session,
     SessionInitResponse,

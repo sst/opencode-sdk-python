@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from opencode import Opencode, AsyncOpencode
-from opencode._streaming import Stream, AsyncStream, ServerSentEvent
+from opencode_ai import Opencode, AsyncOpencode
+from opencode_ai._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio
