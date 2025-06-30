@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-06-30)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Bug Fixes
+
+* **ci:** correct conditional ([6a748da](https://github.com/sst/opencode-sdk-python/commit/6a748dadf9df2b27b9c1123dc3ef989213f75090))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([493f7d2](https://github.com/sst/opencode-sdk-python/commit/493f7d2131e0e17fc2128dad40b327e708f64366))
+
 ## 0.1.0-alpha.4 (2025-06-27)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
