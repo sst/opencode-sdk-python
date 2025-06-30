@@ -15,6 +15,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .._streaming import Stream, AsyncStream
 from .._base_client import make_request_options
 from ..types.event_list_response import EventListResponse
 
@@ -50,17 +51,16 @@ class EventResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventListResponse:
+    ) -> Stream[EventListResponse]:
         """Get events"""
-        return cast(
-            EventListResponse,
-            self._get(
-                "/event",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            "/event",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
+            stream=True,
+            stream_cls=Stream[EventListResponse],
         )
 
 
@@ -93,17 +93,16 @@ class AsyncEventResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EventListResponse:
+    ) -> AsyncStream[EventListResponse]:
         """Get events"""
-        return cast(
-            EventListResponse,
-            await self._get(
-                "/event",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            "/event",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=cast(Any, EventListResponse),  # Union types cannot be passed in as arguments in the type system
+            stream=True,
+            stream_cls=AsyncStream[EventListResponse],
         )
 
 
