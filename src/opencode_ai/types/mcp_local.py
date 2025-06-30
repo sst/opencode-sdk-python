@@ -15,5 +15,8 @@ class McpLocal(BaseModel):
     type: Literal["local"]
     """Type of MCP server connection"""
 
+    enabled: Optional[bool] = None
+    """Enable or disable the MCP server on startup"""
+
     environment: Optional[Dict[str, str]] = None
     """Environment variables to set when running the MCP server"""

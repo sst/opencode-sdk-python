@@ -81,6 +81,8 @@ class ProviderModels(BaseModel):
 
     reasoning: Optional[bool] = None
 
+    release_date: Optional[str] = None
+
     temperature: Optional[bool] = None
 
     tool_call: Optional[bool] = None

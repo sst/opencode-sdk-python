@@ -15,15 +15,17 @@ from .shared.provider_auth_error import ProviderAuthError
 
 __all__ = [
     "EventListResponse",
-    "EventStorageWrite",
-    "EventStorageWriteProperties",
-    "EventInstallationUpdated",
-    "EventInstallationUpdatedProperties",
     "EventLspClientDiagnostics",
     "EventLspClientDiagnosticsProperties",
     "EventPermissionUpdated",
     "EventPermissionUpdatedProperties",
     "EventPermissionUpdatedPropertiesTime",
+    "EventFileEdited",
+    "EventFileEditedProperties",
+    "EventStorageWrite",
+    "EventStorageWriteProperties",
+    "EventInstallationUpdated",
+    "EventInstallationUpdatedProperties",
     "EventMessageUpdated",
     "EventMessageUpdatedProperties",
     "EventMessagePartUpdated",
@@ -32,33 +34,13 @@ __all__ = [
     "EventSessionUpdatedProperties",
     "EventSessionDeleted",
     "EventSessionDeletedProperties",
+    "EventSessionIdle",
+    "EventSessionIdleProperties",
     "EventSessionError",
     "EventSessionErrorProperties",
     "EventSessionErrorPropertiesError",
     "EventSessionErrorPropertiesErrorMessageOutputLengthError",
 ]
-
-
-class EventStorageWriteProperties(BaseModel):
-    key: str
-
-    content: Optional[object] = None
-
-
-class EventStorageWrite(BaseModel):
-    properties: EventStorageWriteProperties
-
-    type: Literal["storage.write"]
-
-
-class EventInstallationUpdatedProperties(BaseModel):
-    version: str
-
-
-class EventInstallationUpdated(BaseModel):
-    properties: EventInstallationUpdatedProperties
-
-    type: Literal["installation.updated"]
 
 
 class EventLspClientDiagnosticsProperties(BaseModel):
@@ -93,6 +75,38 @@ class EventPermissionUpdated(BaseModel):
     properties: EventPermissionUpdatedProperties
 
     type: Literal["permission.updated"]
+
+
+class EventFileEditedProperties(BaseModel):
+    file: str
+
+
+class EventFileEdited(BaseModel):
+    properties: EventFileEditedProperties
+
+    type: Literal["file.edited"]
+
+
+class EventStorageWriteProperties(BaseModel):
+    key: str
+
+    content: Optional[object] = None
+
+
+class EventStorageWrite(BaseModel):
+    properties: EventStorageWriteProperties
+
+    type: Literal["storage.write"]
+
+
+class EventInstallationUpdatedProperties(BaseModel):
+    version: str
+
+
+class EventInstallationUpdated(BaseModel):
+    properties: EventInstallationUpdatedProperties
+
+    type: Literal["installation.updated"]
 
 
 class EventMessageUpdatedProperties(BaseModel):
@@ -139,6 +153,16 @@ class EventSessionDeleted(BaseModel):
     type: Literal["session.deleted"]
 
 
+class EventSessionIdleProperties(BaseModel):
+    session_id: str = FieldInfo(alias="sessionID")
+
+
+class EventSessionIdle(BaseModel):
+    properties: EventSessionIdleProperties
+
+    type: Literal["session.idle"]
+
+
 class EventSessionErrorPropertiesErrorMessageOutputLengthError(BaseModel):
     data: object
 
@@ -163,14 +187,16 @@ class EventSessionError(BaseModel):
 
 EventListResponse: TypeAlias = Annotated[
     Union[
-        EventStorageWrite,
-        EventInstallationUpdated,
         EventLspClientDiagnostics,
         EventPermissionUpdated,
+        EventFileEdited,
+        EventStorageWrite,
+        EventInstallationUpdated,
         EventMessageUpdated,
         EventMessagePartUpdated,
         EventSessionUpdated,
         EventSessionDeleted,
+        EventSessionIdle,
         EventSessionError,
     ],
     PropertyInfo(discriminator="type"),
