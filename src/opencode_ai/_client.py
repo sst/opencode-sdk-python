@@ -92,6 +92,8 @@ class Opencode(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self._default_stream_cls = Stream
+
         self.event = event.EventResource(self)
         self.app = app.AppResource(self)
         self.file = file.FileResource(self)
@@ -246,6 +248,8 @@ class AsyncOpencode(AsyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
+
+        self._default_stream_cls = AsyncStream
 
         self.event = event.AsyncEventResource(self)
         self.app = app.AsyncAppResource(self)
