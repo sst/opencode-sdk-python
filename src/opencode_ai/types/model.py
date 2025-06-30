@@ -38,6 +38,8 @@ class Model(BaseModel):
 
     reasoning: bool
 
+    release_date: str
+
     temperature: bool
 
     tool_call: bool

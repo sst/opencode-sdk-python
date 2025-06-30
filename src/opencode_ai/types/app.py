@@ -30,8 +30,6 @@ class App(BaseModel):
 
     path: Path
 
-    project: str
-
     time: Time
 
     user: str
