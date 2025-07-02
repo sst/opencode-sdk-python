@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2025-07-02)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Features
+
+* **api:** update via SDK Studio ([84628c0](https://github.com/sst/opencode-sdk-python/commit/84628c0bd3cd508832f04db0fd8a6cd5367dddf3))
+
+
+### Chores
+
+* **ci:** change upload type ([f3019c9](https://github.com/sst/opencode-sdk-python/commit/f3019c94cb548e436b2d7d884969a90db4649f80))
+
 ## 0.1.0-alpha.6 (2025-06-30)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
