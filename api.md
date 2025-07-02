@@ -29,17 +29,32 @@ Methods:
 - <code title="get /app">client.app.<a href="./src/opencode_ai/resources/app.py">get</a>() -> <a href="./src/opencode_ai/types/app.py">App</a></code>
 - <code title="post /app/init">client.app.<a href="./src/opencode_ai/resources/app.py">init</a>() -> <a href="./src/opencode_ai/types/app_init_response.py">AppInitResponse</a></code>
 
+# Find
+
+Types:
+
+```python
+from opencode_ai.types import FindFilesResponse, FindSymbolsResponse, FindTextResponse
+```
+
+Methods:
+
+- <code title="get /find/file">client.find.<a href="./src/opencode_ai/resources/find.py">files</a>(\*\*<a href="src/opencode_ai/types/find_files_params.py">params</a>) -> <a href="./src/opencode_ai/types/find_files_response.py">FindFilesResponse</a></code>
+- <code title="get /find/symbol">client.find.<a href="./src/opencode_ai/resources/find.py">symbols</a>(\*\*<a href="src/opencode_ai/types/find_symbols_params.py">params</a>) -> <a href="./src/opencode_ai/types/find_symbols_response.py">FindSymbolsResponse</a></code>
+- <code title="get /find">client.find.<a href="./src/opencode_ai/resources/find.py">text</a>(\*\*<a href="src/opencode_ai/types/find_text_params.py">params</a>) -> <a href="./src/opencode_ai/types/find_text_response.py">FindTextResponse</a></code>
+
 # File
 
 Types:
 
 ```python
-from opencode_ai.types import FileSearchResponse
+from opencode_ai.types import FileReadResponse, FileStatusResponse
 ```
 
 Methods:
 
-- <code title="get /file">client.file.<a href="./src/opencode_ai/resources/file.py">search</a>(\*\*<a href="src/opencode_ai/types/file_search_params.py">params</a>) -> <a href="./src/opencode_ai/types/file_search_response.py">FileSearchResponse</a></code>
+- <code title="get /file">client.file.<a href="./src/opencode_ai/resources/file.py">read</a>(\*\*<a href="src/opencode_ai/types/file_read_params.py">params</a>) -> <a href="./src/opencode_ai/types/file_read_response.py">FileReadResponse</a></code>
+- <code title="get /file/status">client.file.<a href="./src/opencode_ai/resources/file.py">status</a>() -> <a href="./src/opencode_ai/types/file_status_response.py">FileStatusResponse</a></code>
 
 # Config
 

@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import app, file, event, config, session
+from .resources import app, file, find, event, config, session
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -45,6 +45,7 @@ __all__ = [
 class Opencode(SyncAPIClient):
     event: event.EventResource
     app: app.AppResource
+    find: find.FindResource
     file: file.FileResource
     config: config.ConfigResource
     session: session.SessionResource
@@ -96,6 +97,7 @@ class Opencode(SyncAPIClient):
 
         self.event = event.EventResource(self)
         self.app = app.AppResource(self)
+        self.find = find.FindResource(self)
         self.file = file.FileResource(self)
         self.config = config.ConfigResource(self)
         self.session = session.SessionResource(self)
@@ -202,6 +204,7 @@ class Opencode(SyncAPIClient):
 class AsyncOpencode(AsyncAPIClient):
     event: event.AsyncEventResource
     app: app.AsyncAppResource
+    find: find.AsyncFindResource
     file: file.AsyncFileResource
     config: config.AsyncConfigResource
     session: session.AsyncSessionResource
@@ -253,6 +256,7 @@ class AsyncOpencode(AsyncAPIClient):
 
         self.event = event.AsyncEventResource(self)
         self.app = app.AsyncAppResource(self)
+        self.find = find.AsyncFindResource(self)
         self.file = file.AsyncFileResource(self)
         self.config = config.AsyncConfigResource(self)
         self.session = session.AsyncSessionResource(self)
@@ -360,6 +364,7 @@ class OpencodeWithRawResponse:
     def __init__(self, client: Opencode) -> None:
         self.event = event.EventResourceWithRawResponse(client.event)
         self.app = app.AppResourceWithRawResponse(client.app)
+        self.find = find.FindResourceWithRawResponse(client.find)
         self.file = file.FileResourceWithRawResponse(client.file)
         self.config = config.ConfigResourceWithRawResponse(client.config)
         self.session = session.SessionResourceWithRawResponse(client.session)
@@ -369,6 +374,7 @@ class AsyncOpencodeWithRawResponse:
     def __init__(self, client: AsyncOpencode) -> None:
         self.event = event.AsyncEventResourceWithRawResponse(client.event)
         self.app = app.AsyncAppResourceWithRawResponse(client.app)
+        self.find = find.AsyncFindResourceWithRawResponse(client.find)
         self.file = file.AsyncFileResourceWithRawResponse(client.file)
         self.config = config.AsyncConfigResourceWithRawResponse(client.config)
         self.session = session.AsyncSessionResourceWithRawResponse(client.session)
@@ -378,6 +384,7 @@ class OpencodeWithStreamedResponse:
     def __init__(self, client: Opencode) -> None:
         self.event = event.EventResourceWithStreamingResponse(client.event)
         self.app = app.AppResourceWithStreamingResponse(client.app)
+        self.find = find.FindResourceWithStreamingResponse(client.find)
         self.file = file.FileResourceWithStreamingResponse(client.file)
         self.config = config.ConfigResourceWithStreamingResponse(client.config)
         self.session = session.SessionResourceWithStreamingResponse(client.session)
@@ -387,6 +394,7 @@ class AsyncOpencodeWithStreamedResponse:
     def __init__(self, client: AsyncOpencode) -> None:
         self.event = event.AsyncEventResourceWithStreamingResponse(client.event)
         self.app = app.AsyncAppResourceWithStreamingResponse(client.app)
+        self.find = find.AsyncFindResourceWithStreamingResponse(client.find)
         self.file = file.AsyncFileResourceWithStreamingResponse(client.file)
         self.config = config.AsyncConfigResourceWithStreamingResponse(client.config)
         self.session = session.AsyncSessionResourceWithStreamingResponse(client.session)
