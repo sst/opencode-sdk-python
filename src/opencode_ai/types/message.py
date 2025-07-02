@@ -23,6 +23,7 @@ __all__ = [
     "MetadataAssistantTokensCache",
     "MetadataError",
     "MetadataErrorMessageOutputLengthError",
+    "MetadataUser",
 ]
 
 
@@ -99,6 +100,10 @@ MetadataError: TypeAlias = Annotated[
 ]
 
 
+class MetadataUser(BaseModel):
+    snapshot: Optional[str] = None
+
+
 class Metadata(BaseModel):
     session_id: str = FieldInfo(alias="sessionID")
 
@@ -109,6 +114,8 @@ class Metadata(BaseModel):
     assistant: Optional[MetadataAssistant] = None
 
     error: Optional[MetadataError] = None
+
+    user: Optional[MetadataUser] = None
 
 
 class Message(BaseModel):

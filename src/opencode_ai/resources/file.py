@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import file_search_params
+from ..types import file_read_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -16,7 +16,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.file_search_response import FileSearchResponse
+from ..types.file_read_response import FileReadResponse
+from ..types.file_status_response import FileStatusResponse
 
 __all__ = ["FileResource", "AsyncFileResource"]
 
@@ -41,19 +42,19 @@ class FileResource(SyncAPIResource):
         """
         return FileResourceWithStreamingResponse(self)
 
-    def search(
+    def read(
         self,
         *,
-        query: str,
+        path: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FileSearchResponse:
+    ) -> FileReadResponse:
         """
-        Search for files
+        Read a file
 
         Args:
           extra_headers: Send extra headers
@@ -71,9 +72,28 @@ class FileResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query": query}, file_search_params.FileSearchParams),
+                query=maybe_transform({"path": path}, file_read_params.FileReadParams),
             ),
-            cast_to=FileSearchResponse,
+            cast_to=FileReadResponse,
+        )
+
+    def status(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FileStatusResponse:
+        """Get file status"""
+        return self._get(
+            "/file/status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FileStatusResponse,
         )
 
 
@@ -97,19 +117,19 @@ class AsyncFileResource(AsyncAPIResource):
         """
         return AsyncFileResourceWithStreamingResponse(self)
 
-    async def search(
+    async def read(
         self,
         *,
-        query: str,
+        path: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FileSearchResponse:
+    ) -> FileReadResponse:
         """
-        Search for files
+        Read a file
 
         Args:
           extra_headers: Send extra headers
@@ -127,9 +147,28 @@ class AsyncFileResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"query": query}, file_search_params.FileSearchParams),
+                query=await async_maybe_transform({"path": path}, file_read_params.FileReadParams),
             ),
-            cast_to=FileSearchResponse,
+            cast_to=FileReadResponse,
+        )
+
+    async def status(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FileStatusResponse:
+        """Get file status"""
+        return await self._get(
+            "/file/status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FileStatusResponse,
         )
 
 
@@ -137,8 +176,11 @@ class FileResourceWithRawResponse:
     def __init__(self, file: FileResource) -> None:
         self._file = file
 
-        self.search = to_raw_response_wrapper(
-            file.search,
+        self.read = to_raw_response_wrapper(
+            file.read,
+        )
+        self.status = to_raw_response_wrapper(
+            file.status,
         )
 
 
@@ -146,8 +188,11 @@ class AsyncFileResourceWithRawResponse:
     def __init__(self, file: AsyncFileResource) -> None:
         self._file = file
 
-        self.search = async_to_raw_response_wrapper(
-            file.search,
+        self.read = async_to_raw_response_wrapper(
+            file.read,
+        )
+        self.status = async_to_raw_response_wrapper(
+            file.status,
         )
 
 
@@ -155,8 +200,11 @@ class FileResourceWithStreamingResponse:
     def __init__(self, file: FileResource) -> None:
         self._file = file
 
-        self.search = to_streamed_response_wrapper(
-            file.search,
+        self.read = to_streamed_response_wrapper(
+            file.read,
+        )
+        self.status = to_streamed_response_wrapper(
+            file.status,
         )
 
 
@@ -164,6 +212,9 @@ class AsyncFileResourceWithStreamingResponse:
     def __init__(self, file: AsyncFileResource) -> None:
         self._file = file
 
-        self.search = async_to_streamed_response_wrapper(
-            file.search,
+        self.read = async_to_streamed_response_wrapper(
+            file.read,
+        )
+        self.status = async_to_streamed_response_wrapper(
+            file.status,
         )

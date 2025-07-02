@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["FileSearchParams"]
+__all__ = ["FindSymbolsParams"]
 
 
-class FileSearchParams(TypedDict, total=False):
+class FindSymbolsParams(TypedDict, total=False):
     query: Required[str]

@@ -3,6 +3,6 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-__all__ = ["FileSearchResponse"]
+__all__ = ["FindFilesResponse"]
 
-FileSearchResponse: TypeAlias = List[str]
+FindFilesResponse: TypeAlias = List[str]

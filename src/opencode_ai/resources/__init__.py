@@ -16,6 +16,14 @@ from .file import (
     FileResourceWithStreamingResponse,
     AsyncFileResourceWithStreamingResponse,
 )
+from .find import (
+    FindResource,
+    AsyncFindResource,
+    FindResourceWithRawResponse,
+    AsyncFindResourceWithRawResponse,
+    FindResourceWithStreamingResponse,
+    AsyncFindResourceWithStreamingResponse,
+)
 from .event import (
     EventResource,
     AsyncEventResource,
@@ -54,6 +62,12 @@ __all__ = [
     "AsyncAppResourceWithRawResponse",
     "AppResourceWithStreamingResponse",
     "AsyncAppResourceWithStreamingResponse",
+    "FindResource",
+    "AsyncFindResource",
+    "FindResourceWithRawResponse",
+    "AsyncFindResourceWithRawResponse",
+    "FindResourceWithStreamingResponse",
+    "AsyncFindResourceWithStreamingResponse",
     "FileResource",
     "AsyncFileResource",
     "FileResourceWithRawResponse",
