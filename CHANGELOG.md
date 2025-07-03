@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-07-03)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* **api:** api update ([6f7ea7f](https://github.com/sst/opencode-sdk-python/commit/6f7ea7f1f813c31e513fbe33d8653fe3e07f7831))
+
 ## 0.1.0-alpha.7 (2025-07-02)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
