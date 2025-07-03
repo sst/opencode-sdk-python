@@ -119,6 +119,9 @@ class Config(BaseModel):
 
     experimental: Optional[Experimental] = None
 
+    instructions: Optional[List[str]] = None
+    """Additional instruction files or patterns to include"""
+
     keybinds: Optional[Keybinds] = None
     """Custom keybind configurations"""
 

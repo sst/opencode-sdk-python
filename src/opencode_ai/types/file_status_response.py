@@ -9,11 +9,11 @@ __all__ = ["FileStatusResponse", "FileStatusResponseItem"]
 
 
 class FileStatusResponseItem(BaseModel):
-    added: float
+    added: int
 
     file: str
 
-    removed: float
+    removed: int
 
     status: Literal["added", "deleted", "modified"]
 

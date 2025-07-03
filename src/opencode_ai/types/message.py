@@ -23,7 +23,6 @@ __all__ = [
     "MetadataAssistantTokensCache",
     "MetadataError",
     "MetadataErrorMessageOutputLengthError",
-    "MetadataUser",
 ]
 
 
@@ -43,6 +42,8 @@ class MetadataTool(BaseModel):
     time: MetadataToolTime
 
     title: str
+
+    snapshot: Optional[str] = None
 
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
@@ -100,10 +101,6 @@ MetadataError: TypeAlias = Annotated[
 ]
 
 
-class MetadataUser(BaseModel):
-    snapshot: Optional[str] = None
-
-
 class Metadata(BaseModel):
     session_id: str = FieldInfo(alias="sessionID")
 
@@ -115,7 +112,7 @@ class Metadata(BaseModel):
 
     error: Optional[MetadataError] = None
 
-    user: Optional[MetadataUser] = None
+    snapshot: Optional[str] = None
 
 
 class Message(BaseModel):
