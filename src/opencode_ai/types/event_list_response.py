@@ -28,6 +28,8 @@ __all__ = [
     "EventInstallationUpdatedProperties",
     "EventMessageUpdated",
     "EventMessageUpdatedProperties",
+    "EventMessageRemoved",
+    "EventMessageRemovedProperties",
     "EventMessagePartUpdated",
     "EventMessagePartUpdatedProperties",
     "EventSessionUpdated",
@@ -121,6 +123,18 @@ class EventMessageUpdated(BaseModel):
     type: Literal["message.updated"]
 
 
+class EventMessageRemovedProperties(BaseModel):
+    message_id: str = FieldInfo(alias="messageID")
+
+    session_id: str = FieldInfo(alias="sessionID")
+
+
+class EventMessageRemoved(BaseModel):
+    properties: EventMessageRemovedProperties
+
+    type: Literal["message.removed"]
+
+
 class EventMessagePartUpdatedProperties(BaseModel):
     message_id: str = FieldInfo(alias="messageID")
 
@@ -207,6 +221,7 @@ EventListResponse: TypeAlias = Annotated[
         EventStorageWrite,
         EventInstallationUpdated,
         EventMessageUpdated,
+        EventMessageRemoved,
         EventMessagePartUpdated,
         EventSessionUpdated,
         EventSessionDeleted,

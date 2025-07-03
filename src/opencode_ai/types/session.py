@@ -6,13 +6,21 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Session", "Time", "Share"]
+__all__ = ["Session", "Time", "Revert", "Share"]
 
 
 class Time(BaseModel):
     created: float
 
     updated: float
+
+
+class Revert(BaseModel):
+    message_id: str = FieldInfo(alias="messageID")
+
+    part: float
+
+    snapshot: Optional[str] = None
 
 
 class Share(BaseModel):
@@ -29,5 +37,7 @@ class Session(BaseModel):
     version: str
 
     parent_id: Optional[str] = FieldInfo(alias="parentID", default=None)
+
+    revert: Optional[Revert] = None
 
     share: Optional[Share] = None
