@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .message_part_param import MessagePartParam
+from .user_message_part_param import UserMessagePartParam
 
 __all__ = ["SessionChatParams"]
 
@@ -14,6 +14,6 @@ __all__ = ["SessionChatParams"]
 class SessionChatParams(TypedDict, total=False):
     model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
 
-    parts: Required[Iterable[MessagePartParam]]
+    parts: Required[Iterable[UserMessagePartParam]]
 
     provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]

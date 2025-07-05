@@ -9,8 +9,8 @@ from .._utils import PropertyInfo
 from .message import Message
 from .session import Session
 from .._models import BaseModel
-from .message_part import MessagePart
 from .shared.unknown_error import UnknownError
+from .assistant_message_part import AssistantMessagePart
 from .shared.provider_auth_error import ProviderAuthError
 
 __all__ = [
@@ -22,10 +22,10 @@ __all__ = [
     "EventPermissionUpdatedPropertiesTime",
     "EventFileEdited",
     "EventFileEditedProperties",
-    "EventStorageWrite",
-    "EventStorageWriteProperties",
     "EventInstallationUpdated",
     "EventInstallationUpdatedProperties",
+    "EventStorageWrite",
+    "EventStorageWriteProperties",
     "EventMessageUpdated",
     "EventMessageUpdatedProperties",
     "EventMessageRemoved",
@@ -91,6 +91,16 @@ class EventFileEdited(BaseModel):
     type: Literal["file.edited"]
 
 
+class EventInstallationUpdatedProperties(BaseModel):
+    version: str
+
+
+class EventInstallationUpdated(BaseModel):
+    properties: EventInstallationUpdatedProperties
+
+    type: Literal["installation.updated"]
+
+
 class EventStorageWriteProperties(BaseModel):
     key: str
 
@@ -101,16 +111,6 @@ class EventStorageWrite(BaseModel):
     properties: EventStorageWriteProperties
 
     type: Literal["storage.write"]
-
-
-class EventInstallationUpdatedProperties(BaseModel):
-    version: str
-
-
-class EventInstallationUpdated(BaseModel):
-    properties: EventInstallationUpdatedProperties
-
-    type: Literal["installation.updated"]
 
 
 class EventMessageUpdatedProperties(BaseModel):
@@ -138,7 +138,7 @@ class EventMessageRemoved(BaseModel):
 class EventMessagePartUpdatedProperties(BaseModel):
     message_id: str = FieldInfo(alias="messageID")
 
-    part: MessagePart
+    part: AssistantMessagePart
 
     session_id: str = FieldInfo(alias="sessionID")
 
@@ -218,8 +218,8 @@ EventListResponse: TypeAlias = Annotated[
         EventLspClientDiagnostics,
         EventPermissionUpdated,
         EventFileEdited,
-        EventStorageWrite,
         EventInstallationUpdated,
+        EventStorageWrite,
         EventMessageUpdated,
         EventMessageRemoved,
         EventMessagePartUpdated,
