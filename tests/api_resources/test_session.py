@@ -10,8 +10,8 @@ import pytest
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
 from opencode_ai.types import (
-    Message,
     Session,
+    AssistantMessage,
     SessionInitResponse,
     SessionListResponse,
     SessionAbortResponse,
@@ -180,7 +180,7 @@ class TestSession:
             ],
             provider_id="providerID",
         )
-        assert_matches_type(Message, session, path=["response"])
+        assert_matches_type(AssistantMessage, session, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -200,7 +200,7 @@ class TestSession:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = response.parse()
-        assert_matches_type(Message, session, path=["response"])
+        assert_matches_type(AssistantMessage, session, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -220,7 +220,7 @@ class TestSession:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = response.parse()
-            assert_matches_type(Message, session, path=["response"])
+            assert_matches_type(AssistantMessage, session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -626,7 +626,7 @@ class TestAsyncSession:
             ],
             provider_id="providerID",
         )
-        assert_matches_type(Message, session, path=["response"])
+        assert_matches_type(AssistantMessage, session, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -646,7 +646,7 @@ class TestAsyncSession:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = await response.parse()
-        assert_matches_type(Message, session, path=["response"])
+        assert_matches_type(AssistantMessage, session, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -666,7 +666,7 @@ class TestAsyncSession:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = await response.parse()
-            assert_matches_type(Message, session, path=["response"])
+            assert_matches_type(AssistantMessage, session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

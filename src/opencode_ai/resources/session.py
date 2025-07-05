@@ -18,13 +18,13 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.message import Message
 from ..types.session import Session
-from ..types.message_part_param import MessagePartParam
+from ..types.assistant_message import AssistantMessage
 from ..types.session_init_response import SessionInitResponse
 from ..types.session_list_response import SessionListResponse
 from ..types.session_abort_response import SessionAbortResponse
 from ..types.session_delete_response import SessionDeleteResponse
+from ..types.user_message_part_param import UserMessagePartParam
 from ..types.session_messages_response import SessionMessagesResponse
 from ..types.session_summarize_response import SessionSummarizeResponse
 
@@ -160,7 +160,7 @@ class SessionResource(SyncAPIResource):
         id: str,
         *,
         model_id: str,
-        parts: Iterable[MessagePartParam],
+        parts: Iterable[UserMessagePartParam],
         provider_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -168,7 +168,7 @@ class SessionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> AssistantMessage:
         """
         Create and send a new message to a session
 
@@ -198,7 +198,7 @@ class SessionResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Message,
+            cast_to=AssistantMessage,
         )
 
     def init(
@@ -520,7 +520,7 @@ class AsyncSessionResource(AsyncAPIResource):
         id: str,
         *,
         model_id: str,
-        parts: Iterable[MessagePartParam],
+        parts: Iterable[UserMessagePartParam],
         provider_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -528,7 +528,7 @@ class AsyncSessionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> AssistantMessage:
         """
         Create and send a new message to a session
 
@@ -558,7 +558,7 @@ class AsyncSessionResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Message,
+            cast_to=AssistantMessage,
         )
 
     async def init(

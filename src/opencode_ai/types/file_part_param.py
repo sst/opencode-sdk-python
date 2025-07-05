@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from .._utils import PropertyInfo
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["FilePartParam"]
 
 
 class FilePartParam(TypedDict, total=False):
-    media_type: Required[Annotated[str, PropertyInfo(alias="mediaType")]]
+    mime: Required[str]
 
     type: Required[Literal["file"]]
 
