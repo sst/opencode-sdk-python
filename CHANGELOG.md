@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-07-09)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Bug Fixes
+
+* **parsing:** correctly handle nested discriminated unions ([ff5c4a1](https://github.com/sst/opencode-sdk-python/commit/ff5c4a14337714858bd0c193a453fc28f011b263))
+
+
+### Chores
+
+* **internal:** bump pinned h11 dep ([6faa22e](https://github.com/sst/opencode-sdk-python/commit/6faa22e132534a89f10a872ead9ce78fd4ab553c))
+* **package:** mark python 3.13 as supported ([5f2edbe](https://github.com/sst/opencode-sdk-python/commit/5f2edbe52d0450a205d69d57e75ee571cabe4b10))
+
 ## 0.1.0-alpha.10 (2025-07-06)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
