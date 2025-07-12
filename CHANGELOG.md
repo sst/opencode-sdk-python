@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-07-12)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([d52fbac](https://github.com/sst/opencode-sdk-python/commit/d52fbac0f4e2ae7f3338272eb7075f1401912fe4))
+
+
+### Chores
+
+* **readme:** fix version rendering on pypi ([d7ae516](https://github.com/sst/opencode-sdk-python/commit/d7ae5162cc2346314e69fd7609050d0e97eecf6c))
+
 ## 0.1.0-alpha.11 (2025-07-09)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
