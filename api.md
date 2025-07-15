@@ -96,6 +96,7 @@ from opencode_ai.types import (
     Message,
     Part,
     Session,
+    SnapshotPart,
     StepFinishPart,
     StepStartPart,
     TextPart,
