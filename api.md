@@ -1,7 +1,7 @@
 # Shared Types
 
 ```python
-from opencode_ai.types import ProviderAuthError, UnknownError
+from opencode_ai.types import MessageAbortedError, ProviderAuthError, UnknownError
 ```
 
 # Event
@@ -21,20 +21,28 @@ Methods:
 Types:
 
 ```python
-from opencode_ai.types import App, AppInitResponse
+from opencode_ai.types import App, LogLevel, Mode, AppInitResponse, AppLogResponse, AppModesResponse
 ```
 
 Methods:
 
 - <code title="get /app">client.app.<a href="./src/opencode_ai/resources/app.py">get</a>() -> <a href="./src/opencode_ai/types/app.py">App</a></code>
 - <code title="post /app/init">client.app.<a href="./src/opencode_ai/resources/app.py">init</a>() -> <a href="./src/opencode_ai/types/app_init_response.py">AppInitResponse</a></code>
+- <code title="post /log">client.app.<a href="./src/opencode_ai/resources/app.py">log</a>(\*\*<a href="src/opencode_ai/types/app_log_params.py">params</a>) -> <a href="./src/opencode_ai/types/app_log_response.py">AppLogResponse</a></code>
+- <code title="get /mode">client.app.<a href="./src/opencode_ai/resources/app.py">modes</a>() -> <a href="./src/opencode_ai/types/app_modes_response.py">AppModesResponse</a></code>
 
 # Find
 
 Types:
 
 ```python
-from opencode_ai.types import FindFilesResponse, FindSymbolsResponse, FindTextResponse
+from opencode_ai.types import (
+    Match,
+    Symbol,
+    FindFilesResponse,
+    FindSymbolsResponse,
+    FindTextResponse,
+)
 ```
 
 Methods:
@@ -48,7 +56,7 @@ Methods:
 Types:
 
 ```python
-from opencode_ai.types import FileReadResponse, FileStatusResponse
+from opencode_ai.types import File, FileReadResponse, FileStatusResponse
 ```
 
 Methods:
@@ -84,10 +92,11 @@ Types:
 ```python
 from opencode_ai.types import (
     AssistantMessage,
-    AssistantMessagePart,
     FilePart,
     Message,
+    Part,
     Session,
+    StepFinishPart,
     StepStartPart,
     TextPart,
     ToolPart,
@@ -95,7 +104,7 @@ from opencode_ai.types import (
     ToolStateError,
     ToolStatePending,
     ToolStateRunning,
-    UserMessagePart,
+    UserMessage,
     SessionListResponse,
     SessionDeleteResponse,
     SessionAbortResponse,

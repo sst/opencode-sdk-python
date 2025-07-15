@@ -3,6 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
+from .symbol import Symbol
+
 __all__ = ["FindSymbolsResponse"]
 
-FindSymbolsResponse: TypeAlias = List[object]
+FindSymbolsResponse: TypeAlias = List[Symbol]

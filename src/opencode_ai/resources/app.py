@@ -2,9 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Dict
+from typing_extensions import Literal
+
 import httpx
 
+from ..types import app_log_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +20,9 @@ from .._response import (
 )
 from ..types.app import App
 from .._base_client import make_request_options
+from ..types.app_log_response import AppLogResponse
 from ..types.app_init_response import AppInitResponse
+from ..types.app_modes_response import AppModesResponse
 
 __all__ = ["AppResource", "AsyncAppResource"]
 
@@ -78,6 +85,76 @@ class AppResource(SyncAPIResource):
             cast_to=AppInitResponse,
         )
 
+    def log(
+        self,
+        *,
+        level: Literal["debug", "info", "error", "warn"],
+        message: str,
+        service: str,
+        extra: Dict[str, object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AppLogResponse:
+        """
+        Write a log entry to the server logs
+
+        Args:
+          level: Log level
+
+          message: Log message
+
+          service: Service name for the log entry
+
+          extra: Additional metadata for the log entry
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/log",
+            body=maybe_transform(
+                {
+                    "level": level,
+                    "message": message,
+                    "service": service,
+                    "extra": extra,
+                },
+                app_log_params.AppLogParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppLogResponse,
+        )
+
+    def modes(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AppModesResponse:
+        """List all modes"""
+        return self._get(
+            "/mode",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppModesResponse,
+        )
+
 
 class AsyncAppResource(AsyncAPIResource):
     @cached_property
@@ -137,6 +214,76 @@ class AsyncAppResource(AsyncAPIResource):
             cast_to=AppInitResponse,
         )
 
+    async def log(
+        self,
+        *,
+        level: Literal["debug", "info", "error", "warn"],
+        message: str,
+        service: str,
+        extra: Dict[str, object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AppLogResponse:
+        """
+        Write a log entry to the server logs
+
+        Args:
+          level: Log level
+
+          message: Log message
+
+          service: Service name for the log entry
+
+          extra: Additional metadata for the log entry
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/log",
+            body=await async_maybe_transform(
+                {
+                    "level": level,
+                    "message": message,
+                    "service": service,
+                    "extra": extra,
+                },
+                app_log_params.AppLogParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppLogResponse,
+        )
+
+    async def modes(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AppModesResponse:
+        """List all modes"""
+        return await self._get(
+            "/mode",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppModesResponse,
+        )
+
 
 class AppResourceWithRawResponse:
     def __init__(self, app: AppResource) -> None:
@@ -147,6 +294,12 @@ class AppResourceWithRawResponse:
         )
         self.init = to_raw_response_wrapper(
             app.init,
+        )
+        self.log = to_raw_response_wrapper(
+            app.log,
+        )
+        self.modes = to_raw_response_wrapper(
+            app.modes,
         )
 
 
@@ -160,6 +313,12 @@ class AsyncAppResourceWithRawResponse:
         self.init = async_to_raw_response_wrapper(
             app.init,
         )
+        self.log = async_to_raw_response_wrapper(
+            app.log,
+        )
+        self.modes = async_to_raw_response_wrapper(
+            app.modes,
+        )
 
 
 class AppResourceWithStreamingResponse:
@@ -172,6 +331,12 @@ class AppResourceWithStreamingResponse:
         self.init = to_streamed_response_wrapper(
             app.init,
         )
+        self.log = to_streamed_response_wrapper(
+            app.log,
+        )
+        self.modes = to_streamed_response_wrapper(
+            app.modes,
+        )
 
 
 class AsyncAppResourceWithStreamingResponse:
@@ -183,4 +348,10 @@ class AsyncAppResourceWithStreamingResponse:
         )
         self.init = async_to_streamed_response_wrapper(
             app.init,
+        )
+        self.log = async_to_streamed_response_wrapper(
+            app.log,
+        )
+        self.modes = async_to_streamed_response_wrapper(
+            app.modes,
         )

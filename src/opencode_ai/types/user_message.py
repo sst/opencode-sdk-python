@@ -6,14 +6,18 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["StepStartPart"]
+__all__ = ["UserMessage", "Time"]
 
 
-class StepStartPart(BaseModel):
+class Time(BaseModel):
+    created: float
+
+
+class UserMessage(BaseModel):
     id: str
 
-    message_id: str = FieldInfo(alias="messageID")
+    role: Literal["user"]
 
     session_id: str = FieldInfo(alias="sessionID")
 
-    type: Literal["step-start"]
+    time: Time
