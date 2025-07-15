@@ -1,30 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Annotated, TypeAlias
 
-from pydantic import Field as FieldInfo
-
-from .._models import BaseModel
+from .._utils import PropertyInfo
 from .file_part import FilePart
 from .text_part import TextPart
 from .tool_part import ToolPart
+from .snapshot_part import SnapshotPart
 from .step_start_part import StepStartPart
 from .step_finish_part import StepFinishPart
 
-__all__ = ["Part", "UnionMember5"]
+__all__ = ["Part"]
 
-
-class UnionMember5(BaseModel):
-    id: str
-
-    message_id: str = FieldInfo(alias="messageID")
-
-    session_id: str = FieldInfo(alias="sessionID")
-
-    snapshot: str
-
-    type: Literal["snapshot"]
-
-
-Part: TypeAlias = Union[TextPart, FilePart, ToolPart, StepStartPart, StepFinishPart, UnionMember5]
+Part: TypeAlias = Annotated[
+    Union[TextPart, FilePart, ToolPart, StepStartPart, StepFinishPart, SnapshotPart], PropertyInfo(discriminator="type")
+]

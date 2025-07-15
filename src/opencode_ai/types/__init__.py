@@ -26,6 +26,7 @@ from .text_part import TextPart as TextPart
 from .tool_part import ToolPart as ToolPart
 from .mcp_remote import McpRemote as McpRemote
 from .user_message import UserMessage as UserMessage
+from .snapshot_part import SnapshotPart as SnapshotPart
 from .app_log_params import AppLogParams as AppLogParams
 from .file_part_param import FilePartParam as FilePartParam
 from .step_start_part import StepStartPart as StepStartPart
