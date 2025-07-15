@@ -81,6 +81,32 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
+## Streaming responses
+
+We provide support for streaming responses using Server Side Events (SSE).
+
+```python
+from opencode_ai import Opencode
+
+client = Opencode()
+
+stream = client.event.list()
+for events in stream:
+    print(events)
+```
+
+The async client uses the exact same interface.
+
+```python
+from opencode_ai import AsyncOpencode
+
+client = AsyncOpencode()
+
+stream = await client.event.list()
+async for events in stream:
+    print(events)
+```
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
