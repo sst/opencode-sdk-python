@@ -29,7 +29,7 @@ from opencode_ai import Opencode
 
 client = Opencode()
 
-events = client.event.list()
+sessions = client.session.list()
 ```
 
 ## Async usage
@@ -44,7 +44,7 @@ client = AsyncOpencode()
 
 
 async def main() -> None:
-    events = await client.event.list()
+    sessions = await client.session.list()
 
 
 asyncio.run(main())
@@ -75,36 +75,10 @@ async def main() -> None:
     async with AsyncOpencode(
         http_client=DefaultAioHttpClient(),
     ) as client:
-        events = await client.event.list()
+        sessions = await client.session.list()
 
 
 asyncio.run(main())
-```
-
-## Streaming responses
-
-We provide support for streaming responses using Server Side Events (SSE).
-
-```python
-from opencode_ai import Opencode
-
-client = Opencode()
-
-stream = client.event.list()
-for events in stream:
-    print(events)
-```
-
-The async client uses the exact same interface.
-
-```python
-from opencode_ai import AsyncOpencode
-
-client = AsyncOpencode()
-
-stream = await client.event.list()
-async for events in stream:
-    print(events)
 ```
 
 ## Using types
@@ -132,7 +106,7 @@ from opencode_ai import Opencode
 client = Opencode()
 
 try:
-    client.event.list()
+    client.session.list()
 except opencode_ai.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -175,7 +149,7 @@ client = Opencode(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).event.list()
+client.with_options(max_retries=5).session.list()
 ```
 
 ### Timeouts
@@ -198,7 +172,7 @@ client = Opencode(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).event.list()
+client.with_options(timeout=5.0).session.list()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -239,11 +213,11 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from opencode_ai import Opencode
 
 client = Opencode()
-response = client.event.with_raw_response.list()
+response = client.session.with_raw_response.list()
 print(response.headers.get('X-My-Header'))
 
-event = response.parse()  # get the object that `event.list()` would have returned
-print(event)
+session = response.parse()  # get the object that `session.list()` would have returned
+print(session)
 ```
 
 These methods return an [`APIResponse`](https://github.com/sst/opencode-sdk-python/tree/main/src/opencode_ai/_response.py) object.
@@ -257,7 +231,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.event.with_streaming_response.list() as response:
+with client.session.with_streaming_response.list() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
