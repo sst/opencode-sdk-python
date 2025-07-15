@@ -2,18 +2,26 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, Annotated, TypedDict
+from typing import Union, Iterable
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
-from .user_message_part_param import UserMessagePartParam
+from .file_part_param import FilePartParam
+from .text_part_param import TextPartParam
 
-__all__ = ["SessionChatParams"]
+__all__ = ["SessionChatParams", "Part"]
 
 
 class SessionChatParams(TypedDict, total=False):
+    message_id: Required[Annotated[str, PropertyInfo(alias="messageID")]]
+
+    mode: Required[str]
+
     model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
 
-    parts: Required[Iterable[UserMessagePartParam]]
+    parts: Required[Iterable[Part]]
 
     provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
+
+
+Part: TypeAlias = Union[FilePartParam, TextPartParam]

@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .file import File
+from .mode import Mode
 
-__all__ = ["FileStatusResponse"]
+__all__ = ["AppModesResponse"]
 
-FileStatusResponse: TypeAlias = List[File]
+AppModesResponse: TypeAlias = List[Mode]

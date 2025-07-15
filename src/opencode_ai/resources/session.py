@@ -24,7 +24,6 @@ from ..types.session_init_response import SessionInitResponse
 from ..types.session_list_response import SessionListResponse
 from ..types.session_abort_response import SessionAbortResponse
 from ..types.session_delete_response import SessionDeleteResponse
-from ..types.user_message_part_param import UserMessagePartParam
 from ..types.session_messages_response import SessionMessagesResponse
 from ..types.session_summarize_response import SessionSummarizeResponse
 
@@ -159,8 +158,10 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        message_id: str,
+        mode: str,
         model_id: str,
-        parts: Iterable[UserMessagePartParam],
+        parts: Iterable[session_chat_params.Part],
         provider_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -189,6 +190,8 @@ class SessionResource(SyncAPIResource):
             f"/session/{id}/message",
             body=maybe_transform(
                 {
+                    "message_id": message_id,
+                    "mode": mode,
                     "model_id": model_id,
                     "parts": parts,
                     "provider_id": provider_id,
@@ -205,6 +208,7 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        message_id: str,
         model_id: str,
         provider_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -234,6 +238,7 @@ class SessionResource(SyncAPIResource):
             f"/session/{id}/init",
             body=maybe_transform(
                 {
+                    "message_id": message_id,
                     "model_id": model_id,
                     "provider_id": provider_id,
                 },
@@ -519,8 +524,10 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        message_id: str,
+        mode: str,
         model_id: str,
-        parts: Iterable[UserMessagePartParam],
+        parts: Iterable[session_chat_params.Part],
         provider_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -549,6 +556,8 @@ class AsyncSessionResource(AsyncAPIResource):
             f"/session/{id}/message",
             body=await async_maybe_transform(
                 {
+                    "message_id": message_id,
+                    "mode": mode,
                     "model_id": model_id,
                     "parts": parts,
                     "provider_id": provider_id,
@@ -565,6 +574,7 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        message_id: str,
         model_id: str,
         provider_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -594,6 +604,7 @@ class AsyncSessionResource(AsyncAPIResource):
             f"/session/{id}/init",
             body=await async_maybe_transform(
                 {
+                    "message_id": message_id,
                     "model_id": model_id,
                     "provider_id": provider_id,
                 },

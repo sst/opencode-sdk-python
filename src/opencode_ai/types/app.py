@@ -31,5 +31,3 @@ class App(BaseModel):
     path: Path
 
     time: Time
-
-    user: str

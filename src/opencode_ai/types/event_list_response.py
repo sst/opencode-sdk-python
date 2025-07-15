@@ -5,13 +5,14 @@ from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from .part import Part
 from .._utils import PropertyInfo
 from .message import Message
 from .session import Session
 from .._models import BaseModel
 from .shared.unknown_error import UnknownError
-from .assistant_message_part import AssistantMessagePart
 from .shared.provider_auth_error import ProviderAuthError
+from .shared.message_aborted_error import MessageAbortedError
 
 __all__ = [
     "EventListResponse",
@@ -24,14 +25,14 @@ __all__ = [
     "EventFileEditedProperties",
     "EventInstallationUpdated",
     "EventInstallationUpdatedProperties",
-    "EventStorageWrite",
-    "EventStorageWriteProperties",
     "EventMessageUpdated",
     "EventMessageUpdatedProperties",
     "EventMessageRemoved",
     "EventMessageRemovedProperties",
     "EventMessagePartUpdated",
     "EventMessagePartUpdatedProperties",
+    "EventStorageWrite",
+    "EventStorageWriteProperties",
     "EventSessionUpdated",
     "EventSessionUpdatedProperties",
     "EventSessionDeleted",
@@ -101,18 +102,6 @@ class EventInstallationUpdated(BaseModel):
     type: Literal["installation.updated"]
 
 
-class EventStorageWriteProperties(BaseModel):
-    key: str
-
-    content: Optional[object] = None
-
-
-class EventStorageWrite(BaseModel):
-    properties: EventStorageWriteProperties
-
-    type: Literal["storage.write"]
-
-
 class EventMessageUpdatedProperties(BaseModel):
     info: Message
 
@@ -136,17 +125,25 @@ class EventMessageRemoved(BaseModel):
 
 
 class EventMessagePartUpdatedProperties(BaseModel):
-    message_id: str = FieldInfo(alias="messageID")
-
-    part: AssistantMessagePart
-
-    session_id: str = FieldInfo(alias="sessionID")
+    part: Part
 
 
 class EventMessagePartUpdated(BaseModel):
     properties: EventMessagePartUpdatedProperties
 
     type: Literal["message.part.updated"]
+
+
+class EventStorageWriteProperties(BaseModel):
+    key: str
+
+    content: Optional[object] = None
+
+
+class EventStorageWrite(BaseModel):
+    properties: EventStorageWriteProperties
+
+    type: Literal["storage.write"]
 
 
 class EventSessionUpdatedProperties(BaseModel):
@@ -186,13 +183,17 @@ class EventSessionErrorPropertiesErrorMessageOutputLengthError(BaseModel):
 
 
 EventSessionErrorPropertiesError: TypeAlias = Annotated[
-    Union[ProviderAuthError, UnknownError, EventSessionErrorPropertiesErrorMessageOutputLengthError],
+    Union[
+        ProviderAuthError, UnknownError, EventSessionErrorPropertiesErrorMessageOutputLengthError, MessageAbortedError
+    ],
     PropertyInfo(discriminator="name"),
 ]
 
 
 class EventSessionErrorProperties(BaseModel):
     error: Optional[EventSessionErrorPropertiesError] = None
+
+    session_id: Optional[str] = FieldInfo(alias="sessionID", default=None)
 
 
 class EventSessionError(BaseModel):
@@ -219,10 +220,10 @@ EventListResponse: TypeAlias = Annotated[
         EventPermissionUpdated,
         EventFileEdited,
         EventInstallationUpdated,
-        EventStorageWrite,
         EventMessageUpdated,
         EventMessageRemoved,
         EventMessagePartUpdated,
+        EventStorageWrite,
         EventSessionUpdated,
         EventSessionDeleted,
         EventSessionIdle,

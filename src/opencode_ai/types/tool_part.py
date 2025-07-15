@@ -3,6 +3,8 @@
 from typing import Union
 from typing_extensions import Literal, Annotated, TypeAlias
 
+from pydantic import Field as FieldInfo
+
 from .._utils import PropertyInfo
 from .._models import BaseModel
 from .tool_state_error import ToolStateError
@@ -19,6 +21,12 @@ State: TypeAlias = Annotated[
 
 class ToolPart(BaseModel):
     id: str
+
+    call_id: str = FieldInfo(alias="callID")
+
+    message_id: str = FieldInfo(alias="messageID")
+
+    session_id: str = FieldInfo(alias="sessionID")
 
     state: State
 

@@ -8,8 +8,8 @@ from pydantic import Field as FieldInfo
 from .._utils import PropertyInfo
 from .._models import BaseModel
 from .shared.unknown_error import UnknownError
-from .assistant_message_part import AssistantMessagePart
 from .shared.provider_auth_error import ProviderAuthError
+from .shared.message_aborted_error import MessageAbortedError
 
 __all__ = ["AssistantMessage", "Path", "Time", "Tokens", "TokensCache", "Error", "ErrorMessageOutputLengthError"]
 
@@ -49,7 +49,8 @@ class ErrorMessageOutputLengthError(BaseModel):
 
 
 Error: TypeAlias = Annotated[
-    Union[ProviderAuthError, UnknownError, ErrorMessageOutputLengthError], PropertyInfo(discriminator="name")
+    Union[ProviderAuthError, UnknownError, ErrorMessageOutputLengthError, MessageAbortedError],
+    PropertyInfo(discriminator="name"),
 ]
 
 
@@ -59,8 +60,6 @@ class AssistantMessage(BaseModel):
     cost: float
 
     api_model_id: str = FieldInfo(alias="modelID")
-
-    parts: List[AssistantMessagePart]
 
     path: Path
 

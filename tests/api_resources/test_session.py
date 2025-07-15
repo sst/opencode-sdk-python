@@ -171,11 +171,17 @@ class TestSession:
     def test_method_chat(self, client: Opencode) -> None:
         session = client.session.chat(
             id="id",
+            message_id="messageID",
+            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "text": "text",
-                    "type": "text",
+                    "id": "id",
+                    "message_id": "messageID",
+                    "mime": "mime",
+                    "session_id": "sessionID",
+                    "type": "file",
+                    "url": "url",
                 }
             ],
             provider_id="providerID",
@@ -187,11 +193,17 @@ class TestSession:
     def test_raw_response_chat(self, client: Opencode) -> None:
         response = client.session.with_raw_response.chat(
             id="id",
+            message_id="messageID",
+            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "text": "text",
-                    "type": "text",
+                    "id": "id",
+                    "message_id": "messageID",
+                    "mime": "mime",
+                    "session_id": "sessionID",
+                    "type": "file",
+                    "url": "url",
                 }
             ],
             provider_id="providerID",
@@ -207,11 +219,17 @@ class TestSession:
     def test_streaming_response_chat(self, client: Opencode) -> None:
         with client.session.with_streaming_response.chat(
             id="id",
+            message_id="messageID",
+            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "text": "text",
-                    "type": "text",
+                    "id": "id",
+                    "message_id": "messageID",
+                    "mime": "mime",
+                    "session_id": "sessionID",
+                    "type": "file",
+                    "url": "url",
                 }
             ],
             provider_id="providerID",
@@ -230,11 +248,17 @@ class TestSession:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.session.with_raw_response.chat(
                 id="",
+                message_id="messageID",
+                mode="mode",
                 model_id="modelID",
                 parts=[
                     {
-                        "text": "text",
-                        "type": "text",
+                        "id": "id",
+                        "message_id": "messageID",
+                        "mime": "mime",
+                        "session_id": "sessionID",
+                        "type": "file",
+                        "url": "url",
                     }
                 ],
                 provider_id="providerID",
@@ -245,6 +269,7 @@ class TestSession:
     def test_method_init(self, client: Opencode) -> None:
         session = client.session.init(
             id="id",
+            message_id="messageID",
             model_id="modelID",
             provider_id="providerID",
         )
@@ -255,6 +280,7 @@ class TestSession:
     def test_raw_response_init(self, client: Opencode) -> None:
         response = client.session.with_raw_response.init(
             id="id",
+            message_id="messageID",
             model_id="modelID",
             provider_id="providerID",
         )
@@ -269,6 +295,7 @@ class TestSession:
     def test_streaming_response_init(self, client: Opencode) -> None:
         with client.session.with_streaming_response.init(
             id="id",
+            message_id="messageID",
             model_id="modelID",
             provider_id="providerID",
         ) as response:
@@ -286,6 +313,7 @@ class TestSession:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.session.with_raw_response.init(
                 id="",
+                message_id="messageID",
                 model_id="modelID",
                 provider_id="providerID",
             )
@@ -617,11 +645,17 @@ class TestAsyncSession:
     async def test_method_chat(self, async_client: AsyncOpencode) -> None:
         session = await async_client.session.chat(
             id="id",
+            message_id="messageID",
+            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "text": "text",
-                    "type": "text",
+                    "id": "id",
+                    "message_id": "messageID",
+                    "mime": "mime",
+                    "session_id": "sessionID",
+                    "type": "file",
+                    "url": "url",
                 }
             ],
             provider_id="providerID",
@@ -633,11 +667,17 @@ class TestAsyncSession:
     async def test_raw_response_chat(self, async_client: AsyncOpencode) -> None:
         response = await async_client.session.with_raw_response.chat(
             id="id",
+            message_id="messageID",
+            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "text": "text",
-                    "type": "text",
+                    "id": "id",
+                    "message_id": "messageID",
+                    "mime": "mime",
+                    "session_id": "sessionID",
+                    "type": "file",
+                    "url": "url",
                 }
             ],
             provider_id="providerID",
@@ -653,11 +693,17 @@ class TestAsyncSession:
     async def test_streaming_response_chat(self, async_client: AsyncOpencode) -> None:
         async with async_client.session.with_streaming_response.chat(
             id="id",
+            message_id="messageID",
+            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "text": "text",
-                    "type": "text",
+                    "id": "id",
+                    "message_id": "messageID",
+                    "mime": "mime",
+                    "session_id": "sessionID",
+                    "type": "file",
+                    "url": "url",
                 }
             ],
             provider_id="providerID",
@@ -676,11 +722,17 @@ class TestAsyncSession:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.session.with_raw_response.chat(
                 id="",
+                message_id="messageID",
+                mode="mode",
                 model_id="modelID",
                 parts=[
                     {
-                        "text": "text",
-                        "type": "text",
+                        "id": "id",
+                        "message_id": "messageID",
+                        "mime": "mime",
+                        "session_id": "sessionID",
+                        "type": "file",
+                        "url": "url",
                     }
                 ],
                 provider_id="providerID",
@@ -691,6 +743,7 @@ class TestAsyncSession:
     async def test_method_init(self, async_client: AsyncOpencode) -> None:
         session = await async_client.session.init(
             id="id",
+            message_id="messageID",
             model_id="modelID",
             provider_id="providerID",
         )
@@ -701,6 +754,7 @@ class TestAsyncSession:
     async def test_raw_response_init(self, async_client: AsyncOpencode) -> None:
         response = await async_client.session.with_raw_response.init(
             id="id",
+            message_id="messageID",
             model_id="modelID",
             provider_id="providerID",
         )
@@ -715,6 +769,7 @@ class TestAsyncSession:
     async def test_streaming_response_init(self, async_client: AsyncOpencode) -> None:
         async with async_client.session.with_streaming_response.init(
             id="id",
+            message_id="messageID",
             model_id="modelID",
             provider_id="providerID",
         ) as response:
@@ -732,6 +787,7 @@ class TestAsyncSession:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.session.with_raw_response.init(
                 id="",
+                message_id="messageID",
                 model_id="modelID",
                 provider_id="providerID",
             )

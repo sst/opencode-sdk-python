@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -15,6 +15,8 @@ class Time(BaseModel):
 
 
 class ToolStateCompleted(BaseModel):
+    input: Dict[str, object]
+
     metadata: Dict[str, object]
 
     output: str
@@ -24,5 +26,3 @@ class ToolStateCompleted(BaseModel):
     time: Time
 
     title: str
-
-    input: Optional[object] = None

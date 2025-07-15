@@ -3,8 +3,17 @@
 from typing import List
 from typing_extensions import TypeAlias
 
+from .part import Part
 from .message import Message
+from .._models import BaseModel
 
-__all__ = ["SessionMessagesResponse"]
+__all__ = ["SessionMessagesResponse", "SessionMessagesResponseItem"]
 
-SessionMessagesResponse: TypeAlias = List[Message]
+
+class SessionMessagesResponseItem(BaseModel):
+    info: Message
+
+    parts: List[Part]
+
+
+SessionMessagesResponse: TypeAlias = List[SessionMessagesResponseItem]

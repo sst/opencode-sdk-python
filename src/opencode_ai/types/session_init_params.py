@@ -10,6 +10,8 @@ __all__ = ["SessionInitParams"]
 
 
 class SessionInitParams(TypedDict, total=False):
+    message_id: Required[Annotated[str, PropertyInfo(alias="messageID")]]
+
     model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
 
     provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
