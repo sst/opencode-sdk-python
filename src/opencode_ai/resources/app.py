@@ -23,6 +23,7 @@ from .._base_client import make_request_options
 from ..types.app_log_response import AppLogResponse
 from ..types.app_init_response import AppInitResponse
 from ..types.app_modes_response import AppModesResponse
+from ..types.app_providers_response import AppProvidersResponse
 
 __all__ = ["AppResource", "AsyncAppResource"]
 
@@ -155,6 +156,25 @@ class AppResource(SyncAPIResource):
             cast_to=AppModesResponse,
         )
 
+    def providers(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AppProvidersResponse:
+        """List all providers"""
+        return self._get(
+            "/config/providers",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppProvidersResponse,
+        )
+
 
 class AsyncAppResource(AsyncAPIResource):
     @cached_property
@@ -284,6 +304,25 @@ class AsyncAppResource(AsyncAPIResource):
             cast_to=AppModesResponse,
         )
 
+    async def providers(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AppProvidersResponse:
+        """List all providers"""
+        return await self._get(
+            "/config/providers",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AppProvidersResponse,
+        )
+
 
 class AppResourceWithRawResponse:
     def __init__(self, app: AppResource) -> None:
@@ -300,6 +339,9 @@ class AppResourceWithRawResponse:
         )
         self.modes = to_raw_response_wrapper(
             app.modes,
+        )
+        self.providers = to_raw_response_wrapper(
+            app.providers,
         )
 
 
@@ -319,6 +361,9 @@ class AsyncAppResourceWithRawResponse:
         self.modes = async_to_raw_response_wrapper(
             app.modes,
         )
+        self.providers = async_to_raw_response_wrapper(
+            app.providers,
+        )
 
 
 class AppResourceWithStreamingResponse:
@@ -337,6 +382,9 @@ class AppResourceWithStreamingResponse:
         self.modes = to_streamed_response_wrapper(
             app.modes,
         )
+        self.providers = to_streamed_response_wrapper(
+            app.providers,
+        )
 
 
 class AsyncAppResourceWithStreamingResponse:
@@ -354,4 +402,7 @@ class AsyncAppResourceWithStreamingResponse:
         )
         self.modes = async_to_streamed_response_wrapper(
             app.modes,
+        )
+        self.providers = async_to_streamed_response_wrapper(
+            app.providers,
         )

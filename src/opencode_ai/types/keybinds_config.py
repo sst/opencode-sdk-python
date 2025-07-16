@@ -4,10 +4,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Keybinds"]
+__all__ = ["KeybindsConfig"]
 
 
-class Keybinds(BaseModel):
+class KeybindsConfig(BaseModel):
     app_exit: str
     """Exit the application"""
 

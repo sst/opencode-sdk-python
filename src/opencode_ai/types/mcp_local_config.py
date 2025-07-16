@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["McpLocal"]
+__all__ = ["McpLocalConfig"]
 
 
-class McpLocal(BaseModel):
+class McpLocalConfig(BaseModel):
     command: List[str]
     """Command and arguments to run the MCP server"""
 

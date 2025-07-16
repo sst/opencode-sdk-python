@@ -5,10 +5,10 @@ from typing import Dict, List
 from .._models import BaseModel
 from .provider import Provider
 
-__all__ = ["ConfigProvidersResponse"]
+__all__ = ["AppProvidersResponse"]
 
 
-class ConfigProvidersResponse(BaseModel):
+class AppProvidersResponse(BaseModel):
     default: Dict[str, str]
 
     providers: List[Provider]

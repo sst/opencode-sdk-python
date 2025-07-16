@@ -21,7 +21,17 @@ Methods:
 Types:
 
 ```python
-from opencode_ai.types import App, LogLevel, Mode, AppInitResponse, AppLogResponse, AppModesResponse
+from opencode_ai.types import (
+    App,
+    LogLevel,
+    Mode,
+    Model,
+    Provider,
+    AppInitResponse,
+    AppLogResponse,
+    AppModesResponse,
+    AppProvidersResponse,
+)
 ```
 
 Methods:
@@ -30,6 +40,7 @@ Methods:
 - <code title="post /app/init">client.app.<a href="./src/opencode_ai/resources/app.py">init</a>() -> <a href="./src/opencode_ai/types/app_init_response.py">AppInitResponse</a></code>
 - <code title="post /log">client.app.<a href="./src/opencode_ai/resources/app.py">log</a>(\*\*<a href="src/opencode_ai/types/app_log_params.py">params</a>) -> <a href="./src/opencode_ai/types/app_log_response.py">AppLogResponse</a></code>
 - <code title="get /mode">client.app.<a href="./src/opencode_ai/resources/app.py">modes</a>() -> <a href="./src/opencode_ai/types/app_modes_response.py">AppModesResponse</a></code>
+- <code title="get /config/providers">client.app.<a href="./src/opencode_ai/resources/app.py">providers</a>() -> <a href="./src/opencode_ai/types/app_providers_response.py">AppProvidersResponse</a></code>
 
 # Find
 
@@ -71,20 +82,17 @@ Types:
 ```python
 from opencode_ai.types import (
     Config,
-    Keybinds,
-    McpLocal,
-    McpRemote,
-    Mode,
-    Model,
-    Provider,
-    ConfigProvidersResponse,
+    KeybindsConfig,
+    LayoutConfig,
+    McpLocalConfig,
+    McpRemoteConfig,
+    ModeConfig,
 )
 ```
 
 Methods:
 
 - <code title="get /config">client.config.<a href="./src/opencode_ai/resources/config.py">get</a>() -> <a href="./src/opencode_ai/types/config.py">Config</a></code>
-- <code title="get /config/providers">client.config.<a href="./src/opencode_ai/resources/config.py">providers</a>() -> <a href="./src/opencode_ai/types/config_providers_response.py">ConfigProvidersResponse</a></code>
 
 # Session
 
