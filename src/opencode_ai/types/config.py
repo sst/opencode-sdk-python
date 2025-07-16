@@ -5,7 +5,7 @@ from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
-from .config import ModeUnnamedTypeWithobjectParent0ModeUnnamedTypeWithobjectParent0Item
+from . import mode
 from .._utils import PropertyInfo
 from .._models import BaseModel
 from .keybinds import Keybinds
@@ -21,8 +21,6 @@ __all__ = [
     "ExperimentalHookSessionCompleted",
     "Mcp",
     "Mode",
-    "ModeBuild",
-    "ModePlan",
     "Provider",
     "ProviderModels",
     "ProviderModelsCost",
@@ -55,32 +53,16 @@ class Experimental(BaseModel):
 Mcp: TypeAlias = Annotated[Union[McpLocal, McpRemote], PropertyInfo(discriminator="type")]
 
 
-class ModeBuild(BaseModel):
-    model: Optional[str] = None
-
-    prompt: Optional[str] = None
-
-    tools: Optional[Dict[str, bool]] = None
-
-
-class ModePlan(BaseModel):
-    model: Optional[str] = None
-
-    prompt: Optional[str] = None
-
-    tools: Optional[Dict[str, bool]] = None
-
-
 class Mode(BaseModel):
-    build: Optional[ModeBuild] = None
+    build: Optional[mode.Mode] = None
 
-    plan: Optional[ModePlan] = None
+    plan: Optional[mode.Mode] = None
 
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> ModeUnnamedTypeWithobjectParent0ModeUnnamedTypeWithobjectParent0Item: ...
+        def __getattr__(self, attr: str) -> mode.Mode: ...
 
 
 class ProviderModelsCost(BaseModel):
@@ -160,6 +142,9 @@ class Config(BaseModel):
 
     keybinds: Optional[Keybinds] = None
     """Custom keybind configurations"""
+
+    layout: Optional[Literal["auto", "stretch"]] = None
+    """Layout to use for the TUI"""
 
     log_level: Optional[LogLevel] = None
     """Minimum log level to write to log files"""
