@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["McpRemote"]
+__all__ = ["McpRemoteConfig"]
 
 
-class McpRemote(BaseModel):
+class McpRemoteConfig(BaseModel):
     type: Literal["remote"]
     """Type of MCP server connection"""
 

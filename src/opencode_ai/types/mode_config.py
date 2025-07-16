@@ -4,10 +4,10 @@ from typing import Dict, Optional
 
 from .._models import BaseModel
 
-__all__ = ["Mode"]
+__all__ = ["ModeConfig"]
 
 
-class Mode(BaseModel):
+class ModeConfig(BaseModel):
     model: Optional[str] = None
 
     prompt: Optional[str] = None

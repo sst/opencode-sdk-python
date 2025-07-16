@@ -5,13 +5,14 @@ from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
-from . import mode
 from .._utils import PropertyInfo
 from .._models import BaseModel
-from .keybinds import Keybinds
 from .log_level import LogLevel
-from .mcp_local import McpLocal
-from .mcp_remote import McpRemote
+from .mode_config import ModeConfig
+from .layout_config import LayoutConfig
+from .keybinds_config import KeybindsConfig
+from .mcp_local_config import McpLocalConfig
+from .mcp_remote_config import McpRemoteConfig
 
 __all__ = [
     "Config",
@@ -50,19 +51,19 @@ class Experimental(BaseModel):
     hook: Optional[ExperimentalHook] = None
 
 
-Mcp: TypeAlias = Annotated[Union[McpLocal, McpRemote], PropertyInfo(discriminator="type")]
+Mcp: TypeAlias = Annotated[Union[McpLocalConfig, McpRemoteConfig], PropertyInfo(discriminator="type")]
 
 
 class Mode(BaseModel):
-    build: Optional[mode.Mode] = None
+    build: Optional[ModeConfig] = None
 
-    plan: Optional[mode.Mode] = None
+    plan: Optional[ModeConfig] = None
 
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> mode.Mode: ...
+        def __getattr__(self, attr: str) -> ModeConfig: ...
 
 
 class ProviderModelsCost(BaseModel):
@@ -140,10 +141,10 @@ class Config(BaseModel):
     instructions: Optional[List[str]] = None
     """Additional instruction files or patterns to include"""
 
-    keybinds: Optional[Keybinds] = None
+    keybinds: Optional[KeybindsConfig] = None
     """Custom keybind configurations"""
 
-    layout: Optional[Literal["auto", "stretch"]] = None
+    layout: Optional[LayoutConfig] = None
     """Layout to use for the TUI"""
 
     log_level: Optional[LogLevel] = None

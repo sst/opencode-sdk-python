@@ -15,7 +15,6 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.config import Config
-from ..types.config_providers_response import ConfigProvidersResponse
 
 __all__ = ["ConfigResource", "AsyncConfigResource"]
 
@@ -59,25 +58,6 @@ class ConfigResource(SyncAPIResource):
             cast_to=Config,
         )
 
-    def providers(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigProvidersResponse:
-        """List all providers"""
-        return self._get(
-            "/config/providers",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ConfigProvidersResponse,
-        )
-
 
 class AsyncConfigResource(AsyncAPIResource):
     @cached_property
@@ -118,25 +98,6 @@ class AsyncConfigResource(AsyncAPIResource):
             cast_to=Config,
         )
 
-    async def providers(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigProvidersResponse:
-        """List all providers"""
-        return await self._get(
-            "/config/providers",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ConfigProvidersResponse,
-        )
-
 
 class ConfigResourceWithRawResponse:
     def __init__(self, config: ConfigResource) -> None:
@@ -144,9 +105,6 @@ class ConfigResourceWithRawResponse:
 
         self.get = to_raw_response_wrapper(
             config.get,
-        )
-        self.providers = to_raw_response_wrapper(
-            config.providers,
         )
 
 
@@ -157,9 +115,6 @@ class AsyncConfigResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             config.get,
         )
-        self.providers = async_to_raw_response_wrapper(
-            config.providers,
-        )
 
 
 class ConfigResourceWithStreamingResponse:
@@ -169,9 +124,6 @@ class ConfigResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             config.get,
         )
-        self.providers = to_streamed_response_wrapper(
-            config.providers,
-        )
 
 
 class AsyncConfigResourceWithStreamingResponse:
@@ -180,7 +132,4 @@ class AsyncConfigResourceWithStreamingResponse:
 
         self.get = async_to_streamed_response_wrapper(
             config.get,
-        )
-        self.providers = async_to_streamed_response_wrapper(
-            config.providers,
         )
