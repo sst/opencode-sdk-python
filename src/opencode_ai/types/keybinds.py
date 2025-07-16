@@ -86,6 +86,9 @@ class Keybinds(BaseModel):
     session_compact: str
     """Compact the session"""
 
+    session_export: str
+    """Export session to editor"""
+
     session_interrupt: str
     """Interrupt current session"""
 

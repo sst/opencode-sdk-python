@@ -74,6 +74,7 @@ from opencode_ai.types import (
     Keybinds,
     McpLocal,
     McpRemote,
+    Mode,
     Model,
     Provider,
     ConfigProvidersResponse,
