@@ -153,6 +153,7 @@ class Config(BaseModel):
     """MCP (Model Context Protocol) server configurations"""
 
     mode: Optional[Mode] = None
+    """Modes configuration, see https://opencode.ai/docs/modes"""
 
     model: Optional[str] = None
     """Model to use in the format of provider/model, eg anthropic/claude-2"""
