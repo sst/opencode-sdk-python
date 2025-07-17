@@ -27,10 +27,8 @@ from .user_message import UserMessage as UserMessage
 from .layout_config import LayoutConfig as LayoutConfig
 from .snapshot_part import SnapshotPart as SnapshotPart
 from .app_log_params import AppLogParams as AppLogParams
-from .file_part_param import FilePartParam as FilePartParam
 from .keybinds_config import KeybindsConfig as KeybindsConfig
 from .step_start_part import StepStartPart as StepStartPart
-from .text_part_param import TextPartParam as TextPartParam
 from .app_log_response import AppLogResponse as AppLogResponse
 from .file_read_params import FileReadParams as FileReadParams
 from .find_text_params import FindTextParams as FindTextParams

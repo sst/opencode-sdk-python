@@ -162,10 +162,10 @@ class Config(BaseModel):
     provider: Optional[Dict[str, Provider]] = None
     """Custom provider configurations and model overrides"""
 
-    share: Optional[Literal["auto", "disabled"]] = None
+    share: Optional[Literal["manual", "auto", "disabled"]] = None
     """
-    Control sharing behavior: 'auto' enables automatic sharing, 'disabled' disables
-    all sharing
+    Control sharing behavior:'manual' allows manual sharing via commands, 'auto'
+    enables automatic sharing, 'disabled' disables all sharing
     """
 
     theme: Optional[str] = None

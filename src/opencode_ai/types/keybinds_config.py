@@ -105,7 +105,10 @@ class KeybindsConfig(BaseModel):
     """Unshare current session"""
 
     switch_mode: str
-    """Switch mode"""
+    """Next mode"""
+
+    switch_mode_reverse: str
+    """Previous Mode"""
 
     theme_list: str
     """List available themes"""

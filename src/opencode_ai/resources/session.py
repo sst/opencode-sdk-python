@@ -158,11 +158,12 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        message_id: str,
-        mode: str,
         model_id: str,
         parts: Iterable[session_chat_params.Part],
         provider_id: str,
+        session_id: str,
+        message_id: str | NotGiven = NOT_GIVEN,
+        mode: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -190,11 +191,12 @@ class SessionResource(SyncAPIResource):
             f"/session/{id}/message",
             body=maybe_transform(
                 {
-                    "message_id": message_id,
-                    "mode": mode,
                     "model_id": model_id,
                     "parts": parts,
                     "provider_id": provider_id,
+                    "session_id": session_id,
+                    "message_id": message_id,
+                    "mode": mode,
                 },
                 session_chat_params.SessionChatParams,
             ),
@@ -524,11 +526,12 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        message_id: str,
-        mode: str,
         model_id: str,
         parts: Iterable[session_chat_params.Part],
         provider_id: str,
+        session_id: str,
+        message_id: str | NotGiven = NOT_GIVEN,
+        mode: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -556,11 +559,12 @@ class AsyncSessionResource(AsyncAPIResource):
             f"/session/{id}/message",
             body=await async_maybe_transform(
                 {
-                    "message_id": message_id,
-                    "mode": mode,
                     "model_id": model_id,
                     "parts": parts,
                     "provider_id": provider_id,
+                    "session_id": session_id,
+                    "message_id": message_id,
+                    "mode": mode,
                 },
                 session_chat_params.SessionChatParams,
             ),
