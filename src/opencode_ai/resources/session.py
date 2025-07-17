@@ -161,7 +161,6 @@ class SessionResource(SyncAPIResource):
         model_id: str,
         parts: Iterable[session_chat_params.Part],
         provider_id: str,
-        session_id: str,
         message_id: str | NotGiven = NOT_GIVEN,
         mode: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -194,7 +193,6 @@ class SessionResource(SyncAPIResource):
                     "model_id": model_id,
                     "parts": parts,
                     "provider_id": provider_id,
-                    "session_id": session_id,
                     "message_id": message_id,
                     "mode": mode,
                 },
@@ -529,7 +527,6 @@ class AsyncSessionResource(AsyncAPIResource):
         model_id: str,
         parts: Iterable[session_chat_params.Part],
         provider_id: str,
-        session_id: str,
         message_id: str | NotGiven = NOT_GIVEN,
         mode: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -562,7 +559,6 @@ class AsyncSessionResource(AsyncAPIResource):
                     "model_id": model_id,
                     "parts": parts,
                     "provider_id": provider_id,
-                    "session_id": session_id,
                     "message_id": message_id,
                     "mode": mode,
                 },

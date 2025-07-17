@@ -179,7 +179,6 @@ class TestSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
         )
         assert_matches_type(AssistantMessage, session, path=["response"])
 
@@ -202,7 +201,6 @@ class TestSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
             message_id="msg",
             mode="mode",
         )
@@ -221,7 +219,6 @@ class TestSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
         )
 
         assert response.is_closed is True
@@ -242,7 +239,6 @@ class TestSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -266,7 +262,6 @@ class TestSession:
                     }
                 ],
                 provider_id="providerID",
-                session_id="ses",
             )
 
     @pytest.mark.skip()
@@ -658,7 +653,6 @@ class TestAsyncSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
         )
         assert_matches_type(AssistantMessage, session, path=["response"])
 
@@ -681,7 +675,6 @@ class TestAsyncSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
             message_id="msg",
             mode="mode",
         )
@@ -700,7 +693,6 @@ class TestAsyncSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
         )
 
         assert response.is_closed is True
@@ -721,7 +713,6 @@ class TestAsyncSession:
                 }
             ],
             provider_id="providerID",
-            session_id="ses",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -745,7 +736,6 @@ class TestAsyncSession:
                     }
                 ],
                 provider_id="providerID",
-                session_id="ses",
             )
 
     @pytest.mark.skip()
