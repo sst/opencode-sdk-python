@@ -51,9 +51,11 @@ from .session_chat_params import SessionChatParams as SessionChatParams
 from .session_init_params import SessionInitParams as SessionInitParams
 from .file_status_response import FileStatusResponse as FileStatusResponse
 from .tool_state_completed import ToolStateCompleted as ToolStateCompleted
+from .file_part_input_param import FilePartInputParam as FilePartInputParam
 from .find_symbols_response import FindSymbolsResponse as FindSymbolsResponse
 from .session_init_response import SessionInitResponse as SessionInitResponse
 from .session_list_response import SessionListResponse as SessionListResponse
+from .text_part_input_param import TextPartInputParam as TextPartInputParam
 from .app_providers_response import AppProvidersResponse as AppProvidersResponse
 from .session_abort_response import SessionAbortResponse as SessionAbortResponse
 from .session_delete_response import SessionDeleteResponse as SessionDeleteResponse

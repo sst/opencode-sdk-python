@@ -102,6 +102,7 @@ Types:
 from opencode_ai.types import (
     AssistantMessage,
     FilePart,
+    FilePartInput,
     Message,
     Part,
     Session,
@@ -109,6 +110,7 @@ from opencode_ai.types import (
     StepFinishPart,
     StepStartPart,
     TextPart,
+    TextPartInput,
     ToolPart,
     ToolStateCompleted,
     ToolStateError,
