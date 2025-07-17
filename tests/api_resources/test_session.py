@@ -171,20 +171,40 @@ class TestSession:
     def test_method_chat(self, client: Opencode) -> None:
         session = client.session.chat(
             id="id",
-            message_id="messageID",
-            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "id": "id",
-                    "message_id": "messageID",
-                    "mime": "mime",
-                    "session_id": "sessionID",
-                    "type": "file",
-                    "url": "url",
+                    "text": "text",
+                    "type": "text",
                 }
             ],
             provider_id="providerID",
+            session_id="ses",
+        )
+        assert_matches_type(AssistantMessage, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_chat_with_all_params(self, client: Opencode) -> None:
+        session = client.session.chat(
+            id="id",
+            model_id="modelID",
+            parts=[
+                {
+                    "text": "text",
+                    "type": "text",
+                    "id": "id",
+                    "synthetic": True,
+                    "time": {
+                        "start": 0,
+                        "end": 0,
+                    },
+                }
+            ],
+            provider_id="providerID",
+            session_id="ses",
+            message_id="msg",
+            mode="mode",
         )
         assert_matches_type(AssistantMessage, session, path=["response"])
 
@@ -193,20 +213,15 @@ class TestSession:
     def test_raw_response_chat(self, client: Opencode) -> None:
         response = client.session.with_raw_response.chat(
             id="id",
-            message_id="messageID",
-            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "id": "id",
-                    "message_id": "messageID",
-                    "mime": "mime",
-                    "session_id": "sessionID",
-                    "type": "file",
-                    "url": "url",
+                    "text": "text",
+                    "type": "text",
                 }
             ],
             provider_id="providerID",
+            session_id="ses",
         )
 
         assert response.is_closed is True
@@ -219,20 +234,15 @@ class TestSession:
     def test_streaming_response_chat(self, client: Opencode) -> None:
         with client.session.with_streaming_response.chat(
             id="id",
-            message_id="messageID",
-            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "id": "id",
-                    "message_id": "messageID",
-                    "mime": "mime",
-                    "session_id": "sessionID",
-                    "type": "file",
-                    "url": "url",
+                    "text": "text",
+                    "type": "text",
                 }
             ],
             provider_id="providerID",
+            session_id="ses",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,20 +258,15 @@ class TestSession:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.session.with_raw_response.chat(
                 id="",
-                message_id="messageID",
-                mode="mode",
                 model_id="modelID",
                 parts=[
                     {
-                        "id": "id",
-                        "message_id": "messageID",
-                        "mime": "mime",
-                        "session_id": "sessionID",
-                        "type": "file",
-                        "url": "url",
+                        "text": "text",
+                        "type": "text",
                     }
                 ],
                 provider_id="providerID",
+                session_id="ses",
             )
 
     @pytest.mark.skip()
@@ -645,20 +650,40 @@ class TestAsyncSession:
     async def test_method_chat(self, async_client: AsyncOpencode) -> None:
         session = await async_client.session.chat(
             id="id",
-            message_id="messageID",
-            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "id": "id",
-                    "message_id": "messageID",
-                    "mime": "mime",
-                    "session_id": "sessionID",
-                    "type": "file",
-                    "url": "url",
+                    "text": "text",
+                    "type": "text",
                 }
             ],
             provider_id="providerID",
+            session_id="ses",
+        )
+        assert_matches_type(AssistantMessage, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_chat_with_all_params(self, async_client: AsyncOpencode) -> None:
+        session = await async_client.session.chat(
+            id="id",
+            model_id="modelID",
+            parts=[
+                {
+                    "text": "text",
+                    "type": "text",
+                    "id": "id",
+                    "synthetic": True,
+                    "time": {
+                        "start": 0,
+                        "end": 0,
+                    },
+                }
+            ],
+            provider_id="providerID",
+            session_id="ses",
+            message_id="msg",
+            mode="mode",
         )
         assert_matches_type(AssistantMessage, session, path=["response"])
 
@@ -667,20 +692,15 @@ class TestAsyncSession:
     async def test_raw_response_chat(self, async_client: AsyncOpencode) -> None:
         response = await async_client.session.with_raw_response.chat(
             id="id",
-            message_id="messageID",
-            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "id": "id",
-                    "message_id": "messageID",
-                    "mime": "mime",
-                    "session_id": "sessionID",
-                    "type": "file",
-                    "url": "url",
+                    "text": "text",
+                    "type": "text",
                 }
             ],
             provider_id="providerID",
+            session_id="ses",
         )
 
         assert response.is_closed is True
@@ -693,20 +713,15 @@ class TestAsyncSession:
     async def test_streaming_response_chat(self, async_client: AsyncOpencode) -> None:
         async with async_client.session.with_streaming_response.chat(
             id="id",
-            message_id="messageID",
-            mode="mode",
             model_id="modelID",
             parts=[
                 {
-                    "id": "id",
-                    "message_id": "messageID",
-                    "mime": "mime",
-                    "session_id": "sessionID",
-                    "type": "file",
-                    "url": "url",
+                    "text": "text",
+                    "type": "text",
                 }
             ],
             provider_id="providerID",
+            session_id="ses",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -722,20 +737,15 @@ class TestAsyncSession:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.session.with_raw_response.chat(
                 id="",
-                message_id="messageID",
-                mode="mode",
                 model_id="modelID",
                 parts=[
                     {
-                        "id": "id",
-                        "message_id": "messageID",
-                        "mime": "mime",
-                        "session_id": "sessionID",
-                        "type": "file",
-                        "url": "url",
+                        "text": "text",
+                        "type": "text",
                     }
                 ],
                 provider_id="providerID",
+                session_id="ses",
             )
 
     @pytest.mark.skip()
