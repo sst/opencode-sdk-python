@@ -9,7 +9,6 @@ from .._utils import PropertyInfo
 from .._models import BaseModel
 from .log_level import LogLevel
 from .mode_config import ModeConfig
-from .layout_config import LayoutConfig
 from .keybinds_config import KeybindsConfig
 from .mcp_local_config import McpLocalConfig
 from .mcp_remote_config import McpRemoteConfig
@@ -144,8 +143,8 @@ class Config(BaseModel):
     keybinds: Optional[KeybindsConfig] = None
     """Custom keybind configurations"""
 
-    layout: Optional[LayoutConfig] = None
-    """Layout to use for the TUI"""
+    layout: Optional[Literal["auto", "stretch"]] = None
+    """@deprecated Always uses stretch layout."""
 
     log_level: Optional[LogLevel] = None
     """Minimum log level to write to log files"""

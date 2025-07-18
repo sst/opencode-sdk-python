@@ -80,14 +80,7 @@ Methods:
 Types:
 
 ```python
-from opencode_ai.types import (
-    Config,
-    KeybindsConfig,
-    LayoutConfig,
-    McpLocalConfig,
-    McpRemoteConfig,
-    ModeConfig,
-)
+from opencode_ai.types import Config, KeybindsConfig, McpLocalConfig, McpRemoteConfig, ModeConfig
 ```
 
 Methods:
