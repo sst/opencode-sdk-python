@@ -24,7 +24,6 @@ from .text_part import TextPart as TextPart
 from .tool_part import ToolPart as ToolPart
 from .mode_config import ModeConfig as ModeConfig
 from .user_message import UserMessage as UserMessage
-from .layout_config import LayoutConfig as LayoutConfig
 from .snapshot_part import SnapshotPart as SnapshotPart
 from .app_log_params import AppLogParams as AppLogParams
 from .keybinds_config import KeybindsConfig as KeybindsConfig
