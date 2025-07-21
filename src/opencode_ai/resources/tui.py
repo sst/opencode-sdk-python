@@ -20,6 +20,7 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.part_param import PartParam
 from ..types.tui_prompt_response import TuiPromptResponse
+from ..types.tui_open_help_response import TuiOpenHelpResponse
 
 __all__ = ["TuiResource", "AsyncTuiResource"]
 
@@ -43,6 +44,25 @@ class TuiResource(SyncAPIResource):
         For more information, see https://www.github.com/sst/opencode-sdk-python#with_streaming_response
         """
         return TuiResourceWithStreamingResponse(self)
+
+    def open_help(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TuiOpenHelpResponse:
+        """Open the help dialog"""
+        return self._post(
+            "/tui/open-help",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TuiOpenHelpResponse,
+        )
 
     def prompt(
         self,
@@ -104,6 +124,25 @@ class AsyncTuiResource(AsyncAPIResource):
         """
         return AsyncTuiResourceWithStreamingResponse(self)
 
+    async def open_help(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TuiOpenHelpResponse:
+        """Open the help dialog"""
+        return await self._post(
+            "/tui/open-help",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TuiOpenHelpResponse,
+        )
+
     async def prompt(
         self,
         *,
@@ -148,6 +187,9 @@ class TuiResourceWithRawResponse:
     def __init__(self, tui: TuiResource) -> None:
         self._tui = tui
 
+        self.open_help = to_raw_response_wrapper(
+            tui.open_help,
+        )
         self.prompt = to_raw_response_wrapper(
             tui.prompt,
         )
@@ -157,6 +199,9 @@ class AsyncTuiResourceWithRawResponse:
     def __init__(self, tui: AsyncTuiResource) -> None:
         self._tui = tui
 
+        self.open_help = async_to_raw_response_wrapper(
+            tui.open_help,
+        )
         self.prompt = async_to_raw_response_wrapper(
             tui.prompt,
         )
@@ -166,6 +211,9 @@ class TuiResourceWithStreamingResponse:
     def __init__(self, tui: TuiResource) -> None:
         self._tui = tui
 
+        self.open_help = to_streamed_response_wrapper(
+            tui.open_help,
+        )
         self.prompt = to_streamed_response_wrapper(
             tui.prompt,
         )
@@ -175,6 +223,9 @@ class AsyncTuiResourceWithStreamingResponse:
     def __init__(self, tui: AsyncTuiResource) -> None:
         self._tui = tui
 
+        self.open_help = async_to_streamed_response_wrapper(
+            tui.open_help,
+        )
         self.prompt = async_to_streamed_response_wrapper(
             tui.prompt,
         )
