@@ -52,6 +52,7 @@ from .find_symbols_params import FindSymbolsParams as FindSymbolsParams
 from .session_chat_params import SessionChatParams as SessionChatParams
 from .session_init_params import SessionInitParams as SessionInitParams
 from .symbol_source_param import SymbolSourceParam as SymbolSourceParam
+from .tui_prompt_response import TuiPromptResponse as TuiPromptResponse
 from .file_status_response import FileStatusResponse as FileStatusResponse
 from .tool_state_completed import ToolStateCompleted as ToolStateCompleted
 from .file_part_input_param import FilePartInputParam as FilePartInputParam

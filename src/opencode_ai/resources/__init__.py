@@ -8,6 +8,14 @@ from .app import (
     AppResourceWithStreamingResponse,
     AsyncAppResourceWithStreamingResponse,
 )
+from .tui import (
+    TuiResource,
+    AsyncTuiResource,
+    TuiResourceWithRawResponse,
+    AsyncTuiResourceWithRawResponse,
+    TuiResourceWithStreamingResponse,
+    AsyncTuiResourceWithStreamingResponse,
+)
 from .file import (
     FileResource,
     AsyncFileResource,
@@ -86,4 +94,10 @@ __all__ = [
     "AsyncSessionResourceWithRawResponse",
     "SessionResourceWithStreamingResponse",
     "AsyncSessionResourceWithStreamingResponse",
+    "TuiResource",
+    "AsyncTuiResource",
+    "TuiResourceWithRawResponse",
+    "AsyncTuiResourceWithRawResponse",
+    "TuiResourceWithStreamingResponse",
+    "AsyncTuiResourceWithStreamingResponse",
 ]

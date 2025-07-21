@@ -134,3 +134,15 @@ Methods:
 - <code title="post /session/{id}/share">client.session.<a href="./src/opencode_ai/resources/session.py">share</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
 - <code title="post /session/{id}/summarize">client.session.<a href="./src/opencode_ai/resources/session.py">summarize</a>(id, \*\*<a href="src/opencode_ai/types/session_summarize_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_summarize_response.py">SessionSummarizeResponse</a></code>
 - <code title="delete /session/{id}/share">client.session.<a href="./src/opencode_ai/resources/session.py">unshare</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
+
+# Tui
+
+Types:
+
+```python
+from opencode_ai.types import TuiPromptResponse
+```
+
+Methods:
+
+- <code title="post /tui/prompt">client.tui.<a href="./src/opencode_ai/resources/tui.py">prompt</a>() -> <a href="./src/opencode_ai/types/tui_prompt_response.py">TuiPromptResponse</a></code>
