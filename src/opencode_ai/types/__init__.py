@@ -73,6 +73,7 @@ from .file_part_source_param import FilePartSourceParam as FilePartSourceParam
 from .session_abort_response import SessionAbortResponse as SessionAbortResponse
 from .step_finish_part_param import StepFinishPartParam as StepFinishPartParam
 from .tool_state_error_param import ToolStateErrorParam as ToolStateErrorParam
+from .tui_open_help_response import TuiOpenHelpResponse as TuiOpenHelpResponse
 from .session_delete_response import SessionDeleteResponse as SessionDeleteResponse
 from .session_summarize_params import SessionSummarizeParams as SessionSummarizeParams
 from .tool_state_pending_param import ToolStatePendingParam as ToolStatePendingParam
