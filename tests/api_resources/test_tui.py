@@ -20,13 +20,35 @@ class TestTui:
     @pytest.mark.skip()
     @parametrize
     def test_method_prompt(self, client: Opencode) -> None:
-        tui = client.tui.prompt()
+        tui = client.tui.prompt(
+            parts=[
+                {
+                    "id": "id",
+                    "message_id": "messageID",
+                    "session_id": "sessionID",
+                    "text": "text",
+                    "type": "text",
+                }
+            ],
+            text="text",
+        )
         assert_matches_type(TuiPromptResponse, tui, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_prompt(self, client: Opencode) -> None:
-        response = client.tui.with_raw_response.prompt()
+        response = client.tui.with_raw_response.prompt(
+            parts=[
+                {
+                    "id": "id",
+                    "message_id": "messageID",
+                    "session_id": "sessionID",
+                    "text": "text",
+                    "type": "text",
+                }
+            ],
+            text="text",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -36,7 +58,18 @@ class TestTui:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_prompt(self, client: Opencode) -> None:
-        with client.tui.with_streaming_response.prompt() as response:
+        with client.tui.with_streaming_response.prompt(
+            parts=[
+                {
+                    "id": "id",
+                    "message_id": "messageID",
+                    "session_id": "sessionID",
+                    "text": "text",
+                    "type": "text",
+                }
+            ],
+            text="text",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -54,13 +87,35 @@ class TestAsyncTui:
     @pytest.mark.skip()
     @parametrize
     async def test_method_prompt(self, async_client: AsyncOpencode) -> None:
-        tui = await async_client.tui.prompt()
+        tui = await async_client.tui.prompt(
+            parts=[
+                {
+                    "id": "id",
+                    "message_id": "messageID",
+                    "session_id": "sessionID",
+                    "text": "text",
+                    "type": "text",
+                }
+            ],
+            text="text",
+        )
         assert_matches_type(TuiPromptResponse, tui, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_prompt(self, async_client: AsyncOpencode) -> None:
-        response = await async_client.tui.with_raw_response.prompt()
+        response = await async_client.tui.with_raw_response.prompt(
+            parts=[
+                {
+                    "id": "id",
+                    "message_id": "messageID",
+                    "session_id": "sessionID",
+                    "text": "text",
+                    "type": "text",
+                }
+            ],
+            text="text",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,7 +125,18 @@ class TestAsyncTui:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_prompt(self, async_client: AsyncOpencode) -> None:
-        async with async_client.tui.with_streaming_response.prompt() as response:
+        async with async_client.tui.with_streaming_response.prompt(
+            parts=[
+                {
+                    "id": "id",
+                    "message_id": "messageID",
+                    "session_id": "sessionID",
+                    "text": "text",
+                    "type": "text",
+                }
+            ],
+            text="text",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
