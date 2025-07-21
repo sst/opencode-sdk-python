@@ -145,4 +145,4 @@ from opencode_ai.types import TuiPromptResponse
 
 Methods:
 
-- <code title="post /tui/prompt">client.tui.<a href="./src/opencode_ai/resources/tui.py">prompt</a>() -> <a href="./src/opencode_ai/types/tui_prompt_response.py">TuiPromptResponse</a></code>
+- <code title="post /tui/prompt">client.tui.<a href="./src/opencode_ai/resources/tui.py">prompt</a>(\*\*<a href="src/opencode_ai/types/tui_prompt_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_prompt_response.py">TuiPromptResponse</a></code>
