@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict, Iterable
 
 import httpx
 
@@ -163,6 +163,7 @@ class SessionResource(SyncAPIResource):
         provider_id: str,
         message_id: str | NotGiven = NOT_GIVEN,
         mode: str | NotGiven = NOT_GIVEN,
+        tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,6 +196,7 @@ class SessionResource(SyncAPIResource):
                     "provider_id": provider_id,
                     "message_id": message_id,
                     "mode": mode,
+                    "tools": tools,
                 },
                 session_chat_params.SessionChatParams,
             ),
@@ -529,6 +531,7 @@ class AsyncSessionResource(AsyncAPIResource):
         provider_id: str,
         message_id: str | NotGiven = NOT_GIVEN,
         mode: str | NotGiven = NOT_GIVEN,
+        tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -561,6 +564,7 @@ class AsyncSessionResource(AsyncAPIResource):
                     "provider_id": provider_id,
                     "message_id": message_id,
                     "mode": mode,
+                    "tools": tools,
                 },
                 session_chat_params.SessionChatParams,
             ),

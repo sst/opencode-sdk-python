@@ -6,6 +6,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+from .file_part_source import FilePartSource
 
 __all__ = ["FilePart"]
 
@@ -24,3 +25,5 @@ class FilePart(BaseModel):
     url: str
 
     filename: Optional[str] = None
+
+    source: Optional[FilePartSource] = None

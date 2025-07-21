@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
@@ -22,6 +22,8 @@ class SessionChatParams(TypedDict, total=False):
     message_id: Annotated[str, PropertyInfo(alias="messageID")]
 
     mode: str
+
+    tools: Dict[str, bool]
 
 
 Part: TypeAlias = Union[TextPartInputParam, FilePartInputParam]

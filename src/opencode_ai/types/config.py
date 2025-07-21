@@ -7,7 +7,6 @@ from pydantic import Field as FieldInfo
 
 from .._utils import PropertyInfo
 from .._models import BaseModel
-from .log_level import LogLevel
 from .mode_config import ModeConfig
 from .keybinds_config import KeybindsConfig
 from .mcp_local_config import McpLocalConfig
@@ -146,9 +145,6 @@ class Config(BaseModel):
     layout: Optional[Literal["auto", "stretch"]] = None
     """@deprecated Always uses stretch layout."""
 
-    log_level: Optional[LogLevel] = None
-    """Minimum log level to write to log files"""
-
     mcp: Optional[Dict[str, Mcp]] = None
     """MCP (Model Context Protocol) server configurations"""
 
@@ -165,6 +161,12 @@ class Config(BaseModel):
     """
     Control sharing behavior:'manual' allows manual sharing via commands, 'auto'
     enables automatic sharing, 'disabled' disables all sharing
+    """
+
+    small_model: Optional[str] = None
+    """
+    Small model to use for tasks like summarization and title generation in the
+    format of provider/model
     """
 
     theme: Optional[str] = None
