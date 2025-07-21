@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import app, file, find, event, config, session
+from .resources import app, tui, file, find, event, config, session
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -49,6 +49,7 @@ class Opencode(SyncAPIClient):
     file: file.FileResource
     config: config.ConfigResource
     session: session.SessionResource
+    tui: tui.TuiResource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -101,6 +102,7 @@ class Opencode(SyncAPIClient):
         self.file = file.FileResource(self)
         self.config = config.ConfigResource(self)
         self.session = session.SessionResource(self)
+        self.tui = tui.TuiResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -208,6 +210,7 @@ class AsyncOpencode(AsyncAPIClient):
     file: file.AsyncFileResource
     config: config.AsyncConfigResource
     session: session.AsyncSessionResource
+    tui: tui.AsyncTuiResource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -260,6 +263,7 @@ class AsyncOpencode(AsyncAPIClient):
         self.file = file.AsyncFileResource(self)
         self.config = config.AsyncConfigResource(self)
         self.session = session.AsyncSessionResource(self)
+        self.tui = tui.AsyncTuiResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
@@ -368,6 +372,7 @@ class OpencodeWithRawResponse:
         self.file = file.FileResourceWithRawResponse(client.file)
         self.config = config.ConfigResourceWithRawResponse(client.config)
         self.session = session.SessionResourceWithRawResponse(client.session)
+        self.tui = tui.TuiResourceWithRawResponse(client.tui)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -378,6 +383,7 @@ class AsyncOpencodeWithRawResponse:
         self.file = file.AsyncFileResourceWithRawResponse(client.file)
         self.config = config.AsyncConfigResourceWithRawResponse(client.config)
         self.session = session.AsyncSessionResourceWithRawResponse(client.session)
+        self.tui = tui.AsyncTuiResourceWithRawResponse(client.tui)
 
 
 class OpencodeWithStreamedResponse:
@@ -388,6 +394,7 @@ class OpencodeWithStreamedResponse:
         self.file = file.FileResourceWithStreamingResponse(client.file)
         self.config = config.ConfigResourceWithStreamingResponse(client.config)
         self.session = session.SessionResourceWithStreamingResponse(client.session)
+        self.tui = tui.TuiResourceWithStreamingResponse(client.tui)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -398,6 +405,7 @@ class AsyncOpencodeWithStreamedResponse:
         self.file = file.AsyncFileResourceWithStreamingResponse(client.file)
         self.config = config.AsyncConfigResourceWithStreamingResponse(client.config)
         self.session = session.AsyncSessionResourceWithStreamingResponse(client.session)
+        self.tui = tui.AsyncTuiResourceWithStreamingResponse(client.tui)
 
 
 Client = Opencode
