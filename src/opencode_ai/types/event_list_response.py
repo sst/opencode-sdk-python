@@ -45,6 +45,8 @@ __all__ = [
     "EventSessionErrorPropertiesErrorMessageOutputLengthError",
     "EventFileWatcherUpdated",
     "EventFileWatcherUpdatedProperties",
+    "EventIdeInstalled",
+    "EventIdeInstalledProperties",
 ]
 
 
@@ -214,6 +216,16 @@ class EventFileWatcherUpdated(BaseModel):
     type: Literal["file.watcher.updated"]
 
 
+class EventIdeInstalledProperties(BaseModel):
+    ide: str
+
+
+class EventIdeInstalled(BaseModel):
+    properties: EventIdeInstalledProperties
+
+    type: Literal["ide.installed"]
+
+
 EventListResponse: TypeAlias = Annotated[
     Union[
         EventLspClientDiagnostics,
@@ -229,6 +241,7 @@ EventListResponse: TypeAlias = Annotated[
         EventSessionIdle,
         EventSessionError,
         EventFileWatcherUpdated,
+        EventIdeInstalled,
     ],
     PropertyInfo(discriminator="type"),
 ]

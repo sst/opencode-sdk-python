@@ -2,15 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .part_param import PartParam
-
-__all__ = ["TuiPromptParams"]
+__all__ = ["TuiAppendPromptParams"]
 
 
-class TuiPromptParams(TypedDict, total=False):
-    parts: Required[Iterable[PartParam]]
-
+class TuiAppendPromptParams(TypedDict, total=False):
     text: Required[str]

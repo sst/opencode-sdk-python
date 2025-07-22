@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["TuiPromptResponse"]
+__all__ = ["TuiAppendPromptResponse"]
 
-TuiPromptResponse: TypeAlias = bool
+TuiAppendPromptResponse: TypeAlias = bool
