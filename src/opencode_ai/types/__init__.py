@@ -59,6 +59,7 @@ from .file_part_source_text import FilePartSourceText as FilePartSourceText
 from .find_symbols_response import FindSymbolsResponse as FindSymbolsResponse
 from .session_init_response import SessionInitResponse as SessionInitResponse
 from .session_list_response import SessionListResponse as SessionListResponse
+from .session_revert_params import SessionRevertParams as SessionRevertParams
 from .text_part_input_param import TextPartInputParam as TextPartInputParam
 from .app_providers_response import AppProvidersResponse as AppProvidersResponse
 from .file_part_source_param import FilePartSourceParam as FilePartSourceParam

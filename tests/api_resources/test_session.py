@@ -363,6 +363,62 @@ class TestSession:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_revert(self, client: Opencode) -> None:
+        session = client.session.revert(
+            id="id",
+            message_id="msg",
+        )
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_revert_with_all_params(self, client: Opencode) -> None:
+        session = client.session.revert(
+            id="id",
+            message_id="msg",
+            part_id="prt",
+        )
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_revert(self, client: Opencode) -> None:
+        response = client.session.with_raw_response.revert(
+            id="id",
+            message_id="msg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        session = response.parse()
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_revert(self, client: Opencode) -> None:
+        with client.session.with_streaming_response.revert(
+            id="id",
+            message_id="msg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            session = response.parse()
+            assert_matches_type(Session, session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_revert(self, client: Opencode) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.session.with_raw_response.revert(
+                id="",
+                message_id="msg",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_share(self, client: Opencode) -> None:
         session = client.session.share(
             "id",
@@ -451,6 +507,48 @@ class TestSession:
                 id="",
                 model_id="modelID",
                 provider_id="providerID",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_unrevert(self, client: Opencode) -> None:
+        session = client.session.unrevert(
+            "id",
+        )
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_unrevert(self, client: Opencode) -> None:
+        response = client.session.with_raw_response.unrevert(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        session = response.parse()
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_unrevert(self, client: Opencode) -> None:
+        with client.session.with_streaming_response.unrevert(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            session = response.parse()
+            assert_matches_type(Session, session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_unrevert(self, client: Opencode) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.session.with_raw_response.unrevert(
+                "",
             )
 
     @pytest.mark.skip()
@@ -838,6 +936,62 @@ class TestAsyncSession:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_revert(self, async_client: AsyncOpencode) -> None:
+        session = await async_client.session.revert(
+            id="id",
+            message_id="msg",
+        )
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_revert_with_all_params(self, async_client: AsyncOpencode) -> None:
+        session = await async_client.session.revert(
+            id="id",
+            message_id="msg",
+            part_id="prt",
+        )
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_revert(self, async_client: AsyncOpencode) -> None:
+        response = await async_client.session.with_raw_response.revert(
+            id="id",
+            message_id="msg",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        session = await response.parse()
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_revert(self, async_client: AsyncOpencode) -> None:
+        async with async_client.session.with_streaming_response.revert(
+            id="id",
+            message_id="msg",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            session = await response.parse()
+            assert_matches_type(Session, session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_revert(self, async_client: AsyncOpencode) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.session.with_raw_response.revert(
+                id="",
+                message_id="msg",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_share(self, async_client: AsyncOpencode) -> None:
         session = await async_client.session.share(
             "id",
@@ -926,6 +1080,48 @@ class TestAsyncSession:
                 id="",
                 model_id="modelID",
                 provider_id="providerID",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_unrevert(self, async_client: AsyncOpencode) -> None:
+        session = await async_client.session.unrevert(
+            "id",
+        )
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_unrevert(self, async_client: AsyncOpencode) -> None:
+        response = await async_client.session.with_raw_response.unrevert(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        session = await response.parse()
+        assert_matches_type(Session, session, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_unrevert(self, async_client: AsyncOpencode) -> None:
+        async with async_client.session.with_streaming_response.unrevert(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            session = await response.parse()
+            assert_matches_type(Session, session, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_unrevert(self, async_client: AsyncOpencode) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.session.with_raw_response.unrevert(
+                "",
             )
 
     @pytest.mark.skip()

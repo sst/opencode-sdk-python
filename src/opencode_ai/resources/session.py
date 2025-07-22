@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 
 import httpx
 
-from ..types import session_chat_params, session_init_params, session_summarize_params
+from ..types import session_chat_params, session_init_params, session_revert_params, session_summarize_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -287,6 +287,48 @@ class SessionResource(SyncAPIResource):
             cast_to=SessionMessagesResponse,
         )
 
+    def revert(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        part_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Revert a message
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/session/{id}/revert",
+            body=maybe_transform(
+                {
+                    "message_id": message_id,
+                    "part_id": part_id,
+                },
+                session_revert_params.SessionRevertParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
     def share(
         self,
         id: str,
@@ -362,6 +404,39 @@ class SessionResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=SessionSummarizeResponse,
+        )
+
+    def unrevert(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Restore all reverted messages
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/session/{id}/unrevert",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
         )
 
     def unshare(
@@ -655,6 +730,48 @@ class AsyncSessionResource(AsyncAPIResource):
             cast_to=SessionMessagesResponse,
         )
 
+    async def revert(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        part_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Revert a message
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/session/{id}/revert",
+            body=await async_maybe_transform(
+                {
+                    "message_id": message_id,
+                    "part_id": part_id,
+                },
+                session_revert_params.SessionRevertParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
     async def share(
         self,
         id: str,
@@ -732,6 +849,39 @@ class AsyncSessionResource(AsyncAPIResource):
             cast_to=SessionSummarizeResponse,
         )
 
+    async def unrevert(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Restore all reverted messages
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/session/{id}/unrevert",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
     async def unshare(
         self,
         id: str,
@@ -791,11 +941,17 @@ class SessionResourceWithRawResponse:
         self.messages = to_raw_response_wrapper(
             session.messages,
         )
+        self.revert = to_raw_response_wrapper(
+            session.revert,
+        )
         self.share = to_raw_response_wrapper(
             session.share,
         )
         self.summarize = to_raw_response_wrapper(
             session.summarize,
+        )
+        self.unrevert = to_raw_response_wrapper(
+            session.unrevert,
         )
         self.unshare = to_raw_response_wrapper(
             session.unshare,
@@ -827,11 +983,17 @@ class AsyncSessionResourceWithRawResponse:
         self.messages = async_to_raw_response_wrapper(
             session.messages,
         )
+        self.revert = async_to_raw_response_wrapper(
+            session.revert,
+        )
         self.share = async_to_raw_response_wrapper(
             session.share,
         )
         self.summarize = async_to_raw_response_wrapper(
             session.summarize,
+        )
+        self.unrevert = async_to_raw_response_wrapper(
+            session.unrevert,
         )
         self.unshare = async_to_raw_response_wrapper(
             session.unshare,
@@ -863,11 +1025,17 @@ class SessionResourceWithStreamingResponse:
         self.messages = to_streamed_response_wrapper(
             session.messages,
         )
+        self.revert = to_streamed_response_wrapper(
+            session.revert,
+        )
         self.share = to_streamed_response_wrapper(
             session.share,
         )
         self.summarize = to_streamed_response_wrapper(
             session.summarize,
+        )
+        self.unrevert = to_streamed_response_wrapper(
+            session.unrevert,
         )
         self.unshare = to_streamed_response_wrapper(
             session.unshare,
@@ -899,11 +1067,17 @@ class AsyncSessionResourceWithStreamingResponse:
         self.messages = async_to_streamed_response_wrapper(
             session.messages,
         )
+        self.revert = async_to_streamed_response_wrapper(
+            session.revert,
+        )
         self.share = async_to_streamed_response_wrapper(
             session.share,
         )
         self.summarize = async_to_streamed_response_wrapper(
             session.summarize,
+        )
+        self.unrevert = async_to_streamed_response_wrapper(
+            session.unrevert,
         )
         self.unshare = async_to_streamed_response_wrapper(
             session.unshare,

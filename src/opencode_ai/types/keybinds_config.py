@@ -74,8 +74,14 @@ class KeybindsConfig(BaseModel):
     messages_previous: str
     """Navigate to previous message"""
 
+    messages_redo: str
+    """Redo message"""
+
     messages_revert: str
-    """Revert message"""
+    """@deprecated use messages_undo. Revert message"""
+
+    messages_undo: str
+    """Undo message"""
 
     api_model_list: str = FieldInfo(alias="model_list")
     """List available models"""
