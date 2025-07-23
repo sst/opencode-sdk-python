@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.30 (2025-07-23)
+
+Full Changelog: [v0.1.0-alpha.29...v0.1.0-alpha.30](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.29...v0.1.0-alpha.30)
+
+### Bug Fixes
+
+* **parsing:** parse extra field types ([6817656](https://github.com/sst/opencode-sdk-python/commit/6817656ba347e8074960af1526763c134d75cf7d))
+
 ## 0.1.0-alpha.29 (2025-07-22)
 
 Full Changelog: [v0.1.0-alpha.28...v0.1.0-alpha.29](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.28...v0.1.0-alpha.29)
