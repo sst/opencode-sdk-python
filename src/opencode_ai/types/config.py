@@ -57,6 +57,7 @@ class Mode(BaseModel):
 
     plan: Optional[ModeConfig] = None
 
+    __pydantic_extra__: Dict[str, ModeConfig] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
