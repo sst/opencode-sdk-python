@@ -3,15 +3,13 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Required, TypedDict
-
-from .log_level import LogLevel
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AppLogParams"]
 
 
 class AppLogParams(TypedDict, total=False):
-    level: Required[LogLevel]
+    level: Required[Literal["debug", "info", "error", "warn"]]
     """Log level"""
 
     message: Required[str]

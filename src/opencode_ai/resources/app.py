@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 from typing import Dict
+from typing_extensions import Literal
 
 import httpx
 
-from ..types import LogLevel, app_log_params
+from ..types import app_log_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -19,7 +20,6 @@ from .._response import (
 )
 from ..types.app import App
 from .._base_client import make_request_options
-from ..types.log_level import LogLevel
 from ..types.app_log_response import AppLogResponse
 from ..types.app_init_response import AppInitResponse
 from ..types.app_modes_response import AppModesResponse
@@ -89,7 +89,7 @@ class AppResource(SyncAPIResource):
     def log(
         self,
         *,
-        level: LogLevel,
+        level: Literal["debug", "info", "error", "warn"],
         message: str,
         service: str,
         extra: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -237,7 +237,7 @@ class AsyncAppResource(AsyncAPIResource):
     async def log(
         self,
         *,
-        level: LogLevel,
+        level: Literal["debug", "info", "error", "warn"],
         message: str,
         service: str,
         extra: Dict[str, object] | NotGiven = NOT_GIVEN,
