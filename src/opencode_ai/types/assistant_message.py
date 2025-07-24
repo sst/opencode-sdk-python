@@ -59,6 +59,8 @@ class AssistantMessage(BaseModel):
 
     cost: float
 
+    mode: str
+
     api_model_id: str = FieldInfo(alias="modelID")
 
     path: Path
