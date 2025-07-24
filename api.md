@@ -23,6 +23,7 @@ Types:
 ```python
 from opencode_ai.types import (
     App,
+    LogLevel,
     Mode,
     Model,
     Provider,
