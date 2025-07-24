@@ -24,6 +24,7 @@ __all__ = [
     "ProviderModels",
     "ProviderModelsCost",
     "ProviderModelsLimit",
+    "ProviderOptions",
 ]
 
 
@@ -103,6 +104,19 @@ class ProviderModels(BaseModel):
     tool_call: Optional[bool] = None
 
 
+class ProviderOptions(BaseModel):
+    api_key: Optional[str] = FieldInfo(alias="apiKey", default=None)
+
+    base_url: Optional[str] = FieldInfo(alias="baseURL", default=None)
+
+    __pydantic_extra__: Dict[str, object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+    if TYPE_CHECKING:
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> object: ...
+
+
 class Provider(BaseModel):
     models: Dict[str, ProviderModels]
 
@@ -116,7 +130,7 @@ class Provider(BaseModel):
 
     npm: Optional[str] = None
 
-    options: Optional[Dict[str, object]] = None
+    options: Optional[ProviderOptions] = None
 
 
 class Config(BaseModel):
