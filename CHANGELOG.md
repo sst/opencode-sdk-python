@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.33 (2025-07-25)
+
+Full Changelog: [v0.1.0-alpha.32...v0.1.0-alpha.33](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.32...v0.1.0-alpha.33)
+
+### Features
+
+* **api:** api update ([9002768](https://github.com/sst/opencode-sdk-python/commit/9002768edd617a44d4d686dd9e88f41fe6a56f2f))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([7fff9af](https://github.com/sst/opencode-sdk-python/commit/7fff9af8fd66865dc933dce74f0385250377af87))
+
 ## 0.1.0-alpha.32 (2025-07-24)
 
 Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
