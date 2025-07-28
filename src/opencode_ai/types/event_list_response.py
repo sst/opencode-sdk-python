@@ -111,6 +111,8 @@ class EventMessagePartRemovedProperties(BaseModel):
 
     part_id: str = FieldInfo(alias="partID")
 
+    session_id: str = FieldInfo(alias="sessionID")
+
 
 class EventMessagePartRemoved(BaseModel):
     properties: EventMessagePartRemovedProperties
