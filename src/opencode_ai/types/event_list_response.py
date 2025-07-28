@@ -16,15 +16,10 @@ from .shared.message_aborted_error import MessageAbortedError
 
 __all__ = [
     "EventListResponse",
-    "EventLspClientDiagnostics",
-    "EventLspClientDiagnosticsProperties",
-    "EventPermissionUpdated",
-    "EventPermissionUpdatedProperties",
-    "EventPermissionUpdatedPropertiesTime",
-    "EventFileEdited",
-    "EventFileEditedProperties",
     "EventInstallationUpdated",
     "EventInstallationUpdatedProperties",
+    "EventLspClientDiagnostics",
+    "EventLspClientDiagnosticsProperties",
     "EventMessageUpdated",
     "EventMessageUpdatedProperties",
     "EventMessageRemoved",
@@ -35,6 +30,11 @@ __all__ = [
     "EventMessagePartRemovedProperties",
     "EventStorageWrite",
     "EventStorageWriteProperties",
+    "EventPermissionUpdated",
+    "EventPermissionUpdatedProperties",
+    "EventPermissionUpdatedPropertiesTime",
+    "EventFileEdited",
+    "EventFileEditedProperties",
     "EventSessionUpdated",
     "EventSessionUpdatedProperties",
     "EventSessionDeleted",
@@ -52,6 +52,16 @@ __all__ = [
 ]
 
 
+class EventInstallationUpdatedProperties(BaseModel):
+    version: str
+
+
+class EventInstallationUpdated(BaseModel):
+    properties: EventInstallationUpdatedProperties
+
+    type: Literal["installation.updated"]
+
+
 class EventLspClientDiagnosticsProperties(BaseModel):
     path: str
 
@@ -62,48 +72,6 @@ class EventLspClientDiagnostics(BaseModel):
     properties: EventLspClientDiagnosticsProperties
 
     type: Literal["lsp.client.diagnostics"]
-
-
-class EventPermissionUpdatedPropertiesTime(BaseModel):
-    created: float
-
-
-class EventPermissionUpdatedProperties(BaseModel):
-    id: str
-
-    metadata: Dict[str, object]
-
-    session_id: str = FieldInfo(alias="sessionID")
-
-    time: EventPermissionUpdatedPropertiesTime
-
-    title: str
-
-
-class EventPermissionUpdated(BaseModel):
-    properties: EventPermissionUpdatedProperties
-
-    type: Literal["permission.updated"]
-
-
-class EventFileEditedProperties(BaseModel):
-    file: str
-
-
-class EventFileEdited(BaseModel):
-    properties: EventFileEditedProperties
-
-    type: Literal["file.edited"]
-
-
-class EventInstallationUpdatedProperties(BaseModel):
-    version: str
-
-
-class EventInstallationUpdated(BaseModel):
-    properties: EventInstallationUpdatedProperties
-
-    type: Literal["installation.updated"]
 
 
 class EventMessageUpdatedProperties(BaseModel):
@@ -160,6 +128,38 @@ class EventStorageWrite(BaseModel):
     properties: EventStorageWriteProperties
 
     type: Literal["storage.write"]
+
+
+class EventPermissionUpdatedPropertiesTime(BaseModel):
+    created: float
+
+
+class EventPermissionUpdatedProperties(BaseModel):
+    id: str
+
+    metadata: Dict[str, object]
+
+    session_id: str = FieldInfo(alias="sessionID")
+
+    time: EventPermissionUpdatedPropertiesTime
+
+    title: str
+
+
+class EventPermissionUpdated(BaseModel):
+    properties: EventPermissionUpdatedProperties
+
+    type: Literal["permission.updated"]
+
+
+class EventFileEditedProperties(BaseModel):
+    file: str
+
+
+class EventFileEdited(BaseModel):
+    properties: EventFileEditedProperties
+
+    type: Literal["file.edited"]
 
 
 class EventSessionUpdatedProperties(BaseModel):
@@ -242,15 +242,15 @@ class EventIdeInstalled(BaseModel):
 
 EventListResponse: TypeAlias = Annotated[
     Union[
-        EventLspClientDiagnostics,
-        EventPermissionUpdated,
-        EventFileEdited,
         EventInstallationUpdated,
+        EventLspClientDiagnostics,
         EventMessageUpdated,
         EventMessageRemoved,
         EventMessagePartUpdated,
         EventMessagePartRemoved,
         EventStorageWrite,
+        EventPermissionUpdated,
+        EventFileEdited,
         EventSessionUpdated,
         EventSessionDeleted,
         EventSessionIdle,

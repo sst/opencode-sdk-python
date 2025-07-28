@@ -18,6 +18,8 @@ class Time(BaseModel):
 class Revert(BaseModel):
     message_id: str = FieldInfo(alias="messageID")
 
+    diff: Optional[str] = None
+
     part_id: Optional[str] = FieldInfo(alias="partID", default=None)
 
     snapshot: Optional[str] = None

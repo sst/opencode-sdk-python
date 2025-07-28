@@ -23,6 +23,8 @@ class SessionChatParams(TypedDict, total=False):
 
     mode: str
 
+    system: str
+
     tools: Dict[str, bool]
 
 
