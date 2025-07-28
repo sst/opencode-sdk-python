@@ -46,13 +46,7 @@ Methods:
 Types:
 
 ```python
-from opencode_ai.types import (
-    Match,
-    Symbol,
-    FindFilesResponse,
-    FindSymbolsResponse,
-    FindTextResponse,
-)
+from opencode_ai.types import Symbol, FindFilesResponse, FindSymbolsResponse, FindTextResponse
 ```
 
 Methods:

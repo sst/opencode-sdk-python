@@ -203,6 +203,7 @@ class TestSession:
             provider_id="providerID",
             message_id="msg",
             mode="mode",
+            system="system",
             tools={"foo": True},
         )
         assert_matches_type(AssistantMessage, session, path=["response"])
@@ -776,6 +777,7 @@ class TestAsyncSession:
             provider_id="providerID",
             message_id="msg",
             mode="mode",
+            system="system",
             tools={"foo": True},
         )
         assert_matches_type(AssistantMessage, session, path=["response"])

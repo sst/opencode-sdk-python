@@ -14,6 +14,9 @@ from .mcp_remote_config import McpRemoteConfig
 
 __all__ = [
     "Config",
+    "Agent",
+    "AgentGeneral",
+    "AgentAgentItem",
     "Experimental",
     "ExperimentalHook",
     "ExperimentalHookFileEdited",
@@ -26,6 +29,25 @@ __all__ = [
     "ProviderModelsLimit",
     "ProviderOptions",
 ]
+
+
+class AgentGeneral(ModeConfig):
+    description: str
+
+
+class AgentAgentItem(ModeConfig):
+    description: str
+
+
+class Agent(BaseModel):
+    general: Optional[AgentGeneral] = None
+
+    __pydantic_extra__: Dict[str, AgentAgentItem] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+    if TYPE_CHECKING:
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> AgentAgentItem: ...
 
 
 class ExperimentalHookFileEdited(BaseModel):
@@ -136,6 +158,9 @@ class Provider(BaseModel):
 class Config(BaseModel):
     schema_: Optional[str] = FieldInfo(alias="$schema", default=None)
     """JSON schema reference for configuration validation"""
+
+    agent: Optional[Agent] = None
+    """Modes configuration, see https://opencode.ai/docs/modes"""
 
     autoshare: Optional[bool] = None
     """@deprecated Use 'share' field instead.

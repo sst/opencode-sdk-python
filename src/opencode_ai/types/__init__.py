@@ -6,7 +6,6 @@ from .app import App as App
 from .file import File as File
 from .mode import Mode as Mode
 from .part import Part as Part
-from .match import Match as Match
 from .model import Model as Model
 from .config import Config as Config
 from .shared import (

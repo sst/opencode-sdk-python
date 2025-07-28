@@ -23,3 +23,5 @@ class Mode(BaseModel):
     model: Optional[Model] = None
 
     prompt: Optional[str] = None
+
+    temperature: Optional[float] = None

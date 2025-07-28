@@ -3,8 +3,48 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .match import Match
+from .._models import BaseModel
 
-__all__ = ["FindTextResponse"]
+__all__ = [
+    "FindTextResponse",
+    "FindTextResponseItem",
+    "FindTextResponseItemLines",
+    "FindTextResponseItemPath",
+    "FindTextResponseItemSubmatch",
+    "FindTextResponseItemSubmatchMatch",
+]
 
-FindTextResponse: TypeAlias = List[Match]
+
+class FindTextResponseItemLines(BaseModel):
+    text: str
+
+
+class FindTextResponseItemPath(BaseModel):
+    text: str
+
+
+class FindTextResponseItemSubmatchMatch(BaseModel):
+    text: str
+
+
+class FindTextResponseItemSubmatch(BaseModel):
+    end: float
+
+    match: FindTextResponseItemSubmatchMatch
+
+    start: float
+
+
+class FindTextResponseItem(BaseModel):
+    absolute_offset: float
+
+    line_number: float
+
+    lines: FindTextResponseItemLines
+
+    path: FindTextResponseItemPath
+
+    submatches: List[FindTextResponseItemSubmatch]
+
+
+FindTextResponse: TypeAlias = List[FindTextResponseItem]
