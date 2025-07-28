@@ -1,6 +1,6 @@
 [project]
 name = "opencode-ai"
-version = "0.1.0-alpha.33"
+version = "0.1.0-alpha.34"
 description = "The official Python library for the opencode API"
 dynamic = ["readme"]
 license = "MIT"
