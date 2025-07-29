@@ -45,6 +45,7 @@ __all__ = [
     "EventSessionErrorProperties",
     "EventSessionErrorPropertiesError",
     "EventSessionErrorPropertiesErrorMessageOutputLengthError",
+    "EventServerConnected",
     "EventFileWatcherUpdated",
     "EventFileWatcherUpdatedProperties",
     "EventIdeInstalled",
@@ -220,6 +221,12 @@ class EventSessionError(BaseModel):
     type: Literal["session.error"]
 
 
+class EventServerConnected(BaseModel):
+    properties: object
+
+    type: Literal["server.connected"]
+
+
 class EventFileWatcherUpdatedProperties(BaseModel):
     event: Literal["rename", "change"]
 
@@ -257,6 +264,7 @@ EventListResponse: TypeAlias = Annotated[
         EventSessionDeleted,
         EventSessionIdle,
         EventSessionError,
+        EventServerConnected,
         EventFileWatcherUpdated,
         EventIdeInstalled,
     ],
