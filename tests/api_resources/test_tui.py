@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTui:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_append_prompt(self, client: Opencode) -> None:
         tui = client.tui.append_prompt(
@@ -25,7 +25,7 @@ class TestTui:
         )
         assert_matches_type(TuiAppendPromptResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_append_prompt(self, client: Opencode) -> None:
         response = client.tui.with_raw_response.append_prompt(
@@ -37,7 +37,7 @@ class TestTui:
         tui = response.parse()
         assert_matches_type(TuiAppendPromptResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_append_prompt(self, client: Opencode) -> None:
         with client.tui.with_streaming_response.append_prompt(
@@ -51,13 +51,13 @@ class TestTui:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_open_help(self, client: Opencode) -> None:
         tui = client.tui.open_help()
         assert_matches_type(TuiOpenHelpResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_open_help(self, client: Opencode) -> None:
         response = client.tui.with_raw_response.open_help()
@@ -67,7 +67,7 @@ class TestTui:
         tui = response.parse()
         assert_matches_type(TuiOpenHelpResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_open_help(self, client: Opencode) -> None:
         with client.tui.with_streaming_response.open_help() as response:
@@ -85,7 +85,7 @@ class TestAsyncTui:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_append_prompt(self, async_client: AsyncOpencode) -> None:
         tui = await async_client.tui.append_prompt(
@@ -93,7 +93,7 @@ class TestAsyncTui:
         )
         assert_matches_type(TuiAppendPromptResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_append_prompt(self, async_client: AsyncOpencode) -> None:
         response = await async_client.tui.with_raw_response.append_prompt(
@@ -105,7 +105,7 @@ class TestAsyncTui:
         tui = await response.parse()
         assert_matches_type(TuiAppendPromptResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_append_prompt(self, async_client: AsyncOpencode) -> None:
         async with async_client.tui.with_streaming_response.append_prompt(
@@ -119,13 +119,13 @@ class TestAsyncTui:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_open_help(self, async_client: AsyncOpencode) -> None:
         tui = await async_client.tui.open_help()
         assert_matches_type(TuiOpenHelpResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_open_help(self, async_client: AsyncOpencode) -> None:
         response = await async_client.tui.with_raw_response.open_help()
@@ -135,7 +135,7 @@ class TestAsyncTui:
         tui = await response.parse()
         assert_matches_type(TuiOpenHelpResponse, tui, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_open_help(self, async_client: AsyncOpencode) -> None:
         async with async_client.tui.with_streaming_response.open_help() as response:
