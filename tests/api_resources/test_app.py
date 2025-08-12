@@ -23,13 +23,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestApp:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get(self, client: Opencode) -> None:
         app = client.app.get()
         assert_matches_type(App, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_get(self, client: Opencode) -> None:
         response = client.app.with_raw_response.get()
@@ -39,7 +39,7 @@ class TestApp:
         app = response.parse()
         assert_matches_type(App, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_get(self, client: Opencode) -> None:
         with client.app.with_streaming_response.get() as response:
@@ -51,13 +51,13 @@ class TestApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_init(self, client: Opencode) -> None:
         app = client.app.init()
         assert_matches_type(AppInitResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_init(self, client: Opencode) -> None:
         response = client.app.with_raw_response.init()
@@ -67,7 +67,7 @@ class TestApp:
         app = response.parse()
         assert_matches_type(AppInitResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_init(self, client: Opencode) -> None:
         with client.app.with_streaming_response.init() as response:
@@ -79,7 +79,7 @@ class TestApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_log(self, client: Opencode) -> None:
         app = client.app.log(
@@ -89,7 +89,7 @@ class TestApp:
         )
         assert_matches_type(AppLogResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_log_with_all_params(self, client: Opencode) -> None:
         app = client.app.log(
@@ -100,7 +100,7 @@ class TestApp:
         )
         assert_matches_type(AppLogResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_log(self, client: Opencode) -> None:
         response = client.app.with_raw_response.log(
@@ -114,7 +114,7 @@ class TestApp:
         app = response.parse()
         assert_matches_type(AppLogResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_log(self, client: Opencode) -> None:
         with client.app.with_streaming_response.log(
@@ -130,13 +130,13 @@ class TestApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_modes(self, client: Opencode) -> None:
         app = client.app.modes()
         assert_matches_type(AppModesResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_modes(self, client: Opencode) -> None:
         response = client.app.with_raw_response.modes()
@@ -146,7 +146,7 @@ class TestApp:
         app = response.parse()
         assert_matches_type(AppModesResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_modes(self, client: Opencode) -> None:
         with client.app.with_streaming_response.modes() as response:
@@ -158,13 +158,13 @@ class TestApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_providers(self, client: Opencode) -> None:
         app = client.app.providers()
         assert_matches_type(AppProvidersResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_providers(self, client: Opencode) -> None:
         response = client.app.with_raw_response.providers()
@@ -174,7 +174,7 @@ class TestApp:
         app = response.parse()
         assert_matches_type(AppProvidersResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_providers(self, client: Opencode) -> None:
         with client.app.with_streaming_response.providers() as response:
@@ -192,13 +192,13 @@ class TestAsyncApp:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get(self, async_client: AsyncOpencode) -> None:
         app = await async_client.app.get()
         assert_matches_type(App, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncOpencode) -> None:
         response = await async_client.app.with_raw_response.get()
@@ -208,7 +208,7 @@ class TestAsyncApp:
         app = await response.parse()
         assert_matches_type(App, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncOpencode) -> None:
         async with async_client.app.with_streaming_response.get() as response:
@@ -220,13 +220,13 @@ class TestAsyncApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_init(self, async_client: AsyncOpencode) -> None:
         app = await async_client.app.init()
         assert_matches_type(AppInitResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_init(self, async_client: AsyncOpencode) -> None:
         response = await async_client.app.with_raw_response.init()
@@ -236,7 +236,7 @@ class TestAsyncApp:
         app = await response.parse()
         assert_matches_type(AppInitResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_init(self, async_client: AsyncOpencode) -> None:
         async with async_client.app.with_streaming_response.init() as response:
@@ -248,7 +248,7 @@ class TestAsyncApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_log(self, async_client: AsyncOpencode) -> None:
         app = await async_client.app.log(
@@ -258,7 +258,7 @@ class TestAsyncApp:
         )
         assert_matches_type(AppLogResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_log_with_all_params(self, async_client: AsyncOpencode) -> None:
         app = await async_client.app.log(
@@ -269,7 +269,7 @@ class TestAsyncApp:
         )
         assert_matches_type(AppLogResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_log(self, async_client: AsyncOpencode) -> None:
         response = await async_client.app.with_raw_response.log(
@@ -283,7 +283,7 @@ class TestAsyncApp:
         app = await response.parse()
         assert_matches_type(AppLogResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_log(self, async_client: AsyncOpencode) -> None:
         async with async_client.app.with_streaming_response.log(
@@ -299,13 +299,13 @@ class TestAsyncApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_modes(self, async_client: AsyncOpencode) -> None:
         app = await async_client.app.modes()
         assert_matches_type(AppModesResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_modes(self, async_client: AsyncOpencode) -> None:
         response = await async_client.app.with_raw_response.modes()
@@ -315,7 +315,7 @@ class TestAsyncApp:
         app = await response.parse()
         assert_matches_type(AppModesResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_modes(self, async_client: AsyncOpencode) -> None:
         async with async_client.app.with_streaming_response.modes() as response:
@@ -327,13 +327,13 @@ class TestAsyncApp:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_providers(self, async_client: AsyncOpencode) -> None:
         app = await async_client.app.providers()
         assert_matches_type(AppProvidersResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_providers(self, async_client: AsyncOpencode) -> None:
         response = await async_client.app.with_raw_response.providers()
@@ -343,7 +343,7 @@ class TestAsyncApp:
         app = await response.parse()
         assert_matches_type(AppProvidersResponse, app, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_providers(self, async_client: AsyncOpencode) -> None:
         async with async_client.app.with_streaming_response.providers() as response:
