@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.1.0-alpha.36 (2025-08-27)
+
+Full Changelog: [v0.1.0-alpha.35...v0.1.0-alpha.36](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.35...v0.1.0-alpha.36)
+
+### Features
+
+* **client:** support file upload requests ([c2e1522](https://github.com/sst/opencode-sdk-python/commit/c2e1522ffba596910098e1e58eef7b4d00548e18))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([42779eb](https://github.com/sst/opencode-sdk-python/commit/42779eb3d7035b677ef213d6508658dbd56b50bf))
+
+
+### Chores
+
+* **internal:** change ci workflow machines ([14c918e](https://github.com/sst/opencode-sdk-python/commit/14c918ee18edc797d2d8dd1f1d462ffb004a7e89))
+* **internal:** codegen related update ([477ff58](https://github.com/sst/opencode-sdk-python/commit/477ff58aa920fd0c02378ff33c041d061923dee4))
+* **internal:** fix ruff target version ([359b956](https://github.com/sst/opencode-sdk-python/commit/359b95615445c2f675aa3520cb233c19b50dfe31))
+* **internal:** update comment in script ([9ac7cbb](https://github.com/sst/opencode-sdk-python/commit/9ac7cbb6dba85d18d18bd37f95dffc0eea3d2605))
+* **internal:** update pyright exclude list ([5d96f63](https://github.com/sst/opencode-sdk-python/commit/5d96f63f7a9aaebb2e85fcd11b380bbeca3b7310))
+* update @stainless-api/prism-cli to v5.15.0 ([88487ee](https://github.com/sst/opencode-sdk-python/commit/88487ee6dbc8ac60e9d26573c8f08ae3f1389e83))
+* update github action ([fe98742](https://github.com/sst/opencode-sdk-python/commit/fe98742cd53b1e8783f600879164dd16fea610d3))
+
 ## 0.1.0-alpha.35 (2025-07-29)
 
 Full Changelog: [v0.1.0-alpha.34...v0.1.0-alpha.35](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.34...v0.1.0-alpha.35)
