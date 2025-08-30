@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.37 (2025-08-30)
+
+Full Changelog: [v0.1.0-alpha.36...v0.1.0-alpha.37](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.36...v0.1.0-alpha.37)
+
+### Chores
+
+* **internal:** add Sequence related utils ([002bf6d](https://github.com/sst/opencode-sdk-python/commit/002bf6d3d6c95c5acbb8ac6ce862d431b926d6f0))
+
 ## 0.1.0-alpha.36 (2025-08-27)
 
 Full Changelog: [v0.1.0-alpha.35...v0.1.0-alpha.36](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.35...v0.1.0-alpha.36)
