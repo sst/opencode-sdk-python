@@ -8,6 +8,15 @@ __all__ = ["KeybindsConfig"]
 
 
 class KeybindsConfig(BaseModel):
+    agent_cycle: str
+    """Next agent"""
+
+    agent_cycle_reverse: str
+    """Previous agent"""
+
+    agent_list: str
+    """List agents"""
+
     app_exit: str
     """Exit the application"""
 
@@ -18,16 +27,16 @@ class KeybindsConfig(BaseModel):
     """Open external editor"""
 
     file_close: str
-    """Close file"""
+    """@deprecated Close file"""
 
     file_diff_toggle: str
-    """Split/unified diff"""
+    """@deprecated Split/unified diff"""
 
     file_list: str
-    """List files"""
+    """@deprecated Currently not available. List files"""
 
     file_search: str
-    """Search file"""
+    """@deprecated Search file"""
 
     input_clear: str
     """Clear input field"""
@@ -60,10 +69,10 @@ class KeybindsConfig(BaseModel):
     """Navigate to last message"""
 
     messages_layout_toggle: str
-    """Toggle layout"""
+    """@deprecated Toggle layout"""
 
     messages_next: str
-    """Navigate to next message"""
+    """@deprecated Navigate to next message"""
 
     messages_page_down: str
     """Scroll messages down by one page"""
@@ -72,7 +81,7 @@ class KeybindsConfig(BaseModel):
     """Scroll messages up by one page"""
 
     messages_previous: str
-    """Navigate to previous message"""
+    """@deprecated Navigate to previous message"""
 
     messages_redo: str
     """Redo message"""
@@ -83,11 +92,23 @@ class KeybindsConfig(BaseModel):
     messages_undo: str
     """Undo message"""
 
+    api_model_cycle_recent: str = FieldInfo(alias="model_cycle_recent")
+    """Next recent model"""
+
+    api_model_cycle_recent_reverse: str = FieldInfo(alias="model_cycle_recent_reverse")
+    """Previous recent model"""
+
     api_model_list: str = FieldInfo(alias="model_list")
     """List available models"""
 
     project_init: str
     """Create/update AGENTS.md"""
+
+    session_child_cycle: str
+    """Cycle to next child session"""
+
+    session_child_cycle_reverse: str
+    """Cycle to previous child session"""
 
     session_compact: str
     """Compact the session"""
@@ -107,17 +128,29 @@ class KeybindsConfig(BaseModel):
     session_share: str
     """Share current session"""
 
+    session_timeline: str
+    """Show session timeline"""
+
     session_unshare: str
     """Unshare current session"""
 
+    switch_agent: str
+    """@deprecated use agent_cycle. Next agent"""
+
+    switch_agent_reverse: str
+    """@deprecated use agent_cycle_reverse. Previous agent"""
+
     switch_mode: str
-    """Next mode"""
+    """@deprecated use agent_cycle. Next mode"""
 
     switch_mode_reverse: str
-    """Previous Mode"""
+    """@deprecated use agent_cycle_reverse. Previous mode"""
 
     theme_list: str
     """List available themes"""
+
+    thinking_blocks: str
+    """Toggle thinking blocks"""
 
     tool_details: str
     """Toggle tool details"""

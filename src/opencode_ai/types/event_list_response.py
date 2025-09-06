@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -8,8 +8,9 @@ from pydantic import Field as FieldInfo
 from .part import Part
 from .._utils import PropertyInfo
 from .message import Message
-from .session import Session
 from .._models import BaseModel
+from .session.session import Session
+from .session.permission import Permission
 from .shared.unknown_error import UnknownError
 from .shared.provider_auth_error import ProviderAuthError
 from .shared.message_aborted_error import MessageAbortedError
@@ -28,11 +29,9 @@ __all__ = [
     "EventMessagePartUpdatedProperties",
     "EventMessagePartRemoved",
     "EventMessagePartRemovedProperties",
-    "EventStorageWrite",
-    "EventStorageWriteProperties",
     "EventPermissionUpdated",
-    "EventPermissionUpdatedProperties",
-    "EventPermissionUpdatedPropertiesTime",
+    "EventPermissionReplied",
+    "EventPermissionRepliedProperties",
     "EventFileEdited",
     "EventFileEditedProperties",
     "EventSessionUpdated",
@@ -46,10 +45,6 @@ __all__ = [
     "EventSessionErrorPropertiesError",
     "EventSessionErrorPropertiesErrorMessageOutputLengthError",
     "EventServerConnected",
-    "EventFileWatcherUpdated",
-    "EventFileWatcherUpdatedProperties",
-    "EventIdeInstalled",
-    "EventIdeInstalledProperties",
 ]
 
 
@@ -121,38 +116,24 @@ class EventMessagePartRemoved(BaseModel):
     type: Literal["message.part.removed"]
 
 
-class EventStorageWriteProperties(BaseModel):
-    key: str
+class EventPermissionUpdated(BaseModel):
+    properties: Permission
 
-    content: Optional[object] = None
-
-
-class EventStorageWrite(BaseModel):
-    properties: EventStorageWriteProperties
-
-    type: Literal["storage.write"]
+    type: Literal["permission.updated"]
 
 
-class EventPermissionUpdatedPropertiesTime(BaseModel):
-    created: float
+class EventPermissionRepliedProperties(BaseModel):
+    permission_id: str = FieldInfo(alias="permissionID")
 
-
-class EventPermissionUpdatedProperties(BaseModel):
-    id: str
-
-    metadata: Dict[str, object]
+    response: str
 
     session_id: str = FieldInfo(alias="sessionID")
 
-    time: EventPermissionUpdatedPropertiesTime
 
-    title: str
+class EventPermissionReplied(BaseModel):
+    properties: EventPermissionRepliedProperties
 
-
-class EventPermissionUpdated(BaseModel):
-    properties: EventPermissionUpdatedProperties
-
-    type: Literal["permission.updated"]
+    type: Literal["permission.replied"]
 
 
 class EventFileEditedProperties(BaseModel):
@@ -227,28 +208,6 @@ class EventServerConnected(BaseModel):
     type: Literal["server.connected"]
 
 
-class EventFileWatcherUpdatedProperties(BaseModel):
-    event: Literal["rename", "change"]
-
-    file: str
-
-
-class EventFileWatcherUpdated(BaseModel):
-    properties: EventFileWatcherUpdatedProperties
-
-    type: Literal["file.watcher.updated"]
-
-
-class EventIdeInstalledProperties(BaseModel):
-    ide: str
-
-
-class EventIdeInstalled(BaseModel):
-    properties: EventIdeInstalledProperties
-
-    type: Literal["ide.installed"]
-
-
 EventListResponse: TypeAlias = Annotated[
     Union[
         EventInstallationUpdated,
@@ -257,16 +216,14 @@ EventListResponse: TypeAlias = Annotated[
         EventMessageRemoved,
         EventMessagePartUpdated,
         EventMessagePartRemoved,
-        EventStorageWrite,
         EventPermissionUpdated,
+        EventPermissionReplied,
         EventFileEdited,
         EventSessionUpdated,
         EventSessionDeleted,
         EventSessionIdle,
         EventSessionError,
         EventServerConnected,
-        EventFileWatcherUpdated,
-        EventIdeInstalled,
     ],
     PropertyInfo(discriminator="type"),
 ]

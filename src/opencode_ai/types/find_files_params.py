@@ -9,3 +9,5 @@ __all__ = ["FindFilesParams"]
 
 class FindFilesParams(TypedDict, total=False):
     query: Required[str]
+
+    directory: str

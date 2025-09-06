@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import app, tui, file, find, event, config, session
+from .resources import app, tui, file, find, path, agent, event, config, command, project
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -29,6 +29,7 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.session import session
 
 __all__ = [
     "Timeout",
@@ -44,10 +45,14 @@ __all__ = [
 
 class Opencode(SyncAPIClient):
     event: event.EventResource
+    path: path.PathResource
     app: app.AppResource
+    agent: agent.AgentResource
     find: find.FindResource
     file: file.FileResource
     config: config.ConfigResource
+    command: command.CommandResource
+    project: project.ProjectResource
     session: session.SessionResource
     tui: tui.TuiResource
     with_raw_response: OpencodeWithRawResponse
@@ -97,10 +102,14 @@ class Opencode(SyncAPIClient):
         self._default_stream_cls = Stream
 
         self.event = event.EventResource(self)
+        self.path = path.PathResource(self)
         self.app = app.AppResource(self)
+        self.agent = agent.AgentResource(self)
         self.find = find.FindResource(self)
         self.file = file.FileResource(self)
         self.config = config.ConfigResource(self)
+        self.command = command.CommandResource(self)
+        self.project = project.ProjectResource(self)
         self.session = session.SessionResource(self)
         self.tui = tui.TuiResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
@@ -205,10 +214,14 @@ class Opencode(SyncAPIClient):
 
 class AsyncOpencode(AsyncAPIClient):
     event: event.AsyncEventResource
+    path: path.AsyncPathResource
     app: app.AsyncAppResource
+    agent: agent.AsyncAgentResource
     find: find.AsyncFindResource
     file: file.AsyncFileResource
     config: config.AsyncConfigResource
+    command: command.AsyncCommandResource
+    project: project.AsyncProjectResource
     session: session.AsyncSessionResource
     tui: tui.AsyncTuiResource
     with_raw_response: AsyncOpencodeWithRawResponse
@@ -258,10 +271,14 @@ class AsyncOpencode(AsyncAPIClient):
         self._default_stream_cls = AsyncStream
 
         self.event = event.AsyncEventResource(self)
+        self.path = path.AsyncPathResource(self)
         self.app = app.AsyncAppResource(self)
+        self.agent = agent.AsyncAgentResource(self)
         self.find = find.AsyncFindResource(self)
         self.file = file.AsyncFileResource(self)
         self.config = config.AsyncConfigResource(self)
+        self.command = command.AsyncCommandResource(self)
+        self.project = project.AsyncProjectResource(self)
         self.session = session.AsyncSessionResource(self)
         self.tui = tui.AsyncTuiResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
@@ -367,10 +384,14 @@ class AsyncOpencode(AsyncAPIClient):
 class OpencodeWithRawResponse:
     def __init__(self, client: Opencode) -> None:
         self.event = event.EventResourceWithRawResponse(client.event)
+        self.path = path.PathResourceWithRawResponse(client.path)
         self.app = app.AppResourceWithRawResponse(client.app)
+        self.agent = agent.AgentResourceWithRawResponse(client.agent)
         self.find = find.FindResourceWithRawResponse(client.find)
         self.file = file.FileResourceWithRawResponse(client.file)
         self.config = config.ConfigResourceWithRawResponse(client.config)
+        self.command = command.CommandResourceWithRawResponse(client.command)
+        self.project = project.ProjectResourceWithRawResponse(client.project)
         self.session = session.SessionResourceWithRawResponse(client.session)
         self.tui = tui.TuiResourceWithRawResponse(client.tui)
 
@@ -378,10 +399,14 @@ class OpencodeWithRawResponse:
 class AsyncOpencodeWithRawResponse:
     def __init__(self, client: AsyncOpencode) -> None:
         self.event = event.AsyncEventResourceWithRawResponse(client.event)
+        self.path = path.AsyncPathResourceWithRawResponse(client.path)
         self.app = app.AsyncAppResourceWithRawResponse(client.app)
+        self.agent = agent.AsyncAgentResourceWithRawResponse(client.agent)
         self.find = find.AsyncFindResourceWithRawResponse(client.find)
         self.file = file.AsyncFileResourceWithRawResponse(client.file)
         self.config = config.AsyncConfigResourceWithRawResponse(client.config)
+        self.command = command.AsyncCommandResourceWithRawResponse(client.command)
+        self.project = project.AsyncProjectResourceWithRawResponse(client.project)
         self.session = session.AsyncSessionResourceWithRawResponse(client.session)
         self.tui = tui.AsyncTuiResourceWithRawResponse(client.tui)
 
@@ -389,10 +414,14 @@ class AsyncOpencodeWithRawResponse:
 class OpencodeWithStreamedResponse:
     def __init__(self, client: Opencode) -> None:
         self.event = event.EventResourceWithStreamingResponse(client.event)
+        self.path = path.PathResourceWithStreamingResponse(client.path)
         self.app = app.AppResourceWithStreamingResponse(client.app)
+        self.agent = agent.AgentResourceWithStreamingResponse(client.agent)
         self.find = find.FindResourceWithStreamingResponse(client.find)
         self.file = file.FileResourceWithStreamingResponse(client.file)
         self.config = config.ConfigResourceWithStreamingResponse(client.config)
+        self.command = command.CommandResourceWithStreamingResponse(client.command)
+        self.project = project.ProjectResourceWithStreamingResponse(client.project)
         self.session = session.SessionResourceWithStreamingResponse(client.session)
         self.tui = tui.TuiResourceWithStreamingResponse(client.tui)
 
@@ -400,10 +429,14 @@ class OpencodeWithStreamedResponse:
 class AsyncOpencodeWithStreamedResponse:
     def __init__(self, client: AsyncOpencode) -> None:
         self.event = event.AsyncEventResourceWithStreamingResponse(client.event)
+        self.path = path.AsyncPathResourceWithStreamingResponse(client.path)
         self.app = app.AsyncAppResourceWithStreamingResponse(client.app)
+        self.agent = agent.AsyncAgentResourceWithStreamingResponse(client.agent)
         self.find = find.AsyncFindResourceWithStreamingResponse(client.find)
         self.file = file.AsyncFileResourceWithStreamingResponse(client.file)
         self.config = config.AsyncConfigResourceWithStreamingResponse(client.config)
+        self.command = command.AsyncCommandResourceWithStreamingResponse(client.command)
+        self.project = project.AsyncProjectResourceWithStreamingResponse(client.project)
         self.session = session.AsyncSessionResourceWithStreamingResponse(client.session)
         self.tui = tui.AsyncTuiResourceWithStreamingResponse(client.tui)
 

@@ -12,4 +12,6 @@ __all__ = ["SessionRevertParams"]
 class SessionRevertParams(TypedDict, total=False):
     message_id: Required[Annotated[str, PropertyInfo(alias="messageID")]]
 
+    directory: str
+
     part_id: Annotated[str, PropertyInfo(alias="partID")]

@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["AppInitResponse"]
+__all__ = ["TuiOpenModelsResponse"]
 
-AppInitResponse: TypeAlias = bool
+TuiOpenModelsResponse: TypeAlias = bool

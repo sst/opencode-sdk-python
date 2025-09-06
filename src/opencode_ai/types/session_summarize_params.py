@@ -13,3 +13,5 @@ class SessionSummarizeParams(TypedDict, total=False):
     model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
 
     provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
+
+    directory: str

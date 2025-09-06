@@ -18,5 +18,7 @@ class AppLogParams(TypedDict, total=False):
     service: Required[str]
     """Service name for the log entry"""
 
+    directory: str
+
     extra: Dict[str, object]
     """Additional metadata for the log entry"""

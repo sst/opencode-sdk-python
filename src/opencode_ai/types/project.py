@@ -1,33 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["App", "Path", "Time"]
-
-
-class Path(BaseModel):
-    config: str
-
-    cwd: str
-
-    data: str
-
-    root: str
-
-    state: str
+__all__ = ["Project", "Time"]
 
 
 class Time(BaseModel):
+    created: float
+
     initialized: Optional[float] = None
 
 
-class App(BaseModel):
-    git: bool
-
-    hostname: str
-
-    path: Path
+class Project(BaseModel):
+    id: str
 
     time: Time
+
+    worktree: str
+
+    vcs: Optional[Literal["git"]] = None
