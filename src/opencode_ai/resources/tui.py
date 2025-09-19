@@ -17,7 +17,7 @@ from ..types import (
     tui_submit_prompt_params,
     tui_execute_command_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -65,13 +65,13 @@ class TuiResource(SyncAPIResource):
         self,
         *,
         text: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiAppendPromptResponse:
         """
         Append prompt to the TUI
@@ -101,13 +101,13 @@ class TuiResource(SyncAPIResource):
     def clear_prompt(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiClearPromptResponse:
         """
         Clear the prompt
@@ -137,13 +137,13 @@ class TuiResource(SyncAPIResource):
         self,
         *,
         command: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiExecuteCommandResponse:
         """Execute a TUI command (e.g.
 
@@ -174,13 +174,13 @@ class TuiResource(SyncAPIResource):
     def open_help(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenHelpResponse:
         """
         Open the help dialog
@@ -209,13 +209,13 @@ class TuiResource(SyncAPIResource):
     def open_models(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenModelsResponse:
         """
         Open the model dialog
@@ -244,13 +244,13 @@ class TuiResource(SyncAPIResource):
     def open_sessions(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenSessionsResponse:
         """
         Open the session dialog
@@ -279,13 +279,13 @@ class TuiResource(SyncAPIResource):
     def open_themes(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenThemesResponse:
         """
         Open the theme dialog
@@ -316,14 +316,14 @@ class TuiResource(SyncAPIResource):
         *,
         message: str,
         variant: Literal["info", "success", "warning", "error"],
-        directory: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiShowToastResponse:
         """
         Show a toast notification in the TUI
@@ -360,13 +360,13 @@ class TuiResource(SyncAPIResource):
     def submit_prompt(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiSubmitPromptResponse:
         """
         Submit the prompt
@@ -417,13 +417,13 @@ class AsyncTuiResource(AsyncAPIResource):
         self,
         *,
         text: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiAppendPromptResponse:
         """
         Append prompt to the TUI
@@ -455,13 +455,13 @@ class AsyncTuiResource(AsyncAPIResource):
     async def clear_prompt(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiClearPromptResponse:
         """
         Clear the prompt
@@ -493,13 +493,13 @@ class AsyncTuiResource(AsyncAPIResource):
         self,
         *,
         command: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiExecuteCommandResponse:
         """Execute a TUI command (e.g.
 
@@ -532,13 +532,13 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_help(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenHelpResponse:
         """
         Open the help dialog
@@ -567,13 +567,13 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_models(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenModelsResponse:
         """
         Open the model dialog
@@ -602,13 +602,13 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_sessions(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenSessionsResponse:
         """
         Open the session dialog
@@ -639,13 +639,13 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_themes(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiOpenThemesResponse:
         """
         Open the theme dialog
@@ -676,14 +676,14 @@ class AsyncTuiResource(AsyncAPIResource):
         *,
         message: str,
         variant: Literal["info", "success", "warning", "error"],
-        directory: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiShowToastResponse:
         """
         Show a toast notification in the TUI
@@ -720,13 +720,13 @@ class AsyncTuiResource(AsyncAPIResource):
     async def submit_prompt(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TuiSubmitPromptResponse:
         """
         Submit the prompt
