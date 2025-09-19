@@ -26,7 +26,7 @@ from ...types import (
     session_unrevert_params,
     session_summarize_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -88,15 +88,15 @@ class SessionResource(SyncAPIResource):
     def create(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
-        parent_id: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        parent_id: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Create a new session
@@ -133,14 +133,14 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Update session properties
@@ -172,13 +172,13 @@ class SessionResource(SyncAPIResource):
     def list(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionListResponse:
         """
         List all sessions
@@ -208,13 +208,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionDeleteResponse:
         """
         Delete a session and all its data
@@ -246,13 +246,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionAbortResponse:
         """
         Abort a session
@@ -284,13 +284,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionChildrenResponse:
         """
         Get a session's children
@@ -324,16 +324,16 @@ class SessionResource(SyncAPIResource):
         *,
         arguments: str,
         command: str,
-        directory: str | NotGiven = NOT_GIVEN,
-        agent: str | NotGiven = NOT_GIVEN,
-        message_id: str | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        agent: str | Omit = omit,
+        message_id: str | Omit = omit,
+        model: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionCommandResponse:
         """
         Send a new command to a session
@@ -377,13 +377,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Get session
@@ -418,13 +418,13 @@ class SessionResource(SyncAPIResource):
         message_id: str,
         model_id: str,
         provider_id: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionInitResponse:
         """
         Analyze the app and create an AGENTS.md file
@@ -467,13 +467,13 @@ class SessionResource(SyncAPIResource):
         message_id: str,
         *,
         id: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionMessageResponse:
         """
         Get a message from a session
@@ -511,13 +511,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionMessagesResponse:
         """
         List messages for a session
@@ -552,18 +552,18 @@ class SessionResource(SyncAPIResource):
         id: str,
         *,
         parts: Iterable[session_prompt_params.Part],
-        directory: str | NotGiven = NOT_GIVEN,
-        agent: str | NotGiven = NOT_GIVEN,
-        message_id: str | NotGiven = NOT_GIVEN,
-        model: session_prompt_params.Model | NotGiven = NOT_GIVEN,
-        system: str | NotGiven = NOT_GIVEN,
-        tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        agent: str | Omit = omit,
+        message_id: str | Omit = omit,
+        model: session_prompt_params.Model | Omit = omit,
+        system: str | Omit = omit,
+        tools: Dict[str, bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionPromptResponse:
         """
         Create and send a new message to a session
@@ -609,14 +609,14 @@ class SessionResource(SyncAPIResource):
         id: str,
         *,
         message_id: str,
-        directory: str | NotGiven = NOT_GIVEN,
-        part_id: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        part_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Revert a message
@@ -655,13 +655,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Share a session
@@ -695,13 +695,13 @@ class SessionResource(SyncAPIResource):
         *,
         agent: str,
         command: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantMessage:
         """
         Run a shell command
@@ -744,13 +744,13 @@ class SessionResource(SyncAPIResource):
         *,
         model_id: str,
         provider_id: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionSummarizeResponse:
         """
         Summarize the session
@@ -791,13 +791,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Restore all reverted messages
@@ -829,13 +829,13 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Unshare the session
@@ -891,15 +891,15 @@ class AsyncSessionResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
-        parent_id: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        parent_id: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Create a new session
@@ -936,14 +936,14 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Update session properties
@@ -975,13 +975,13 @@ class AsyncSessionResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionListResponse:
         """
         List all sessions
@@ -1011,13 +1011,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionDeleteResponse:
         """
         Delete a session and all its data
@@ -1049,13 +1049,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionAbortResponse:
         """
         Abort a session
@@ -1087,13 +1087,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionChildrenResponse:
         """
         Get a session's children
@@ -1129,16 +1129,16 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         arguments: str,
         command: str,
-        directory: str | NotGiven = NOT_GIVEN,
-        agent: str | NotGiven = NOT_GIVEN,
-        message_id: str | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        agent: str | Omit = omit,
+        message_id: str | Omit = omit,
+        model: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionCommandResponse:
         """
         Send a new command to a session
@@ -1184,13 +1184,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Get session
@@ -1225,13 +1225,13 @@ class AsyncSessionResource(AsyncAPIResource):
         message_id: str,
         model_id: str,
         provider_id: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionInitResponse:
         """
         Analyze the app and create an AGENTS.md file
@@ -1274,13 +1274,13 @@ class AsyncSessionResource(AsyncAPIResource):
         message_id: str,
         *,
         id: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionMessageResponse:
         """
         Get a message from a session
@@ -1320,13 +1320,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionMessagesResponse:
         """
         List messages for a session
@@ -1363,18 +1363,18 @@ class AsyncSessionResource(AsyncAPIResource):
         id: str,
         *,
         parts: Iterable[session_prompt_params.Part],
-        directory: str | NotGiven = NOT_GIVEN,
-        agent: str | NotGiven = NOT_GIVEN,
-        message_id: str | NotGiven = NOT_GIVEN,
-        model: session_prompt_params.Model | NotGiven = NOT_GIVEN,
-        system: str | NotGiven = NOT_GIVEN,
-        tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        agent: str | Omit = omit,
+        message_id: str | Omit = omit,
+        model: session_prompt_params.Model | Omit = omit,
+        system: str | Omit = omit,
+        tools: Dict[str, bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionPromptResponse:
         """
         Create and send a new message to a session
@@ -1420,14 +1420,14 @@ class AsyncSessionResource(AsyncAPIResource):
         id: str,
         *,
         message_id: str,
-        directory: str | NotGiven = NOT_GIVEN,
-        part_id: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
+        part_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Revert a message
@@ -1466,13 +1466,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Share a session
@@ -1506,13 +1506,13 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         agent: str,
         command: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssistantMessage:
         """
         Run a shell command
@@ -1555,13 +1555,13 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         model_id: str,
         provider_id: str,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SessionSummarizeResponse:
         """
         Summarize the session
@@ -1604,13 +1604,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Restore all reverted messages
@@ -1644,13 +1644,13 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        directory: str | NotGiven = NOT_GIVEN,
+        directory: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Session:
         """
         Unshare the session
