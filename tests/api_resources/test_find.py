@@ -31,6 +31,15 @@ class TestFind:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_files_with_all_params(self, client: Opencode) -> None:
+        find = client.find.files(
+            query="query",
+            directory="directory",
+        )
+        assert_matches_type(FindFilesResponse, find, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_files(self, client: Opencode) -> None:
         response = client.find.with_raw_response.files(
             query="query",
@@ -65,6 +74,15 @@ class TestFind:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_symbols_with_all_params(self, client: Opencode) -> None:
+        find = client.find.symbols(
+            query="query",
+            directory="directory",
+        )
+        assert_matches_type(FindSymbolsResponse, find, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_symbols(self, client: Opencode) -> None:
         response = client.find.with_raw_response.symbols(
             query="query",
@@ -94,6 +112,15 @@ class TestFind:
     def test_method_text(self, client: Opencode) -> None:
         find = client.find.text(
             pattern="pattern",
+        )
+        assert_matches_type(FindTextResponse, find, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_text_with_all_params(self, client: Opencode) -> None:
+        find = client.find.text(
+            pattern="pattern",
+            directory="directory",
         )
         assert_matches_type(FindTextResponse, find, path=["response"])
 
@@ -139,6 +166,15 @@ class TestAsyncFind:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    async def test_method_files_with_all_params(self, async_client: AsyncOpencode) -> None:
+        find = await async_client.find.files(
+            query="query",
+            directory="directory",
+        )
+        assert_matches_type(FindFilesResponse, find, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     async def test_raw_response_files(self, async_client: AsyncOpencode) -> None:
         response = await async_client.find.with_raw_response.files(
             query="query",
@@ -173,6 +209,15 @@ class TestAsyncFind:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    async def test_method_symbols_with_all_params(self, async_client: AsyncOpencode) -> None:
+        find = await async_client.find.symbols(
+            query="query",
+            directory="directory",
+        )
+        assert_matches_type(FindSymbolsResponse, find, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     async def test_raw_response_symbols(self, async_client: AsyncOpencode) -> None:
         response = await async_client.find.with_raw_response.symbols(
             query="query",
@@ -202,6 +247,15 @@ class TestAsyncFind:
     async def test_method_text(self, async_client: AsyncOpencode) -> None:
         find = await async_client.find.text(
             pattern="pattern",
+        )
+        assert_matches_type(FindTextResponse, find, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_text_with_all_params(self, async_client: AsyncOpencode) -> None:
+        find = await async_client.find.text(
+            pattern="pattern",
+            directory="directory",
         )
         assert_matches_type(FindTextResponse, find, path=["response"])
 

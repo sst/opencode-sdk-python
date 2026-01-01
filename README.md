@@ -3,7 +3,7 @@
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/opencode-ai.svg?label=pypi%20(stable))](https://pypi.org/project/opencode-ai/)
 
-The Opencode Python library provides convenient access to the Opencode REST API from any Python 3.8+
+The Opencode Python library provides convenient access to the Opencode REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -115,6 +115,31 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from opencode_ai import Opencode
+
+client = Opencode()
+
+response = client.session.prompt(
+    id="id",
+    parts=[
+        {
+            "text": "text",
+            "type": "text",
+        }
+    ],
+    model={
+        "model_id": "modelID",
+        "provider_id": "providerID",
+    },
+)
+print(response.model)
+```
 
 ## Handling errors
 
@@ -367,7 +392,7 @@ print(opencode_ai.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

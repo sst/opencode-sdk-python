@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .session import Session
+from .session.session import Session
 
 __all__ = ["SessionListResponse"]
 

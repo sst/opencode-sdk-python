@@ -9,7 +9,11 @@ import pytest
 
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
-from opencode_ai.types import FileReadResponse, FileStatusResponse
+from opencode_ai.types import (
+    FileListResponse,
+    FileReadResponse,
+    FileStatusResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,9 +23,61 @@ class TestFile:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_list(self, client: Opencode) -> None:
+        file = client.file.list(
+            path="path",
+        )
+        assert_matches_type(FileListResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Opencode) -> None:
+        file = client.file.list(
+            path="path",
+            directory="directory",
+        )
+        assert_matches_type(FileListResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_list(self, client: Opencode) -> None:
+        response = client.file.with_raw_response.list(
+            path="path",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file = response.parse()
+        assert_matches_type(FileListResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_list(self, client: Opencode) -> None:
+        with client.file.with_streaming_response.list(
+            path="path",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file = response.parse()
+            assert_matches_type(FileListResponse, file, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_method_read(self, client: Opencode) -> None:
         file = client.file.read(
             path="path",
+        )
+        assert_matches_type(FileReadResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_read_with_all_params(self, client: Opencode) -> None:
+        file = client.file.read(
+            path="path",
+            directory="directory",
         )
         assert_matches_type(FileReadResponse, file, path=["response"])
 
@@ -59,6 +115,14 @@ class TestFile:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_status_with_all_params(self, client: Opencode) -> None:
+        file = client.file.status(
+            directory="directory",
+        )
+        assert_matches_type(FileStatusResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_status(self, client: Opencode) -> None:
         response = client.file.with_raw_response.status()
 
@@ -87,9 +151,61 @@ class TestAsyncFile:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    async def test_method_list(self, async_client: AsyncOpencode) -> None:
+        file = await async_client.file.list(
+            path="path",
+        )
+        assert_matches_type(FileListResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncOpencode) -> None:
+        file = await async_client.file.list(
+            path="path",
+            directory="directory",
+        )
+        assert_matches_type(FileListResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncOpencode) -> None:
+        response = await async_client.file.with_raw_response.list(
+            path="path",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file = await response.parse()
+        assert_matches_type(FileListResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncOpencode) -> None:
+        async with async_client.file.with_streaming_response.list(
+            path="path",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file = await response.parse()
+            assert_matches_type(FileListResponse, file, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     async def test_method_read(self, async_client: AsyncOpencode) -> None:
         file = await async_client.file.read(
             path="path",
+        )
+        assert_matches_type(FileReadResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_read_with_all_params(self, async_client: AsyncOpencode) -> None:
+        file = await async_client.file.read(
+            path="path",
+            directory="directory",
         )
         assert_matches_type(FileReadResponse, file, path=["response"])
 
@@ -123,6 +239,14 @@ class TestAsyncFile:
     @parametrize
     async def test_method_status(self, async_client: AsyncOpencode) -> None:
         file = await async_client.file.status()
+        assert_matches_type(FileStatusResponse, file, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_status_with_all_params(self, async_client: AsyncOpencode) -> None:
+        file = await async_client.file.status(
+            directory="directory",
+        )
         assert_matches_type(FileStatusResponse, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")

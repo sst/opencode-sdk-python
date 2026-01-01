@@ -25,6 +25,14 @@ class TestConfig:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_get_with_all_params(self, client: Opencode) -> None:
+        config = client.config.get(
+            directory="directory",
+        )
+        assert_matches_type(Config, config, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_get(self, client: Opencode) -> None:
         response = client.config.with_raw_response.get()
 
@@ -55,6 +63,14 @@ class TestAsyncConfig:
     @parametrize
     async def test_method_get(self, async_client: AsyncOpencode) -> None:
         config = await async_client.config.get()
+        assert_matches_type(Config, config, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncOpencode) -> None:
+        config = await async_client.config.get(
+            directory="directory",
+        )
         assert_matches_type(Config, config, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")

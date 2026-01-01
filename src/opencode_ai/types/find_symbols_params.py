@@ -9,3 +9,5 @@ __all__ = ["FindSymbolsParams"]
 
 class FindSymbolsParams(TypedDict, total=False):
     query: Required[str]
+
+    directory: str

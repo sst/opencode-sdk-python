@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -11,17 +11,17 @@ import httpx
 from . import _exceptions
 from ._qs import Querystring
 from ._types import (
-    NOT_GIVEN,
     Omit,
     Timeout,
     NotGiven,
     Transport,
     ProxiesTypes,
     RequestOptions,
+    not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import app, tui, file, find, event, config, session
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -29,6 +29,20 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+
+if TYPE_CHECKING:
+    from .resources import app, tui, file, find, path, agent, event, config, command, project, session
+    from .resources.app import AppResource, AsyncAppResource
+    from .resources.tui import TuiResource, AsyncTuiResource
+    from .resources.file import FileResource, AsyncFileResource
+    from .resources.find import FindResource, AsyncFindResource
+    from .resources.path import PathResource, AsyncPathResource
+    from .resources.agent import AgentResource, AsyncAgentResource
+    from .resources.event import EventResource, AsyncEventResource
+    from .resources.config import ConfigResource, AsyncConfigResource
+    from .resources.command import CommandResource, AsyncCommandResource
+    from .resources.project import ProjectResource, AsyncProjectResource
+    from .resources.session.session import SessionResource, AsyncSessionResource
 
 __all__ = [
     "Timeout",
@@ -43,23 +57,13 @@ __all__ = [
 
 
 class Opencode(SyncAPIClient):
-    event: event.EventResource
-    app: app.AppResource
-    find: find.FindResource
-    file: file.FileResource
-    config: config.ConfigResource
-    session: session.SessionResource
-    tui: tui.TuiResource
-    with_raw_response: OpencodeWithRawResponse
-    with_streaming_response: OpencodeWithStreamedResponse
-
     # client options
 
     def __init__(
         self,
         *,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -96,15 +100,79 @@ class Opencode(SyncAPIClient):
 
         self._default_stream_cls = Stream
 
-        self.event = event.EventResource(self)
-        self.app = app.AppResource(self)
-        self.find = find.FindResource(self)
-        self.file = file.FileResource(self)
-        self.config = config.ConfigResource(self)
-        self.session = session.SessionResource(self)
-        self.tui = tui.TuiResource(self)
-        self.with_raw_response = OpencodeWithRawResponse(self)
-        self.with_streaming_response = OpencodeWithStreamedResponse(self)
+    @cached_property
+    def event(self) -> EventResource:
+        from .resources.event import EventResource
+
+        return EventResource(self)
+
+    @cached_property
+    def path(self) -> PathResource:
+        from .resources.path import PathResource
+
+        return PathResource(self)
+
+    @cached_property
+    def app(self) -> AppResource:
+        from .resources.app import AppResource
+
+        return AppResource(self)
+
+    @cached_property
+    def agent(self) -> AgentResource:
+        from .resources.agent import AgentResource
+
+        return AgentResource(self)
+
+    @cached_property
+    def find(self) -> FindResource:
+        from .resources.find import FindResource
+
+        return FindResource(self)
+
+    @cached_property
+    def file(self) -> FileResource:
+        from .resources.file import FileResource
+
+        return FileResource(self)
+
+    @cached_property
+    def config(self) -> ConfigResource:
+        from .resources.config import ConfigResource
+
+        return ConfigResource(self)
+
+    @cached_property
+    def command(self) -> CommandResource:
+        from .resources.command import CommandResource
+
+        return CommandResource(self)
+
+    @cached_property
+    def project(self) -> ProjectResource:
+        from .resources.project import ProjectResource
+
+        return ProjectResource(self)
+
+    @cached_property
+    def session(self) -> SessionResource:
+        from .resources.session import SessionResource
+
+        return SessionResource(self)
+
+    @cached_property
+    def tui(self) -> TuiResource:
+        from .resources.tui import TuiResource
+
+        return TuiResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> OpencodeWithRawResponse:
+        return OpencodeWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> OpencodeWithStreamedResponse:
+        return OpencodeWithStreamedResponse(self)
 
     @property
     @override
@@ -124,9 +192,9 @@ class Opencode(SyncAPIClient):
         self,
         *,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -204,23 +272,13 @@ class Opencode(SyncAPIClient):
 
 
 class AsyncOpencode(AsyncAPIClient):
-    event: event.AsyncEventResource
-    app: app.AsyncAppResource
-    find: find.AsyncFindResource
-    file: file.AsyncFileResource
-    config: config.AsyncConfigResource
-    session: session.AsyncSessionResource
-    tui: tui.AsyncTuiResource
-    with_raw_response: AsyncOpencodeWithRawResponse
-    with_streaming_response: AsyncOpencodeWithStreamedResponse
-
     # client options
 
     def __init__(
         self,
         *,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -257,15 +315,79 @@ class AsyncOpencode(AsyncAPIClient):
 
         self._default_stream_cls = AsyncStream
 
-        self.event = event.AsyncEventResource(self)
-        self.app = app.AsyncAppResource(self)
-        self.find = find.AsyncFindResource(self)
-        self.file = file.AsyncFileResource(self)
-        self.config = config.AsyncConfigResource(self)
-        self.session = session.AsyncSessionResource(self)
-        self.tui = tui.AsyncTuiResource(self)
-        self.with_raw_response = AsyncOpencodeWithRawResponse(self)
-        self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
+    @cached_property
+    def event(self) -> AsyncEventResource:
+        from .resources.event import AsyncEventResource
+
+        return AsyncEventResource(self)
+
+    @cached_property
+    def path(self) -> AsyncPathResource:
+        from .resources.path import AsyncPathResource
+
+        return AsyncPathResource(self)
+
+    @cached_property
+    def app(self) -> AsyncAppResource:
+        from .resources.app import AsyncAppResource
+
+        return AsyncAppResource(self)
+
+    @cached_property
+    def agent(self) -> AsyncAgentResource:
+        from .resources.agent import AsyncAgentResource
+
+        return AsyncAgentResource(self)
+
+    @cached_property
+    def find(self) -> AsyncFindResource:
+        from .resources.find import AsyncFindResource
+
+        return AsyncFindResource(self)
+
+    @cached_property
+    def file(self) -> AsyncFileResource:
+        from .resources.file import AsyncFileResource
+
+        return AsyncFileResource(self)
+
+    @cached_property
+    def config(self) -> AsyncConfigResource:
+        from .resources.config import AsyncConfigResource
+
+        return AsyncConfigResource(self)
+
+    @cached_property
+    def command(self) -> AsyncCommandResource:
+        from .resources.command import AsyncCommandResource
+
+        return AsyncCommandResource(self)
+
+    @cached_property
+    def project(self) -> AsyncProjectResource:
+        from .resources.project import AsyncProjectResource
+
+        return AsyncProjectResource(self)
+
+    @cached_property
+    def session(self) -> AsyncSessionResource:
+        from .resources.session import AsyncSessionResource
+
+        return AsyncSessionResource(self)
+
+    @cached_property
+    def tui(self) -> AsyncTuiResource:
+        from .resources.tui import AsyncTuiResource
+
+        return AsyncTuiResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncOpencodeWithRawResponse:
+        return AsyncOpencodeWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncOpencodeWithStreamedResponse:
+        return AsyncOpencodeWithStreamedResponse(self)
 
     @property
     @override
@@ -285,9 +407,9 @@ class AsyncOpencode(AsyncAPIClient):
         self,
         *,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -365,47 +487,295 @@ class AsyncOpencode(AsyncAPIClient):
 
 
 class OpencodeWithRawResponse:
+    _client: Opencode
+
     def __init__(self, client: Opencode) -> None:
-        self.event = event.EventResourceWithRawResponse(client.event)
-        self.app = app.AppResourceWithRawResponse(client.app)
-        self.find = find.FindResourceWithRawResponse(client.find)
-        self.file = file.FileResourceWithRawResponse(client.file)
-        self.config = config.ConfigResourceWithRawResponse(client.config)
-        self.session = session.SessionResourceWithRawResponse(client.session)
-        self.tui = tui.TuiResourceWithRawResponse(client.tui)
+        self._client = client
+
+    @cached_property
+    def event(self) -> event.EventResourceWithRawResponse:
+        from .resources.event import EventResourceWithRawResponse
+
+        return EventResourceWithRawResponse(self._client.event)
+
+    @cached_property
+    def path(self) -> path.PathResourceWithRawResponse:
+        from .resources.path import PathResourceWithRawResponse
+
+        return PathResourceWithRawResponse(self._client.path)
+
+    @cached_property
+    def app(self) -> app.AppResourceWithRawResponse:
+        from .resources.app import AppResourceWithRawResponse
+
+        return AppResourceWithRawResponse(self._client.app)
+
+    @cached_property
+    def agent(self) -> agent.AgentResourceWithRawResponse:
+        from .resources.agent import AgentResourceWithRawResponse
+
+        return AgentResourceWithRawResponse(self._client.agent)
+
+    @cached_property
+    def find(self) -> find.FindResourceWithRawResponse:
+        from .resources.find import FindResourceWithRawResponse
+
+        return FindResourceWithRawResponse(self._client.find)
+
+    @cached_property
+    def file(self) -> file.FileResourceWithRawResponse:
+        from .resources.file import FileResourceWithRawResponse
+
+        return FileResourceWithRawResponse(self._client.file)
+
+    @cached_property
+    def config(self) -> config.ConfigResourceWithRawResponse:
+        from .resources.config import ConfigResourceWithRawResponse
+
+        return ConfigResourceWithRawResponse(self._client.config)
+
+    @cached_property
+    def command(self) -> command.CommandResourceWithRawResponse:
+        from .resources.command import CommandResourceWithRawResponse
+
+        return CommandResourceWithRawResponse(self._client.command)
+
+    @cached_property
+    def project(self) -> project.ProjectResourceWithRawResponse:
+        from .resources.project import ProjectResourceWithRawResponse
+
+        return ProjectResourceWithRawResponse(self._client.project)
+
+    @cached_property
+    def session(self) -> session.SessionResourceWithRawResponse:
+        from .resources.session import SessionResourceWithRawResponse
+
+        return SessionResourceWithRawResponse(self._client.session)
+
+    @cached_property
+    def tui(self) -> tui.TuiResourceWithRawResponse:
+        from .resources.tui import TuiResourceWithRawResponse
+
+        return TuiResourceWithRawResponse(self._client.tui)
 
 
 class AsyncOpencodeWithRawResponse:
+    _client: AsyncOpencode
+
     def __init__(self, client: AsyncOpencode) -> None:
-        self.event = event.AsyncEventResourceWithRawResponse(client.event)
-        self.app = app.AsyncAppResourceWithRawResponse(client.app)
-        self.find = find.AsyncFindResourceWithRawResponse(client.find)
-        self.file = file.AsyncFileResourceWithRawResponse(client.file)
-        self.config = config.AsyncConfigResourceWithRawResponse(client.config)
-        self.session = session.AsyncSessionResourceWithRawResponse(client.session)
-        self.tui = tui.AsyncTuiResourceWithRawResponse(client.tui)
+        self._client = client
+
+    @cached_property
+    def event(self) -> event.AsyncEventResourceWithRawResponse:
+        from .resources.event import AsyncEventResourceWithRawResponse
+
+        return AsyncEventResourceWithRawResponse(self._client.event)
+
+    @cached_property
+    def path(self) -> path.AsyncPathResourceWithRawResponse:
+        from .resources.path import AsyncPathResourceWithRawResponse
+
+        return AsyncPathResourceWithRawResponse(self._client.path)
+
+    @cached_property
+    def app(self) -> app.AsyncAppResourceWithRawResponse:
+        from .resources.app import AsyncAppResourceWithRawResponse
+
+        return AsyncAppResourceWithRawResponse(self._client.app)
+
+    @cached_property
+    def agent(self) -> agent.AsyncAgentResourceWithRawResponse:
+        from .resources.agent import AsyncAgentResourceWithRawResponse
+
+        return AsyncAgentResourceWithRawResponse(self._client.agent)
+
+    @cached_property
+    def find(self) -> find.AsyncFindResourceWithRawResponse:
+        from .resources.find import AsyncFindResourceWithRawResponse
+
+        return AsyncFindResourceWithRawResponse(self._client.find)
+
+    @cached_property
+    def file(self) -> file.AsyncFileResourceWithRawResponse:
+        from .resources.file import AsyncFileResourceWithRawResponse
+
+        return AsyncFileResourceWithRawResponse(self._client.file)
+
+    @cached_property
+    def config(self) -> config.AsyncConfigResourceWithRawResponse:
+        from .resources.config import AsyncConfigResourceWithRawResponse
+
+        return AsyncConfigResourceWithRawResponse(self._client.config)
+
+    @cached_property
+    def command(self) -> command.AsyncCommandResourceWithRawResponse:
+        from .resources.command import AsyncCommandResourceWithRawResponse
+
+        return AsyncCommandResourceWithRawResponse(self._client.command)
+
+    @cached_property
+    def project(self) -> project.AsyncProjectResourceWithRawResponse:
+        from .resources.project import AsyncProjectResourceWithRawResponse
+
+        return AsyncProjectResourceWithRawResponse(self._client.project)
+
+    @cached_property
+    def session(self) -> session.AsyncSessionResourceWithRawResponse:
+        from .resources.session import AsyncSessionResourceWithRawResponse
+
+        return AsyncSessionResourceWithRawResponse(self._client.session)
+
+    @cached_property
+    def tui(self) -> tui.AsyncTuiResourceWithRawResponse:
+        from .resources.tui import AsyncTuiResourceWithRawResponse
+
+        return AsyncTuiResourceWithRawResponse(self._client.tui)
 
 
 class OpencodeWithStreamedResponse:
+    _client: Opencode
+
     def __init__(self, client: Opencode) -> None:
-        self.event = event.EventResourceWithStreamingResponse(client.event)
-        self.app = app.AppResourceWithStreamingResponse(client.app)
-        self.find = find.FindResourceWithStreamingResponse(client.find)
-        self.file = file.FileResourceWithStreamingResponse(client.file)
-        self.config = config.ConfigResourceWithStreamingResponse(client.config)
-        self.session = session.SessionResourceWithStreamingResponse(client.session)
-        self.tui = tui.TuiResourceWithStreamingResponse(client.tui)
+        self._client = client
+
+    @cached_property
+    def event(self) -> event.EventResourceWithStreamingResponse:
+        from .resources.event import EventResourceWithStreamingResponse
+
+        return EventResourceWithStreamingResponse(self._client.event)
+
+    @cached_property
+    def path(self) -> path.PathResourceWithStreamingResponse:
+        from .resources.path import PathResourceWithStreamingResponse
+
+        return PathResourceWithStreamingResponse(self._client.path)
+
+    @cached_property
+    def app(self) -> app.AppResourceWithStreamingResponse:
+        from .resources.app import AppResourceWithStreamingResponse
+
+        return AppResourceWithStreamingResponse(self._client.app)
+
+    @cached_property
+    def agent(self) -> agent.AgentResourceWithStreamingResponse:
+        from .resources.agent import AgentResourceWithStreamingResponse
+
+        return AgentResourceWithStreamingResponse(self._client.agent)
+
+    @cached_property
+    def find(self) -> find.FindResourceWithStreamingResponse:
+        from .resources.find import FindResourceWithStreamingResponse
+
+        return FindResourceWithStreamingResponse(self._client.find)
+
+    @cached_property
+    def file(self) -> file.FileResourceWithStreamingResponse:
+        from .resources.file import FileResourceWithStreamingResponse
+
+        return FileResourceWithStreamingResponse(self._client.file)
+
+    @cached_property
+    def config(self) -> config.ConfigResourceWithStreamingResponse:
+        from .resources.config import ConfigResourceWithStreamingResponse
+
+        return ConfigResourceWithStreamingResponse(self._client.config)
+
+    @cached_property
+    def command(self) -> command.CommandResourceWithStreamingResponse:
+        from .resources.command import CommandResourceWithStreamingResponse
+
+        return CommandResourceWithStreamingResponse(self._client.command)
+
+    @cached_property
+    def project(self) -> project.ProjectResourceWithStreamingResponse:
+        from .resources.project import ProjectResourceWithStreamingResponse
+
+        return ProjectResourceWithStreamingResponse(self._client.project)
+
+    @cached_property
+    def session(self) -> session.SessionResourceWithStreamingResponse:
+        from .resources.session import SessionResourceWithStreamingResponse
+
+        return SessionResourceWithStreamingResponse(self._client.session)
+
+    @cached_property
+    def tui(self) -> tui.TuiResourceWithStreamingResponse:
+        from .resources.tui import TuiResourceWithStreamingResponse
+
+        return TuiResourceWithStreamingResponse(self._client.tui)
 
 
 class AsyncOpencodeWithStreamedResponse:
+    _client: AsyncOpencode
+
     def __init__(self, client: AsyncOpencode) -> None:
-        self.event = event.AsyncEventResourceWithStreamingResponse(client.event)
-        self.app = app.AsyncAppResourceWithStreamingResponse(client.app)
-        self.find = find.AsyncFindResourceWithStreamingResponse(client.find)
-        self.file = file.AsyncFileResourceWithStreamingResponse(client.file)
-        self.config = config.AsyncConfigResourceWithStreamingResponse(client.config)
-        self.session = session.AsyncSessionResourceWithStreamingResponse(client.session)
-        self.tui = tui.AsyncTuiResourceWithStreamingResponse(client.tui)
+        self._client = client
+
+    @cached_property
+    def event(self) -> event.AsyncEventResourceWithStreamingResponse:
+        from .resources.event import AsyncEventResourceWithStreamingResponse
+
+        return AsyncEventResourceWithStreamingResponse(self._client.event)
+
+    @cached_property
+    def path(self) -> path.AsyncPathResourceWithStreamingResponse:
+        from .resources.path import AsyncPathResourceWithStreamingResponse
+
+        return AsyncPathResourceWithStreamingResponse(self._client.path)
+
+    @cached_property
+    def app(self) -> app.AsyncAppResourceWithStreamingResponse:
+        from .resources.app import AsyncAppResourceWithStreamingResponse
+
+        return AsyncAppResourceWithStreamingResponse(self._client.app)
+
+    @cached_property
+    def agent(self) -> agent.AsyncAgentResourceWithStreamingResponse:
+        from .resources.agent import AsyncAgentResourceWithStreamingResponse
+
+        return AsyncAgentResourceWithStreamingResponse(self._client.agent)
+
+    @cached_property
+    def find(self) -> find.AsyncFindResourceWithStreamingResponse:
+        from .resources.find import AsyncFindResourceWithStreamingResponse
+
+        return AsyncFindResourceWithStreamingResponse(self._client.find)
+
+    @cached_property
+    def file(self) -> file.AsyncFileResourceWithStreamingResponse:
+        from .resources.file import AsyncFileResourceWithStreamingResponse
+
+        return AsyncFileResourceWithStreamingResponse(self._client.file)
+
+    @cached_property
+    def config(self) -> config.AsyncConfigResourceWithStreamingResponse:
+        from .resources.config import AsyncConfigResourceWithStreamingResponse
+
+        return AsyncConfigResourceWithStreamingResponse(self._client.config)
+
+    @cached_property
+    def command(self) -> command.AsyncCommandResourceWithStreamingResponse:
+        from .resources.command import AsyncCommandResourceWithStreamingResponse
+
+        return AsyncCommandResourceWithStreamingResponse(self._client.command)
+
+    @cached_property
+    def project(self) -> project.AsyncProjectResourceWithStreamingResponse:
+        from .resources.project import AsyncProjectResourceWithStreamingResponse
+
+        return AsyncProjectResourceWithStreamingResponse(self._client.project)
+
+    @cached_property
+    def session(self) -> session.AsyncSessionResourceWithStreamingResponse:
+        from .resources.session import AsyncSessionResourceWithStreamingResponse
+
+        return AsyncSessionResourceWithStreamingResponse(self._client.session)
+
+    @cached_property
+    def tui(self) -> tui.AsyncTuiResourceWithStreamingResponse:
+        from .resources.tui import AsyncTuiResourceWithStreamingResponse
+
+        return AsyncTuiResourceWithStreamingResponse(self._client.tui)
 
 
 Client = Opencode

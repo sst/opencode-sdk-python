@@ -9,3 +9,5 @@ __all__ = ["FileReadParams"]
 
 class FileReadParams(TypedDict, total=False):
     path: Required[str]
+
+    directory: str

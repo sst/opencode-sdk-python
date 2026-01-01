@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -22,3 +22,5 @@ class ToolStateError(BaseModel):
     status: Literal["error"]
 
     time: Time
+
+    metadata: Optional[Dict[str, object]] = None

@@ -8,24 +8,31 @@ from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 from .._utils import PropertyInfo
 from .file_part_input_param import FilePartInputParam
 from .text_part_input_param import TextPartInputParam
+from .agent_part_input_param import AgentPartInputParam
 
-__all__ = ["SessionChatParams", "Part"]
+__all__ = ["SessionPromptParams", "Part", "Model"]
 
 
-class SessionChatParams(TypedDict, total=False):
-    model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
-
+class SessionPromptParams(TypedDict, total=False):
     parts: Required[Iterable[Part]]
 
-    provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
+    directory: str
+
+    agent: str
 
     message_id: Annotated[str, PropertyInfo(alias="messageID")]
 
-    mode: str
+    model: Model
 
     system: str
 
     tools: Dict[str, bool]
 
 
-Part: TypeAlias = Union[TextPartInputParam, FilePartInputParam]
+Part: TypeAlias = Union[TextPartInputParam, FilePartInputParam, AgentPartInputParam]
+
+
+class Model(TypedDict, total=False):
+    model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
+
+    provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]

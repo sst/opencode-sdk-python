@@ -9,3 +9,5 @@ __all__ = ["TuiAppendPromptParams"]
 
 class TuiAppendPromptParams(TypedDict, total=False):
     text: Required[str]
+
+    directory: str

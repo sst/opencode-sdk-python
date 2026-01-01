@@ -9,3 +9,5 @@ __all__ = ["FindTextParams"]
 
 class FindTextParams(TypedDict, total=False):
     pattern: Required[str]
+
+    directory: str
