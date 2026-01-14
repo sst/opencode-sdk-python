@@ -17,7 +17,7 @@ The REST API documentation can be found on [opencode.ai](https://opencode.ai/doc
 
 ```sh
 # install from PyPI
-pip install --pre opencode-ai
+pip install '--pre opencode-ai'
 ```
 
 ## Usage
@@ -60,7 +60,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre opencode-ai[aiohttp]
+pip install '--pre opencode-ai[aiohttp]'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
