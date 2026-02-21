@@ -63,6 +63,7 @@ class SessionResource(SyncAPIResource):
         """Create a new session"""
         return self._post(
             "/session",
+            body={},
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -508,6 +509,7 @@ class AsyncSessionResource(AsyncAPIResource):
         """Create a new session"""
         return await self._post(
             "/session",
+            body={},
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
