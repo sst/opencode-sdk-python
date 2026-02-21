@@ -49,6 +49,7 @@ from .event_list_response import EventListResponse as EventListResponse
 from .find_files_response import FindFilesResponse as FindFilesResponse
 from .find_symbols_params import FindSymbolsParams as FindSymbolsParams
 from .session_chat_params import SessionChatParams as SessionChatParams
+from .session_chat_response import SessionChatResponse as SessionChatResponse
 from .session_init_params import SessionInitParams as SessionInitParams
 from .symbol_source_param import SymbolSourceParam as SymbolSourceParam
 from .file_status_response import FileStatusResponse as FileStatusResponse
