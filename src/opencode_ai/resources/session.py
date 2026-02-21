@@ -23,6 +23,7 @@ from ..types.assistant_message import AssistantMessage
 from ..types.session_init_response import SessionInitResponse
 from ..types.session_list_response import SessionListResponse
 from ..types.session_abort_response import SessionAbortResponse
+from ..types.session_chat_response import SessionChatResponse
 from ..types.session_delete_response import SessionDeleteResponse
 from ..types.session_messages_response import SessionMessagesResponse
 from ..types.session_summarize_response import SessionSummarizeResponse
@@ -171,7 +172,7 @@ class SessionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AssistantMessage:
+    ) -> SessionChatResponse:
         """
         Create and send a new message to a session
 
@@ -205,7 +206,7 @@ class SessionResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantMessage,
+            cast_to=SessionChatResponse,
         )
 
     def init(
@@ -616,7 +617,7 @@ class AsyncSessionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AssistantMessage:
+    ) -> SessionChatResponse:
         """
         Create and send a new message to a session
 
@@ -650,7 +651,7 @@ class AsyncSessionResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantMessage,
+            cast_to=SessionChatResponse,
         )
 
     async def init(
