@@ -9,15 +9,21 @@ from .._utils import PropertyInfo
 from .file_part_input_param import FilePartInputParam
 from .text_part_input_param import TextPartInputParam
 
-__all__ = ["SessionChatParams", "Part"]
+__all__ = ["ModelParam", "SessionChatParams", "Part"]
+
+
+class ModelParam(TypedDict, total=False):
+    """Model selection parameters nested under the ``model`` key."""
+
+    model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
+
+    provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
 
 
 class SessionChatParams(TypedDict, total=False):
-    model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
+    model: Required[ModelParam]
 
     parts: Required[Iterable[Part]]
-
-    provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
 
     message_id: Annotated[str, PropertyInfo(alias="messageID")]
 
