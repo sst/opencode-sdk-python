@@ -192,9 +192,11 @@ class SessionResource(SyncAPIResource):
             f"/session/{id}/message",
             body=maybe_transform(
                 {
-                    "model_id": model_id,
+                    "model": {
+                        "model_id": model_id,
+                        "provider_id": provider_id,
+                    },
                     "parts": parts,
-                    "provider_id": provider_id,
                     "message_id": message_id,
                     "mode": mode,
                     "system": system,
@@ -243,8 +245,10 @@ class SessionResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "message_id": message_id,
-                    "model_id": model_id,
-                    "provider_id": provider_id,
+                    "model": {
+                        "model_id": model_id,
+                        "provider_id": provider_id,
+                    },
                 },
                 session_init_params.SessionInitParams,
             ),
@@ -637,9 +641,11 @@ class AsyncSessionResource(AsyncAPIResource):
             f"/session/{id}/message",
             body=await async_maybe_transform(
                 {
-                    "model_id": model_id,
+                    "model": {
+                        "model_id": model_id,
+                        "provider_id": provider_id,
+                    },
                     "parts": parts,
-                    "provider_id": provider_id,
                     "message_id": message_id,
                     "mode": mode,
                     "system": system,
@@ -688,8 +694,10 @@ class AsyncSessionResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "message_id": message_id,
-                    "model_id": model_id,
-                    "provider_id": provider_id,
+                    "model": {
+                        "model_id": model_id,
+                        "provider_id": provider_id,
+                    },
                 },
                 session_init_params.SessionInitParams,
             ),
