@@ -5,11 +5,13 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
 
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
 from opencode_ai.types import Config
+from tests.wire_helpers import read_json_body  # noqa: F401  (imported to prove module exists)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -44,6 +46,15 @@ class TestConfig:
             assert_matches_type(Config, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+
+class TestConfigWire:
+    @pytest.mark.respx(base_url=base_url)
+    def test_get_wire_shape(self, client, respx_mock) -> None:
+        route = respx_mock.get("/config").mock(return_value=httpx.Response(200, json={}))
+        client.config.get()
+        assert route.called
+        assert route.calls.last.request.method == "GET"
 
 
 class TestAsyncConfig:
