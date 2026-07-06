@@ -77,6 +77,7 @@ from opencode_ai.types import Config, KeybindsConfig, McpLocalConfig, McpRemoteC
 Methods:
 
 - <code title="get /config">client.config.<a href="./src/opencode_ai/resources/config.py">get</a>() -> <a href="./src/opencode_ai/types/config.py">Config</a></code>
+- <code title="patch /config">client.config.<a href="./src/opencode_ai/resources/config.py">update</a>(\*\*<a href="src/opencode_ai/types/config_update_params.py">params</a>) -> <a href="./src/opencode_ai/types/config.py">Config</a></code>
 
 # Session
 

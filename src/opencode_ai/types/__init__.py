@@ -65,6 +65,7 @@ from .symbol_source_param import SymbolSourceParam as SymbolSourceParam
 from .file_status_response import FileStatusResponse as FileStatusResponse
 from .provider_auth_method import ProviderAuthMethod as ProviderAuthMethod
 from .tool_state_completed import ToolStateCompleted as ToolStateCompleted
+from .config_update_params import ConfigUpdateParams as ConfigUpdateParams
 from .file_content_response import FileContentResponse as FileContentResponse
 from .file_part_input_param import FilePartInputParam as FilePartInputParam
 from .file_part_source_text import FilePartSourceText as FilePartSourceText
