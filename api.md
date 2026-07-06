@@ -195,6 +195,40 @@ Methods:
 - <code title="post /sync/start">client.sync.<a href="./src/opencode_ai/resources/sync.py">start</a>() -> <a href="./src/opencode_ai/types/sync_start_response.py">SyncStartResponse</a></code>
 - <code title="post /sync/steal">client.sync.<a href="./src/opencode_ai/resources/sync.py">steal</a>(\*\*<a href="src/opencode_ai/types/sync_steal_params.py">params</a>) -> <a href="./src/opencode_ai/types/sync_steal_response.py">SyncStealResponse</a></code>
 
+# Mcp
+
+Types:
+
+```python
+from opencode_ai.types import (
+    MCPStatus,
+    MCPStatusConnected,
+    MCPStatusDisabled,
+    MCPStatusFailed,
+    MCPStatusNeedsAuth,
+    MCPStatusNeedsClientRegistration,
+    McpLocalConfig,
+    McpRemoteConfig,
+    McpAddResponse,
+    McpAuthRemoveResponse,
+    McpAuthStartResponse,
+    McpConnectResponse,
+    McpDisconnectResponse,
+    McpStatusResponse,
+)
+```
+
+Methods:
+
+- <code title="get /mcp">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">status</a>() -> <a href="./src/opencode_ai/types/mcp_status_response.py">McpStatusResponse</a></code>
+- <code title="post /mcp">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">add</a>(\*\*<a href="src/opencode_ai/types/mcp_add_params.py">params</a>) -> <a href="./src/opencode_ai/types/mcp_add_response.py">McpAddResponse</a></code>
+- <code title="post /mcp/{name}/auth">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">auth_start</a>(name) -> <a href="./src/opencode_ai/types/mcp_auth_start_response.py">McpAuthStartResponse</a></code>
+- <code title="delete /mcp/{name}/auth">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">auth_remove</a>(name) -> <a href="./src/opencode_ai/types/mcp_auth_remove_response.py">McpAuthRemoveResponse</a></code>
+- <code title="post /mcp/{name}/auth/callback">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">auth_callback</a>(name, \*\*<a href="src/opencode_ai/types/mcp_auth_callback_params.py">params</a>) -> <a href="./src/opencode_ai/types/mcp_status.py">MCPStatus</a></code>
+- <code title="post /mcp/{name}/auth/authenticate">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">auth_authenticate</a>(name) -> <a href="./src/opencode_ai/types/mcp_status.py">MCPStatus</a></code>
+- <code title="post /mcp/{name}/connect">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">connect</a>(name) -> <a href="./src/opencode_ai/types/mcp_connect_response.py">McpConnectResponse</a></code>
+- <code title="post /mcp/{name}/disconnect">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">disconnect</a>(name) -> <a href="./src/opencode_ai/types/mcp_disconnect_response.py">McpDisconnectResponse</a></code>
+
 # Tui
 
 Types:

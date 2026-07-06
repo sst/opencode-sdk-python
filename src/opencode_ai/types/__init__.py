@@ -43,12 +43,28 @@ from .keybinds_config import KeybindsConfig as KeybindsConfig
 from .app_log_response import AppLogResponse as AppLogResponse
 from .file_part_source import FilePartSource as FilePartSource
 from .find_text_params import FindTextParams as FindTextParams
+from .mcp_status import MCPStatus as MCPStatus
 from .mcp_local_config import McpLocalConfig as McpLocalConfig
 from .tool_state_error import ToolStateError as ToolStateError
 from .assistant_message import AssistantMessage as AssistantMessage
 from .file_source_param import FileSourceParam as FileSourceParam
 from .find_files_params import FindFilesParams as FindFilesParams
+from .mcp_add_response import McpAddResponse as McpAddResponse
 from .mcp_remote_config import McpRemoteConfig as McpRemoteConfig
+from .mcp_status_failed import MCPStatusFailed as MCPStatusFailed
+from .mcp_status_response import McpStatusResponse as McpStatusResponse
+from .mcp_connect_response import McpConnectResponse as McpConnectResponse
+from .mcp_status_disabled import MCPStatusDisabled as MCPStatusDisabled
+from .mcp_status_connected import MCPStatusConnected as MCPStatusConnected
+from .mcp_auth_start_response import McpAuthStartResponse as McpAuthStartResponse
+from .mcp_disconnect_response import McpDisconnectResponse as McpDisconnectResponse
+from .mcp_local_config_param import McpLocalConfigParam as McpLocalConfigParam
+from .mcp_status_needs_auth import MCPStatusNeedsAuth as MCPStatusNeedsAuth
+from .mcp_auth_remove_response import McpAuthRemoveResponse as McpAuthRemoveResponse
+from .mcp_remote_config_param import McpRemoteConfigParam as McpRemoteConfigParam
+from .mcp_status_needs_client_registration import (
+    MCPStatusNeedsClientRegistration as MCPStatusNeedsClientRegistration,
+)
 from .file_list_response import FileListResponse as FileListResponse
 from .find_text_response import FindTextResponse as FindTextResponse
 from .tool_state_pending import ToolStatePending as ToolStatePending
@@ -104,3 +120,5 @@ from .sync_history_list_params import SyncHistoryListParams as SyncHistoryListPa
 from .provider_oauth_authorize_params import ProviderOAuthAuthorizeParams as ProviderOAuthAuthorizeParams
 from .provider_oauth_callback_response import ProviderOAuthCallbackResponse as ProviderOAuthCallbackResponse
 from .sync_history_list_response import SyncHistoryListResponse as SyncHistoryListResponse
+from .mcp_add_params import McpAddParams as McpAddParams
+from .mcp_auth_callback_params import McpAuthCallbackParams as McpAuthCallbackParams

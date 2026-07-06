@@ -40,6 +40,14 @@ from .event import (
     EventResourceWithStreamingResponse,
     AsyncEventResourceWithStreamingResponse,
 )
+from .mcp import (
+    McpResource,
+    AsyncMcpResource,
+    McpResourceWithRawResponse,
+    AsyncMcpResourceWithRawResponse,
+    McpResourceWithStreamingResponse,
+    AsyncMcpResourceWithStreamingResponse,
+)
 from .config import (
     ConfigResource,
     AsyncConfigResource,
@@ -106,6 +114,12 @@ __all__ = [
     "AsyncFileResourceWithRawResponse",
     "FileResourceWithStreamingResponse",
     "AsyncFileResourceWithStreamingResponse",
+    "McpResource",
+    "AsyncMcpResource",
+    "McpResourceWithRawResponse",
+    "AsyncMcpResourceWithRawResponse",
+    "McpResourceWithStreamingResponse",
+    "AsyncMcpResourceWithStreamingResponse",
     "ConfigResource",
     "AsyncConfigResource",
     "ConfigResourceWithRawResponse",
