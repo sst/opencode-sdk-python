@@ -71,7 +71,16 @@ Methods:
 Types:
 
 ```python
-from opencode_ai.types import Config, KeybindsConfig, McpLocalConfig, McpRemoteConfig, ModeConfig
+from opencode_ai.types import (
+    AgentConfig,
+    Config,
+    McpLocalConfig,
+    McpRemoteConfig,
+    PermissionActionConfig,
+    PermissionConfig,
+    PermissionConfigObject,
+    PermissionRuleConfig,
+)
 ```
 
 Methods:

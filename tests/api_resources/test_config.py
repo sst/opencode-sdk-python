@@ -60,51 +60,28 @@ class TestConfigWire:
 
     @pytest.mark.respx(base_url=base_url)
     def test_update_wire_shape(self, client: Opencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.patch("/config").mock(return_value=httpx.Response(200, json={"theme": "dark"}))
+        route = respx_mock.patch("/config").mock(return_value=httpx.Response(200, json={"username": "sam"}))
         config = client.config.update(
-            theme="dark",
+            username="sam",
             model="anthropic/claude-2",
             share="manual",
             disabled_providers=["openai"],
-            keybinds={
-                "app_exit": "ctrl+c",
-                "app_help": "?",
-                "editor_open": "e",
-                "file_close": "esc",
-                "file_diff_toggle": "d",
-                "file_list": "f",
-                "file_search": "/",
-                "input_clear": "ctrl+u",
-                "input_newline": "shift+enter",
-                "input_paste": "ctrl+v",
-                "input_submit": "enter",
-                "leader": "ctrl+x",
-                "messages_copy": "c",
-                "messages_first": "g",
-                "messages_half_page_down": "ctrl+d",
-                "messages_half_page_up": "ctrl+u",
-                "messages_last": "G",
-                "messages_layout_toggle": "l",
-                "messages_next": "j",
-                "messages_page_down": "ctrl+f",
-                "messages_page_up": "ctrl+b",
-                "messages_previous": "k",
-                "messages_redo": "ctrl+r",
-                "messages_revert": "u",
-                "messages_undo": "u",
-                "model_list": "m",
-                "project_init": "i",
-                "session_compact": "c",
-                "session_export": "x",
-                "session_interrupt": "ctrl+c",
-                "session_list": "l",
-                "session_new": "n",
-                "session_share": "s",
-                "session_unshare": "S",
-                "switch_mode": "tab",
-                "switch_mode_reverse": "shift+tab",
-                "theme_list": "t",
-                "tool_details": "T",
+            shell="/bin/bash",
+            log_level="INFO",
+            server={
+                "port": 4096,
+                "hostname": "127.0.0.1",
+            },
+            permission="ask",
+            agent={
+                "general": {
+                    "description": "General purpose agent",
+                    "model": "anthropic/claude-2",
+                    "permission": {
+                        "bash": "allow",
+                        "edit": "ask",
+                    },
+                },
             },
             mcp={
                 "local-server": {
@@ -117,19 +94,27 @@ class TestConfigWire:
                     "url": "https://example.com/mcp",
                     "oauth": False,
                 },
+                "disabled-server": {
+                    "enabled": False,
+                },
             },
         )
         assert route.called
         request = route.calls.last.request
         assert request.method == "PATCH"
         body = json.loads(request.content)
-        assert body["theme"] == "dark"
+        assert body["username"] == "sam"
         assert body["model"] == "anthropic/claude-2"
         assert body["share"] == "manual"
         assert body["disabled_providers"] == ["openai"]
-        assert body["keybinds"]["model_list"] == "m"
+        assert body["shell"] == "/bin/bash"
+        assert body["logLevel"] == "INFO"
+        assert body["server"]["port"] == 4096
+        assert body["permission"] == "ask"
+        assert body["agent"]["general"]["permission"]["bash"] == "allow"
         assert body["mcp"]["local-server"]["command"] == ["node", "server.js"]
         assert body["mcp"]["remote-server"]["oauth"] is False
+        assert body["mcp"]["disabled-server"]["enabled"] is False
         assert_matches_type(Config, config, path=["response"])
 
 

@@ -42,7 +42,7 @@ from .vcs_info import VcsInfo as VcsInfo
 from .lsp_status import LSPStatus as LSPStatus
 from .mcp_status import MCPStatus as MCPStatus
 from .file_source import FileSource as FileSource
-from .mode_config import ModeConfig as ModeConfig
+from .agent_config import AgentConfig as AgentConfig
 from .user_message import UserMessage as UserMessage
 from .question_info import QuestionInfo as QuestionInfo
 from .question_tool import QuestionTool as QuestionTool
@@ -50,7 +50,12 @@ from .symbol_source import SymbolSource as SymbolSource
 from .vcs_file_diff import VcsFileDiff as VcsFileDiff
 from .app_log_params import AppLogParams as AppLogParams
 from .mcp_add_params import McpAddParams as McpAddParams
-from .keybinds_config import KeybindsConfig as KeybindsConfig
+from .permission_config import (
+    PermissionConfig as PermissionConfig,
+    PermissionRuleConfig as PermissionRuleConfig,
+    PermissionConfigObject as PermissionConfigObject,
+    PermissionActionConfig as PermissionActionConfig,
+)
 from .question_option import QuestionOption as QuestionOption
 from .resource_source import ResourceSource as ResourceSource
 from .vcs_diff_params import VcsDiffParams as VcsDiffParams
