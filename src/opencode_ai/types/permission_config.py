@@ -38,6 +38,8 @@ class PermissionConfigObject(BaseModel):
 
     question: Optional[PermissionActionConfig] = None
 
+    read: Optional[PermissionRuleConfig] = None
+
     skill: Optional[PermissionRuleConfig] = None
 
     task: Optional[PermissionRuleConfig] = None

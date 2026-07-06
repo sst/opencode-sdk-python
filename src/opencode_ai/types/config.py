@@ -50,6 +50,8 @@ __all__ = [
 class Agent(BaseModel):
     build: Optional[AgentConfig] = None
 
+    compaction: Optional[AgentConfig] = None
+
     explore: Optional[AgentConfig] = None
 
     general: Optional[AgentConfig] = None

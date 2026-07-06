@@ -76,6 +76,8 @@ class PermissionConfigObject(TypedDict, total=False):
 
     question: PermissionActionConfig
 
+    read: PermissionRuleConfig
+
     skill: PermissionRuleConfig
 
     task: PermissionRuleConfig
