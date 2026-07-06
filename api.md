@@ -450,3 +450,16 @@ from opencode_ai.types import InstanceDisposeResponse
 Methods:
 
 - <code title="post /instance/dispose">client.instance.<a href="./src/opencode_ai/resources/instance.py">dispose</a>() -> bool</code>
+
+# Auth
+
+Types:
+
+```python
+from opencode_ai.types import AuthSetResponse, AuthRemoveResponse
+```
+
+Methods:
+
+- <code title="put /auth/{providerID}">client.auth.<a href="./src/opencode_ai/resources/auth.py">set</a>(id, \*\*<a href="src/opencode_ai/types/auth_set_params.py">params</a>) -> bool</code>
+- <code title="delete /auth/{providerID}">client.auth.<a href="./src/opencode_ai/resources/auth.py">remove</a>(id) -> bool</code>

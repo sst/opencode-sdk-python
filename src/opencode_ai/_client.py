@@ -23,6 +23,7 @@ from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
     app,
+    auth,
     vcs,
     lsp,
     mcp,
@@ -84,6 +85,7 @@ class Opencode(SyncAPIClient):
     lsp: lsp.LspResource
     formatter: formatter.FormatterResource
     instance: instance.InstanceResource
+    auth: auth.AuthResource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -150,6 +152,7 @@ class Opencode(SyncAPIClient):
         self.lsp = lsp.LspResource(self)
         self.formatter = formatter.FormatterResource(self)
         self.instance = instance.InstanceResource(self)
+        self.auth = auth.AuthResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -271,6 +274,7 @@ class AsyncOpencode(AsyncAPIClient):
     lsp: lsp.AsyncLspResource
     formatter: formatter.AsyncFormatterResource
     instance: instance.AsyncInstanceResource
+    auth: auth.AsyncAuthResource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -337,6 +341,7 @@ class AsyncOpencode(AsyncAPIClient):
         self.lsp = lsp.AsyncLspResource(self)
         self.formatter = formatter.AsyncFormatterResource(self)
         self.instance = instance.AsyncInstanceResource(self)
+        self.auth = auth.AsyncAuthResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
@@ -459,6 +464,7 @@ class OpencodeWithRawResponse:
         self.lsp = lsp.LspResourceWithRawResponse(client.lsp)
         self.formatter = formatter.FormatterResourceWithRawResponse(client.formatter)
         self.instance = instance.InstanceResourceWithRawResponse(client.instance)
+        self.auth = auth.AuthResourceWithRawResponse(client.auth)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -483,6 +489,7 @@ class AsyncOpencodeWithRawResponse:
         self.lsp = lsp.AsyncLspResourceWithRawResponse(client.lsp)
         self.formatter = formatter.AsyncFormatterResourceWithRawResponse(client.formatter)
         self.instance = instance.AsyncInstanceResourceWithRawResponse(client.instance)
+        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
 
 
 class OpencodeWithStreamedResponse:
@@ -507,6 +514,7 @@ class OpencodeWithStreamedResponse:
         self.lsp = lsp.LspResourceWithStreamingResponse(client.lsp)
         self.formatter = formatter.FormatterResourceWithStreamingResponse(client.formatter)
         self.instance = instance.InstanceResourceWithStreamingResponse(client.instance)
+        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -531,6 +539,7 @@ class AsyncOpencodeWithStreamedResponse:
         self.lsp = lsp.AsyncLspResourceWithStreamingResponse(client.lsp)
         self.formatter = formatter.AsyncFormatterResourceWithStreamingResponse(client.formatter)
         self.instance = instance.AsyncInstanceResourceWithStreamingResponse(client.instance)
+        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
 
 
 Client = Opencode

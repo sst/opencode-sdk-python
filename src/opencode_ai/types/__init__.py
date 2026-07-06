@@ -60,6 +60,7 @@ from .question_option import QuestionOption as QuestionOption
 from .resource_source import ResourceSource as ResourceSource
 from .vcs_diff_params import VcsDiffParams as VcsDiffParams
 from .vcs_file_status import VcsFileStatus as VcsFileStatus
+from .auth_set_params import AuthSetParams as AuthSetParams
 from .app_log_response import AppLogResponse as AppLogResponse
 from .file_part_source import FilePartSource as FilePartSource
 from .find_text_params import FindTextParams as FindTextParams
@@ -72,6 +73,7 @@ from .vcs_apply_params import VcsApplyParams as VcsApplyParams
 from .assistant_message import AssistantMessage as AssistantMessage
 from .file_source_param import FileSourceParam as FileSourceParam
 from .find_files_params import FindFilesParams as FindFilesParams
+from .auth_set_response import AuthSetResponse as AuthSetResponse
 from .mcp_remote_config import McpRemoteConfig as McpRemoteConfig
 from .mcp_status_failed import MCPStatusFailed as MCPStatusFailed
 from .pty_create_params import PtyCreateParams as PtyCreateParams
@@ -108,6 +110,7 @@ from .symbol_source_param import SymbolSourceParam as SymbolSourceParam
 from .sync_start_response import SyncStartResponse as SyncStartResponse
 from .sync_steal_response import SyncStealResponse as SyncStealResponse
 from .vcs_status_response import VcsStatusResponse as VcsStatusResponse
+from .auth_remove_response import AuthRemoveResponse as AuthRemoveResponse
 from .config_update_params import ConfigUpdateParams as ConfigUpdateParams
 from .file_status_response import FileStatusResponse as FileStatusResponse
 from .mcp_connect_response import McpConnectResponse as McpConnectResponse

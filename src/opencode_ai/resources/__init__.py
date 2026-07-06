@@ -160,6 +160,14 @@ from .instance import (
     InstanceResourceWithStreamingResponse,
     AsyncInstanceResourceWithStreamingResponse,
 )
+from .auth import (
+    AuthResource,
+    AsyncAuthResource,
+    AuthResourceWithRawResponse,
+    AsyncAuthResourceWithRawResponse,
+    AuthResourceWithStreamingResponse,
+    AsyncAuthResourceWithStreamingResponse,
+)
 
 __all__ = [
     "EventResource",
@@ -282,4 +290,10 @@ __all__ = [
     "AsyncInstanceResourceWithRawResponse",
     "InstanceResourceWithStreamingResponse",
     "AsyncInstanceResourceWithStreamingResponse",
+    "AuthResource",
+    "AsyncAuthResource",
+    "AuthResourceWithRawResponse",
+    "AsyncAuthResourceWithRawResponse",
+    "AuthResourceWithStreamingResponse",
+    "AsyncAuthResourceWithStreamingResponse",
 ]
