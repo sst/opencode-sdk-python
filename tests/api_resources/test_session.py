@@ -653,6 +653,14 @@ class TestSessionParamGaps:
         body = route_request(route)
         assert b"auto" in body.content
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_messages_sends_pagination(self, client, respx_mock) -> None:
+        route = respx_mock.get("/session/ses_1/message").mock(return_value=httpx.Response(200, json=[]))
+        client.session.messages("ses_1", before="msg_1", limit=5)
+        params = route_request(route).url.params
+        assert params.get("before") == "msg_1"
+        assert params.get("limit") == "5"
+
 
 class TestAsyncSession:
     parametrize = pytest.mark.parametrize(
