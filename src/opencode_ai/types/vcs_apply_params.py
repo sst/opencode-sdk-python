@@ -9,7 +9,3 @@ __all__ = ["VcsApplyParams"]
 
 class VcsApplyParams(TypedDict, total=False):
     patch: Required[str]
-
-    directory: str
-
-    workspace: str

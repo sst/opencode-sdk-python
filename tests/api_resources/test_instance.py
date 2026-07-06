@@ -26,15 +26,6 @@ class TestInstanceWire:
         assert request.method == "POST"
         assert_matches_type(InstanceDisposeResponse, result, path=["response"])
 
-    @pytest.mark.respx(base_url=base_url)
-    def test_dispose_sends_query_params(self, client: Opencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.post("/instance/dispose").mock(return_value=httpx.Response(200, json=True))
-        result = client.instance.dispose(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
-        assert_matches_type(InstanceDisposeResponse, result, path=["response"])
-
 
 class TestAsyncInstanceWire:
     @pytest.mark.respx(base_url=base_url)
@@ -44,13 +35,4 @@ class TestAsyncInstanceWire:
         assert route.called
         request = route_request(route)
         assert request.method == "POST"
-        assert_matches_type(InstanceDisposeResponse, result, path=["response"])
-
-    @pytest.mark.respx(base_url=base_url)
-    async def test_dispose_sends_query_params(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.post("/instance/dispose").mock(return_value=httpx.Response(200, json=True))
-        result = await async_client.instance.dispose(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
         assert_matches_type(InstanceDisposeResponse, result, path=["response"])

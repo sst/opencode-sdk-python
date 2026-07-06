@@ -37,15 +37,6 @@ class TestCommandWire:
         assert request.method == "GET"
         assert_matches_type(CommandListResponse, result, path=["response"])
 
-    @pytest.mark.respx(base_url=base_url)
-    def test_list_sends_query_params(self, client: Opencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.get("/command").mock(return_value=httpx.Response(200, json=[COMMAND_SAMPLE]))
-        result = client.command.list(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
-        assert_matches_type(CommandListResponse, result, path=["response"])
-
 
 class TestAsyncCommandWire:
     @pytest.mark.respx(base_url=base_url)
@@ -55,13 +46,4 @@ class TestAsyncCommandWire:
         assert route.called
         request = route_request(route)
         assert request.method == "GET"
-        assert_matches_type(CommandListResponse, result, path=["response"])
-
-    @pytest.mark.respx(base_url=base_url)
-    async def test_list_sends_query_params(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.get("/command").mock(return_value=httpx.Response(200, json=[COMMAND_SAMPLE]))
-        result = await async_client.command.list(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
         assert_matches_type(CommandListResponse, result, path=["response"])

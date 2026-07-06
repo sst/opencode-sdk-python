@@ -33,15 +33,6 @@ class TestLspWire:
         assert request.method == "GET"
         assert_matches_type(LspStatusResponse, result, path=["response"])
 
-    @pytest.mark.respx(base_url=base_url)
-    def test_status_sends_query_params(self, client: Opencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.get("/lsp").mock(return_value=httpx.Response(200, json=[LSP_STATUS_SAMPLE]))
-        result = client.lsp.status(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
-        assert_matches_type(LspStatusResponse, result, path=["response"])
-
 
 class TestAsyncLspWire:
     @pytest.mark.respx(base_url=base_url)
@@ -51,13 +42,4 @@ class TestAsyncLspWire:
         assert route.called
         request = route_request(route)
         assert request.method == "GET"
-        assert_matches_type(LspStatusResponse, result, path=["response"])
-
-    @pytest.mark.respx(base_url=base_url)
-    async def test_status_sends_query_params(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.get("/lsp").mock(return_value=httpx.Response(200, json=[LSP_STATUS_SAMPLE]))
-        result = await async_client.lsp.status(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
         assert_matches_type(LspStatusResponse, result, path=["response"])

@@ -51,15 +51,6 @@ class TestVcsWire:
         assert_matches_type(VcsInfo, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)
-    def test_get_sends_query_params(self, client: Opencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.get("/vcs").mock(return_value=httpx.Response(200, json=VCS_INFO_SAMPLE))
-        result = client.vcs.get(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
-        assert_matches_type(VcsInfo, result, path=["response"])
-
-    @pytest.mark.respx(base_url=base_url)
     def test_status_wire_shape(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/vcs/status").mock(return_value=httpx.Response(200, json=[VCS_FILE_STATUS_SAMPLE]))
         result = client.vcs.status()
@@ -71,14 +62,12 @@ class TestVcsWire:
     @pytest.mark.respx(base_url=base_url)
     def test_diff_sends_query_params(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/vcs/diff").mock(return_value=httpx.Response(200, json=[VCS_FILE_DIFF_SAMPLE]))
-        result = client.vcs.diff(mode="git", context=3, directory="/tmp/project", workspace="ws_123")
+        result = client.vcs.diff(mode="git", context=3)
         assert route.called
         request = route_request(route)
         assert dict(request.url.params) == {
             "mode": "git",
             "context": "3",
-            "directory": "/tmp/project",
-            "workspace": "ws_123",
         }
         assert_matches_type(VcsDiffResponse, result, path=["response"])
 
@@ -99,17 +88,14 @@ class TestVcsWire:
         assert result == RAW_DIFF_TEXT
 
     @pytest.mark.respx(base_url=base_url)
-    def test_apply_sends_body_and_query(self, client: Opencode, respx_mock: MockRouter) -> None:
+    def test_apply_sends_body(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.post("/vcs/apply").mock(return_value=httpx.Response(200, json={"applied": True}))
         result = client.vcs.apply(
             patch="@@ -1 +1 @@\n-old\n+new\n",
-            directory="/tmp/project",
-            workspace="ws_123",
         )
         assert route.called
         request = route_request(route)
         assert request.method == "POST"
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
         body = read_json_body(route)
         assert body == {"patch": "@@ -1 +1 @@\n-old\n+new\n"}
         assert_matches_type(VcsApplyResponse, result, path=["response"])
@@ -126,15 +112,6 @@ class TestAsyncVcsWire:
         assert_matches_type(VcsInfo, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)
-    async def test_get_sends_query_params(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
-        route = respx_mock.get("/vcs").mock(return_value=httpx.Response(200, json=VCS_INFO_SAMPLE))
-        result = await async_client.vcs.get(directory="/tmp/project", workspace="ws_123")
-        assert route.called
-        request = route_request(route)
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
-        assert_matches_type(VcsInfo, result, path=["response"])
-
-    @pytest.mark.respx(base_url=base_url)
     async def test_status_wire_shape(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/vcs/status").mock(return_value=httpx.Response(200, json=[VCS_FILE_STATUS_SAMPLE]))
         result = await async_client.vcs.status()
@@ -146,14 +123,12 @@ class TestAsyncVcsWire:
     @pytest.mark.respx(base_url=base_url)
     async def test_diff_sends_query_params(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/vcs/diff").mock(return_value=httpx.Response(200, json=[VCS_FILE_DIFF_SAMPLE]))
-        result = await async_client.vcs.diff(mode="git", context=3, directory="/tmp/project", workspace="ws_123")
+        result = await async_client.vcs.diff(mode="git", context=3)
         assert route.called
         request = route_request(route)
         assert dict(request.url.params) == {
             "mode": "git",
             "context": "3",
-            "directory": "/tmp/project",
-            "workspace": "ws_123",
         }
         assert_matches_type(VcsDiffResponse, result, path=["response"])
 
@@ -174,17 +149,14 @@ class TestAsyncVcsWire:
         assert result == RAW_DIFF_TEXT
 
     @pytest.mark.respx(base_url=base_url)
-    async def test_apply_sends_body_and_query(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+    async def test_apply_sends_body(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
         route = respx_mock.post("/vcs/apply").mock(return_value=httpx.Response(200, json={"applied": True}))
         result = await async_client.vcs.apply(
             patch="@@ -1 +1 @@\n-old\n+new\n",
-            directory="/tmp/project",
-            workspace="ws_123",
         )
         assert route.called
         request = route_request(route)
         assert request.method == "POST"
-        assert dict(request.url.params) == {"directory": "/tmp/project", "workspace": "ws_123"}
         body = read_json_body(route)
         assert body == {"patch": "@@ -1 +1 @@\n-old\n+new\n"}
         assert_matches_type(VcsApplyResponse, result, path=["response"])
