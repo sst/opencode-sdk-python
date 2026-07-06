@@ -331,3 +331,86 @@ Methods:
 
 - <code title="get /permission">client.permission.<a href="./src/opencode_ai/resources/permission.py">list</a>() -> <a href="./src/opencode_ai/types/permission_list_response.py">PermissionListResponse</a></code>
 - <code title="post /permission/{requestID}/reply">client.permission.<a href="./src/opencode_ai/resources/permission.py">reply</a>(request_id, \*\*<a href="src/opencode_ai/types/permission_reply_params.py">params</a>) -> <a href="./src/opencode_ai/types/permission_reply_response.py">PermissionReplyResponse</a></code>
+
+# Path
+
+Types:
+
+```python
+from opencode_ai.types import Path
+```
+
+Methods:
+
+- <code title="get /path">client.path.<a href="./src/opencode_ai/resources/path.py">get</a>(\*\*<a href="src/opencode_ai/types/path_get_params.py">params</a>) -> <a href="./src/opencode_ai/types/path.py">Path</a></code>
+
+# Vcs
+
+Types:
+
+```python
+from opencode_ai.types import (
+    VcsInfo,
+    VcsFileStatus,
+    VcsFileDiff,
+    VcsStatusResponse,
+    VcsDiffResponse,
+    VcsApplyResponse,
+)
+```
+
+Methods:
+
+- <code title="get /vcs">client.vcs.<a href="./src/opencode_ai/resources/vcs.py">get</a>(\*\*<a href="src/opencode_ai/types/vcs_get_params.py">params</a>) -> <a href="./src/opencode_ai/types/vcs_info.py">VcsInfo</a></code>
+- <code title="post /vcs/apply">client.vcs.<a href="./src/opencode_ai/resources/vcs.py">apply</a>(\*\*<a href="src/opencode_ai/types/vcs_apply_params.py">params</a>) -> <a href="./src/opencode_ai/types/vcs_apply_response.py">VcsApplyResponse</a></code>
+- <code title="get /vcs/diff">client.vcs.<a href="./src/opencode_ai/resources/vcs.py">diff</a>(\*\*<a href="src/opencode_ai/types/vcs_diff_params.py">params</a>) -> <a href="./src/opencode_ai/types/vcs_diff_response.py">VcsDiffResponse</a></code>
+- <code title="get /vcs/diff/raw">client.vcs.<a href="./src/opencode_ai/resources/vcs.py">diff_raw</a>(\*\*<a href="src/opencode_ai/types/vcs_diff_raw_params.py">params</a>) -> str</code>
+- <code title="get /vcs/status">client.vcs.<a href="./src/opencode_ai/resources/vcs.py">status</a>(\*\*<a href="src/opencode_ai/types/vcs_status_params.py">params</a>) -> <a href="./src/opencode_ai/types/vcs_status_response.py">VcsStatusResponse</a></code>
+
+# Command
+
+Types:
+
+```python
+from opencode_ai.types import Command, CommandListResponse
+```
+
+Methods:
+
+- <code title="get /command">client.command.<a href="./src/opencode_ai/resources/command.py">list</a>(\*\*<a href="src/opencode_ai/types/command_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/command_list_response.py">CommandListResponse</a></code>
+
+# Lsp
+
+Types:
+
+```python
+from opencode_ai.types import LSPStatus, LspStatusResponse
+```
+
+Methods:
+
+- <code title="get /lsp">client.lsp.<a href="./src/opencode_ai/resources/lsp.py">status</a>(\*\*<a href="src/opencode_ai/types/lsp_status_params.py">params</a>) -> <a href="./src/opencode_ai/types/lsp_status_response.py">LspStatusResponse</a></code>
+
+# Formatter
+
+Types:
+
+```python
+from opencode_ai.types import FormatterStatus, FormatterStatusResponse
+```
+
+Methods:
+
+- <code title="get /formatter">client.formatter.<a href="./src/opencode_ai/resources/formatter.py">status</a>(\*\*<a href="src/opencode_ai/types/formatter_status_params.py">params</a>) -> <a href="./src/opencode_ai/types/formatter_status_response.py">FormatterStatusResponse</a></code>
+
+# Instance
+
+Types:
+
+```python
+from opencode_ai.types import InstanceDisposeResponse
+```
+
+Methods:
+
+- <code title="post /instance/dispose">client.instance.<a href="./src/opencode_ai/resources/instance.py">dispose</a>(\*\*<a href="src/opencode_ai/types/instance_dispose_params.py">params</a>) -> bool</code>

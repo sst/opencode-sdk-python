@@ -23,17 +23,23 @@ from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
     app,
+    vcs,
+    lsp,
     mcp,
     pty,
     tui,
     sync,
     file,
     find,
+    path,
     event,
     config,
+    command,
     project,
     session,
+    instance,
     provider,
+    formatter,
     question,
     permission,
 )
@@ -72,6 +78,12 @@ class Opencode(SyncAPIClient):
     pty: pty.PtyResource
     question: question.QuestionResource
     permission: permission.PermissionResource
+    path: path.PathResource
+    vcs: vcs.VcsResource
+    command: command.CommandResource
+    lsp: lsp.LspResource
+    formatter: formatter.FormatterResource
+    instance: instance.InstanceResource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -132,6 +144,12 @@ class Opencode(SyncAPIClient):
         self.pty = pty.PtyResource(self)
         self.question = question.QuestionResource(self)
         self.permission = permission.PermissionResource(self)
+        self.path = path.PathResource(self)
+        self.vcs = vcs.VcsResource(self)
+        self.command = command.CommandResource(self)
+        self.lsp = lsp.LspResource(self)
+        self.formatter = formatter.FormatterResource(self)
+        self.instance = instance.InstanceResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -247,6 +265,12 @@ class AsyncOpencode(AsyncAPIClient):
     pty: pty.AsyncPtyResource
     question: question.AsyncQuestionResource
     permission: permission.AsyncPermissionResource
+    path: path.AsyncPathResource
+    vcs: vcs.AsyncVcsResource
+    command: command.AsyncCommandResource
+    lsp: lsp.AsyncLspResource
+    formatter: formatter.AsyncFormatterResource
+    instance: instance.AsyncInstanceResource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -307,6 +331,12 @@ class AsyncOpencode(AsyncAPIClient):
         self.pty = pty.AsyncPtyResource(self)
         self.question = question.AsyncQuestionResource(self)
         self.permission = permission.AsyncPermissionResource(self)
+        self.path = path.AsyncPathResource(self)
+        self.vcs = vcs.AsyncVcsResource(self)
+        self.command = command.AsyncCommandResource(self)
+        self.lsp = lsp.AsyncLspResource(self)
+        self.formatter = formatter.AsyncFormatterResource(self)
+        self.instance = instance.AsyncInstanceResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
@@ -423,6 +453,12 @@ class OpencodeWithRawResponse:
         self.pty = pty.PtyResourceWithRawResponse(client.pty)
         self.question = question.QuestionResourceWithRawResponse(client.question)
         self.permission = permission.PermissionResourceWithRawResponse(client.permission)
+        self.path = path.PathResourceWithRawResponse(client.path)
+        self.vcs = vcs.VcsResourceWithRawResponse(client.vcs)
+        self.command = command.CommandResourceWithRawResponse(client.command)
+        self.lsp = lsp.LspResourceWithRawResponse(client.lsp)
+        self.formatter = formatter.FormatterResourceWithRawResponse(client.formatter)
+        self.instance = instance.InstanceResourceWithRawResponse(client.instance)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -441,6 +477,12 @@ class AsyncOpencodeWithRawResponse:
         self.pty = pty.AsyncPtyResourceWithRawResponse(client.pty)
         self.question = question.AsyncQuestionResourceWithRawResponse(client.question)
         self.permission = permission.AsyncPermissionResourceWithRawResponse(client.permission)
+        self.path = path.AsyncPathResourceWithRawResponse(client.path)
+        self.vcs = vcs.AsyncVcsResourceWithRawResponse(client.vcs)
+        self.command = command.AsyncCommandResourceWithRawResponse(client.command)
+        self.lsp = lsp.AsyncLspResourceWithRawResponse(client.lsp)
+        self.formatter = formatter.AsyncFormatterResourceWithRawResponse(client.formatter)
+        self.instance = instance.AsyncInstanceResourceWithRawResponse(client.instance)
 
 
 class OpencodeWithStreamedResponse:
@@ -459,6 +501,12 @@ class OpencodeWithStreamedResponse:
         self.pty = pty.PtyResourceWithStreamingResponse(client.pty)
         self.question = question.QuestionResourceWithStreamingResponse(client.question)
         self.permission = permission.PermissionResourceWithStreamingResponse(client.permission)
+        self.path = path.PathResourceWithStreamingResponse(client.path)
+        self.vcs = vcs.VcsResourceWithStreamingResponse(client.vcs)
+        self.command = command.CommandResourceWithStreamingResponse(client.command)
+        self.lsp = lsp.LspResourceWithStreamingResponse(client.lsp)
+        self.formatter = formatter.FormatterResourceWithStreamingResponse(client.formatter)
+        self.instance = instance.InstanceResourceWithStreamingResponse(client.instance)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -477,6 +525,12 @@ class AsyncOpencodeWithStreamedResponse:
         self.pty = pty.AsyncPtyResourceWithStreamingResponse(client.pty)
         self.question = question.AsyncQuestionResourceWithStreamingResponse(client.question)
         self.permission = permission.AsyncPermissionResourceWithStreamingResponse(client.permission)
+        self.path = path.AsyncPathResourceWithStreamingResponse(client.path)
+        self.vcs = vcs.AsyncVcsResourceWithStreamingResponse(client.vcs)
+        self.command = command.AsyncCommandResourceWithStreamingResponse(client.command)
+        self.lsp = lsp.AsyncLspResourceWithStreamingResponse(client.lsp)
+        self.formatter = formatter.AsyncFormatterResourceWithStreamingResponse(client.formatter)
+        self.instance = instance.AsyncInstanceResourceWithStreamingResponse(client.instance)
 
 
 Client = Opencode
