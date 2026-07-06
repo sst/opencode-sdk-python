@@ -31,6 +31,7 @@ from .shared import (
 )
 from .symbol import Symbol as Symbol
 from .message import Message as Message
+from .project import Project as Project
 from .session import Session as Session
 from .provider import Provider as Provider
 from .file_source import FileSource as FileSource
@@ -67,6 +68,8 @@ from .file_content_response import FileContentResponse as FileContentResponse
 from .file_part_input_param import FilePartInputParam as FilePartInputParam
 from .file_part_source_text import FilePartSourceText as FilePartSourceText
 from .find_symbols_response import FindSymbolsResponse as FindSymbolsResponse
+from .project_list_response import ProjectListResponse as ProjectListResponse
+from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .session_init_response import SessionInitResponse as SessionInitResponse
 from .session_list_response import SessionListResponse as SessionListResponse
 from .session_prompt_params import SessionPromptParams as SessionPromptParams
@@ -85,3 +88,4 @@ from .session_messages_response import SessionMessagesResponse as SessionMessage
 from .session_summarize_response import SessionSummarizeResponse as SessionSummarizeResponse
 from .tui_append_prompt_response import TuiAppendPromptResponse as TuiAppendPromptResponse
 from .file_part_source_text_param import FilePartSourceTextParam as FilePartSourceTextParam
+from .project_directories_response import ProjectDirectoriesResponse as ProjectDirectoriesResponse

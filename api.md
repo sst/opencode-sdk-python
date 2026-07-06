@@ -137,6 +137,22 @@ Methods:
 - <code title="post /session/{id}/unrevert">client.session.<a href="./src/opencode_ai/resources/session.py">unrevert</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
 - <code title="delete /session/{id}/share">client.session.<a href="./src/opencode_ai/resources/session.py">unshare</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
 
+# Project
+
+Types:
+
+```python
+from opencode_ai.types import Project, ProjectListResponse, ProjectDirectoriesResponse
+```
+
+Methods:
+
+- <code title="get /project">client.project.<a href="./src/opencode_ai/resources/project.py">list</a>() -> <a href="./src/opencode_ai/types/project_list_response.py">ProjectListResponse</a></code>
+- <code title="patch /project/{projectID}">client.project.<a href="./src/opencode_ai/resources/project.py">update</a>(project_id, \*\*<a href="src/opencode_ai/types/project_update_params.py">params</a>) -> <a href="./src/opencode_ai/types/project.py">Project</a></code>
+- <code title="get /project/current">client.project.<a href="./src/opencode_ai/resources/project.py">current</a>() -> <a href="./src/opencode_ai/types/project.py">Project</a></code>
+- <code title="get /project/{projectID}/directories">client.project.<a href="./src/opencode_ai/resources/project.py">directories</a>(project_id) -> <a href="./src/opencode_ai/types/project_directories_response.py">ProjectDirectoriesResponse</a></code>
+- <code title="post /project/git/init">client.project.<a href="./src/opencode_ai/resources/project.py">init_git</a>() -> <a href="./src/opencode_ai/types/project.py">Project</a></code>
+
 # Tui
 
 Types:

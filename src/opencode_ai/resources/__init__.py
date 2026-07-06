@@ -48,6 +48,14 @@ from .config import (
     ConfigResourceWithStreamingResponse,
     AsyncConfigResourceWithStreamingResponse,
 )
+from .project import (
+    ProjectResource,
+    AsyncProjectResource,
+    ProjectResourceWithRawResponse,
+    AsyncProjectResourceWithRawResponse,
+    ProjectResourceWithStreamingResponse,
+    AsyncProjectResourceWithStreamingResponse,
+)
 from .session import (
     SessionResource,
     AsyncSessionResource,
@@ -100,4 +108,10 @@ __all__ = [
     "AsyncTuiResourceWithRawResponse",
     "TuiResourceWithStreamingResponse",
     "AsyncTuiResourceWithStreamingResponse",
+    "ProjectResource",
+    "AsyncProjectResource",
+    "ProjectResourceWithRawResponse",
+    "AsyncProjectResourceWithRawResponse",
+    "ProjectResourceWithStreamingResponse",
+    "AsyncProjectResourceWithStreamingResponse",
 ]
