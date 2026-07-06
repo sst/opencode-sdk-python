@@ -12,18 +12,41 @@ from respx import MockRouter
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
 from opencode_ai.types import (
+    Part,
     Session,
+    SessionDiffResponse,
     SessionInitResponse,
     SessionListResponse,
+    SessionTodoResponse,
     SessionAbortResponse,
+    SessionShellResponse,
     SessionDeleteResponse,
     SessionPromptResponse,
+    SessionStatusResponse,
+    SessionCommandResponse,
+    SessionChildrenResponse,
     SessionMessagesResponse,
     SessionSummarizeResponse,
+    SessionDeletePartResponse,
+    SessionMessagesResponseItem,
+    SessionDeleteMessageResponse,
+    SessionRespondPermissionResponse,
+    session_update_part_params,
 )
 from tests.wire_helpers import route_request, read_json_body
+from opencode_ai._models import construct_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+
+MINIMAL_SESSION: dict[str, object] = {
+    "id": "ses_1",
+    "directory": "/tmp",
+    "projectID": "prj_1",
+    "slug": "my-session",
+    "time": {"created": 0, "updated": 0},
+    "title": "Test session",
+    "version": "1.0.0",
+}
 
 PROMPT_SAMPLE: dict[str, object] = {
     "info": {
@@ -661,6 +684,301 @@ class TestSessionParamGaps:
         params = route_request(route).url.params
         assert params.get("before") == "msg_1"
         assert params.get("limit") == "5"
+
+
+class TestSessionNewOperationsWire:
+    @pytest.mark.respx(base_url=base_url)
+    def test_status(self, client: Opencode, respx_mock: MockRouter) -> None:
+        payload = {"ses_1": {"type": "idle"}, "ses_2": {"type": "busy"}}
+        route = respx_mock.get("/session/status").mock(return_value=httpx.Response(200, json=payload))
+        result = client.session.status()
+        assert route_request(route).method == "GET"
+        assert_matches_type(SessionStatusResponse, result, path=["response"])
+        result = cast(SessionStatusResponse, construct_type(type_=SessionStatusResponse, value=payload))
+        assert result["ses_1"].type == "idle"
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_get(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/session/ses_1").mock(return_value=httpx.Response(200, json=MINIMAL_SESSION))
+        result = client.session.get("ses_1")
+        assert route_request(route).method == "GET"
+        assert_matches_type(Session, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_update_sends_body(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.patch("/session/ses_1").mock(return_value=httpx.Response(200, json=MINIMAL_SESSION))
+        result = client.session.update(
+            "ses_1",
+            title="new title",
+            metadata={"foo": "bar"},
+            permission=[{"action": "allow", "pattern": "*", "permission": "bash"}],
+            time={"archived": 123},
+        )
+        body = read_json_body(route)
+        assert body["title"] == "new title"
+        assert body["permission"] == [{"action": "allow", "pattern": "*", "permission": "bash"}]
+        assert body["time"] == {"archived": 123}
+        assert_matches_type(Session, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_children(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/session/ses_1/children").mock(return_value=httpx.Response(200, json=[MINIMAL_SESSION]))
+        result = client.session.children("ses_1")
+        assert route_request(route).method == "GET"
+        assert_matches_type(SessionChildrenResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_command_sends_body(self, client: Opencode, respx_mock: MockRouter) -> None:
+        payload: dict[str, object] = {"info": PROMPT_SAMPLE["info"], "parts": []}
+        route = respx_mock.post("/session/ses_1/command").mock(return_value=httpx.Response(200, json=payload))
+        result = client.session.command(
+            "ses_1",
+            arguments="some args",
+            command="mycommand",
+            agent="build",
+            message_id="msg_1",
+            model="claude-opus-4-8",
+        )
+        body = read_json_body(route)
+        assert body["arguments"] == "some args"
+        assert body["command"] == "mycommand"
+        assert body["messageID"] == "msg_1"
+        assert_matches_type(SessionCommandResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_diff_sends_message_id_query(self, client: Opencode, respx_mock: MockRouter) -> None:
+        payload = [{"additions": 1, "deletions": 0, "file": "a.py", "status": "modified"}]
+        route = respx_mock.get("/session/ses_1/diff").mock(return_value=httpx.Response(200, json=payload))
+        result = client.session.diff("ses_1", message_id="msg_1")
+        params = route_request(route).url.params
+        assert params.get("messageID") == "msg_1"
+        assert_matches_type(SessionDiffResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_fork_sends_message_id_body(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.post("/session/ses_1/fork").mock(return_value=httpx.Response(200, json=MINIMAL_SESSION))
+        result = client.session.fork("ses_1", message_id="msg_1")
+        body = read_json_body(route)
+        assert body["messageID"] == "msg_1"
+        assert_matches_type(Session, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_delete_message(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.delete("/session/ses_1/message/msg_1").mock(return_value=httpx.Response(200, json=True))
+        result = client.session.delete_message("ses_1", message_id="msg_1")
+        assert route_request(route).method == "DELETE"
+        assert_matches_type(SessionDeleteMessageResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_get_message(self, client: Opencode, respx_mock: MockRouter) -> None:
+        payload: dict[str, object] = {"info": PROMPT_SAMPLE["info"], "parts": []}
+        route = respx_mock.get("/session/ses_1/message/msg_1").mock(return_value=httpx.Response(200, json=payload))
+        result = client.session.get_message("ses_1", message_id="msg_1")
+        assert route_request(route).method == "GET"
+        assert_matches_type(SessionMessagesResponseItem, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_delete_part(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.delete("/session/ses_1/message/msg_1/part/prt_1").mock(
+            return_value=httpx.Response(200, json=True)
+        )
+        result = client.session.delete_part("ses_1", message_id="msg_1", part_id="prt_1")
+        assert route_request(route).method == "DELETE"
+        assert_matches_type(SessionDeletePartResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_update_part_sends_full_part_body(self, client: Opencode, respx_mock: MockRouter) -> None:
+        wire_payload: dict[str, object] = {
+            "id": "prt_1",
+            "messageID": "msg_1",
+            "sessionID": "ses_1",
+            "type": "text",
+            "text": "hello",
+        }
+        part_payload: session_update_part_params.TextPartParam = {
+            "id": "prt_1",
+            "message_id": "msg_1",
+            "session_id": "ses_1",
+            "type": "text",
+            "text": "hello",
+        }
+        route = respx_mock.patch("/session/ses_1/message/msg_1/part/prt_1").mock(
+            return_value=httpx.Response(200, json=wire_payload)
+        )
+        result = client.session.update_part(
+            "ses_1",
+            message_id="msg_1",
+            part_id="prt_1",
+            part=part_payload,
+        )
+        body = read_json_body(route)
+        assert body["type"] == "text"
+        assert body["text"] == "hello"
+        part = cast(Part, construct_type(type_=Part, value=result))
+        assert part.type == "text"
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_respond_permission_sends_body(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.post("/session/ses_1/permissions/per_1").mock(return_value=httpx.Response(200, json=True))
+        result = client.session.respond_permission("ses_1", permission_id="per_1", response="once")
+        body = read_json_body(route)
+        assert body["response"] == "once"
+        assert_matches_type(SessionRespondPermissionResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_prompt_async_returns_none_on_204(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.post("/session/ses_1/prompt_async").mock(return_value=httpx.Response(204))
+        result = client.session.prompt_async(
+            "ses_1",
+            parts=[{"type": "text", "text": "hi"}],
+            no_reply=True,
+        )
+        body = read_json_body(route)
+        assert body["noReply"] is True
+        assert result is None
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_shell_sends_body(self, client: Opencode, respx_mock: MockRouter) -> None:
+        payload: dict[str, object] = {"info": PROMPT_SAMPLE["info"], "parts": []}
+        route = respx_mock.post("/session/ses_1/shell").mock(return_value=httpx.Response(200, json=payload))
+        result = client.session.shell(
+            "ses_1",
+            agent="build",
+            command="ls -la",
+            model={"provider_id": "anthropic", "model_id": "claude-opus-4-8"},
+        )
+        body = read_json_body(route)
+        assert body["agent"] == "build"
+        assert body["command"] == "ls -la"
+        assert body["model"] == {"providerID": "anthropic", "modelID": "claude-opus-4-8"}
+        assert_matches_type(SessionShellResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_todo(self, client: Opencode, respx_mock: MockRouter) -> None:
+        payload = [{"content": "do the thing", "status": "pending", "priority": "high"}]
+        route = respx_mock.get("/session/ses_1/todo").mock(return_value=httpx.Response(200, json=payload))
+        result = client.session.todo("ses_1")
+        assert route_request(route).method == "GET"
+        assert_matches_type(SessionTodoResponse, result, path=["response"])
+
+
+class TestAsyncSessionNewOperationsWire:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_status(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        payload = {"ses_1": {"type": "idle"}}
+        respx_mock.get("/session/status").mock(return_value=httpx.Response(200, json=payload))
+        result = await async_client.session.status()
+        assert_matches_type(SessionStatusResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_get(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        respx_mock.get("/session/ses_1").mock(return_value=httpx.Response(200, json=MINIMAL_SESSION))
+        result = await async_client.session.get("ses_1")
+        assert_matches_type(Session, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_update(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.patch("/session/ses_1").mock(return_value=httpx.Response(200, json=MINIMAL_SESSION))
+        result = await async_client.session.update("ses_1", title="new title")
+        body = read_json_body(route)
+        assert body["title"] == "new title"
+        assert_matches_type(Session, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_children(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        respx_mock.get("/session/ses_1/children").mock(return_value=httpx.Response(200, json=[MINIMAL_SESSION]))
+        result = await async_client.session.children("ses_1")
+        assert_matches_type(SessionChildrenResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_command(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        payload: dict[str, object] = {"info": PROMPT_SAMPLE["info"], "parts": []}
+        respx_mock.post("/session/ses_1/command").mock(return_value=httpx.Response(200, json=payload))
+        result = await async_client.session.command("ses_1", arguments="a", command="c")
+        assert_matches_type(SessionCommandResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_diff(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        payload = [{"additions": 1, "deletions": 0}]
+        respx_mock.get("/session/ses_1/diff").mock(return_value=httpx.Response(200, json=payload))
+        result = await async_client.session.diff("ses_1")
+        assert_matches_type(SessionDiffResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_fork(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        respx_mock.post("/session/ses_1/fork").mock(return_value=httpx.Response(200, json=MINIMAL_SESSION))
+        result = await async_client.session.fork("ses_1")
+        assert_matches_type(Session, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_delete_message(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        respx_mock.delete("/session/ses_1/message/msg_1").mock(return_value=httpx.Response(200, json=True))
+        result = await async_client.session.delete_message("ses_1", message_id="msg_1")
+        assert_matches_type(SessionDeleteMessageResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_get_message(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        payload: dict[str, object] = {"info": PROMPT_SAMPLE["info"], "parts": []}
+        respx_mock.get("/session/ses_1/message/msg_1").mock(return_value=httpx.Response(200, json=payload))
+        result = await async_client.session.get_message("ses_1", message_id="msg_1")
+        assert_matches_type(SessionMessagesResponseItem, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_delete_part(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        respx_mock.delete("/session/ses_1/message/msg_1/part/prt_1").mock(return_value=httpx.Response(200, json=True))
+        result = await async_client.session.delete_part("ses_1", message_id="msg_1", part_id="prt_1")
+        assert_matches_type(SessionDeletePartResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_update_part(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        wire_payload: dict[str, object] = {
+            "id": "prt_1",
+            "messageID": "msg_1",
+            "sessionID": "ses_1",
+            "type": "text",
+            "text": "hello",
+        }
+        part_payload: session_update_part_params.TextPartParam = {
+            "id": "prt_1",
+            "message_id": "msg_1",
+            "session_id": "ses_1",
+            "type": "text",
+            "text": "hello",
+        }
+        respx_mock.patch("/session/ses_1/message/msg_1/part/prt_1").mock(
+            return_value=httpx.Response(200, json=wire_payload)
+        )
+        result = await async_client.session.update_part("ses_1", message_id="msg_1", part_id="prt_1", part=part_payload)
+        part = cast(Part, construct_type(type_=Part, value=result))
+        assert part.type == "text"
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_respond_permission(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.post("/session/ses_1/permissions/per_1").mock(return_value=httpx.Response(200, json=True))
+        result = await async_client.session.respond_permission("ses_1", permission_id="per_1", response="always")
+        body = read_json_body(route)
+        assert body["response"] == "always"
+        assert_matches_type(SessionRespondPermissionResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_prompt_async(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        respx_mock.post("/session/ses_1/prompt_async").mock(return_value=httpx.Response(204))
+        result = await async_client.session.prompt_async("ses_1", parts=[{"type": "text", "text": "hi"}])
+        assert result is None
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_shell(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        payload: dict[str, object] = {"info": PROMPT_SAMPLE["info"], "parts": []}
+        respx_mock.post("/session/ses_1/shell").mock(return_value=httpx.Response(200, json=payload))
+        result = await async_client.session.shell("ses_1", agent="build", command="ls")
+        assert_matches_type(SessionShellResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_todo(self, async_client: AsyncOpencode, respx_mock: MockRouter) -> None:
+        payload = [{"content": "x", "status": "pending", "priority": "low"}]
+        respx_mock.get("/session/ses_1/todo").mock(return_value=httpx.Response(200, json=payload))
+        result = await async_client.session.todo("ses_1")
+        assert_matches_type(SessionTodoResponse, result, path=["response"])
 
 
 class TestAsyncSession:

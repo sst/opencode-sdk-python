@@ -2,20 +2,28 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Any, Dict, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ..types import (
+    session_diff_params,
+    session_fork_params,
     session_init_params,
     session_list_params,
+    session_shell_params,
     session_prompt_params,
     session_revert_params,
+    session_update_params,
+    session_command_params,
     session_messages_params,
     session_summarize_params,
+    session_update_part_params,
+    session_prompt_async_params,
+    session_respond_permission_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -25,15 +33,26 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..types.part import Part
 from .._base_client import make_request_options
 from ..types.session import Session
+from ..types.file_part_input_param import FilePartInputParam
+from ..types.session_diff_response import SessionDiffResponse
 from ..types.session_init_response import SessionInitResponse
 from ..types.session_list_response import SessionListResponse
+from ..types.session_todo_response import SessionTodoResponse
 from ..types.session_abort_response import SessionAbortResponse
+from ..types.session_shell_response import SessionShellResponse
 from ..types.session_delete_response import SessionDeleteResponse
 from ..types.session_prompt_response import SessionPromptResponse
-from ..types.session_messages_response import SessionMessagesResponse
+from ..types.session_status_response import SessionStatusResponse
+from ..types.session_command_response import SessionCommandResponse
+from ..types.session_children_response import SessionChildrenResponse
+from ..types.session_messages_response import SessionMessagesResponse, SessionMessagesResponseItem
 from ..types.session_summarize_response import SessionSummarizeResponse
+from ..types.session_delete_part_response import SessionDeletePartResponse
+from ..types.session_delete_message_response import SessionDeleteMessageResponse
+from ..types.session_respond_permission_response import SessionRespondPermissionResponse
 
 __all__ = ["SessionResource", "AsyncSessionResource"]
 
@@ -530,6 +549,659 @@ class SessionResource(SyncAPIResource):
             cast_to=Session,
         )
 
+    def status(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionStatusResponse:
+        """Get the status of every active session, keyed by session ID"""
+        return self._get(
+            "/session/status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionStatusResponse,
+        )
+
+    def get(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Get a session by ID
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/session/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
+    def update(
+        self,
+        id: str,
+        *,
+        metadata: object | NotGiven = NOT_GIVEN,
+        permission: Iterable[session_update_params.Permission] | NotGiven = NOT_GIVEN,
+        time: session_update_params.Time | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Update session properties such as its title, metadata, permission
+        overrides, or archived timestamp
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._patch(
+            f"/session/{id}",
+            body=maybe_transform(
+                {
+                    "metadata": metadata,
+                    "permission": permission,
+                    "time": time,
+                    "title": title,
+                },
+                session_update_params.SessionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
+    def children(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionChildrenResponse:
+        """
+        List the direct child sessions forked from this session
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/session/{id}/children",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionChildrenResponse,
+        )
+
+    def command(
+        self,
+        id: str,
+        *,
+        arguments: str,
+        command: str,
+        agent: str | NotGiven = NOT_GIVEN,
+        message_id: str | NotGiven = NOT_GIVEN,
+        model: str | NotGiven = NOT_GIVEN,
+        parts: Iterable[FilePartInputParam] | NotGiven = NOT_GIVEN,
+        variant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionCommandResponse:
+        """
+        Run a slash command within a session
+
+        Args:
+          id: Session ID
+
+          arguments: Raw command arguments
+
+          command: Command name to execute
+
+          model: Model in `providerID/modelID` string form
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/session/{id}/command",
+            body=maybe_transform(
+                {
+                    "arguments": arguments,
+                    "command": command,
+                    "agent": agent,
+                    "message_id": message_id,
+                    "model": model,
+                    "parts": parts,
+                    "variant": variant,
+                },
+                session_command_params.SessionCommandParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionCommandResponse,
+        )
+
+    def diff(
+        self,
+        id: str,
+        *,
+        message_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionDiffResponse:
+        """
+        Get the file diffs produced by a session, optionally only up to a given
+        message
+
+        Args:
+          id: Session ID
+
+          message_id: Only include diffs up to this message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/session/{id}/diff",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"message_id": message_id}, session_diff_params.SessionDiffParams),
+            ),
+            cast_to=SessionDiffResponse,
+        )
+
+    def fork(
+        self,
+        id: str,
+        *,
+        message_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Fork a session, optionally only up to a given message
+
+        Args:
+          id: Session ID
+
+          message_id: Fork up to (and including) this message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/session/{id}/fork",
+            body=maybe_transform({"message_id": message_id}, session_fork_params.SessionForkParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
+    def delete_message(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionDeleteMessageResponse:
+        """
+        Delete a message (and its parts) from a session
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        return self._delete(
+            f"/session/{id}/message/{message_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionDeleteMessageResponse,
+        )
+
+    def get_message(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionMessagesResponseItem:
+        """
+        Get a single message (with its parts) from a session
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        return self._get(
+            f"/session/{id}/message/{message_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionMessagesResponseItem,
+        )
+
+    def delete_part(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        part_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionDeletePartResponse:
+        """
+        Delete a part from a message
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          part_id: Part ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        if not part_id:
+            raise ValueError(f"Expected a non-empty value for `part_id` but received {part_id!r}")
+        return self._delete(
+            f"/session/{id}/message/{message_id}/part/{part_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionDeletePartResponse,
+        )
+
+    def update_part(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        part_id: str,
+        part: session_update_part_params.SessionUpdatePartParams,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Part:
+        """
+        Replace a message part with a new value.
+
+        The request body is a *complete* replacement `Part` object (matching one
+        of the `Part` union's variants), not a partial patch -- typically a
+        caller GETs the part first (e.g. via `get_message`), edits the fields it
+        wants to change, and PATCHes the whole object back.
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          part_id: Part ID
+
+          part: The full replacement part, matching one of the `Part` union's variants
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        if not part_id:
+            raise ValueError(f"Expected a non-empty value for `part_id` but received {part_id!r}")
+        return cast(
+            Part,
+            self._patch(
+                f"/session/{id}/message/{message_id}/part/{part_id}",
+                body=maybe_transform(part, session_update_part_params.SessionUpdatePartParams),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, Part),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    def respond_permission(
+        self,
+        id: str,
+        *,
+        permission_id: str,
+        response: Literal["once", "always", "reject"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionRespondPermissionResponse:
+        """
+        Respond to a pending permission request for a session.
+
+        Deprecated: the spec marks `permission.respond` as `deprecated: true`.
+        Retained for backwards compatibility.
+
+        Args:
+          id: Session ID
+
+          permission_id: Permission ID
+
+          response: How to resolve the permission request
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not permission_id:
+            raise ValueError(f"Expected a non-empty value for `permission_id` but received {permission_id!r}")
+        return self._post(
+            f"/session/{id}/permissions/{permission_id}",
+            body=maybe_transform(
+                {"response": response}, session_respond_permission_params.SessionRespondPermissionParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionRespondPermissionResponse,
+        )
+
+    def prompt_async(
+        self,
+        id: str,
+        *,
+        parts: Iterable[session_prompt_async_params.Part],
+        agent: str | NotGiven = NOT_GIVEN,
+        format: session_prompt_async_params.Format | NotGiven = NOT_GIVEN,
+        message_id: str | NotGiven = NOT_GIVEN,
+        model: session_prompt_async_params.Model | NotGiven = NOT_GIVEN,
+        no_reply: bool | NotGiven = NOT_GIVEN,
+        system: str | NotGiven = NOT_GIVEN,
+        tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
+        variant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Send a new message to a session without waiting for the assistant's
+        reply (accepted asynchronously; the server responds `204 No Content`).
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/session/{id}/prompt_async",
+            body=maybe_transform(
+                {
+                    "parts": parts,
+                    "agent": agent,
+                    "format": format,
+                    "message_id": message_id,
+                    "model": model,
+                    "no_reply": no_reply,
+                    "system": system,
+                    "tools": tools,
+                    "variant": variant,
+                },
+                session_prompt_async_params.SessionPromptAsyncParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    def shell(
+        self,
+        id: str,
+        *,
+        agent: str,
+        command: str,
+        message_id: str | NotGiven = NOT_GIVEN,
+        model: session_shell_params.Model | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionShellResponse:
+        """
+        Run a shell command within a session
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/session/{id}/shell",
+            body=maybe_transform(
+                {
+                    "agent": agent,
+                    "command": command,
+                    "message_id": message_id,
+                    "model": model,
+                },
+                session_shell_params.SessionShellParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionShellResponse,
+        )
+
+    def todo(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionTodoResponse:
+        """
+        List the todo items tracked for a session
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/session/{id}/todo",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionTodoResponse,
+        )
+
 
 class AsyncSessionResource(AsyncAPIResource):
     @cached_property
@@ -1023,6 +1695,659 @@ class AsyncSessionResource(AsyncAPIResource):
             cast_to=Session,
         )
 
+    async def status(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionStatusResponse:
+        """Get the status of every active session, keyed by session ID"""
+        return await self._get(
+            "/session/status",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionStatusResponse,
+        )
+
+    async def get(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Get a session by ID
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/session/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
+    async def update(
+        self,
+        id: str,
+        *,
+        metadata: object | NotGiven = NOT_GIVEN,
+        permission: Iterable[session_update_params.Permission] | NotGiven = NOT_GIVEN,
+        time: session_update_params.Time | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Update session properties such as its title, metadata, permission
+        overrides, or archived timestamp
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._patch(
+            f"/session/{id}",
+            body=await async_maybe_transform(
+                {
+                    "metadata": metadata,
+                    "permission": permission,
+                    "time": time,
+                    "title": title,
+                },
+                session_update_params.SessionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
+    async def children(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionChildrenResponse:
+        """
+        List the direct child sessions forked from this session
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/session/{id}/children",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionChildrenResponse,
+        )
+
+    async def command(
+        self,
+        id: str,
+        *,
+        arguments: str,
+        command: str,
+        agent: str | NotGiven = NOT_GIVEN,
+        message_id: str | NotGiven = NOT_GIVEN,
+        model: str | NotGiven = NOT_GIVEN,
+        parts: Iterable[FilePartInputParam] | NotGiven = NOT_GIVEN,
+        variant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionCommandResponse:
+        """
+        Run a slash command within a session
+
+        Args:
+          id: Session ID
+
+          arguments: Raw command arguments
+
+          command: Command name to execute
+
+          model: Model in `providerID/modelID` string form
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/session/{id}/command",
+            body=await async_maybe_transform(
+                {
+                    "arguments": arguments,
+                    "command": command,
+                    "agent": agent,
+                    "message_id": message_id,
+                    "model": model,
+                    "parts": parts,
+                    "variant": variant,
+                },
+                session_command_params.SessionCommandParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionCommandResponse,
+        )
+
+    async def diff(
+        self,
+        id: str,
+        *,
+        message_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionDiffResponse:
+        """
+        Get the file diffs produced by a session, optionally only up to a given
+        message
+
+        Args:
+          id: Session ID
+
+          message_id: Only include diffs up to this message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/session/{id}/diff",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"message_id": message_id}, session_diff_params.SessionDiffParams),
+            ),
+            cast_to=SessionDiffResponse,
+        )
+
+    async def fork(
+        self,
+        id: str,
+        *,
+        message_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Session:
+        """
+        Fork a session, optionally only up to a given message
+
+        Args:
+          id: Session ID
+
+          message_id: Fork up to (and including) this message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/session/{id}/fork",
+            body=await async_maybe_transform({"message_id": message_id}, session_fork_params.SessionForkParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Session,
+        )
+
+    async def delete_message(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionDeleteMessageResponse:
+        """
+        Delete a message (and its parts) from a session
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        return await self._delete(
+            f"/session/{id}/message/{message_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionDeleteMessageResponse,
+        )
+
+    async def get_message(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionMessagesResponseItem:
+        """
+        Get a single message (with its parts) from a session
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        return await self._get(
+            f"/session/{id}/message/{message_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionMessagesResponseItem,
+        )
+
+    async def delete_part(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        part_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionDeletePartResponse:
+        """
+        Delete a part from a message
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          part_id: Part ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        if not part_id:
+            raise ValueError(f"Expected a non-empty value for `part_id` but received {part_id!r}")
+        return await self._delete(
+            f"/session/{id}/message/{message_id}/part/{part_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionDeletePartResponse,
+        )
+
+    async def update_part(
+        self,
+        id: str,
+        *,
+        message_id: str,
+        part_id: str,
+        part: session_update_part_params.SessionUpdatePartParams,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Part:
+        """
+        Replace a message part with a new value.
+
+        The request body is a *complete* replacement `Part` object (matching one
+        of the `Part` union's variants), not a partial patch -- typically a
+        caller GETs the part first (e.g. via `get_message`), edits the fields it
+        wants to change, and PATCHes the whole object back.
+
+        Args:
+          id: Session ID
+
+          message_id: Message ID
+
+          part_id: Part ID
+
+          part: The full replacement part, matching one of the `Part` union's variants
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not message_id:
+            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
+        if not part_id:
+            raise ValueError(f"Expected a non-empty value for `part_id` but received {part_id!r}")
+        return cast(
+            Part,
+            await self._patch(
+                f"/session/{id}/message/{message_id}/part/{part_id}",
+                body=await async_maybe_transform(part, session_update_part_params.SessionUpdatePartParams),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, Part),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    async def respond_permission(
+        self,
+        id: str,
+        *,
+        permission_id: str,
+        response: Literal["once", "always", "reject"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionRespondPermissionResponse:
+        """
+        Respond to a pending permission request for a session.
+
+        Deprecated: the spec marks `permission.respond` as `deprecated: true`.
+        Retained for backwards compatibility.
+
+        Args:
+          id: Session ID
+
+          permission_id: Permission ID
+
+          response: How to resolve the permission request
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not permission_id:
+            raise ValueError(f"Expected a non-empty value for `permission_id` but received {permission_id!r}")
+        return await self._post(
+            f"/session/{id}/permissions/{permission_id}",
+            body=await async_maybe_transform(
+                {"response": response}, session_respond_permission_params.SessionRespondPermissionParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionRespondPermissionResponse,
+        )
+
+    async def prompt_async(
+        self,
+        id: str,
+        *,
+        parts: Iterable[session_prompt_async_params.Part],
+        agent: str | NotGiven = NOT_GIVEN,
+        format: session_prompt_async_params.Format | NotGiven = NOT_GIVEN,
+        message_id: str | NotGiven = NOT_GIVEN,
+        model: session_prompt_async_params.Model | NotGiven = NOT_GIVEN,
+        no_reply: bool | NotGiven = NOT_GIVEN,
+        system: str | NotGiven = NOT_GIVEN,
+        tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
+        variant: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Send a new message to a session without waiting for the assistant's
+        reply (accepted asynchronously; the server responds `204 No Content`).
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/session/{id}/prompt_async",
+            body=await async_maybe_transform(
+                {
+                    "parts": parts,
+                    "agent": agent,
+                    "format": format,
+                    "message_id": message_id,
+                    "model": model,
+                    "no_reply": no_reply,
+                    "system": system,
+                    "tools": tools,
+                    "variant": variant,
+                },
+                session_prompt_async_params.SessionPromptAsyncParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    async def shell(
+        self,
+        id: str,
+        *,
+        agent: str,
+        command: str,
+        message_id: str | NotGiven = NOT_GIVEN,
+        model: session_shell_params.Model | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionShellResponse:
+        """
+        Run a shell command within a session
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/session/{id}/shell",
+            body=await async_maybe_transform(
+                {
+                    "agent": agent,
+                    "command": command,
+                    "message_id": message_id,
+                    "model": model,
+                },
+                session_shell_params.SessionShellParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionShellResponse,
+        )
+
+    async def todo(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SessionTodoResponse:
+        """
+        List the todo items tracked for a session
+
+        Args:
+          id: Session ID
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/session/{id}/todo",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SessionTodoResponse,
+        )
+
 
 class SessionResourceWithRawResponse:
     def __init__(self, session: SessionResource) -> None:
@@ -1063,6 +2388,51 @@ class SessionResourceWithRawResponse:
         )
         self.unshare = to_raw_response_wrapper(
             session.unshare,
+        )
+        self.status = to_raw_response_wrapper(
+            session.status,
+        )
+        self.get = to_raw_response_wrapper(
+            session.get,
+        )
+        self.update = to_raw_response_wrapper(
+            session.update,
+        )
+        self.children = to_raw_response_wrapper(
+            session.children,
+        )
+        self.command = to_raw_response_wrapper(
+            session.command,
+        )
+        self.diff = to_raw_response_wrapper(
+            session.diff,
+        )
+        self.fork = to_raw_response_wrapper(
+            session.fork,
+        )
+        self.delete_message = to_raw_response_wrapper(
+            session.delete_message,
+        )
+        self.get_message = to_raw_response_wrapper(
+            session.get_message,
+        )
+        self.delete_part = to_raw_response_wrapper(
+            session.delete_part,
+        )
+        self.update_part = to_raw_response_wrapper(
+            session.update_part,
+        )
+        self.respond_permission = to_raw_response_wrapper(
+            session.respond_permission,
+        )
+        self.prompt_async = to_raw_response_wrapper(
+            session.prompt_async,
+        )
+        self.shell = to_raw_response_wrapper(
+            session.shell,
+        )
+        self.todo = to_raw_response_wrapper(
+            session.todo,
         )
 
 
@@ -1106,6 +2476,51 @@ class AsyncSessionResourceWithRawResponse:
         self.unshare = async_to_raw_response_wrapper(
             session.unshare,
         )
+        self.status = async_to_raw_response_wrapper(
+            session.status,
+        )
+        self.get = async_to_raw_response_wrapper(
+            session.get,
+        )
+        self.update = async_to_raw_response_wrapper(
+            session.update,
+        )
+        self.children = async_to_raw_response_wrapper(
+            session.children,
+        )
+        self.command = async_to_raw_response_wrapper(
+            session.command,
+        )
+        self.diff = async_to_raw_response_wrapper(
+            session.diff,
+        )
+        self.fork = async_to_raw_response_wrapper(
+            session.fork,
+        )
+        self.delete_message = async_to_raw_response_wrapper(
+            session.delete_message,
+        )
+        self.get_message = async_to_raw_response_wrapper(
+            session.get_message,
+        )
+        self.delete_part = async_to_raw_response_wrapper(
+            session.delete_part,
+        )
+        self.update_part = async_to_raw_response_wrapper(
+            session.update_part,
+        )
+        self.respond_permission = async_to_raw_response_wrapper(
+            session.respond_permission,
+        )
+        self.prompt_async = async_to_raw_response_wrapper(
+            session.prompt_async,
+        )
+        self.shell = async_to_raw_response_wrapper(
+            session.shell,
+        )
+        self.todo = async_to_raw_response_wrapper(
+            session.todo,
+        )
 
 
 class SessionResourceWithStreamingResponse:
@@ -1148,6 +2563,51 @@ class SessionResourceWithStreamingResponse:
         self.unshare = to_streamed_response_wrapper(
             session.unshare,
         )
+        self.status = to_streamed_response_wrapper(
+            session.status,
+        )
+        self.get = to_streamed_response_wrapper(
+            session.get,
+        )
+        self.update = to_streamed_response_wrapper(
+            session.update,
+        )
+        self.children = to_streamed_response_wrapper(
+            session.children,
+        )
+        self.command = to_streamed_response_wrapper(
+            session.command,
+        )
+        self.diff = to_streamed_response_wrapper(
+            session.diff,
+        )
+        self.fork = to_streamed_response_wrapper(
+            session.fork,
+        )
+        self.delete_message = to_streamed_response_wrapper(
+            session.delete_message,
+        )
+        self.get_message = to_streamed_response_wrapper(
+            session.get_message,
+        )
+        self.delete_part = to_streamed_response_wrapper(
+            session.delete_part,
+        )
+        self.update_part = to_streamed_response_wrapper(
+            session.update_part,
+        )
+        self.respond_permission = to_streamed_response_wrapper(
+            session.respond_permission,
+        )
+        self.prompt_async = to_streamed_response_wrapper(
+            session.prompt_async,
+        )
+        self.shell = to_streamed_response_wrapper(
+            session.shell,
+        )
+        self.todo = to_streamed_response_wrapper(
+            session.todo,
+        )
 
 
 class AsyncSessionResourceWithStreamingResponse:
@@ -1189,4 +2649,49 @@ class AsyncSessionResourceWithStreamingResponse:
         )
         self.unshare = async_to_streamed_response_wrapper(
             session.unshare,
+        )
+        self.status = async_to_streamed_response_wrapper(
+            session.status,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            session.get,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            session.update,
+        )
+        self.children = async_to_streamed_response_wrapper(
+            session.children,
+        )
+        self.command = async_to_streamed_response_wrapper(
+            session.command,
+        )
+        self.diff = async_to_streamed_response_wrapper(
+            session.diff,
+        )
+        self.fork = async_to_streamed_response_wrapper(
+            session.fork,
+        )
+        self.delete_message = async_to_streamed_response_wrapper(
+            session.delete_message,
+        )
+        self.get_message = async_to_streamed_response_wrapper(
+            session.get_message,
+        )
+        self.delete_part = async_to_streamed_response_wrapper(
+            session.delete_part,
+        )
+        self.update_part = async_to_streamed_response_wrapper(
+            session.update_part,
+        )
+        self.respond_permission = async_to_streamed_response_wrapper(
+            session.respond_permission,
+        )
+        self.prompt_async = async_to_streamed_response_wrapper(
+            session.prompt_async,
+        )
+        self.shell = async_to_streamed_response_wrapper(
+            session.shell,
+        )
+        self.todo = async_to_streamed_response_wrapper(
+            session.todo,
         )

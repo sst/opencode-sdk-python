@@ -112,6 +112,7 @@ from opencode_ai.types import (
     ToolStateError,
     ToolStatePending,
     ToolStateRunning,
+    Todo,
     UserMessage,
     SessionListResponse,
     SessionDeleteResponse,
@@ -120,6 +121,16 @@ from opencode_ai.types import (
     SessionMessagesResponse,
     SessionPromptResponse,
     SessionSummarizeResponse,
+    SessionChildrenResponse,
+    SessionCommandResponse,
+    SessionDeleteMessageResponse,
+    SessionDeletePartResponse,
+    SessionDiffResponse,
+    SessionMessagesResponseItem,
+    SessionRespondPermissionResponse,
+    SessionShellResponse,
+    SessionStatusResponse,
+    SessionTodoResponse,
 )
 ```
 
@@ -127,16 +138,31 @@ Methods:
 
 - <code title="post /session">client.session.<a href="./src/opencode_ai/resources/session.py">create</a>() -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
 - <code title="get /session">client.session.<a href="./src/opencode_ai/resources/session.py">list</a>(\*\*<a href="src/opencode_ai/types/session_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_list_response.py">SessionListResponse</a></code>
+- <code title="get /session/{id}">client.session.<a href="./src/opencode_ai/resources/session.py">get</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
+- <code title="patch /session/{id}">client.session.<a href="./src/opencode_ai/resources/session.py">update</a>(id, \*\*<a href="src/opencode_ai/types/session_update_params.py">params</a>) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
 - <code title="delete /session/{id}">client.session.<a href="./src/opencode_ai/resources/session.py">delete</a>(id) -> <a href="./src/opencode_ai/types/session_delete_response.py">SessionDeleteResponse</a></code>
 - <code title="post /session/{id}/abort">client.session.<a href="./src/opencode_ai/resources/session.py">abort</a>(id) -> <a href="./src/opencode_ai/types/session_abort_response.py">SessionAbortResponse</a></code>
+- <code title="get /session/{id}/children">client.session.<a href="./src/opencode_ai/resources/session.py">children</a>(id) -> <a href="./src/opencode_ai/types/session_children_response.py">SessionChildrenResponse</a></code>
+- <code title="post /session/{id}/command">client.session.<a href="./src/opencode_ai/resources/session.py">command</a>(id, \*\*<a href="src/opencode_ai/types/session_command_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_command_response.py">SessionCommandResponse</a></code>
+- <code title="delete /session/{id}/message/{message_id}">client.session.<a href="./src/opencode_ai/resources/session.py">delete_message</a>(message_id, \*, id) -> <a href="./src/opencode_ai/types/session_delete_message_response.py">SessionDeleteMessageResponse</a></code>
+- <code title="delete /session/{id}/message/{message_id}/part/{part_id}">client.session.<a href="./src/opencode_ai/resources/session.py">delete_part</a>(part_id, \*, id, message_id) -> <a href="./src/opencode_ai/types/session_delete_part_response.py">SessionDeletePartResponse</a></code>
+- <code title="get /session/{id}/diff">client.session.<a href="./src/opencode_ai/resources/session.py">diff</a>(id, \*\*<a href="src/opencode_ai/types/session_diff_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_diff_response.py">SessionDiffResponse</a></code>
+- <code title="post /session/{id}/fork">client.session.<a href="./src/opencode_ai/resources/session.py">fork</a>(id, \*\*<a href="src/opencode_ai/types/session_fork_params.py">params</a>) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
+- <code title="get /session/{id}/message/{message_id}">client.session.<a href="./src/opencode_ai/resources/session.py">get_message</a>(message_id, \*, id) -> <a href="./src/opencode_ai/types/session_messages_response.py">SessionMessagesResponseItem</a></code>
 - <code title="post /session/{id}/message">client.session.<a href="./src/opencode_ai/resources/session.py">prompt</a>(id, \*\*<a href="src/opencode_ai/types/session_prompt_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_prompt_response.py">SessionPromptResponse</a></code>
+- <code title="post /session/{id}/prompt_async">client.session.<a href="./src/opencode_ai/resources/session.py">prompt_async</a>(id, \*\*<a href="src/opencode_ai/types/session_prompt_async_params.py">params</a>) -> None</code>
+- <code title="post /session/{id}/permissions/{permission_id}">client.session.<a href="./src/opencode_ai/resources/session.py">respond_permission</a>(permission_id, \*, id, \*\*<a href="src/opencode_ai/types/session_respond_permission_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_respond_permission_response.py">SessionRespondPermissionResponse</a></code>
 - <code title="post /session/{id}/init">client.session.<a href="./src/opencode_ai/resources/session.py">init</a>(id, \*\*<a href="src/opencode_ai/types/session_init_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_init_response.py">SessionInitResponse</a></code>
 - <code title="get /session/{id}/message">client.session.<a href="./src/opencode_ai/resources/session.py">messages</a>(id, \*\*<a href="src/opencode_ai/types/session_messages_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_messages_response.py">SessionMessagesResponse</a></code>
 - <code title="post /session/{id}/revert">client.session.<a href="./src/opencode_ai/resources/session.py">revert</a>(id, \*\*<a href="src/opencode_ai/types/session_revert_params.py">params</a>) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
 - <code title="post /session/{id}/share">client.session.<a href="./src/opencode_ai/resources/session.py">share</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
+- <code title="post /session/{id}/shell">client.session.<a href="./src/opencode_ai/resources/session.py">shell</a>(id, \*\*<a href="src/opencode_ai/types/session_shell_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_shell_response.py">SessionShellResponse</a></code>
+- <code title="get /session/status">client.session.<a href="./src/opencode_ai/resources/session.py">status</a>() -> <a href="./src/opencode_ai/types/session_status_response.py">SessionStatusResponse</a></code>
 - <code title="post /session/{id}/summarize">client.session.<a href="./src/opencode_ai/resources/session.py">summarize</a>(id, \*\*<a href="src/opencode_ai/types/session_summarize_params.py">params</a>) -> <a href="./src/opencode_ai/types/session_summarize_response.py">SessionSummarizeResponse</a></code>
+- <code title="get /session/{id}/todo">client.session.<a href="./src/opencode_ai/resources/session.py">todo</a>(id) -> <a href="./src/opencode_ai/types/session_todo_response.py">SessionTodoResponse</a></code>
 - <code title="post /session/{id}/unrevert">client.session.<a href="./src/opencode_ai/resources/session.py">unrevert</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
 - <code title="delete /session/{id}/share">client.session.<a href="./src/opencode_ai/resources/session.py">unshare</a>(id) -> <a href="./src/opencode_ai/types/session.py">Session</a></code>
+- <code title="patch /session/{id}/message/{message_id}/part/{part_id}">client.session.<a href="./src/opencode_ai/resources/session.py">update_part</a>(part_id, \*, id, message_id, \*\*<a href="src/opencode_ai/types/session_update_part_params.py">params</a>) -> <a href="./src/opencode_ai/types/part.py">Part</a></code>
 
 # Project
 

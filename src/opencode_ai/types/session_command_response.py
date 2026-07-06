@@ -6,10 +6,10 @@ from .part import Part
 from .._models import BaseModel
 from .assistant_message import AssistantMessage
 
-__all__ = ["SessionPromptResponse"]
+__all__ = ["SessionCommandResponse"]
 
 
-class SessionPromptResponse(BaseModel):
+class SessionCommandResponse(BaseModel):
     info: AssistantMessage
 
     parts: List[Part]

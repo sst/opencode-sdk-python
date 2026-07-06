@@ -3,13 +3,13 @@
 from typing import List
 
 from .part import Part
+from .message import Message
 from .._models import BaseModel
-from .assistant_message import AssistantMessage
 
-__all__ = ["SessionPromptResponse"]
+__all__ = ["SessionShellResponse"]
 
 
-class SessionPromptResponse(BaseModel):
-    info: AssistantMessage
+class SessionShellResponse(BaseModel):
+    info: Message
 
     parts: List[Part]
