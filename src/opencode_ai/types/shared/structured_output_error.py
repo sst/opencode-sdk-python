@@ -4,10 +4,16 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["StructuredOutputError"]
+__all__ = ["StructuredOutputError", "Data"]
+
+
+class Data(BaseModel):
+    message: str
+
+    retries: int
 
 
 class StructuredOutputError(BaseModel):
-    data: object
+    data: Data
 
     name: Literal["StructuredOutputError"]

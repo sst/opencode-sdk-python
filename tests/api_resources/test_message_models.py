@@ -43,6 +43,6 @@ def test_user_message_parses_current_shape() -> None:
 
 
 def test_assistant_message_error_resolves_api_error() -> None:
-    payload = {**ASSISTANT_PAYLOAD, "error": {"name": "APIError", "data": {}}}
+    payload = {**ASSISTANT_PAYLOAD, "error": {"name": "APIError", "data": {"message": "boom", "isRetryable": True}}}
     msg = construct_type(type_=AssistantMessage, value=payload)
     assert type(msg.error).__name__ == "APIError"
