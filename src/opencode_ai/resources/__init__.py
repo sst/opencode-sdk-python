@@ -72,6 +72,14 @@ from .provider import (
     ProviderResourceWithStreamingResponse,
     AsyncProviderResourceWithStreamingResponse,
 )
+from .sync import (
+    SyncResource,
+    AsyncSyncResource,
+    SyncResourceWithRawResponse,
+    AsyncSyncResourceWithRawResponse,
+    SyncResourceWithStreamingResponse,
+    AsyncSyncResourceWithStreamingResponse,
+)
 
 __all__ = [
     "EventResource",
@@ -128,4 +136,10 @@ __all__ = [
     "AsyncProviderResourceWithRawResponse",
     "ProviderResourceWithStreamingResponse",
     "AsyncProviderResourceWithStreamingResponse",
+    "SyncResource",
+    "AsyncSyncResource",
+    "SyncResourceWithRawResponse",
+    "AsyncSyncResourceWithRawResponse",
+    "SyncResourceWithStreamingResponse",
+    "AsyncSyncResourceWithStreamingResponse",
 ]

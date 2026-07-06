@@ -174,6 +174,26 @@ Methods:
 - <code title="post /provider/{providerID}/oauth/authorize">client.provider.<a href="./src/opencode_ai/resources/provider.py">oauth_authorize</a>(provider_id, \*\*<a href="src/opencode_ai/types/provider_oauth_authorize_params.py">params</a>) -> <a href="./src/opencode_ai/types/provider_auth_authorization.py">ProviderAuthAuthorization</a></code>
 - <code title="post /provider/{providerID}/oauth/callback">client.provider.<a href="./src/opencode_ai/resources/provider.py">oauth_callback</a>(provider_id, \*\*<a href="src/opencode_ai/types/provider_oauth_callback_params.py">params</a>) -> <a href="./src/opencode_ai/types/provider_oauth_callback_response.py">ProviderOAuthCallbackResponse</a></code>
 
+# Sync
+
+Types:
+
+```python
+from opencode_ai.types import (
+    SyncHistoryListResponse,
+    SyncReplayResponse,
+    SyncStartResponse,
+    SyncStealResponse,
+)
+```
+
+Methods:
+
+- <code title="post /sync/history">client.sync.<a href="./src/opencode_ai/resources/sync.py">history_list</a>(\*\*<a href="src/opencode_ai/types/sync_history_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/sync_history_list_response.py">SyncHistoryListResponse</a></code>
+- <code title="post /sync/replay">client.sync.<a href="./src/opencode_ai/resources/sync.py">replay</a>(\*\*<a href="src/opencode_ai/types/sync_replay_params.py">params</a>) -> <a href="./src/opencode_ai/types/sync_replay_response.py">SyncReplayResponse</a></code>
+- <code title="post /sync/start">client.sync.<a href="./src/opencode_ai/resources/sync.py">start</a>() -> <a href="./src/opencode_ai/types/sync_start_response.py">SyncStartResponse</a></code>
+- <code title="post /sync/steal">client.sync.<a href="./src/opencode_ai/resources/sync.py">steal</a>(\*\*<a href="src/opencode_ai/types/sync_steal_params.py">params</a>) -> <a href="./src/opencode_ai/types/sync_steal_response.py">SyncStealResponse</a></code>
+
 # Tui
 
 Types:
