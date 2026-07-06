@@ -50,6 +50,7 @@ from .symbol_source import SymbolSource as SymbolSource
 from .vcs_file_diff import VcsFileDiff as VcsFileDiff
 from .app_log_params import AppLogParams as AppLogParams
 from .mcp_add_params import McpAddParams as McpAddParams
+from .addressing_params import AddressingParams as AddressingParams
 from .permission_config import (
     PermissionConfig as PermissionConfig,
     PermissionRuleConfig as PermissionRuleConfig,
