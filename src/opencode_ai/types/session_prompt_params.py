@@ -9,23 +9,34 @@ from .._utils import PropertyInfo
 from .file_part_input_param import FilePartInputParam
 from .text_part_input_param import TextPartInputParam
 
-__all__ = ["SessionChatParams", "Part"]
+__all__ = ["SessionPromptParams", "Model", "Part"]
 
 
-class SessionChatParams(TypedDict, total=False):
+class Model(TypedDict, total=False):
+    provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
+
     model_id: Required[Annotated[str, PropertyInfo(alias="modelID")]]
 
+
+class SessionPromptParams(TypedDict, total=False):
     parts: Required[Iterable[Part]]
 
-    provider_id: Required[Annotated[str, PropertyInfo(alias="providerID")]]
+    model: Model
+
+    agent: str
 
     message_id: Annotated[str, PropertyInfo(alias="messageID")]
 
-    mode: str
+    no_reply: Annotated[bool, PropertyInfo(alias="noReply")]
+
+    tools: Dict[str, bool]
 
     system: str
 
-    tools: Dict[str, bool]
+    variant: str
+
+    # `format` maps to OutputFormat in the spec. Model it from the spec's
+    # OutputFormat schema and add it here as: format: <OutputFormatType>
 
 
 Part: TypeAlias = Union[TextPartInputParam, FilePartInputParam]

@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 
 import httpx
 
-from ..types import session_chat_params, session_init_params, session_revert_params, session_summarize_params
+from ..types import session_init_params, session_prompt_params, session_revert_params, session_summarize_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -19,11 +19,11 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.session import Session
-from ..types.assistant_message import AssistantMessage
 from ..types.session_init_response import SessionInitResponse
 from ..types.session_list_response import SessionListResponse
 from ..types.session_abort_response import SessionAbortResponse
 from ..types.session_delete_response import SessionDeleteResponse
+from ..types.session_prompt_response import SessionPromptResponse
 from ..types.session_messages_response import SessionMessagesResponse
 from ..types.session_summarize_response import SessionSummarizeResponse
 
@@ -154,24 +154,25 @@ class SessionResource(SyncAPIResource):
             cast_to=SessionAbortResponse,
         )
 
-    def chat(
+    def prompt(
         self,
         id: str,
         *,
-        model_id: str,
-        parts: Iterable[session_chat_params.Part],
-        provider_id: str,
+        parts: Iterable[session_prompt_params.Part],
+        agent: str | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
-        mode: str | NotGiven = NOT_GIVEN,
+        model: session_prompt_params.Model | NotGiven = NOT_GIVEN,
+        no_reply: bool | NotGiven = NOT_GIVEN,
         system: str | NotGiven = NOT_GIVEN,
         tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
+        variant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AssistantMessage:
+    ) -> SessionPromptResponse:
         """
         Create and send a new message to a session
 
@@ -192,20 +193,22 @@ class SessionResource(SyncAPIResource):
             f"/session/{id}/message",
             body=maybe_transform(
                 {
-                    "model_id": model_id,
                     "parts": parts,
-                    "provider_id": provider_id,
+                    "model": model,
+                    "agent": agent,
                     "message_id": message_id,
-                    "mode": mode,
-                    "system": system,
+                    "no_reply": no_reply,
                     "tools": tools,
+                    "system": system,
+                    "variant": variant,
+                    # "format": format,
                 },
-                session_chat_params.SessionChatParams,
+                session_prompt_params.SessionPromptParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantMessage,
+            cast_to=SessionPromptResponse,
         )
 
     def init(
@@ -599,24 +602,25 @@ class AsyncSessionResource(AsyncAPIResource):
             cast_to=SessionAbortResponse,
         )
 
-    async def chat(
+    async def prompt(
         self,
         id: str,
         *,
-        model_id: str,
-        parts: Iterable[session_chat_params.Part],
-        provider_id: str,
+        parts: Iterable[session_prompt_params.Part],
+        agent: str | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
-        mode: str | NotGiven = NOT_GIVEN,
+        model: session_prompt_params.Model | NotGiven = NOT_GIVEN,
+        no_reply: bool | NotGiven = NOT_GIVEN,
         system: str | NotGiven = NOT_GIVEN,
         tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
+        variant: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AssistantMessage:
+    ) -> SessionPromptResponse:
         """
         Create and send a new message to a session
 
@@ -637,20 +641,22 @@ class AsyncSessionResource(AsyncAPIResource):
             f"/session/{id}/message",
             body=await async_maybe_transform(
                 {
-                    "model_id": model_id,
                     "parts": parts,
-                    "provider_id": provider_id,
+                    "model": model,
+                    "agent": agent,
                     "message_id": message_id,
-                    "mode": mode,
-                    "system": system,
+                    "no_reply": no_reply,
                     "tools": tools,
+                    "system": system,
+                    "variant": variant,
+                    # "format": format,
                 },
-                session_chat_params.SessionChatParams,
+                session_prompt_params.SessionPromptParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AssistantMessage,
+            cast_to=SessionPromptResponse,
         )
 
     async def init(
@@ -936,8 +942,8 @@ class SessionResourceWithRawResponse:
         self.abort = to_raw_response_wrapper(
             session.abort,
         )
-        self.chat = to_raw_response_wrapper(
-            session.chat,
+        self.prompt = to_raw_response_wrapper(
+            session.prompt,
         )
         self.init = to_raw_response_wrapper(
             session.init,
@@ -978,8 +984,8 @@ class AsyncSessionResourceWithRawResponse:
         self.abort = async_to_raw_response_wrapper(
             session.abort,
         )
-        self.chat = async_to_raw_response_wrapper(
-            session.chat,
+        self.prompt = async_to_raw_response_wrapper(
+            session.prompt,
         )
         self.init = async_to_raw_response_wrapper(
             session.init,
@@ -1020,8 +1026,8 @@ class SessionResourceWithStreamingResponse:
         self.abort = to_streamed_response_wrapper(
             session.abort,
         )
-        self.chat = to_streamed_response_wrapper(
-            session.chat,
+        self.prompt = to_streamed_response_wrapper(
+            session.prompt,
         )
         self.init = to_streamed_response_wrapper(
             session.init,
@@ -1062,8 +1068,8 @@ class AsyncSessionResourceWithStreamingResponse:
         self.abort = async_to_streamed_response_wrapper(
             session.abort,
         )
-        self.chat = async_to_streamed_response_wrapper(
-            session.chat,
+        self.prompt = async_to_streamed_response_wrapper(
+            session.prompt,
         )
         self.init = async_to_streamed_response_wrapper(
             session.init,

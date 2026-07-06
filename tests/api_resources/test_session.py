@@ -5,22 +5,47 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
 
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
 from opencode_ai.types import (
     Session,
-    AssistantMessage,
     SessionInitResponse,
     SessionListResponse,
     SessionAbortResponse,
+    SessionPromptResponse,
     SessionDeleteResponse,
     SessionMessagesResponse,
     SessionSummarizeResponse,
 )
+from tests.wire_helpers import read_json_body
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+
+PROMPT_SAMPLE = {
+    "info": {
+        "id": "msg_1",
+        "agent": "build",
+        "cost": 0,
+        "mode": "build",
+        "modelID": "claude-opus-4-8",
+        "parentID": "ses_1",
+        "path": {"cwd": "/", "root": "/"},
+        "providerID": "anthropic",
+        "role": "assistant",
+        "sessionID": "ses_1",
+        "time": {"created": 0},
+        "tokens": {
+            "cache": {"read": 0, "write": 0},
+            "input": 0,
+            "output": 0,
+            "reasoning": 0,
+        },
+    },
+    "parts": [],
+}
 
 
 class TestSession:
@@ -168,26 +193,23 @@ class TestSession:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_chat(self, client: Opencode) -> None:
-        session = client.session.chat(
+    def test_method_prompt(self, client: Opencode) -> None:
+        session = client.session.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
                     "type": "text",
                 }
             ],
-            provider_id="providerID",
         )
-        assert_matches_type(AssistantMessage, session, path=["response"])
+        assert_matches_type(SessionPromptResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_chat_with_all_params(self, client: Opencode) -> None:
-        session = client.session.chat(
+    def test_method_prompt_with_all_params(self, client: Opencode) -> None:
+        session = client.session.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
@@ -200,70 +222,69 @@ class TestSession:
                     },
                 }
             ],
-            provider_id="providerID",
+            model={
+                "provider_id": "providerID",
+                "model_id": "modelID",
+            },
+            agent="agent",
             message_id="msg",
-            mode="mode",
-            system="system",
+            no_reply=True,
             tools={"foo": True},
+            system="system",
+            variant="variant",
         )
-        assert_matches_type(AssistantMessage, session, path=["response"])
+        assert_matches_type(SessionPromptResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_chat(self, client: Opencode) -> None:
-        response = client.session.with_raw_response.chat(
+    def test_raw_response_prompt(self, client: Opencode) -> None:
+        response = client.session.with_raw_response.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
                     "type": "text",
                 }
             ],
-            provider_id="providerID",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = response.parse()
-        assert_matches_type(AssistantMessage, session, path=["response"])
+        assert_matches_type(SessionPromptResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_chat(self, client: Opencode) -> None:
-        with client.session.with_streaming_response.chat(
+    def test_streaming_response_prompt(self, client: Opencode) -> None:
+        with client.session.with_streaming_response.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
                     "type": "text",
                 }
             ],
-            provider_id="providerID",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = response.parse()
-            assert_matches_type(AssistantMessage, session, path=["response"])
+            assert_matches_type(SessionPromptResponse, session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_path_params_chat(self, client: Opencode) -> None:
+    def test_path_params_prompt(self, client: Opencode) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.session.with_raw_response.chat(
+            client.session.with_raw_response.prompt(
                 id="",
-                model_id="modelID",
                 parts=[
                     {
                         "text": "text",
                         "type": "text",
                     }
                 ],
-                provider_id="providerID",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -595,6 +616,29 @@ class TestSession:
             )
 
 
+class TestSessionPromptWire:
+    @pytest.mark.respx(base_url=base_url)
+    def test_prompt_sends_nested_model_and_agent(self, client, respx_mock) -> None:
+        route = respx_mock.post("/session/ses_1/message").mock(
+            return_value=httpx.Response(200, json=PROMPT_SAMPLE)
+        )
+        result = client.session.prompt(
+            "ses_1",
+            parts=[{"type": "text", "text": "hi"}],
+            model={"provider_id": "anthropic", "model_id": "claude-opus-4-8"},
+            agent="build",
+        )
+        body = read_json_body(route)
+        assert body["model"] == {"providerID": "anthropic", "modelID": "claude-opus-4-8"}
+        assert body["agent"] == "build"
+        assert "mode" not in body
+        assert "modelID" not in body
+        assert_matches_type(SessionPromptResponse, result, path=["response"])
+
+    def test_chat_is_removed(self, client) -> None:
+        assert not hasattr(client.session, "chat")
+
+
 class TestAsyncSession:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
@@ -742,26 +786,23 @@ class TestAsyncSession:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_chat(self, async_client: AsyncOpencode) -> None:
-        session = await async_client.session.chat(
+    async def test_method_prompt(self, async_client: AsyncOpencode) -> None:
+        session = await async_client.session.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
                     "type": "text",
                 }
             ],
-            provider_id="providerID",
         )
-        assert_matches_type(AssistantMessage, session, path=["response"])
+        assert_matches_type(SessionPromptResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_chat_with_all_params(self, async_client: AsyncOpencode) -> None:
-        session = await async_client.session.chat(
+    async def test_method_prompt_with_all_params(self, async_client: AsyncOpencode) -> None:
+        session = await async_client.session.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
@@ -774,70 +815,69 @@ class TestAsyncSession:
                     },
                 }
             ],
-            provider_id="providerID",
+            model={
+                "provider_id": "providerID",
+                "model_id": "modelID",
+            },
+            agent="agent",
             message_id="msg",
-            mode="mode",
-            system="system",
+            no_reply=True,
             tools={"foo": True},
+            system="system",
+            variant="variant",
         )
-        assert_matches_type(AssistantMessage, session, path=["response"])
+        assert_matches_type(SessionPromptResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_chat(self, async_client: AsyncOpencode) -> None:
-        response = await async_client.session.with_raw_response.chat(
+    async def test_raw_response_prompt(self, async_client: AsyncOpencode) -> None:
+        response = await async_client.session.with_raw_response.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
                     "type": "text",
                 }
             ],
-            provider_id="providerID",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         session = await response.parse()
-        assert_matches_type(AssistantMessage, session, path=["response"])
+        assert_matches_type(SessionPromptResponse, session, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_chat(self, async_client: AsyncOpencode) -> None:
-        async with async_client.session.with_streaming_response.chat(
+    async def test_streaming_response_prompt(self, async_client: AsyncOpencode) -> None:
+        async with async_client.session.with_streaming_response.prompt(
             id="id",
-            model_id="modelID",
             parts=[
                 {
                     "text": "text",
                     "type": "text",
                 }
             ],
-            provider_id="providerID",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             session = await response.parse()
-            assert_matches_type(AssistantMessage, session, path=["response"])
+            assert_matches_type(SessionPromptResponse, session, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_path_params_chat(self, async_client: AsyncOpencode) -> None:
+    async def test_path_params_prompt(self, async_client: AsyncOpencode) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.session.with_raw_response.chat(
+            await async_client.session.with_raw_response.prompt(
                 id="",
-                model_id="modelID",
                 parts=[
                     {
                         "text": "text",
                         "type": "text",
                     }
                 ],
-                provider_id="providerID",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")

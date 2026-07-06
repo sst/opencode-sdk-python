@@ -48,8 +48,8 @@ from .event_list_response import EventListResponse as EventListResponse
 from .file_content_params import FileContentParams as FileContentParams
 from .find_files_response import FindFilesResponse as FindFilesResponse
 from .find_symbols_params import FindSymbolsParams as FindSymbolsParams
-from .session_chat_params import SessionChatParams as SessionChatParams
 from .session_init_params import SessionInitParams as SessionInitParams
+from .session_prompt_params import SessionPromptParams as SessionPromptParams
 from .symbol_source_param import SymbolSourceParam as SymbolSourceParam
 from .file_status_response import FileStatusResponse as FileStatusResponse
 from .tool_state_completed import ToolStateCompleted as ToolStateCompleted
@@ -66,6 +66,7 @@ from .file_part_source_param import FilePartSourceParam as FilePartSourceParam
 from .session_abort_response import SessionAbortResponse as SessionAbortResponse
 from .tui_open_help_response import TuiOpenHelpResponse as TuiOpenHelpResponse
 from .session_delete_response import SessionDeleteResponse as SessionDeleteResponse
+from .session_prompt_response import SessionPromptResponse as SessionPromptResponse
 from .session_summarize_params import SessionSummarizeParams as SessionSummarizeParams
 from .tui_append_prompt_params import TuiAppendPromptParams as TuiAppendPromptParams
 from .session_messages_response import SessionMessagesResponse as SessionMessagesResponse
