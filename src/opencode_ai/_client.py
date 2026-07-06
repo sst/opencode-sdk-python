@@ -21,7 +21,22 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import app, mcp, pty, tui, sync, file, find, event, config, project, session, provider
+from .resources import (
+    app,
+    mcp,
+    pty,
+    tui,
+    sync,
+    file,
+    find,
+    event,
+    config,
+    project,
+    session,
+    provider,
+    question,
+    permission,
+)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -55,6 +70,8 @@ class Opencode(SyncAPIClient):
     sync: sync.SyncResource
     mcp: mcp.McpResource
     pty: pty.PtyResource
+    question: question.QuestionResource
+    permission: permission.PermissionResource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -113,6 +130,8 @@ class Opencode(SyncAPIClient):
         self.sync = sync.SyncResource(self)
         self.mcp = mcp.McpResource(self)
         self.pty = pty.PtyResource(self)
+        self.question = question.QuestionResource(self)
+        self.permission = permission.PermissionResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -226,6 +245,8 @@ class AsyncOpencode(AsyncAPIClient):
     sync: sync.AsyncSyncResource
     mcp: mcp.AsyncMcpResource
     pty: pty.AsyncPtyResource
+    question: question.AsyncQuestionResource
+    permission: permission.AsyncPermissionResource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -284,6 +305,8 @@ class AsyncOpencode(AsyncAPIClient):
         self.sync = sync.AsyncSyncResource(self)
         self.mcp = mcp.AsyncMcpResource(self)
         self.pty = pty.AsyncPtyResource(self)
+        self.question = question.AsyncQuestionResource(self)
+        self.permission = permission.AsyncPermissionResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
@@ -398,6 +421,8 @@ class OpencodeWithRawResponse:
         self.sync = sync.SyncResourceWithRawResponse(client.sync)
         self.mcp = mcp.McpResourceWithRawResponse(client.mcp)
         self.pty = pty.PtyResourceWithRawResponse(client.pty)
+        self.question = question.QuestionResourceWithRawResponse(client.question)
+        self.permission = permission.PermissionResourceWithRawResponse(client.permission)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -414,6 +439,8 @@ class AsyncOpencodeWithRawResponse:
         self.sync = sync.AsyncSyncResourceWithRawResponse(client.sync)
         self.mcp = mcp.AsyncMcpResourceWithRawResponse(client.mcp)
         self.pty = pty.AsyncPtyResourceWithRawResponse(client.pty)
+        self.question = question.AsyncQuestionResourceWithRawResponse(client.question)
+        self.permission = permission.AsyncPermissionResourceWithRawResponse(client.permission)
 
 
 class OpencodeWithStreamedResponse:
@@ -430,6 +457,8 @@ class OpencodeWithStreamedResponse:
         self.sync = sync.SyncResourceWithStreamingResponse(client.sync)
         self.mcp = mcp.McpResourceWithStreamingResponse(client.mcp)
         self.pty = pty.PtyResourceWithStreamingResponse(client.pty)
+        self.question = question.QuestionResourceWithStreamingResponse(client.question)
+        self.permission = permission.PermissionResourceWithStreamingResponse(client.permission)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -446,6 +475,8 @@ class AsyncOpencodeWithStreamedResponse:
         self.sync = sync.AsyncSyncResourceWithStreamingResponse(client.sync)
         self.mcp = mcp.AsyncMcpResourceWithStreamingResponse(client.mcp)
         self.pty = pty.AsyncPtyResourceWithStreamingResponse(client.pty)
+        self.question = question.AsyncQuestionResourceWithStreamingResponse(client.question)
+        self.permission = permission.AsyncPermissionResourceWithStreamingResponse(client.permission)
 
 
 Client = Opencode

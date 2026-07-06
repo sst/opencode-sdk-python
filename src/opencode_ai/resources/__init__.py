@@ -96,6 +96,22 @@ from .pty import (
     PtyResourceWithStreamingResponse,
     AsyncPtyResourceWithStreamingResponse,
 )
+from .question import (
+    QuestionResource,
+    AsyncQuestionResource,
+    QuestionResourceWithRawResponse,
+    AsyncQuestionResourceWithRawResponse,
+    QuestionResourceWithStreamingResponse,
+    AsyncQuestionResourceWithStreamingResponse,
+)
+from .permission import (
+    PermissionResource,
+    AsyncPermissionResource,
+    PermissionResourceWithRawResponse,
+    AsyncPermissionResourceWithRawResponse,
+    PermissionResourceWithStreamingResponse,
+    AsyncPermissionResourceWithStreamingResponse,
+)
 
 __all__ = [
     "EventResource",
@@ -170,4 +186,16 @@ __all__ = [
     "AsyncPtyResourceWithRawResponse",
     "PtyResourceWithStreamingResponse",
     "AsyncPtyResourceWithStreamingResponse",
+    "QuestionResource",
+    "AsyncQuestionResource",
+    "QuestionResourceWithRawResponse",
+    "AsyncQuestionResourceWithRawResponse",
+    "QuestionResourceWithStreamingResponse",
+    "AsyncQuestionResourceWithStreamingResponse",
+    "PermissionResource",
+    "AsyncPermissionResource",
+    "PermissionResourceWithRawResponse",
+    "AsyncPermissionResourceWithRawResponse",
+    "PermissionResourceWithStreamingResponse",
+    "AsyncPermissionResourceWithStreamingResponse",
 ]

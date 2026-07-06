@@ -148,3 +148,15 @@ from .tui_control_response_params import TuiControlResponseParams as TuiControlR
 from .tui_execute_command_params import TuiExecuteCommandParams as TuiExecuteCommandParams
 from .tui_execute_command_response import TuiExecuteCommandResponse as TuiExecuteCommandResponse
 from .tui_control_response_response import TuiControlResponseResponse as TuiControlResponseResponse
+from .question_info import QuestionInfo as QuestionInfo
+from .question_option import QuestionOption as QuestionOption
+from .question_request import QuestionRequest as QuestionRequest
+from .question_tool import QuestionTool as QuestionTool
+from .question_list_response import QuestionListResponse as QuestionListResponse
+from .question_reject_response import QuestionRejectResponse as QuestionRejectResponse
+from .question_reply_params import QuestionReplyParams as QuestionReplyParams
+from .question_reply_response import QuestionReplyResponse as QuestionReplyResponse
+from .permission_request import PermissionRequest as PermissionRequest
+from .permission_list_response import PermissionListResponse as PermissionListResponse
+from .permission_reply_params import PermissionReplyParams as PermissionReplyParams
+from .permission_reply_response import PermissionReplyResponse as PermissionReplyResponse

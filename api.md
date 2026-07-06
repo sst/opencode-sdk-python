@@ -292,3 +292,42 @@ Methods:
 - <code title="post /tui/select-session">client.tui.<a href="./src/opencode_ai/resources/tui.py">select_session</a>(\*\*<a href="src/opencode_ai/types/tui_select_session_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_select_session_response.py">TuiSelectSessionResponse</a></code>
 - <code title="get /tui/control/next">client.tui.<a href="./src/opencode_ai/resources/tui.py">control_next</a>() -> <a href="./src/opencode_ai/types/tui_control_next_response.py">TuiControlNextResponse</a></code>
 - <code title="post /tui/control/response">client.tui.<a href="./src/opencode_ai/resources/tui.py">control_response</a>(\*\*<a href="src/opencode_ai/types/tui_control_response_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_control_response_response.py">TuiControlResponseResponse</a></code>
+
+# Question
+
+Types:
+
+```python
+from opencode_ai.types import (
+    QuestionInfo,
+    QuestionOption,
+    QuestionRequest,
+    QuestionTool,
+    QuestionListResponse,
+    QuestionRejectResponse,
+    QuestionReplyResponse,
+)
+```
+
+Methods:
+
+- <code title="get /question">client.question.<a href="./src/opencode_ai/resources/question.py">list</a>() -> <a href="./src/opencode_ai/types/question_list_response.py">QuestionListResponse</a></code>
+- <code title="post /question/{requestID}/reject">client.question.<a href="./src/opencode_ai/resources/question.py">reject</a>(request_id) -> <a href="./src/opencode_ai/types/question_reject_response.py">QuestionRejectResponse</a></code>
+- <code title="post /question/{requestID}/reply">client.question.<a href="./src/opencode_ai/resources/question.py">reply</a>(request_id, \*\*<a href="src/opencode_ai/types/question_reply_params.py">params</a>) -> <a href="./src/opencode_ai/types/question_reply_response.py">QuestionReplyResponse</a></code>
+
+# Permission
+
+Types:
+
+```python
+from opencode_ai.types import (
+    PermissionRequest,
+    PermissionListResponse,
+    PermissionReplyResponse,
+)
+```
+
+Methods:
+
+- <code title="get /permission">client.permission.<a href="./src/opencode_ai/resources/permission.py">list</a>() -> <a href="./src/opencode_ai/types/permission_list_response.py">PermissionListResponse</a></code>
+- <code title="post /permission/{requestID}/reply">client.permission.<a href="./src/opencode_ai/resources/permission.py">reply</a>(request_id, \*\*<a href="src/opencode_ai/types/permission_reply_params.py">params</a>) -> <a href="./src/opencode_ai/types/permission_reply_response.py">PermissionReplyResponse</a></code>
