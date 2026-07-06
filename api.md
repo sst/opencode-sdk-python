@@ -84,7 +84,9 @@ Types:
 
 ```python
 from opencode_ai.types import (
+    AgentPart,
     AssistantMessage,
+    CompactionPart,
     FilePart,
     FilePartInput,
     FilePartSource,
@@ -92,10 +94,15 @@ from opencode_ai.types import (
     FileSource,
     Message,
     Part,
+    PartUnknown,
+    PatchPart,
+    ReasoningPart,
+    RetryPart,
     Session,
     SnapshotPart,
     StepFinishPart,
     StepStartPart,
+    SubtaskPart,
     SymbolSource,
     TextPart,
     TextPartInput,
