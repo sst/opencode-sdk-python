@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import cast
 
-from opencode_ai.types import AssistantMessage, UserMessage
+from opencode_ai.types import AssistantMessage, FilePartSource, ResourceSource, UserMessage
 from opencode_ai._models import construct_type
 
 ASSISTANT_PAYLOAD: dict[str, object] = {
@@ -44,6 +44,21 @@ def test_user_message_parses_current_shape() -> None:
     msg = cast(UserMessage, construct_type(type_=UserMessage, value=USER_PAYLOAD))
     assert msg.agent == "build"
     assert msg.model.provider_id == "anthropic"
+
+
+def test_file_part_source_resolves_resource_source() -> None:
+    payload: dict[str, object] = {
+        "type": "resource",
+        "clientName": "my-mcp-server",
+        "uri": "resource://docs/readme",
+        "text": {"start": 0, "end": 10, "value": "hello"},
+    }
+    source = cast(ResourceSource, construct_type(type_=FilePartSource, value=payload))
+    assert isinstance(source, ResourceSource)
+    assert source.type == "resource"
+    assert source.client_name == "my-mcp-server"
+    assert source.uri == "resource://docs/readme"
+    assert source.text.value == "hello"
 
 
 def test_assistant_message_error_resolves_api_error() -> None:

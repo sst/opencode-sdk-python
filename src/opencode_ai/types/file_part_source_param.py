@@ -7,7 +7,8 @@ from typing_extensions import TypeAlias
 
 from .file_source_param import FileSourceParam
 from .symbol_source_param import SymbolSourceParam
+from .resource_source_param import ResourceSourceParam
 
 __all__ = ["FilePartSourceParam"]
 
-FilePartSourceParam: TypeAlias = Union[FileSourceParam, SymbolSourceParam]
+FilePartSourceParam: TypeAlias = Union[FileSourceParam, SymbolSourceParam, ResourceSourceParam]

@@ -98,6 +98,7 @@ from opencode_ai.types import (
     PartUnknown,
     PatchPart,
     ReasoningPart,
+    ResourceSource,
     RetryPart,
     Session,
     SnapshotPart,

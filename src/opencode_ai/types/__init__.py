@@ -52,6 +52,7 @@ from .app_log_params import AppLogParams as AppLogParams
 from .mcp_add_params import McpAddParams as McpAddParams
 from .keybinds_config import KeybindsConfig as KeybindsConfig
 from .question_option import QuestionOption as QuestionOption
+from .resource_source import ResourceSource as ResourceSource
 from .vcs_diff_params import VcsDiffParams as VcsDiffParams
 from .vcs_file_status import VcsFileStatus as VcsFileStatus
 from .app_log_response import AppLogResponse as AppLogResponse
@@ -121,6 +122,7 @@ from .mcp_status_needs_auth import MCPStatusNeedsAuth as MCPStatusNeedsAuth
 from .project_list_response import ProjectListResponse as ProjectListResponse
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .question_reply_params import QuestionReplyParams as QuestionReplyParams
+from .resource_source_param import ResourceSourceParam as ResourceSourceParam
 from .session_diff_response import SessionDiffResponse as SessionDiffResponse
 from .session_init_response import SessionInitResponse as SessionInitResponse
 from .session_list_response import SessionListResponse as SessionListResponse
