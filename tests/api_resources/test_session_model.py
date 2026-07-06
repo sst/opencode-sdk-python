@@ -1,3 +1,5 @@
+from typing import cast
+
 from opencode_ai.types import Session
 from opencode_ai._models import construct_type
 
@@ -35,16 +37,18 @@ SESSION_PAYLOAD = {
 
 
 def test_session_parses_current_shape() -> None:
-    msg = construct_type(type_=Session, value=SESSION_PAYLOAD)
+    msg = cast(Session, construct_type(type_=Session, value=SESSION_PAYLOAD))
     assert msg.slug == "my-session"
     assert msg.project_id == "prj_1"
     assert msg.workspace_id == "wrk_1"
     assert msg.directory == "/home/user/project"
     assert msg.path == "/home/user/project"
     assert msg.cost == 0.05
+    assert msg.tokens is not None
     assert msg.tokens.input == 100.0
     assert msg.tokens.cache.read == 10.0
     assert msg.agent == "build"
+    assert msg.model is not None
     assert msg.model.id == "claude-opus-4-8"
     assert msg.model.provider_id == "anthropic"
     assert msg.metadata == {"foo": "bar"}
@@ -52,8 +56,11 @@ def test_session_parses_current_shape() -> None:
     assert msg.time.updated == 2.0
     assert msg.time.compacting == 1.5
     assert msg.time.archived == 3.0
+    assert msg.summary is not None
     assert msg.summary.additions == 10.0
+    assert msg.summary.diffs is not None
     assert msg.summary.diffs[0].file == "a.py"
+    assert msg.permission is not None
     assert msg.permission[0].action == "allow"
     assert msg.permission[0].pattern == "*"
     assert msg.permission[0].permission == "edit"
@@ -69,7 +76,7 @@ def test_session_minimal_required_fields() -> None:
         "version": "1.0.0",
         "time": {"created": 1.0, "updated": 2.0},
     }
-    msg = construct_type(type_=Session, value=minimal)
+    msg = cast(Session, construct_type(type_=Session, value=minimal))
     assert msg.id == "ses_2"
     assert msg.workspace_id is None
     assert msg.summary is None

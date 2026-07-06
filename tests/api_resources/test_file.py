@@ -7,6 +7,7 @@ from typing import Any, cast
 
 import httpx
 import pytest
+from respx import MockRouter
 
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
@@ -221,7 +222,7 @@ class TestAsyncFile:
 
 class TestFileWire:
     @pytest.mark.respx(base_url=base_url)
-    def test_list_hits_file_path_and_returns_array(self, client, respx_mock) -> None:
+    def test_list_hits_file_path_and_returns_array(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/file").mock(
             return_value=httpx.Response(
                 200,
@@ -242,7 +243,7 @@ class TestFileWire:
         assert isinstance(result[0], FileNode)
 
     @pytest.mark.respx(base_url=base_url)
-    def test_content_hits_file_content_path(self, client, respx_mock) -> None:
+    def test_content_hits_file_content_path(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/file/content").mock(
             return_value=httpx.Response(200, json={"content": "x", "type": "text"})
         )
@@ -251,5 +252,5 @@ class TestFileWire:
         assert route_request(route).url.params.get("path") == "a.py"
         assert_matches_type(FileContentResponse, result, path=["response"])
 
-    def test_read_is_removed(self, client) -> None:
+    def test_read_is_removed(self, client: Opencode) -> None:
         assert not hasattr(client.file, "read")

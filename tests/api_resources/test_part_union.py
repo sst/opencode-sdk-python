@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 from opencode_ai.types import Part
 from opencode_ai._models import construct_type
 from opencode_ai.types.part import (
@@ -9,7 +11,7 @@ from opencode_ai.types.part import (
     CompactionPart,
 )
 
-BASE = {"id": "prt_1", "sessionID": "ses_1", "messageID": "msg_1"}
+BASE: Dict[str, Any] = {"id": "prt_1", "sessionID": "ses_1", "messageID": "msg_1"}
 
 
 def test_text_part_resolves() -> None:
@@ -20,7 +22,7 @@ def test_text_part_resolves() -> None:
 
 
 def test_tool_part_resolves() -> None:
-    payload = {
+    payload: Dict[str, Any] = {
         **BASE,
         "type": "tool",
         "callID": "call_1",

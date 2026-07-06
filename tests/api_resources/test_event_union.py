@@ -13,12 +13,14 @@ generated once from the OpenAPI spec and pinned here so the test suite has no
 runtime dependency on that external file.
 """
 
+from typing import Any, Dict, List, Tuple
+
 from opencode_ai.types import EventListResponse
 from opencode_ai._models import construct_type
 
 # (wire `type` value, expected class name, minimal valid payload) for every
 # one of the 87 spec variants.
-EVENT_VARIANT_SAMPLES = [
+EVENT_VARIANT_SAMPLES: List[Tuple[str, str, Dict[str, Any]]] = [
     ("plugin.added", "EventPluginAdded", {"id": "x", "type": "plugin.added", "properties": {"id": "x"}}),
     (
         "catalog.model.updated",
@@ -903,7 +905,7 @@ def test_sanitized_name_variant_resolves() -> None:
 
 
 def test_session_error_resolves() -> None:
-    payload = {"id": "evt_1", "type": "session.error", "properties": {}}
+    payload: Dict[str, Any] = {"id": "evt_1", "type": "session.error", "properties": {}}
     ev = construct_type(type_=EventListResponse, value=payload)
     assert type(ev).__name__ == "EventSessionError"
 
@@ -915,7 +917,7 @@ def test_session_idle_resolves() -> None:
 
 
 def test_message_updated_resolves() -> None:
-    payload = {
+    payload: Dict[str, Any] = {
         "id": "evt_1",
         "type": "message.updated",
         "properties": {

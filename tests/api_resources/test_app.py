@@ -7,6 +7,7 @@ from typing import Any, cast
 
 import httpx
 import pytest
+from respx import MockRouter
 
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
@@ -186,20 +187,20 @@ class TestAsyncApp:
 
 class TestAppWire:
     @pytest.mark.respx(base_url=base_url)
-    def test_agents_hits_agent_path(self, client, respx_mock) -> None:
+    def test_agents_hits_agent_path(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/agent").mock(return_value=httpx.Response(200, json=[]))
         result = client.app.agents()
         assert route_request(route).url.path == "/agent"
         assert_matches_type(AppAgentsResponse, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)
-    def test_skills_hits_skill_path(self, client, respx_mock) -> None:
+    def test_skills_hits_skill_path(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/skill").mock(return_value=httpx.Response(200, json=[]))
         result = client.app.skills()
         assert route_request(route).url.path == "/skill"
         assert_matches_type(AppSkillsResponse, result, path=["response"])
 
-    def test_removed_methods(self, client) -> None:
+    def test_removed_methods(self, client: Opencode) -> None:
         assert not hasattr(client.app, "get")
         assert not hasattr(client.app, "init")
         assert not hasattr(client.app, "modes")
