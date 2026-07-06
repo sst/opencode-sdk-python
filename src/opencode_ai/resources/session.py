@@ -3,10 +3,18 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable
+from typing_extensions import Literal
 
 import httpx
 
-from ..types import session_init_params, session_prompt_params, session_revert_params, session_summarize_params
+from ..types import (
+    session_init_params,
+    session_list_params,
+    session_prompt_params,
+    session_revert_params,
+    session_messages_params,
+    session_summarize_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -72,6 +80,12 @@ class SessionResource(SyncAPIResource):
     def list(
         self,
         *,
+        limit: float | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        roots: bool | NotGiven = NOT_GIVEN,
+        scope: Literal["project"] | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
+        start: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -79,11 +93,36 @@ class SessionResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SessionListResponse:
-        """List all sessions"""
+        """
+        List all sessions
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             "/session",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "limit": limit,
+                        "path": path,
+                        "roots": roots,
+                        "scope": scope,
+                        "search": search,
+                        "start": start,
+                    },
+                    session_list_params.SessionListParams,
+                ),
             ),
             cast_to=SessionListResponse,
         )
@@ -261,6 +300,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        before: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,7 +328,17 @@ class SessionResource(SyncAPIResource):
         return self._get(
             f"/session/{id}/message",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "before": before,
+                        "limit": limit,
+                    },
+                    session_messages_params.SessionMessagesParams,
+                ),
             ),
             cast_to=SessionMessagesResponse,
         )
@@ -373,6 +424,7 @@ class SessionResource(SyncAPIResource):
         *,
         model_id: str,
         provider_id: str,
+        auto: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -402,6 +454,7 @@ class SessionResource(SyncAPIResource):
                 {
                     "model_id": model_id,
                     "provider_id": provider_id,
+                    "auto": auto,
                 },
                 session_summarize_params.SessionSummarizeParams,
             ),
@@ -520,6 +573,12 @@ class AsyncSessionResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        limit: float | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        roots: bool | NotGiven = NOT_GIVEN,
+        scope: Literal["project"] | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
+        start: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -527,11 +586,36 @@ class AsyncSessionResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SessionListResponse:
-        """List all sessions"""
+        """
+        List all sessions
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             "/session",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "limit": limit,
+                        "path": path,
+                        "roots": roots,
+                        "scope": scope,
+                        "search": search,
+                        "start": start,
+                    },
+                    session_list_params.SessionListParams,
+                ),
             ),
             cast_to=SessionListResponse,
         )
@@ -709,6 +793,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        before: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -735,7 +821,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._get(
             f"/session/{id}/message",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "before": before,
+                        "limit": limit,
+                    },
+                    session_messages_params.SessionMessagesParams,
+                ),
             ),
             cast_to=SessionMessagesResponse,
         )
@@ -821,6 +917,7 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         model_id: str,
         provider_id: str,
+        auto: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -850,6 +947,7 @@ class AsyncSessionResource(AsyncAPIResource):
                 {
                     "model_id": model_id,
                     "provider_id": provider_id,
+                    "auto": auto,
                 },
                 session_summarize_params.SessionSummarizeParams,
             ),

@@ -15,12 +15,12 @@ from opencode_ai.types import (
     SessionInitResponse,
     SessionListResponse,
     SessionAbortResponse,
-    SessionPromptResponse,
     SessionDeleteResponse,
+    SessionPromptResponse,
     SessionMessagesResponse,
     SessionSummarizeResponse,
 )
-from tests.wire_helpers import read_json_body
+from tests.wire_helpers import route_request, read_json_body
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -619,9 +619,7 @@ class TestSession:
 class TestSessionPromptWire:
     @pytest.mark.respx(base_url=base_url)
     def test_prompt_sends_nested_model_and_agent(self, client, respx_mock) -> None:
-        route = respx_mock.post("/session/ses_1/message").mock(
-            return_value=httpx.Response(200, json=PROMPT_SAMPLE)
-        )
+        route = respx_mock.post("/session/ses_1/message").mock(return_value=httpx.Response(200, json=PROMPT_SAMPLE))
         result = client.session.prompt(
             "ses_1",
             parts=[{"type": "text", "text": "hi"}],
@@ -637,6 +635,23 @@ class TestSessionPromptWire:
 
     def test_chat_is_removed(self, client) -> None:
         assert not hasattr(client.session, "chat")
+
+
+class TestSessionParamGaps:
+    @pytest.mark.respx(base_url=base_url)
+    def test_list_sends_new_filters(self, client, respx_mock) -> None:
+        route = respx_mock.get("/session").mock(return_value=httpx.Response(200, json=[]))
+        client.session.list(search="foo", limit=10)
+        params = route_request(route).url.params
+        assert params.get("search") == "foo"
+        assert params.get("limit") == "10"
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_summarize_sends_auto(self, client, respx_mock) -> None:
+        route = respx_mock.post("/session/ses_1/summarize").mock(return_value=httpx.Response(200, json=True))
+        client.session.summarize("ses_1", model_id="modelID", provider_id="providerID", auto=True)
+        body = route_request(route)
+        assert b"auto" in body.content
 
 
 class TestAsyncSession:
