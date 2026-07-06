@@ -22,24 +22,21 @@ Types:
 
 ```python
 from opencode_ai.types import (
-    App,
-    Mode,
     Model,
     Provider,
-    AppInitResponse,
+    AppAgentsResponse,
     AppLogResponse,
-    AppModesResponse,
     AppProvidersResponse,
+    AppSkillsResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /app">client.app.<a href="./src/opencode_ai/resources/app.py">get</a>() -> <a href="./src/opencode_ai/types/app.py">App</a></code>
-- <code title="post /app/init">client.app.<a href="./src/opencode_ai/resources/app.py">init</a>() -> <a href="./src/opencode_ai/types/app_init_response.py">AppInitResponse</a></code>
+- <code title="get /agent">client.app.<a href="./src/opencode_ai/resources/app.py">agents</a>() -> <a href="./src/opencode_ai/types/app_agents_response.py">AppAgentsResponse</a></code>
 - <code title="post /log">client.app.<a href="./src/opencode_ai/resources/app.py">log</a>(\*\*<a href="src/opencode_ai/types/app_log_params.py">params</a>) -> <a href="./src/opencode_ai/types/app_log_response.py">AppLogResponse</a></code>
-- <code title="get /mode">client.app.<a href="./src/opencode_ai/resources/app.py">modes</a>() -> <a href="./src/opencode_ai/types/app_modes_response.py">AppModesResponse</a></code>
 - <code title="get /config/providers">client.app.<a href="./src/opencode_ai/resources/app.py">providers</a>() -> <a href="./src/opencode_ai/types/app_providers_response.py">AppProvidersResponse</a></code>
+- <code title="get /skill">client.app.<a href="./src/opencode_ai/resources/app.py">skills</a>() -> <a href="./src/opencode_ai/types/app_skills_response.py">AppSkillsResponse</a></code>
 
 # Find
 
