@@ -27,7 +27,7 @@ def test_unknown_event_type_does_not_raise() -> None:
 
 
 def test_known_event_type_still_resolves_correctly() -> None:
-    payload = {"type": "installation.updated", "properties": {"version": "1.2.3"}}
+    payload = {"id": "evt_1", "type": "installation.updated", "properties": {"version": "1.2.3"}}
     event = construct_type(type_=EventListResponse, value=payload)
     assert isinstance(event, EventInstallationUpdated)
     assert event.properties.version == "1.2.3"

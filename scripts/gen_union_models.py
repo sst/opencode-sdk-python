@@ -54,6 +54,7 @@ from __future__ import annotations
 
 import re
 import json
+import keyword
 import argparse
 from typing import Any, Set, Dict, List, Tuple, Optional
 
@@ -77,6 +78,7 @@ KNOWN_MODULES: Dict[str, str] = {
     "StructuredOutputError": "shared.structured_output_error",
     "Message": "message",
     "Session": "session",
+    "Part": "part",
 }
 
 
@@ -84,6 +86,22 @@ def camel_to_snake(name: str) -> str:
     s1 = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
     s2 = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s1)
     return s2.lower()
+
+
+def literal_type(enum_values: List[Any]) -> str:
+    """Render a JSON Schema `enum` (of any length -- single-value discriminator
+    consts and multi-value string enums alike, e.g. `["rename", "change"]`) as
+    a Python `Literal[...]`."""
+    values = ", ".join(f'"{v}"' if isinstance(v, str) else repr(v) for v in enum_values)
+    return f"Literal[{values}]"
+
+
+def safe_field_name(snake_name: str) -> str:
+    """Append a trailing underscore to Python-keyword field names (e.g. the
+    literal wire property ``from`` on ``EventAccountSwitchedProperties``) so
+    the generated attribute is a valid identifier. The original wire name is
+    preserved separately and always carried through as the pydantic alias."""
+    return f"{snake_name}_" if keyword.iskeyword(snake_name) else snake_name
 
 
 def snake_to_pascal(snake_name: str) -> str:
@@ -168,6 +186,10 @@ class Generator:
             ref_name = self._ref_name(prop_schema["$ref"])
             return self._resolve_ref(ref_name, nested_class_name)
 
+        if "anyOf" in prop_schema:
+            class_name = parent_class + snake_to_pascal(prop_snake)
+            return self._resolve_anyof(prop_schema["anyOf"], class_name=class_name)
+
         json_type = prop_schema.get("type")
 
         if json_type == "object":
@@ -182,6 +204,8 @@ class Generator:
             return f"List[{item_type}]"
 
         if json_type == "string":
+            if prop_schema.get("enum"):
+                return literal_type(prop_schema["enum"])
             return "str"
         if json_type == "integer":
             return "int"
@@ -199,11 +223,15 @@ class Generator:
             return ref_name
 
         ref_schema = self.schemas.get(ref_name, {})
+        if not ref_schema:
+            return "object"
+
         if "anyOf" in ref_schema:
-            member_names = [self._ref_name(m["$ref"]) for m in ref_schema["anyOf"] if "$ref" in m]
-            member_schemas = [self.schemas[m] for m in member_names]
-            unresolved = [m for m in member_names if m not in KNOWN_MODULES]
-            if not unresolved:
+            members = ref_schema["anyOf"]
+            member_refs = [m["$ref"] for m in members if "$ref" in m]
+            if len(member_refs) == len(members) and all(self._ref_name(r) in KNOWN_MODULES for r in member_refs):
+                member_names = [self._ref_name(r) for r in member_refs]
+                member_schemas = [self.schemas[m] for m in member_names]
                 for m in member_names:
                     self._add_import(KNOWN_MODULES[m], m)
                 discriminator = self._find_discriminator_field(member_schemas)
@@ -216,14 +244,97 @@ class Generator:
                 self.nested_classes.append(alias_src)
                 self.all_names.append(nested_class_name)
                 return nested_class_name
-            # Fall through: unknown members, best effort deferral.
-            return "object"
+            # Not every member has a dedicated module -- synthesize a locally
+            # scoped discriminated union, inlining whichever members lack one.
+            return self._resolve_anyof(members, class_name=nested_class_name)
 
-        # Named ref to a plain object we don't have a dedicated module for --
-        # best effort: inline it like an anonymous object.
-        if ref_schema:
+        # A named ref that isn't an `anyOf` can still be shaped like anything a
+        # regular property can be (a plain object, an array, or even a bare
+        # scalar) -- dispatch on its JSON type the same way `_resolve_type`
+        # does for inline schemas, just naming any emitted class after the
+        # *property* that pointed here rather than the ref's own (possibly
+        # non-identifier) schema name.
+        json_type = ref_schema.get("type")
+        if json_type == "array":
+            item_type = self._resolve_type(
+                ref_schema.get("items", {}), parent_class=nested_class_name, prop_name="item"
+            )
+            return f"List[{item_type}]"
+        if json_type == "string":
+            if ref_schema.get("enum"):
+                return literal_type(ref_schema["enum"])
+            return "str"
+        if json_type == "integer":
+            return "int"
+        if json_type == "number":
+            return "float"
+        if json_type == "boolean":
+            return "bool"
+        if ref_schema.get("properties"):
             return self._emit_object_class(nested_class_name, ref_schema)
+
+        # Unknown/unspecified/empty-object shape -- safest permissive fallback.
         return "object"
+
+    def _resolve_anyof(
+        self,
+        members: List[Dict[str, Any]],
+        *,
+        class_name: str,
+    ) -> str:
+        """Handle an inline (unnamed) ``anyOf`` on a property -- as distinct from
+        ``_resolve_ref``, which handles a ``$ref`` that itself points at a named
+        ``anyOf`` schema. Two shapes are supported:
+
+        1. A union of plain strings (e.g. a string enum plus an unconstrained
+           ``string`` alternative) -- collapses to ``str``, since the enum'd
+           members are always a strict subset of the unconstrained alternative.
+        2. A discriminated union of objects, where each member is either a
+           ``$ref`` (reused via ``KNOWN_MODULES`` if registered, else inlined as
+           a locally-scoped nested class) or an inline object schema (always
+           inlined). A local ``Union[...]`` discriminator alias is synthesized,
+           named ``<ParentClass><PropertyNameInPascalCase>``.
+        """
+        if all(m.get("type") == "string" for m in members) and not any("$ref" in m for m in members):
+            return "str"
+
+        union_names: List[str] = []
+        member_schemas: List[Dict[str, Any]] = []
+        for idx, member in enumerate(members):
+            if "$ref" in member:
+                ref_name = self._ref_name(member["$ref"])
+                ref_schema = self.schemas.get(ref_name, {})
+                if ref_name in KNOWN_MODULES:
+                    self._add_import(KNOWN_MODULES[ref_name], ref_name)
+                    union_names.append(ref_name)
+                else:
+                    cls_name = class_name + sanitize_class_name(ref_name)
+                    union_names.append(self._emit_object_class(cls_name, ref_schema))
+                member_schemas.append(ref_schema)
+            elif member.get("type") == "object":
+                type_prop = member.get("properties", {}).get("type", {})
+                enum_vals = type_prop.get("enum") or []
+                suffix = snake_to_pascal(camel_to_snake(enum_vals[0])) if enum_vals else str(idx)
+                union_names.append(self._emit_object_class(class_name + suffix, member))
+                member_schemas.append(member)
+            # else: non-object, non-ref member mixed into an otherwise object-ish
+            # union -- best-effort: dropped, since it can't be modeled as a class.
+
+        if not union_names:
+            return "object"
+        if len(union_names) == 1:
+            return union_names[0]
+
+        discriminator = self._find_discriminator_field(member_schemas)
+        union_members = ", ".join(union_names)
+        alias_src = (
+            f"{class_name}: TypeAlias = Annotated[\n"
+            f'    Union[{union_members}], PropertyInfo(discriminator="{discriminator}")\n'
+            f"]"
+        )
+        self.nested_classes.append(alias_src)
+        self.all_names.append(class_name)
+        return class_name
 
     def _emit_object_class(self, class_name: str, schema: Dict[str, Any]) -> str:
         fields = self._build_fields(class_name, schema)
@@ -239,6 +350,8 @@ class Generator:
                 body_lines.append("")
         if body_lines and body_lines[-1] == "":
             body_lines.pop()
+        if not body_lines:
+            body_lines = ["    pass"]
         src = f"class {class_name}(BaseModel):\n" + "\n".join(body_lines)
         self.nested_classes.append(src)
         self.all_names.append(class_name)
@@ -250,7 +363,7 @@ class Generator:
 
         entries: List[Tuple[str, str, bool, Dict[str, Any]]] = []
         for prop_name, prop_schema in properties.items():
-            snake_name = camel_to_snake(prop_name)
+            snake_name = safe_field_name(camel_to_snake(prop_name))
             entries.append((prop_name, snake_name, prop_name in required, prop_schema))
 
         def sort_key(entry: Tuple[str, str, bool, Dict[str, Any]]) -> Tuple[int, str]:
@@ -263,9 +376,12 @@ class Generator:
 
         fields: List[Field] = []
         for prop_name, snake_name, is_required, prop_schema in entries:
-            if snake_name == "type" and "enum" in prop_schema and len(prop_schema["enum"]) == 1:
-                type_str = f'Literal["{prop_schema["enum"][0]}"]'
-                fields.append(Field(prop_name, snake_name, True, type_str, is_literal_type=True))
+            # Any enum -- single-value discriminator consts (`type`/`name` fields)
+            # as well as ordinary multi-value string enums (e.g. `event: "rename"
+            # | "change"`) -- renders as a Literal, never a bare `str`.
+            if "enum" in prop_schema and prop_schema["enum"]:
+                type_str = literal_type(prop_schema["enum"])
+                fields.append(Field(prop_name, snake_name, is_required, type_str, is_literal_type=True))
                 continue
             type_str = self._resolve_type(prop_schema, parent_class=parent_class, prop_name=prop_name)
             fields.append(Field(prop_name, snake_name, is_required, type_str))
@@ -337,7 +453,11 @@ class Generator:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--spec", default="../opencode-openapi-spec.json", help="Path to the OpenAPI spec JSON (relative to the repo root)")
+    parser.add_argument(
+        "--spec",
+        default="../opencode-openapi-spec.json",
+        help="Path to the OpenAPI spec JSON (relative to the repo root)",
+    )
     parser.add_argument("--union", required=True, help="Name of the top-level anyOf union schema, e.g. Part")
     parser.add_argument(
         "--unknown-fallback",
