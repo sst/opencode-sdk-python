@@ -313,8 +313,8 @@ class Generator:
                 member_schemas.append(ref_schema)
             elif member.get("type") == "object":
                 type_prop = member.get("properties", {}).get("type", {})
-                enum_vals = type_prop.get("enum") or []
-                suffix = snake_to_pascal(camel_to_snake(enum_vals[0])) if enum_vals else str(idx)
+                enum_vals: List[Any] = type_prop.get("enum") or []
+                suffix = snake_to_pascal(camel_to_snake(str(enum_vals[0]))) if enum_vals else str(idx)
                 union_names.append(self._emit_object_class(class_name + suffix, member))
                 member_schemas.append(member)
             # else: non-object, non-ref member mixed into an otherwise object-ish
@@ -338,7 +338,7 @@ class Generator:
 
     def _emit_object_class(self, class_name: str, schema: Dict[str, Any]) -> str:
         fields = self._build_fields(class_name, schema)
-        body_lines = []
+        body_lines: List[str] = []
         required_fields = [f for f in fields if f.required]
         optional_fields = [f for f in fields if not f.required]
         for f in required_fields:
