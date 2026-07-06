@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import app, mcp, tui, sync, file, find, event, config, project, session, provider
+from .resources import app, mcp, pty, tui, sync, file, find, event, config, project, session, provider
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -54,6 +54,7 @@ class Opencode(SyncAPIClient):
     provider: provider.ProviderResource
     sync: sync.SyncResource
     mcp: mcp.McpResource
+    pty: pty.PtyResource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -111,6 +112,7 @@ class Opencode(SyncAPIClient):
         self.provider = provider.ProviderResource(self)
         self.sync = sync.SyncResource(self)
         self.mcp = mcp.McpResource(self)
+        self.pty = pty.PtyResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -223,6 +225,7 @@ class AsyncOpencode(AsyncAPIClient):
     provider: provider.AsyncProviderResource
     sync: sync.AsyncSyncResource
     mcp: mcp.AsyncMcpResource
+    pty: pty.AsyncPtyResource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -280,6 +283,7 @@ class AsyncOpencode(AsyncAPIClient):
         self.provider = provider.AsyncProviderResource(self)
         self.sync = sync.AsyncSyncResource(self)
         self.mcp = mcp.AsyncMcpResource(self)
+        self.pty = pty.AsyncPtyResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
@@ -393,6 +397,7 @@ class OpencodeWithRawResponse:
         self.provider = provider.ProviderResourceWithRawResponse(client.provider)
         self.sync = sync.SyncResourceWithRawResponse(client.sync)
         self.mcp = mcp.McpResourceWithRawResponse(client.mcp)
+        self.pty = pty.PtyResourceWithRawResponse(client.pty)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -408,6 +413,7 @@ class AsyncOpencodeWithRawResponse:
         self.provider = provider.AsyncProviderResourceWithRawResponse(client.provider)
         self.sync = sync.AsyncSyncResourceWithRawResponse(client.sync)
         self.mcp = mcp.AsyncMcpResourceWithRawResponse(client.mcp)
+        self.pty = pty.AsyncPtyResourceWithRawResponse(client.pty)
 
 
 class OpencodeWithStreamedResponse:
@@ -423,6 +429,7 @@ class OpencodeWithStreamedResponse:
         self.provider = provider.ProviderResourceWithStreamingResponse(client.provider)
         self.sync = sync.SyncResourceWithStreamingResponse(client.sync)
         self.mcp = mcp.McpResourceWithStreamingResponse(client.mcp)
+        self.pty = pty.PtyResourceWithStreamingResponse(client.pty)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -438,6 +445,7 @@ class AsyncOpencodeWithStreamedResponse:
         self.provider = provider.AsyncProviderResourceWithStreamingResponse(client.provider)
         self.sync = sync.AsyncSyncResourceWithStreamingResponse(client.sync)
         self.mcp = mcp.AsyncMcpResourceWithStreamingResponse(client.mcp)
+        self.pty = pty.AsyncPtyResourceWithStreamingResponse(client.pty)
 
 
 Client = Opencode

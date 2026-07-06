@@ -122,3 +122,13 @@ from .provider_oauth_callback_response import ProviderOAuthCallbackResponse as P
 from .sync_history_list_response import SyncHistoryListResponse as SyncHistoryListResponse
 from .mcp_add_params import McpAddParams as McpAddParams
 from .mcp_auth_callback_params import McpAuthCallbackParams as McpAuthCallbackParams
+from .pty import Pty as Pty
+from .pty_list_response import PtyListResponse as PtyListResponse
+from .pty_create_params import PtyCreateParams as PtyCreateParams
+from .pty_update_params import PtyUpdateParams as PtyUpdateParams
+from .pty_connect_params import PtyConnectParams as PtyConnectParams
+from .pty_delete_response import PtyDeleteResponse as PtyDeleteResponse
+from .pty_shells_response import PtyShellsResponse as PtyShellsResponse
+from .pty_connect_response import PtyConnectResponse as PtyConnectResponse
+from .pty_shells_response_item import PtyShellsResponseItem as PtyShellsResponseItem
+from .pty_connect_token_response import PtyConnectTokenResponse as PtyConnectTokenResponse

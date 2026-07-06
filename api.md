@@ -229,6 +229,32 @@ Methods:
 - <code title="post /mcp/{name}/connect">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">connect</a>(name) -> <a href="./src/opencode_ai/types/mcp_connect_response.py">McpConnectResponse</a></code>
 - <code title="post /mcp/{name}/disconnect">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">disconnect</a>(name) -> <a href="./src/opencode_ai/types/mcp_disconnect_response.py">McpDisconnectResponse</a></code>
 
+# Pty
+
+Types:
+
+```python
+from opencode_ai.types import (
+    Pty,
+    PtyListResponse,
+    PtyConnectResponse,
+    PtyConnectTokenResponse,
+    PtyDeleteResponse,
+    PtyShellsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /pty">client.pty.<a href="./src/opencode_ai/resources/pty.py">list</a>() -> <a href="./src/opencode_ai/types/pty_list_response.py">PtyListResponse</a></code>
+- <code title="post /pty">client.pty.<a href="./src/opencode_ai/resources/pty.py">create</a>(\*\*<a href="src/opencode_ai/types/pty_create_params.py">params</a>) -> <a href="./src/opencode_ai/types/pty.py">Pty</a></code>
+- <code title="get /pty/{ptyID}">client.pty.<a href="./src/opencode_ai/resources/pty.py">retrieve</a>(pty_id) -> <a href="./src/opencode_ai/types/pty.py">Pty</a></code>
+- <code title="put /pty/{ptyID}">client.pty.<a href="./src/opencode_ai/resources/pty.py">update</a>(pty_id, \*\*<a href="src/opencode_ai/types/pty_update_params.py">params</a>) -> <a href="./src/opencode_ai/types/pty.py">Pty</a></code>
+- <code title="delete /pty/{ptyID}">client.pty.<a href="./src/opencode_ai/resources/pty.py">delete</a>(pty_id) -> <a href="./src/opencode_ai/types/pty_delete_response.py">PtyDeleteResponse</a></code>
+- <code title="get /pty/{ptyID}/connect">client.pty.<a href="./src/opencode_ai/resources/pty.py">connect</a>(pty_id, \*\*<a href="src/opencode_ai/types/pty_connect_params.py">params</a>) -> <a href="./src/opencode_ai/types/pty_connect_response.py">PtyConnectResponse</a></code>
+- <code title="post /pty/{ptyID}/connect-token">client.pty.<a href="./src/opencode_ai/resources/pty.py">connect_token</a>(pty_id) -> <a href="./src/opencode_ai/types/pty_connect_token_response.py">PtyConnectTokenResponse</a></code>
+- <code title="get /pty/shells">client.pty.<a href="./src/opencode_ai/resources/pty.py">shells</a>() -> <a href="./src/opencode_ai/types/pty_shells_response.py">PtyShellsResponse</a></code>
+
 # Tui
 
 Types:

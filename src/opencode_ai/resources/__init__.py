@@ -88,6 +88,14 @@ from .sync import (
     SyncResourceWithStreamingResponse,
     AsyncSyncResourceWithStreamingResponse,
 )
+from .pty import (
+    PtyResource,
+    AsyncPtyResource,
+    PtyResourceWithRawResponse,
+    AsyncPtyResourceWithRawResponse,
+    PtyResourceWithStreamingResponse,
+    AsyncPtyResourceWithStreamingResponse,
+)
 
 __all__ = [
     "EventResource",
@@ -156,4 +164,10 @@ __all__ = [
     "AsyncSyncResourceWithRawResponse",
     "SyncResourceWithStreamingResponse",
     "AsyncSyncResourceWithStreamingResponse",
+    "PtyResource",
+    "AsyncPtyResource",
+    "PtyResourceWithRawResponse",
+    "AsyncPtyResourceWithRawResponse",
+    "PtyResourceWithStreamingResponse",
+    "AsyncPtyResourceWithStreamingResponse",
 ]
