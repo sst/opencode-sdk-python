@@ -260,10 +260,35 @@ Methods:
 Types:
 
 ```python
-from opencode_ai.types import TuiAppendPromptResponse, TuiOpenHelpResponse
+from opencode_ai.types import (
+    TuiAppendPromptResponse,
+    TuiOpenHelpResponse,
+    TuiOpenSessionsResponse,
+    TuiOpenThemesResponse,
+    TuiOpenModelsResponse,
+    TuiSubmitPromptResponse,
+    TuiClearPromptResponse,
+    TuiExecuteCommandResponse,
+    TuiShowToastResponse,
+    TuiPublishResponse,
+    TuiSelectSessionResponse,
+    TuiControlNextResponse,
+    TuiControlResponseResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /tui/append-prompt">client.tui.<a href="./src/opencode_ai/resources/tui.py">append_prompt</a>(\*\*<a href="src/opencode_ai/types/tui_append_prompt_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_append_prompt_response.py">TuiAppendPromptResponse</a></code>
 - <code title="post /tui/open-help">client.tui.<a href="./src/opencode_ai/resources/tui.py">open_help</a>() -> <a href="./src/opencode_ai/types/tui_open_help_response.py">TuiOpenHelpResponse</a></code>
+- <code title="post /tui/open-sessions">client.tui.<a href="./src/opencode_ai/resources/tui.py">open_sessions</a>() -> <a href="./src/opencode_ai/types/tui_open_sessions_response.py">TuiOpenSessionsResponse</a></code>
+- <code title="post /tui/open-themes">client.tui.<a href="./src/opencode_ai/resources/tui.py">open_themes</a>() -> <a href="./src/opencode_ai/types/tui_open_themes_response.py">TuiOpenThemesResponse</a></code>
+- <code title="post /tui/open-models">client.tui.<a href="./src/opencode_ai/resources/tui.py">open_models</a>() -> <a href="./src/opencode_ai/types/tui_open_models_response.py">TuiOpenModelsResponse</a></code>
+- <code title="post /tui/submit-prompt">client.tui.<a href="./src/opencode_ai/resources/tui.py">submit_prompt</a>() -> <a href="./src/opencode_ai/types/tui_submit_prompt_response.py">TuiSubmitPromptResponse</a></code>
+- <code title="post /tui/clear-prompt">client.tui.<a href="./src/opencode_ai/resources/tui.py">clear_prompt</a>() -> <a href="./src/opencode_ai/types/tui_clear_prompt_response.py">TuiClearPromptResponse</a></code>
+- <code title="post /tui/execute-command">client.tui.<a href="./src/opencode_ai/resources/tui.py">execute_command</a>(\*\*<a href="src/opencode_ai/types/tui_execute_command_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_execute_command_response.py">TuiExecuteCommandResponse</a></code>
+- <code title="post /tui/show-toast">client.tui.<a href="./src/opencode_ai/resources/tui.py">show_toast</a>(\*\*<a href="src/opencode_ai/types/tui_show_toast_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_show_toast_response.py">TuiShowToastResponse</a></code>
+- <code title="post /tui/publish">client.tui.<a href="./src/opencode_ai/resources/tui.py">publish</a>(\*\*<a href="src/opencode_ai/types/tui_publish_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_publish_response.py">TuiPublishResponse</a></code>
+- <code title="post /tui/select-session">client.tui.<a href="./src/opencode_ai/resources/tui.py">select_session</a>(\*\*<a href="src/opencode_ai/types/tui_select_session_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_select_session_response.py">TuiSelectSessionResponse</a></code>
+- <code title="get /tui/control/next">client.tui.<a href="./src/opencode_ai/resources/tui.py">control_next</a>() -> <a href="./src/opencode_ai/types/tui_control_next_response.py">TuiControlNextResponse</a></code>
+- <code title="post /tui/control/response">client.tui.<a href="./src/opencode_ai/resources/tui.py">control_response</a>(\*\*<a href="src/opencode_ai/types/tui_control_response_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_control_response_response.py">TuiControlResponseResponse</a></code>
