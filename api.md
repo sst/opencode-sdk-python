@@ -153,6 +153,27 @@ Methods:
 - <code title="get /project/{projectID}/directories">client.project.<a href="./src/opencode_ai/resources/project.py">directories</a>(project_id) -> <a href="./src/opencode_ai/types/project_directories_response.py">ProjectDirectoriesResponse</a></code>
 - <code title="post /project/git/init">client.project.<a href="./src/opencode_ai/resources/project.py">init_git</a>() -> <a href="./src/opencode_ai/types/project.py">Project</a></code>
 
+# Provider
+
+Types:
+
+```python
+from opencode_ai.types import (
+    ProviderAuthMethod,
+    ProviderListResponse,
+    ProviderAuthResponse,
+    ProviderAuthAuthorization,
+    ProviderOAuthCallbackResponse,
+)
+```
+
+Methods:
+
+- <code title="get /provider">client.provider.<a href="./src/opencode_ai/resources/provider.py">list</a>() -> <a href="./src/opencode_ai/types/provider_list_response.py">ProviderListResponse</a></code>
+- <code title="get /provider/auth">client.provider.<a href="./src/opencode_ai/resources/provider.py">auth</a>() -> <a href="./src/opencode_ai/types/provider_auth_response.py">ProviderAuthResponse</a></code>
+- <code title="post /provider/{providerID}/oauth/authorize">client.provider.<a href="./src/opencode_ai/resources/provider.py">oauth_authorize</a>(provider_id, \*\*<a href="src/opencode_ai/types/provider_oauth_authorize_params.py">params</a>) -> <a href="./src/opencode_ai/types/provider_auth_authorization.py">ProviderAuthAuthorization</a></code>
+- <code title="post /provider/{providerID}/oauth/callback">client.provider.<a href="./src/opencode_ai/resources/provider.py">oauth_callback</a>(provider_id, \*\*<a href="src/opencode_ai/types/provider_oauth_callback_params.py">params</a>) -> <a href="./src/opencode_ai/types/provider_oauth_callback_response.py">ProviderOAuthCallbackResponse</a></code>
+
 # Tui
 
 Types:

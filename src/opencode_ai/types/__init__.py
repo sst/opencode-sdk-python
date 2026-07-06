@@ -63,6 +63,7 @@ from .session_init_params import SessionInitParams as SessionInitParams
 from .session_list_params import SessionListParams as SessionListParams
 from .symbol_source_param import SymbolSourceParam as SymbolSourceParam
 from .file_status_response import FileStatusResponse as FileStatusResponse
+from .provider_auth_method import ProviderAuthMethod as ProviderAuthMethod
 from .tool_state_completed import ToolStateCompleted as ToolStateCompleted
 from .file_content_response import FileContentResponse as FileContentResponse
 from .file_part_input_param import FilePartInputParam as FilePartInputParam
@@ -77,6 +78,8 @@ from .session_revert_params import SessionRevertParams as SessionRevertParams
 from .text_part_input_param import TextPartInputParam as TextPartInputParam
 from .app_providers_response import AppProvidersResponse as AppProvidersResponse
 from .file_part_source_param import FilePartSourceParam as FilePartSourceParam
+from .provider_auth_response import ProviderAuthResponse as ProviderAuthResponse
+from .provider_list_response import ProviderListResponse as ProviderListResponse
 from .session_abort_response import SessionAbortResponse as SessionAbortResponse
 from .tui_open_help_response import TuiOpenHelpResponse as TuiOpenHelpResponse
 from .session_delete_response import SessionDeleteResponse as SessionDeleteResponse
@@ -88,4 +91,8 @@ from .session_messages_response import SessionMessagesResponse as SessionMessage
 from .session_summarize_response import SessionSummarizeResponse as SessionSummarizeResponse
 from .tui_append_prompt_response import TuiAppendPromptResponse as TuiAppendPromptResponse
 from .file_part_source_text_param import FilePartSourceTextParam as FilePartSourceTextParam
+from .provider_auth_authorization import ProviderAuthAuthorization as ProviderAuthAuthorization
 from .project_directories_response import ProjectDirectoriesResponse as ProjectDirectoriesResponse
+from .provider_oauth_callback_params import ProviderOAuthCallbackParams as ProviderOAuthCallbackParams
+from .provider_oauth_authorize_params import ProviderOAuthAuthorizeParams as ProviderOAuthAuthorizeParams
+from .provider_oauth_callback_response import ProviderOAuthCallbackResponse as ProviderOAuthCallbackResponse

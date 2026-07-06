@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import app, tui, file, find, event, config, project, session
+from .resources import app, tui, file, find, event, config, project, session, provider
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -51,6 +51,7 @@ class Opencode(SyncAPIClient):
     session: session.SessionResource
     tui: tui.TuiResource
     project: project.ProjectResource
+    provider: provider.ProviderResource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -105,6 +106,7 @@ class Opencode(SyncAPIClient):
         self.session = session.SessionResource(self)
         self.tui = tui.TuiResource(self)
         self.project = project.ProjectResource(self)
+        self.provider = provider.ProviderResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -214,6 +216,7 @@ class AsyncOpencode(AsyncAPIClient):
     session: session.AsyncSessionResource
     tui: tui.AsyncTuiResource
     project: project.AsyncProjectResource
+    provider: provider.AsyncProviderResource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -268,6 +271,7 @@ class AsyncOpencode(AsyncAPIClient):
         self.session = session.AsyncSessionResource(self)
         self.tui = tui.AsyncTuiResource(self)
         self.project = project.AsyncProjectResource(self)
+        self.provider = provider.AsyncProviderResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
@@ -378,6 +382,7 @@ class OpencodeWithRawResponse:
         self.session = session.SessionResourceWithRawResponse(client.session)
         self.tui = tui.TuiResourceWithRawResponse(client.tui)
         self.project = project.ProjectResourceWithRawResponse(client.project)
+        self.provider = provider.ProviderResourceWithRawResponse(client.provider)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -390,6 +395,7 @@ class AsyncOpencodeWithRawResponse:
         self.session = session.AsyncSessionResourceWithRawResponse(client.session)
         self.tui = tui.AsyncTuiResourceWithRawResponse(client.tui)
         self.project = project.AsyncProjectResourceWithRawResponse(client.project)
+        self.provider = provider.AsyncProviderResourceWithRawResponse(client.provider)
 
 
 class OpencodeWithStreamedResponse:
@@ -402,6 +408,7 @@ class OpencodeWithStreamedResponse:
         self.session = session.SessionResourceWithStreamingResponse(client.session)
         self.tui = tui.TuiResourceWithStreamingResponse(client.tui)
         self.project = project.ProjectResourceWithStreamingResponse(client.project)
+        self.provider = provider.ProviderResourceWithStreamingResponse(client.provider)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -414,6 +421,7 @@ class AsyncOpencodeWithStreamedResponse:
         self.session = session.AsyncSessionResourceWithStreamingResponse(client.session)
         self.tui = tui.AsyncTuiResourceWithStreamingResponse(client.tui)
         self.project = project.AsyncProjectResourceWithStreamingResponse(client.project)
+        self.provider = provider.AsyncProviderResourceWithStreamingResponse(client.provider)
 
 
 Client = Opencode

@@ -64,6 +64,14 @@ from .session import (
     SessionResourceWithStreamingResponse,
     AsyncSessionResourceWithStreamingResponse,
 )
+from .provider import (
+    ProviderResource,
+    AsyncProviderResource,
+    ProviderResourceWithRawResponse,
+    AsyncProviderResourceWithRawResponse,
+    ProviderResourceWithStreamingResponse,
+    AsyncProviderResourceWithStreamingResponse,
+)
 
 __all__ = [
     "EventResource",
@@ -114,4 +122,10 @@ __all__ = [
     "AsyncProjectResourceWithRawResponse",
     "ProjectResourceWithStreamingResponse",
     "AsyncProjectResourceWithStreamingResponse",
+    "ProviderResource",
+    "AsyncProviderResource",
+    "ProviderResourceWithRawResponse",
+    "AsyncProviderResourceWithRawResponse",
+    "ProviderResourceWithStreamingResponse",
+    "AsyncProviderResourceWithStreamingResponse",
 ]
