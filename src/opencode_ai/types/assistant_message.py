@@ -7,9 +7,12 @@ from pydantic import Field as FieldInfo
 
 from .._utils import PropertyInfo
 from .._models import BaseModel
+from .shared.api_error import APIError
 from .shared.unknown_error import UnknownError
 from .shared.provider_auth_error import ProviderAuthError
 from .shared.message_aborted_error import MessageAbortedError
+from .shared.structured_output_error import StructuredOutputError
+from .shared.context_overflow_error import ContextOverflowError
 
 __all__ = ["AssistantMessage", "Path", "Time", "Tokens", "TokensCache", "Error", "ErrorMessageOutputLengthError"]
 
@@ -51,7 +54,15 @@ class ErrorMessageOutputLengthError(BaseModel):
 
 
 Error: TypeAlias = Annotated[
-    Union[ProviderAuthError, UnknownError, ErrorMessageOutputLengthError, MessageAbortedError],
+    Union[
+        ProviderAuthError,
+        UnknownError,
+        ErrorMessageOutputLengthError,
+        MessageAbortedError,
+        StructuredOutputError,
+        ContextOverflowError,
+        APIError,
+    ],
     PropertyInfo(discriminator="name"),
 ]
 

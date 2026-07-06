@@ -40,3 +40,9 @@ def test_user_message_parses_current_shape() -> None:
     msg = construct_type(type_=UserMessage, value=USER_PAYLOAD)
     assert msg.agent == "build"
     assert msg.model.provider_id == "anthropic"
+
+
+def test_assistant_message_error_resolves_api_error() -> None:
+    payload = {**ASSISTANT_PAYLOAD, "error": {"name": "APIError", "data": {}}}
+    msg = construct_type(type_=AssistantMessage, value=payload)
+    assert type(msg.error).__name__ == "APIError"

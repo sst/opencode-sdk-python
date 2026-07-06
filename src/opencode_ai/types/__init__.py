@@ -7,9 +7,12 @@ from .part import Part as Part
 from .model import Model as Model
 from .config import Config as Config
 from .shared import (
+    APIError as APIError,
     UnknownError as UnknownError,
     ProviderAuthError as ProviderAuthError,
     MessageAbortedError as MessageAbortedError,
+    StructuredOutputError as StructuredOutputError,
+    ContextOverflowError as ContextOverflowError,
 )
 from .symbol import Symbol as Symbol
 from .message import Message as Message
