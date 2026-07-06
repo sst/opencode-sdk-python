@@ -337,7 +337,7 @@ class Generator:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--spec", default="../../opencode-openapi-spec.json", help="Path to the OpenAPI spec JSON")
+    parser.add_argument("--spec", default="../opencode-openapi-spec.json", help="Path to the OpenAPI spec JSON (relative to the repo root)")
     parser.add_argument("--union", required=True, help="Name of the top-level anyOf union schema, e.g. Part")
     parser.add_argument(
         "--unknown-fallback",
