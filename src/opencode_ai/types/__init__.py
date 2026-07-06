@@ -30,7 +30,6 @@ from .keybinds_config import KeybindsConfig as KeybindsConfig
 from .step_start_part import StepStartPart as StepStartPart
 from .app_log_response import AppLogResponse as AppLogResponse
 from .file_part_source import FilePartSource as FilePartSource
-from .file_read_params import FileReadParams as FileReadParams
 from .find_text_params import FindTextParams as FindTextParams
 from .mcp_local_config import McpLocalConfig as McpLocalConfig
 from .step_finish_part import StepFinishPart as StepFinishPart
@@ -41,11 +40,12 @@ from .file_source_param import FileSourceParam as FileSourceParam
 from .find_files_params import FindFilesParams as FindFilesParams
 from .mcp_remote_config import McpRemoteConfig as McpRemoteConfig
 from .app_modes_response import AppModesResponse as AppModesResponse
-from .file_read_response import FileReadResponse as FileReadResponse
+from .file_list_response import FileListResponse as FileListResponse
 from .find_text_response import FindTextResponse as FindTextResponse
 from .tool_state_pending import ToolStatePending as ToolStatePending
 from .tool_state_running import ToolStateRunning as ToolStateRunning
 from .event_list_response import EventListResponse as EventListResponse
+from .file_content_params import FileContentParams as FileContentParams
 from .find_files_response import FindFilesResponse as FindFilesResponse
 from .find_symbols_params import FindSymbolsParams as FindSymbolsParams
 from .session_chat_params import SessionChatParams as SessionChatParams
@@ -55,6 +55,7 @@ from .file_status_response import FileStatusResponse as FileStatusResponse
 from .tool_state_completed import ToolStateCompleted as ToolStateCompleted
 from .file_part_input_param import FilePartInputParam as FilePartInputParam
 from .file_part_source_text import FilePartSourceText as FilePartSourceText
+from .file_content_response import FileContentResponse as FileContentResponse
 from .find_symbols_response import FindSymbolsResponse as FindSymbolsResponse
 from .session_init_response import SessionInitResponse as SessionInitResponse
 from .session_list_response import SessionListResponse as SessionListResponse

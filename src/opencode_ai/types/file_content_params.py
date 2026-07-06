@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["FileReadParams"]
+__all__ = ["FileContentParams"]
 
 
-class FileReadParams(TypedDict, total=False):
+class FileContentParams(TypedDict, total=False):
     path: Required[str]
