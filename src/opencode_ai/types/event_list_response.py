@@ -16,6 +16,7 @@ from .shared.message_aborted_error import MessageAbortedError
 
 __all__ = [
     "EventListResponse",
+    "EventUnknown",
     "EventInstallationUpdated",
     "EventInstallationUpdatedProperties",
     "EventLspClientDiagnostics",
@@ -249,8 +250,45 @@ class EventIdeInstalled(BaseModel):
     type: Literal["ide.installed"]
 
 
+class EventUnknown(BaseModel):
+    """Permissive fallback for event `type` values not yet enumerated by this SDK.
+
+    The server's event union has grown well beyond the variants modeled here
+    (full enumeration is tracked separately). Rather than raising when an
+    unrecognized `type` is encountered, unmatched events deserialize into this
+    open-ended model so `client.event.list()` keeps working as the server adds
+    new event kinds.
+    """
+
+    type: str
+
+    properties: Optional[object] = None
+
+
+# Note on ordering: `EventUnknown` is intentionally listed *first*, not last.
+#
+# `_models.construct_type()` (the non-strict path used by default response
+# parsing) resolves a `PropertyInfo(discriminator=...)` union in two steps:
+#   1. If the discriminator value is present in the precomputed
+#      `{literal value: variant type}` mapping, that exact variant is
+#      constructed directly -- this happens regardless of the union's
+#      ordering, so every known `type` literal below is still matched
+#      correctly no matter where `EventUnknown` sits.
+#   2. Otherwise (unknown/unmapped discriminator value) it falls back to
+#      `for variant in args: try construct_type(...) except: continue` and
+#      returns the *first* variant that doesn't raise. Because `BaseModel`
+#      variants are built via the SDK's overridden `.construct()`, which
+#      never validates and therefore never raises, this loop always "succeeds"
+#      on the first variant tried -- so whichever variant is listed first
+#      is what unknown events actually resolve to.
+#
+# `EventUnknown`'s own `type` field is a plain `str` (not a `Literal`), so it
+# is never added to the discriminator mapping itself -- it only ever gets
+# reached through the unmatched-value fallback path above, and being first
+# guarantees it -- rather than an arbitrary known variant -- is what's chosen.
 EventListResponse: TypeAlias = Annotated[
     Union[
+        EventUnknown,
         EventInstallationUpdated,
         EventLspClientDiagnostics,
         EventMessageUpdated,
