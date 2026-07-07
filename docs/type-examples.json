@@ -1,0 +1,3472 @@
+{
+  "MessageAbortedError": {
+    "data": {},
+    "name": "MessageAbortedError"
+  },
+  "ProviderAuthError": {
+    "data": {
+      "message": "string",
+      "providerID": "string"
+    },
+    "name": "ProviderAuthError"
+  },
+  "UnknownError": {
+    "data": {
+      "message": "string"
+    },
+    "name": "UnknownError"
+  },
+  "EventUnknown": {
+    "type": "string",
+    "properties": {}
+  },
+  "EventPluginAdded": {
+    "id": "string",
+    "properties": {
+      "id": "string"
+    },
+    "type": "plugin.added"
+  },
+  "EventCatalogModelUpdated": {
+    "id": "string",
+    "properties": {
+      "model": {
+        "id": "string",
+        "api": {
+          "id": "string",
+          "package": "string",
+          "type": "aisdk",
+          "settings": {},
+          "url": "string"
+        },
+        "capabilities": {
+          "input": [
+            "string"
+          ],
+          "output": [
+            "string"
+          ],
+          "tools": false
+        },
+        "cost": [
+          {
+            "cache": {
+              "read": 0.0,
+              "write": 0.0
+            },
+            "input": 0.0,
+            "output": 0.0,
+            "tier": {
+              "size": 0,
+              "type": "context"
+            }
+          }
+        ],
+        "enabled": false,
+        "limit": {
+          "context": 0,
+          "output": 0,
+          "input": 0
+        },
+        "name": "string",
+        "providerID": "string",
+        "request": {
+          "body": {},
+          "headers": {},
+          "variant": "string"
+        },
+        "status": "alpha",
+        "time": {
+          "released": {}
+        },
+        "variants": [
+          {
+            "id": "string",
+            "body": {},
+            "headers": {}
+          }
+        ],
+        "family": "string"
+      }
+    },
+    "type": "catalog.model.updated"
+  },
+  "EventSessionCreated": {
+    "id": "string",
+    "properties": {
+      "info": {
+        "id": "string",
+        "directory": "string",
+        "projectID": "string",
+        "slug": "string",
+        "time": {
+          "created": 0.0,
+          "updated": 0.0,
+          "archived": 0.0,
+          "compacting": 0.0
+        },
+        "title": "string",
+        "version": "string",
+        "agent": "string",
+        "cost": 0.0,
+        "metadata": {},
+        "model": {
+          "id": "string",
+          "providerID": "string",
+          "variant": "string"
+        },
+        "parentID": "string",
+        "path": "string",
+        "permission": [
+          {
+            "action": "allow",
+            "pattern": "string",
+            "permission": "string"
+          }
+        ],
+        "revert": {
+          "messageID": "string",
+          "diff": "string",
+          "partID": "string",
+          "snapshot": "string"
+        },
+        "share": {
+          "url": "string"
+        },
+        "summary": {
+          "additions": 0.0,
+          "deletions": 0.0,
+          "files": 0.0,
+          "diffs": [
+            {
+              "additions": 0.0,
+              "deletions": 0.0,
+              "file": "string",
+              "patch": "string",
+              "status": "added"
+            }
+          ]
+        },
+        "tokens": {
+          "cache": {
+            "read": 0.0,
+            "write": 0.0
+          },
+          "input": 0.0,
+          "output": 0.0,
+          "reasoning": 0.0
+        },
+        "workspaceID": "string"
+      },
+      "sessionID": "string"
+    },
+    "type": "session.created"
+  },
+  "EventSessionUpdated": {
+    "id": "string",
+    "properties": {
+      "info": {
+        "id": "string",
+        "directory": "string",
+        "projectID": "string",
+        "slug": "string",
+        "time": {
+          "created": 0.0,
+          "updated": 0.0,
+          "archived": 0.0,
+          "compacting": 0.0
+        },
+        "title": "string",
+        "version": "string",
+        "agent": "string",
+        "cost": 0.0,
+        "metadata": {},
+        "model": {
+          "id": "string",
+          "providerID": "string",
+          "variant": "string"
+        },
+        "parentID": "string",
+        "path": "string",
+        "permission": [
+          {
+            "action": "allow",
+            "pattern": "string",
+            "permission": "string"
+          }
+        ],
+        "revert": {
+          "messageID": "string",
+          "diff": "string",
+          "partID": "string",
+          "snapshot": "string"
+        },
+        "share": {
+          "url": "string"
+        },
+        "summary": {
+          "additions": 0.0,
+          "deletions": 0.0,
+          "files": 0.0,
+          "diffs": [
+            {
+              "additions": 0.0,
+              "deletions": 0.0,
+              "file": "string",
+              "patch": "string",
+              "status": "added"
+            }
+          ]
+        },
+        "tokens": {
+          "cache": {
+            "read": 0.0,
+            "write": 0.0
+          },
+          "input": 0.0,
+          "output": 0.0,
+          "reasoning": 0.0
+        },
+        "workspaceID": "string"
+      },
+      "sessionID": "string"
+    },
+    "type": "session.updated"
+  },
+  "EventSessionDeleted": {
+    "id": "string",
+    "properties": {
+      "info": {
+        "id": "string",
+        "directory": "string",
+        "projectID": "string",
+        "slug": "string",
+        "time": {
+          "created": 0.0,
+          "updated": 0.0,
+          "archived": 0.0,
+          "compacting": 0.0
+        },
+        "title": "string",
+        "version": "string",
+        "agent": "string",
+        "cost": 0.0,
+        "metadata": {},
+        "model": {
+          "id": "string",
+          "providerID": "string",
+          "variant": "string"
+        },
+        "parentID": "string",
+        "path": "string",
+        "permission": [
+          {
+            "action": "allow",
+            "pattern": "string",
+            "permission": "string"
+          }
+        ],
+        "revert": {
+          "messageID": "string",
+          "diff": "string",
+          "partID": "string",
+          "snapshot": "string"
+        },
+        "share": {
+          "url": "string"
+        },
+        "summary": {
+          "additions": 0.0,
+          "deletions": 0.0,
+          "files": 0.0,
+          "diffs": [
+            {
+              "additions": 0.0,
+              "deletions": 0.0,
+              "file": "string",
+              "patch": "string",
+              "status": "added"
+            }
+          ]
+        },
+        "tokens": {
+          "cache": {
+            "read": 0.0,
+            "write": 0.0
+          },
+          "input": 0.0,
+          "output": 0.0,
+          "reasoning": 0.0
+        },
+        "workspaceID": "string"
+      },
+      "sessionID": "string"
+    },
+    "type": "session.deleted"
+  },
+  "EventMessageUpdated": {
+    "id": "string",
+    "properties": {
+      "info": {
+        "id": "string",
+        "agent": "string",
+        "model": {
+          "modelID": "string",
+          "providerID": "string",
+          "variant": "string"
+        },
+        "role": "user",
+        "sessionID": "string",
+        "time": {
+          "created": 0.0
+        },
+        "format": {},
+        "summary": {},
+        "system": "string",
+        "tools": {
+          "<key>": false
+        }
+      },
+      "sessionID": "string"
+    },
+    "type": "message.updated"
+  },
+  "EventMessageRemoved": {
+    "id": "string",
+    "properties": {
+      "messageID": "string",
+      "sessionID": "string"
+    },
+    "type": "message.removed"
+  },
+  "EventMessagePartUpdated": {
+    "id": "string",
+    "properties": {
+      "part": {
+        "id": "string",
+        "messageID": "string",
+        "sessionID": "string",
+        "text": "string",
+        "type": "text",
+        "ignored": false,
+        "metadata": {},
+        "synthetic": false,
+        "time": {
+          "start": 0,
+          "end": 0
+        }
+      },
+      "sessionID": "string",
+      "time": 0.0
+    },
+    "type": "message.part.updated"
+  },
+  "EventMessagePartRemoved": {
+    "id": "string",
+    "properties": {
+      "messageID": "string",
+      "partID": "string",
+      "sessionID": "string"
+    },
+    "type": "message.part.removed"
+  },
+  "EventModelsDevRefreshed": {
+    "id": "string",
+    "properties": {},
+    "type": "models-dev.refreshed"
+  },
+  "EventSessionNextAgentSwitched": {
+    "id": "string",
+    "properties": {
+      "agent": "string",
+      "messageID": "string",
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.agent.switched"
+  },
+  "EventSessionNextModelSwitched": {
+    "id": "string",
+    "properties": {
+      "messageID": "string",
+      "model": {
+        "id": "string",
+        "providerID": "string",
+        "variant": "string"
+      },
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.model.switched"
+  },
+  "EventSessionNextMoved": {
+    "id": "string",
+    "properties": {
+      "location": {
+        "directory": "string",
+        "workspaceID": "string"
+      },
+      "sessionID": "string",
+      "timestamp": 0.0,
+      "subdirectory": "string"
+    },
+    "type": "session.next.moved"
+  },
+  "EventSessionNextPrompted": {
+    "id": "string",
+    "properties": {
+      "delivery": "steer",
+      "messageID": "string",
+      "prompt": {
+        "text": "string",
+        "agents": [
+          {
+            "name": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            }
+          }
+        ],
+        "files": [
+          {
+            "mime": "string",
+            "uri": "string",
+            "description": "string",
+            "name": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            }
+          }
+        ],
+        "references": [
+          {
+            "kind": "local",
+            "name": "string",
+            "branch": "string",
+            "problem": "string",
+            "repository": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            },
+            "target": "string",
+            "targetUri": "string",
+            "uri": "string"
+          }
+        ]
+      },
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.prompted"
+  },
+  "EventSessionNextPromptAdmitted": {
+    "id": "string",
+    "properties": {
+      "delivery": "steer",
+      "messageID": "string",
+      "prompt": {
+        "text": "string",
+        "agents": [
+          {
+            "name": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            }
+          }
+        ],
+        "files": [
+          {
+            "mime": "string",
+            "uri": "string",
+            "description": "string",
+            "name": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            }
+          }
+        ],
+        "references": [
+          {
+            "kind": "local",
+            "name": "string",
+            "branch": "string",
+            "problem": "string",
+            "repository": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            },
+            "target": "string",
+            "targetUri": "string",
+            "uri": "string"
+          }
+        ]
+      },
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.prompt.admitted"
+  },
+  "EventSessionNextPromptPromoted": {
+    "id": "string",
+    "properties": {
+      "messageID": "string",
+      "prompt": {
+        "text": "string",
+        "agents": [
+          {
+            "name": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            }
+          }
+        ],
+        "files": [
+          {
+            "mime": "string",
+            "uri": "string",
+            "description": "string",
+            "name": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            }
+          }
+        ],
+        "references": [
+          {
+            "kind": "local",
+            "name": "string",
+            "branch": "string",
+            "problem": "string",
+            "repository": "string",
+            "source": {
+              "end": 0.0,
+              "start": 0.0,
+              "text": "string"
+            },
+            "target": "string",
+            "targetUri": "string",
+            "uri": "string"
+          }
+        ]
+      },
+      "sessionID": "string",
+      "timeCreated": 0.0,
+      "timestamp": 0.0
+    },
+    "type": "session.next.prompt.promoted"
+  },
+  "EventSessionNextContextUpdated": {
+    "id": "string",
+    "properties": {
+      "messageID": "string",
+      "sessionID": "string",
+      "text": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.context.updated"
+  },
+  "EventSessionNextSynthetic": {
+    "id": "string",
+    "properties": {
+      "messageID": "string",
+      "sessionID": "string",
+      "text": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.synthetic"
+  },
+  "EventSessionNextShellStarted": {
+    "id": "string",
+    "properties": {
+      "callID": "string",
+      "command": "string",
+      "messageID": "string",
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.shell.started"
+  },
+  "EventSessionNextShellEnded": {
+    "id": "string",
+    "properties": {
+      "callID": "string",
+      "output": "string",
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.shell.ended"
+  },
+  "EventSessionNextStepStarted": {
+    "id": "string",
+    "properties": {
+      "agent": "string",
+      "assistantMessageID": "string",
+      "model": {
+        "id": "string",
+        "providerID": "string",
+        "variant": "string"
+      },
+      "sessionID": "string",
+      "timestamp": 0.0,
+      "snapshot": "string"
+    },
+    "type": "session.next.step.started"
+  },
+  "EventSessionNextStepEnded": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "cost": 0.0,
+      "finish": "string",
+      "sessionID": "string",
+      "timestamp": 0.0,
+      "tokens": {
+        "cache": {
+          "read": 0.0,
+          "write": 0.0
+        },
+        "input": 0.0,
+        "output": 0.0,
+        "reasoning": 0.0
+      },
+      "snapshot": "string"
+    },
+    "type": "session.next.step.ended"
+  },
+  "EventSessionNextStepFailed": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "error": {
+        "message": "string",
+        "type": "unknown"
+      },
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.step.failed"
+  },
+  "EventSessionNextTextStarted": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "sessionID": "string",
+      "textID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.text.started"
+  },
+  "EventSessionNextTextDelta": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "delta": "string",
+      "sessionID": "string",
+      "textID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.text.delta"
+  },
+  "EventSessionNextTextEnded": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "sessionID": "string",
+      "text": "string",
+      "textID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.text.ended"
+  },
+  "EventSessionNextReasoningStarted": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "reasoningID": "string",
+      "sessionID": "string",
+      "timestamp": 0.0,
+      "providerMetadata": {}
+    },
+    "type": "session.next.reasoning.started"
+  },
+  "EventSessionNextReasoningDelta": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "delta": "string",
+      "reasoningID": "string",
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.reasoning.delta"
+  },
+  "EventSessionNextReasoningEnded": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "reasoningID": "string",
+      "sessionID": "string",
+      "text": "string",
+      "timestamp": 0.0,
+      "providerMetadata": {}
+    },
+    "type": "session.next.reasoning.ended"
+  },
+  "EventSessionNextToolInputStarted": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "callID": "string",
+      "name": "string",
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.tool.input.started"
+  },
+  "EventSessionNextToolInputDelta": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "callID": "string",
+      "delta": "string",
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.tool.input.delta"
+  },
+  "EventSessionNextToolInputEnded": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "callID": "string",
+      "sessionID": "string",
+      "text": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.tool.input.ended"
+  },
+  "EventSessionNextToolCalled": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "callID": "string",
+      "input": {},
+      "provider": {
+        "executed": false,
+        "metadata": {}
+      },
+      "sessionID": "string",
+      "timestamp": 0.0,
+      "tool": "string"
+    },
+    "type": "session.next.tool.called"
+  },
+  "EventSessionNextToolProgress": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "callID": "string",
+      "content": [
+        {
+          "text": "string",
+          "type": "text"
+        }
+      ],
+      "sessionID": "string",
+      "structured": {},
+      "timestamp": 0.0
+    },
+    "type": "session.next.tool.progress"
+  },
+  "EventSessionNextToolSuccess": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "callID": "string",
+      "content": [
+        {
+          "text": "string",
+          "type": "text"
+        }
+      ],
+      "provider": {
+        "executed": false,
+        "metadata": {}
+      },
+      "sessionID": "string",
+      "structured": {},
+      "timestamp": 0.0,
+      "result": {}
+    },
+    "type": "session.next.tool.success"
+  },
+  "EventSessionNextToolFailed": {
+    "id": "string",
+    "properties": {
+      "assistantMessageID": "string",
+      "callID": "string",
+      "error": {
+        "message": "string",
+        "type": "unknown"
+      },
+      "provider": {
+        "executed": false,
+        "metadata": {}
+      },
+      "sessionID": "string",
+      "timestamp": 0.0,
+      "result": {}
+    },
+    "type": "session.next.tool.failed"
+  },
+  "EventSessionNextRetried": {
+    "id": "string",
+    "properties": {
+      "attempt": 0.0,
+      "error": {
+        "isRetryable": false,
+        "message": "string",
+        "metadata": {},
+        "responseBody": "string",
+        "responseHeaders": {},
+        "statusCode": 0.0
+      },
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.retried"
+  },
+  "EventSessionNextCompactionStarted": {
+    "id": "string",
+    "properties": {
+      "messageID": "string",
+      "reason": "auto",
+      "sessionID": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.compaction.started"
+  },
+  "EventSessionNextCompactionDelta": {
+    "id": "string",
+    "properties": {
+      "sessionID": "string",
+      "text": "string",
+      "timestamp": 0.0
+    },
+    "type": "session.next.compaction.delta"
+  },
+  "EventSessionNextCompactionEnded": {
+    "id": "string",
+    "properties": {
+      "sessionID": "string",
+      "text": "string",
+      "timestamp": 0.0,
+      "include": "string"
+    },
+    "type": "session.next.compaction.ended"
+  },
+  "EventPermissionV2Asked": {
+    "id": "string",
+    "properties": {
+      "id": "string",
+      "action": "string",
+      "resources": [
+        "string"
+      ],
+      "sessionID": "string",
+      "metadata": {},
+      "save": [
+        "string"
+      ],
+      "source": {
+        "callID": "string",
+        "messageID": "string",
+        "type": "tool"
+      }
+    },
+    "type": "permission.v2.asked"
+  },
+  "EventPermissionV2Replied": {
+    "id": "string",
+    "properties": {
+      "reply": "once",
+      "requestID": "string",
+      "sessionID": "string"
+    },
+    "type": "permission.v2.replied"
+  },
+  "EventAccountAdded": {
+    "id": "string",
+    "properties": {
+      "account": {
+        "id": "string",
+        "credential": {
+          "access": "string",
+          "expires": 0,
+          "refresh": "string",
+          "type": "oauth"
+        },
+        "description": "string",
+        "serviceID": "string"
+      }
+    },
+    "type": "account.added"
+  },
+  "EventAccountRemoved": {
+    "id": "string",
+    "properties": {
+      "account": {
+        "id": "string",
+        "credential": {
+          "access": "string",
+          "expires": 0,
+          "refresh": "string",
+          "type": "oauth"
+        },
+        "description": "string",
+        "serviceID": "string"
+      }
+    },
+    "type": "account.removed"
+  },
+  "EventAccountSwitched": {
+    "id": "string",
+    "properties": {
+      "serviceID": "string",
+      "from": "string",
+      "to": "string"
+    },
+    "type": "account.switched"
+  },
+  "EventPermissionAsked": {
+    "id": "string",
+    "properties": {
+      "id": "string",
+      "always": [
+        "string"
+      ],
+      "metadata": {},
+      "patterns": [
+        "string"
+      ],
+      "permission": "string",
+      "sessionID": "string",
+      "tool": {
+        "callID": "string",
+        "messageID": "string"
+      }
+    },
+    "type": "permission.asked"
+  },
+  "EventPermissionReplied": {
+    "id": "string",
+    "properties": {
+      "reply": "once",
+      "requestID": "string",
+      "sessionID": "string"
+    },
+    "type": "permission.replied"
+  },
+  "EventMessagePartDelta": {
+    "id": "string",
+    "properties": {
+      "delta": "string",
+      "field": "string",
+      "messageID": "string",
+      "partID": "string",
+      "sessionID": "string"
+    },
+    "type": "message.part.delta"
+  },
+  "EventSessionDiff": {
+    "id": "string",
+    "properties": {
+      "diff": [
+        {
+          "additions": 0.0,
+          "deletions": 0.0,
+          "file": "string",
+          "patch": "string",
+          "status": "added"
+        }
+      ],
+      "sessionID": "string"
+    },
+    "type": "session.diff"
+  },
+  "EventSessionError": {
+    "id": "string",
+    "properties": {
+      "error": {
+        "data": {
+          "message": "string",
+          "providerID": "string"
+        },
+        "name": "ProviderAuthError"
+      },
+      "sessionID": "string"
+    },
+    "type": "session.error"
+  },
+  "EventLspUpdated": {
+    "id": "string",
+    "properties": {},
+    "type": "lsp.updated"
+  },
+  "EventFileWatcherUpdated": {
+    "id": "string",
+    "properties": {
+      "event": "add",
+      "file": "string"
+    },
+    "type": "file.watcher.updated"
+  },
+  "EventFileEdited": {
+    "id": "string",
+    "properties": {
+      "file": "string"
+    },
+    "type": "file.edited"
+  },
+  "EventPtyCreated": {
+    "id": "string",
+    "properties": {
+      "info": {
+        "id": "string",
+        "args": [
+          "string"
+        ],
+        "command": "string",
+        "cwd": "string",
+        "pid": 0,
+        "status": "running",
+        "title": "string"
+      }
+    },
+    "type": "pty.created"
+  },
+  "EventPtyUpdated": {
+    "id": "string",
+    "properties": {
+      "info": {
+        "id": "string",
+        "args": [
+          "string"
+        ],
+        "command": "string",
+        "cwd": "string",
+        "pid": 0,
+        "status": "running",
+        "title": "string"
+      }
+    },
+    "type": "pty.updated"
+  },
+  "EventPtyExited": {
+    "id": "string",
+    "properties": {
+      "id": "string",
+      "exitCode": 0
+    },
+    "type": "pty.exited"
+  },
+  "EventPtyDeleted": {
+    "id": "string",
+    "properties": {
+      "id": "string"
+    },
+    "type": "pty.deleted"
+  },
+  "EventQuestionV2Asked": {
+    "id": "string",
+    "properties": {
+      "id": "string",
+      "questions": [
+        {
+          "header": "string",
+          "options": [
+            {
+              "description": "string",
+              "label": "string"
+            }
+          ],
+          "question": "string",
+          "custom": false,
+          "multiple": false
+        }
+      ],
+      "sessionID": "string",
+      "tool": {
+        "callID": "string",
+        "messageID": "string"
+      }
+    },
+    "type": "question.v2.asked"
+  },
+  "EventQuestionV2Replied": {
+    "id": "string",
+    "properties": {
+      "answers": [
+        [
+          "string"
+        ]
+      ],
+      "requestID": "string",
+      "sessionID": "string"
+    },
+    "type": "question.v2.replied"
+  },
+  "EventQuestionV2Rejected": {
+    "id": "string",
+    "properties": {
+      "requestID": "string",
+      "sessionID": "string"
+    },
+    "type": "question.v2.rejected"
+  },
+  "EventTodoUpdated": {
+    "id": "string",
+    "properties": {
+      "sessionID": "string",
+      "todos": [
+        {
+          "content": "string",
+          "priority": "string",
+          "status": "string"
+        }
+      ]
+    },
+    "type": "todo.updated"
+  },
+  "EventInstallationUpdated": {
+    "id": "string",
+    "properties": {
+      "version": "string"
+    },
+    "type": "installation.updated"
+  },
+  "EventInstallationUpdateAvailable": {
+    "id": "string",
+    "properties": {
+      "version": "string"
+    },
+    "type": "installation.update-available"
+  },
+  "EventTuiPromptAppend": {
+    "id": "string",
+    "properties": {
+      "text": "string"
+    },
+    "type": "tui.prompt.append"
+  },
+  "EventTuiCommandExecute": {
+    "id": "string",
+    "properties": {
+      "command": "string"
+    },
+    "type": "tui.command.execute"
+  },
+  "EventTuiToastShow": {
+    "id": "string",
+    "properties": {
+      "message": "string",
+      "variant": "info",
+      "duration": 0,
+      "title": "string"
+    },
+    "type": "tui.toast.show"
+  },
+  "EventTuiSessionSelect": {
+    "id": "string",
+    "properties": {
+      "sessionID": "string"
+    },
+    "type": "tui.session.select"
+  },
+  "EventMcpToolsChanged": {
+    "id": "string",
+    "properties": {
+      "server": "string"
+    },
+    "type": "mcp.tools.changed"
+  },
+  "EventMcpBrowserOpenFailed": {
+    "id": "string",
+    "properties": {
+      "mcpName": "string",
+      "url": "string"
+    },
+    "type": "mcp.browser.open.failed"
+  },
+  "EventQuestionAsked": {
+    "id": "string",
+    "properties": {
+      "id": "string",
+      "questions": [
+        {
+          "header": "string",
+          "options": [
+            {
+              "description": "string",
+              "label": "string"
+            }
+          ],
+          "question": "string",
+          "custom": false,
+          "multiple": false
+        }
+      ],
+      "sessionID": "string",
+      "tool": {
+        "callID": "string",
+        "messageID": "string"
+      }
+    },
+    "type": "question.asked"
+  },
+  "EventQuestionReplied": {
+    "id": "string",
+    "properties": {
+      "answers": [
+        [
+          "string"
+        ]
+      ],
+      "requestID": "string",
+      "sessionID": "string"
+    },
+    "type": "question.replied"
+  },
+  "EventQuestionRejected": {
+    "id": "string",
+    "properties": {
+      "requestID": "string",
+      "sessionID": "string"
+    },
+    "type": "question.rejected"
+  },
+  "EventCommandExecuted": {
+    "id": "string",
+    "properties": {
+      "arguments": "string",
+      "messageID": "string",
+      "name": "string",
+      "sessionID": "string"
+    },
+    "type": "command.executed"
+  },
+  "EventSessionStatus": {
+    "id": "string",
+    "properties": {
+      "sessionID": "string",
+      "status": {
+        "type": "idle"
+      }
+    },
+    "type": "session.status"
+  },
+  "EventSessionIdle": {
+    "id": "string",
+    "properties": {
+      "sessionID": "string"
+    },
+    "type": "session.idle"
+  },
+  "EventSessionCompacted": {
+    "id": "string",
+    "properties": {
+      "sessionID": "string"
+    },
+    "type": "session.compacted"
+  },
+  "EventProjectDirectoriesUpdated": {
+    "id": "string",
+    "properties": {
+      "projectID": "string"
+    },
+    "type": "project.directories.updated"
+  },
+  "EventProjectUpdated": {
+    "id": "string",
+    "properties": {
+      "id": "string",
+      "sandboxes": [
+        "string"
+      ],
+      "time": {
+        "created": 0,
+        "updated": 0,
+        "initialized": 0
+      },
+      "worktree": "string",
+      "commands": {
+        "start": "string"
+      },
+      "icon": {
+        "color": "string",
+        "override": "string",
+        "url": "string"
+      },
+      "name": "string",
+      "vcs": "git"
+    },
+    "type": "project.updated"
+  },
+  "EventVcsBranchUpdated": {
+    "id": "string",
+    "properties": {
+      "branch": "string"
+    },
+    "type": "vcs.branch.updated"
+  },
+  "EventWorkspaceReady": {
+    "id": "string",
+    "properties": {
+      "name": "string"
+    },
+    "type": "workspace.ready"
+  },
+  "EventWorkspaceFailed": {
+    "id": "string",
+    "properties": {
+      "message": "string"
+    },
+    "type": "workspace.failed"
+  },
+  "EventWorkspaceStatus": {
+    "id": "string",
+    "properties": {
+      "status": "connected",
+      "workspaceID": "string"
+    },
+    "type": "workspace.status"
+  },
+  "EventWorktreeReady": {
+    "id": "string",
+    "properties": {
+      "name": "string",
+      "branch": "string"
+    },
+    "type": "worktree.ready"
+  },
+  "EventWorktreeFailed": {
+    "id": "string",
+    "properties": {
+      "message": "string"
+    },
+    "type": "worktree.failed"
+  },
+  "EventServerConnected": {
+    "id": "string",
+    "properties": {},
+    "type": "server.connected"
+  },
+  "EventGlobalDisposed": {
+    "id": "string",
+    "properties": {},
+    "type": "global.disposed"
+  },
+  "EventServerInstanceDisposed": {
+    "id": "string",
+    "properties": {
+      "directory": "string"
+    },
+    "type": "server.instance.disposed"
+  },
+  "Model": {
+    "id": "string",
+    "attachment": false,
+    "cost": {
+      "input": 0.0,
+      "output": 0.0,
+      "cache_read": 0.0,
+      "cache_write": 0.0
+    },
+    "limit": {
+      "context": 0.0,
+      "output": 0.0
+    },
+    "name": "string",
+    "options": {
+      "<key>": {}
+    },
+    "reasoning": false,
+    "release_date": "string",
+    "temperature": false,
+    "tool_call": false
+  },
+  "Provider": {
+    "id": "string",
+    "env": [
+      "string"
+    ],
+    "models": {
+      "<key>": {
+        "id": "string",
+        "attachment": false,
+        "cost": {
+          "input": 0.0,
+          "output": 0.0,
+          "cache_read": 0.0,
+          "cache_write": 0.0
+        },
+        "limit": {
+          "context": 0.0,
+          "output": 0.0
+        },
+        "name": "string",
+        "options": {
+          "<key>": {}
+        },
+        "reasoning": false,
+        "release_date": "string",
+        "temperature": false,
+        "tool_call": false
+      }
+    },
+    "name": "string",
+    "api": "string",
+    "npm": "string"
+  },
+  "AppAgentsResponse": [
+    {
+      "mode": "subagent",
+      "name": "string",
+      "options": {},
+      "permission": [
+        {
+          "action": "allow",
+          "pattern": "string",
+          "permission": "string"
+        }
+      ],
+      "color": "string",
+      "description": "string",
+      "hidden": false,
+      "model": {
+        "modelID": "string",
+        "providerID": "string"
+      },
+      "native": false,
+      "prompt": "string",
+      "steps": 0.0,
+      "temperature": 0.0,
+      "topP": 0.0,
+      "variant": "string"
+    }
+  ],
+  "AppLogResponse": false,
+  "AppProvidersResponse": {
+    "default": {
+      "<key>": "string"
+    },
+    "providers": [
+      {
+        "id": "string",
+        "env": [
+          "string"
+        ],
+        "models": {
+          "<key>": {
+            "id": "string",
+            "attachment": false,
+            "cost": {
+              "input": 0.0,
+              "output": 0.0,
+              "cache_read": 0.0,
+              "cache_write": 0.0
+            },
+            "limit": {
+              "context": 0.0,
+              "output": 0.0
+            },
+            "name": "string",
+            "options": {
+              "<key>": {}
+            },
+            "reasoning": false,
+            "release_date": "string",
+            "temperature": false,
+            "tool_call": false
+          }
+        },
+        "name": "string",
+        "api": "string",
+        "npm": "string"
+      }
+    ]
+  },
+  "AppSkillsResponse": [
+    {
+      "content": "string",
+      "location": "string",
+      "name": "string",
+      "description": "string"
+    }
+  ],
+  "Symbol": {
+    "kind": 0.0,
+    "location": {
+      "range": {
+        "end": {
+          "character": 0.0,
+          "line": 0.0
+        },
+        "start": {
+          "character": 0.0,
+          "line": 0.0
+        }
+      },
+      "uri": "string"
+    },
+    "name": "string"
+  },
+  "FindFilesResponse": [
+    "string"
+  ],
+  "FindSymbolsResponse": [
+    {
+      "kind": 0.0,
+      "location": {
+        "range": {
+          "end": {
+            "character": 0.0,
+            "line": 0.0
+          },
+          "start": {
+            "character": 0.0,
+            "line": 0.0
+          }
+        },
+        "uri": "string"
+      },
+      "name": "string"
+    }
+  ],
+  "FindTextResponse": [
+    {
+      "absolute_offset": 0.0,
+      "line_number": 0.0,
+      "lines": {
+        "text": "string"
+      },
+      "path": {
+        "text": "string"
+      },
+      "submatches": [
+        {
+          "end": 0.0,
+          "match": {
+            "text": "string"
+          },
+          "start": 0.0
+        }
+      ]
+    }
+  ],
+  "File": {
+    "added": 0,
+    "path": "string",
+    "removed": 0,
+    "status": "added"
+  },
+  "FileListResponse": [
+    {
+      "name": "string",
+      "path": "string",
+      "absolute": "string",
+      "type": "file",
+      "ignored": false
+    }
+  ],
+  "FileContentResponse": {
+    "content": "string",
+    "type": "text",
+    "diff": "string",
+    "encoding": "base64",
+    "mimeType": "string",
+    "patch": {}
+  },
+  "FileStatusResponse": [
+    {
+      "added": 0,
+      "path": "string",
+      "removed": 0,
+      "status": "added"
+    }
+  ],
+  "AgentConfig": {
+    "color": "string",
+    "description": "string",
+    "disable": false,
+    "hidden": false,
+    "maxSteps": 0,
+    "mode": "subagent",
+    "model": "string",
+    "options": {},
+    "permission": {
+      "bash": "ask",
+      "doom_loop": "ask",
+      "edit": "ask",
+      "external_directory": "ask",
+      "glob": "ask",
+      "grep": "ask",
+      "list": "ask",
+      "lsp": "ask",
+      "question": "ask",
+      "read": "ask",
+      "skill": "ask",
+      "task": "ask",
+      "todowrite": "ask",
+      "webfetch": "ask",
+      "websearch": "ask"
+    },
+    "prompt": "string",
+    "steps": 0,
+    "temperature": 0.0,
+    "tools": {
+      "<key>": false
+    },
+    "top_p": 0.0,
+    "variant": "string"
+  },
+  "Config": {
+    "$schema": "string",
+    "agent": {
+      "build": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      },
+      "compaction": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      },
+      "explore": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      },
+      "general": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      },
+      "plan": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      },
+      "summary": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      },
+      "title": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      }
+    },
+    "attachment": {
+      "image": {
+        "auto_resize": false,
+        "max_base64_bytes": 0,
+        "max_height": 0,
+        "max_width": 0
+      }
+    },
+    "autoshare": false,
+    "autoupdate": false,
+    "command": {
+      "<key>": {
+        "template": "string",
+        "agent": "string",
+        "description": "string",
+        "model": "string",
+        "subtask": false,
+        "variant": "string"
+      }
+    },
+    "compaction": {
+      "auto": false,
+      "preserve_recent_tokens": 0,
+      "prune": false,
+      "reserved": 0,
+      "tail_turns": 0
+    },
+    "default_agent": "string",
+    "disabled_providers": [
+      "string"
+    ],
+    "enabled_providers": [
+      "string"
+    ],
+    "enterprise": {
+      "url": "string"
+    },
+    "experimental": {
+      "batch_tool": false,
+      "continue_loop_on_deny": false,
+      "disable_paste_summary": false,
+      "mcp_timeout": 0,
+      "openTelemetry": false,
+      "policies": [
+        {
+          "action": "provider.use",
+          "effect": "allow",
+          "resource": "string"
+        }
+      ],
+      "primary_tools": [
+        "string"
+      ]
+    },
+    "formatter": false,
+    "instructions": [
+      "string"
+    ],
+    "layout": "auto",
+    "logLevel": "DEBUG",
+    "lsp": false,
+    "mcp": {
+      "<key>": {
+        "command": [
+          "string"
+        ],
+        "type": "local",
+        "enabled": false,
+        "environment": {
+          "<key>": "string"
+        },
+        "timeout": 0
+      }
+    },
+    "mode": {
+      "build": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      },
+      "plan": {
+        "color": "string",
+        "description": "string",
+        "disable": false,
+        "hidden": false,
+        "maxSteps": 0,
+        "mode": "subagent",
+        "model": "string",
+        "options": {},
+        "permission": {
+          "bash": "ask",
+          "doom_loop": "ask",
+          "edit": "ask",
+          "external_directory": "ask",
+          "glob": "ask",
+          "grep": "ask",
+          "list": "ask",
+          "lsp": "ask",
+          "question": "ask",
+          "read": "ask",
+          "skill": "ask",
+          "task": "ask",
+          "todowrite": "ask",
+          "webfetch": "ask",
+          "websearch": "ask"
+        },
+        "prompt": "string",
+        "steps": 0,
+        "temperature": 0.0,
+        "tools": {
+          "<key>": false
+        },
+        "top_p": 0.0,
+        "variant": "string"
+      }
+    },
+    "model": "string",
+    "permission": {
+      "bash": "ask",
+      "doom_loop": "ask",
+      "edit": "ask",
+      "external_directory": "ask",
+      "glob": "ask",
+      "grep": "ask",
+      "list": "ask",
+      "lsp": "ask",
+      "question": "ask",
+      "read": "ask",
+      "skill": "ask",
+      "task": "ask",
+      "todowrite": "ask",
+      "webfetch": "ask",
+      "websearch": "ask"
+    },
+    "plugin": [
+      "string"
+    ],
+    "provider": {
+      "<key>": {
+        "api": "string",
+        "blacklist": [
+          "string"
+        ],
+        "env": [
+          "string"
+        ],
+        "id": "string",
+        "models": {
+          "<key>": {
+            "id": "string",
+            "attachment": false,
+            "cost": {
+              "input": 0.0,
+              "output": 0.0,
+              "cache_read": 0.0,
+              "cache_write": 0.0,
+              "context_over_200k": {
+                "input": 0.0,
+                "output": 0.0,
+                "cache_read": 0.0,
+                "cache_write": 0.0
+              }
+            },
+            "experimental": false,
+            "family": "string",
+            "headers": {
+              "<key>": "string"
+            },
+            "interleaved": true,
+            "limit": {
+              "context": 0.0,
+              "output": 0.0,
+              "input": 0.0
+            },
+            "modalities": {
+              "input": [
+                "text"
+              ],
+              "output": [
+                "text"
+              ]
+            },
+            "name": "string",
+            "options": {},
+            "provider": {
+              "api": "string",
+              "npm": "string"
+            },
+            "reasoning": false,
+            "release_date": "string",
+            "status": "alpha",
+            "temperature": false,
+            "tool_call": false,
+            "variants": {
+              "<key>": {
+                "disabled": false
+              }
+            }
+          }
+        },
+        "name": "string",
+        "npm": "string",
+        "options": {
+          "apiKey": "string",
+          "baseURL": "string",
+          "chunkTimeout": 0,
+          "enterpriseUrl": "string",
+          "headerTimeout": 0,
+          "setCacheKey": false,
+          "timeout": 0
+        },
+        "whitelist": [
+          "string"
+        ]
+      }
+    },
+    "reference": {
+      "<key>": {
+        "repository": "string",
+        "branch": "string"
+      }
+    },
+    "server": {
+      "cors": [
+        "string"
+      ],
+      "hostname": "string",
+      "mdns": false,
+      "mdnsDomain": "string",
+      "port": 0
+    },
+    "share": "manual",
+    "shell": "string",
+    "skills": {
+      "paths": [
+        "string"
+      ],
+      "urls": [
+        "string"
+      ]
+    },
+    "small_model": "string",
+    "snapshot": false,
+    "tool_output": {
+      "max_bytes": 0,
+      "max_lines": 0
+    },
+    "tools": {
+      "<key>": false
+    },
+    "username": "string",
+    "watcher": {
+      "ignore": [
+        "string"
+      ]
+    }
+  },
+  "McpLocalConfig": {
+    "command": [
+      "string"
+    ],
+    "type": "local",
+    "enabled": false,
+    "environment": {
+      "<key>": "string"
+    },
+    "timeout": 0
+  },
+  "McpRemoteConfig": {
+    "type": "remote",
+    "url": "string",
+    "enabled": false,
+    "headers": {
+      "<key>": "string"
+    },
+    "oauth": {
+      "callbackPort": 0,
+      "clientId": "string",
+      "clientSecret": "string",
+      "redirectUri": "string",
+      "scope": "string"
+    },
+    "timeout": 0
+  },
+  "PermissionActionConfig": "ask",
+  "PermissionConfig": "ask",
+  "PermissionConfigObject": {
+    "bash": "ask",
+    "doom_loop": "ask",
+    "edit": "ask",
+    "external_directory": "ask",
+    "glob": "ask",
+    "grep": "ask",
+    "list": "ask",
+    "lsp": "ask",
+    "question": "ask",
+    "read": "ask",
+    "skill": "ask",
+    "task": "ask",
+    "todowrite": "ask",
+    "webfetch": "ask",
+    "websearch": "ask"
+  },
+  "PermissionRuleConfig": "ask",
+  "AgentPart": {
+    "id": "string",
+    "messageID": "string",
+    "name": "string",
+    "sessionID": "string",
+    "type": "agent",
+    "source": {
+      "end": 0,
+      "start": 0,
+      "value": "string"
+    }
+  },
+  "AssistantMessage": {
+    "id": "string",
+    "agent": "string",
+    "cost": 0.0,
+    "mode": "string",
+    "modelID": "string",
+    "parentID": "string",
+    "path": {
+      "cwd": "string",
+      "root": "string"
+    },
+    "providerID": "string",
+    "role": "assistant",
+    "sessionID": "string",
+    "time": {
+      "created": 0.0,
+      "completed": 0.0
+    },
+    "tokens": {
+      "cache": {
+        "read": 0.0,
+        "write": 0.0
+      },
+      "input": 0.0,
+      "output": 0.0,
+      "reasoning": 0.0,
+      "total": 0.0
+    },
+    "error": {
+      "data": {
+        "message": "string",
+        "providerID": "string"
+      },
+      "name": "ProviderAuthError"
+    },
+    "finish": "string",
+    "structured": {},
+    "summary": false,
+    "variant": "string"
+  },
+  "CompactionPart": {
+    "id": "string",
+    "auto": false,
+    "messageID": "string",
+    "sessionID": "string",
+    "type": "compaction",
+    "overflow": false,
+    "tail_start_id": "string"
+  },
+  "FilePart": {
+    "id": "string",
+    "messageID": "string",
+    "mime": "string",
+    "sessionID": "string",
+    "type": "file",
+    "url": "string",
+    "filename": "string",
+    "source": {
+      "path": "string",
+      "text": {
+        "end": 0,
+        "start": 0,
+        "value": "string"
+      },
+      "type": "file"
+    }
+  },
+  "FilePartInputParam": {
+    "mime": "string",
+    "type": "file",
+    "url": "string",
+    "id": "string",
+    "filename": "string",
+    "source": {
+      "path": "string",
+      "text": {
+        "end": 0,
+        "start": 0,
+        "value": "string"
+      },
+      "type": "file"
+    }
+  },
+  "FileSource": {
+    "path": "string",
+    "text": {
+      "end": 0,
+      "start": 0,
+      "value": "string"
+    },
+    "type": "file"
+  },
+  "SymbolSource": {
+    "kind": 0,
+    "name": "string",
+    "path": "string",
+    "range": {
+      "end": {
+        "character": 0.0,
+        "line": 0.0
+      },
+      "start": {
+        "character": 0.0,
+        "line": 0.0
+      }
+    },
+    "text": {
+      "end": 0,
+      "start": 0,
+      "value": "string"
+    },
+    "type": "symbol"
+  },
+  "ResourceSource": {
+    "clientName": "string",
+    "text": {
+      "end": 0,
+      "start": 0,
+      "value": "string"
+    },
+    "type": "resource",
+    "uri": "string"
+  },
+  "FilePartSourceText": {
+    "end": 0,
+    "start": 0,
+    "value": "string"
+  },
+  "UserMessage": {
+    "id": "string",
+    "agent": "string",
+    "model": {
+      "modelID": "string",
+      "providerID": "string",
+      "variant": "string"
+    },
+    "role": "user",
+    "sessionID": "string",
+    "time": {
+      "created": 0.0
+    },
+    "format": {},
+    "summary": {},
+    "system": "string",
+    "tools": {
+      "<key>": false
+    }
+  },
+  "PartUnknown": {
+    "type": "string"
+  },
+  "TextPart": {
+    "id": "string",
+    "messageID": "string",
+    "sessionID": "string",
+    "text": "string",
+    "type": "text",
+    "ignored": false,
+    "metadata": {},
+    "synthetic": false,
+    "time": {
+      "start": 0,
+      "end": 0
+    }
+  },
+  "SubtaskPart": {
+    "id": "string",
+    "agent": "string",
+    "description": "string",
+    "messageID": "string",
+    "prompt": "string",
+    "sessionID": "string",
+    "type": "subtask",
+    "command": "string",
+    "model": {
+      "modelID": "string",
+      "providerID": "string"
+    }
+  },
+  "ReasoningPart": {
+    "id": "string",
+    "messageID": "string",
+    "sessionID": "string",
+    "text": "string",
+    "time": {
+      "start": 0,
+      "end": 0
+    },
+    "type": "reasoning",
+    "metadata": {}
+  },
+  "ToolPart": {
+    "id": "string",
+    "callID": "string",
+    "messageID": "string",
+    "sessionID": "string",
+    "state": {
+      "status": "pending"
+    },
+    "tool": "string",
+    "type": "tool",
+    "metadata": {}
+  },
+  "StepStartPart": {
+    "id": "string",
+    "messageID": "string",
+    "sessionID": "string",
+    "type": "step-start",
+    "snapshot": "string"
+  },
+  "StepFinishPart": {
+    "id": "string",
+    "cost": 0.0,
+    "messageID": "string",
+    "reason": "string",
+    "sessionID": "string",
+    "tokens": {
+      "cache": {
+        "read": 0.0,
+        "write": 0.0
+      },
+      "input": 0.0,
+      "output": 0.0,
+      "reasoning": 0.0,
+      "total": 0.0
+    },
+    "type": "step-finish",
+    "snapshot": "string"
+  },
+  "SnapshotPart": {
+    "id": "string",
+    "messageID": "string",
+    "sessionID": "string",
+    "snapshot": "string",
+    "type": "snapshot"
+  },
+  "PatchPart": {
+    "id": "string",
+    "files": [
+      "string"
+    ],
+    "hash": "string",
+    "messageID": "string",
+    "sessionID": "string",
+    "type": "patch"
+  },
+  "RetryPart": {
+    "id": "string",
+    "attempt": 0,
+    "error": {
+      "data": {
+        "message": "string",
+        "isRetryable": false,
+        "metadata": {},
+        "responseBody": "string",
+        "responseHeaders": {},
+        "statusCode": 0
+      },
+      "name": "APIError"
+    },
+    "messageID": "string",
+    "sessionID": "string",
+    "time": {
+      "created": 0
+    },
+    "type": "retry"
+  },
+  "Session": {
+    "id": "string",
+    "directory": "string",
+    "projectID": "string",
+    "slug": "string",
+    "time": {
+      "created": 0.0,
+      "updated": 0.0,
+      "archived": 0.0,
+      "compacting": 0.0
+    },
+    "title": "string",
+    "version": "string",
+    "agent": "string",
+    "cost": 0.0,
+    "metadata": {},
+    "model": {
+      "id": "string",
+      "providerID": "string",
+      "variant": "string"
+    },
+    "parentID": "string",
+    "path": "string",
+    "permission": [
+      {
+        "action": "allow",
+        "pattern": "string",
+        "permission": "string"
+      }
+    ],
+    "revert": {
+      "messageID": "string",
+      "diff": "string",
+      "partID": "string",
+      "snapshot": "string"
+    },
+    "share": {
+      "url": "string"
+    },
+    "summary": {
+      "additions": 0.0,
+      "deletions": 0.0,
+      "files": 0.0,
+      "diffs": [
+        {
+          "additions": 0.0,
+          "deletions": 0.0,
+          "file": "string",
+          "patch": "string",
+          "status": "added"
+        }
+      ]
+    },
+    "tokens": {
+      "cache": {
+        "read": 0.0,
+        "write": 0.0
+      },
+      "input": 0.0,
+      "output": 0.0,
+      "reasoning": 0.0
+    },
+    "workspaceID": "string"
+  },
+  "TextPartInputParam": {
+    "text": "string",
+    "type": "text",
+    "id": "string",
+    "synthetic": false,
+    "time": {
+      "start": 0.0,
+      "end": 0.0
+    }
+  },
+  "ToolStateCompleted": {
+    "input": {
+      "<key>": {}
+    },
+    "metadata": {
+      "<key>": {}
+    },
+    "output": "string",
+    "status": "completed",
+    "time": {
+      "end": 0.0,
+      "start": 0.0
+    },
+    "title": "string"
+  },
+  "ToolStateError": {
+    "error": "string",
+    "input": {
+      "<key>": {}
+    },
+    "status": "error",
+    "time": {
+      "end": 0.0,
+      "start": 0.0
+    }
+  },
+  "ToolStatePending": {
+    "status": "pending"
+  },
+  "ToolStateRunning": {
+    "status": "running",
+    "time": {
+      "start": 0.0
+    },
+    "input": {},
+    "metadata": {
+      "<key>": {}
+    },
+    "title": "string"
+  },
+  "Todo": {
+    "content": "string",
+    "status": "string",
+    "priority": "string"
+  },
+  "SessionListResponse": [
+    {
+      "id": "string",
+      "directory": "string",
+      "projectID": "string",
+      "slug": "string",
+      "time": {
+        "created": 0.0,
+        "updated": 0.0,
+        "archived": 0.0,
+        "compacting": 0.0
+      },
+      "title": "string",
+      "version": "string",
+      "agent": "string",
+      "cost": 0.0,
+      "metadata": {},
+      "model": {
+        "id": "string",
+        "providerID": "string",
+        "variant": "string"
+      },
+      "parentID": "string",
+      "path": "string",
+      "permission": [
+        {
+          "action": "allow",
+          "pattern": "string",
+          "permission": "string"
+        }
+      ],
+      "revert": {
+        "messageID": "string",
+        "diff": "string",
+        "partID": "string",
+        "snapshot": "string"
+      },
+      "share": {
+        "url": "string"
+      },
+      "summary": {
+        "additions": 0.0,
+        "deletions": 0.0,
+        "files": 0.0,
+        "diffs": [
+          {
+            "additions": 0.0,
+            "deletions": 0.0,
+            "file": "string",
+            "patch": "string",
+            "status": "added"
+          }
+        ]
+      },
+      "tokens": {
+        "cache": {
+          "read": 0.0,
+          "write": 0.0
+        },
+        "input": 0.0,
+        "output": 0.0,
+        "reasoning": 0.0
+      },
+      "workspaceID": "string"
+    }
+  ],
+  "SessionDeleteResponse": false,
+  "SessionAbortResponse": false,
+  "SessionInitResponse": false,
+  "SessionMessagesResponse": [
+    {
+      "info": {
+        "id": "string",
+        "agent": "string",
+        "model": {
+          "modelID": "string",
+          "providerID": "string",
+          "variant": "string"
+        },
+        "role": "user",
+        "sessionID": "string",
+        "time": {
+          "created": 0.0
+        },
+        "format": {},
+        "summary": {},
+        "system": "string",
+        "tools": {
+          "<key>": false
+        }
+      },
+      "parts": [
+        {
+          "id": "string",
+          "messageID": "string",
+          "sessionID": "string",
+          "text": "string",
+          "type": "text",
+          "ignored": false,
+          "metadata": {},
+          "synthetic": false,
+          "time": {
+            "start": 0,
+            "end": 0
+          }
+        }
+      ]
+    }
+  ],
+  "SessionPromptResponse": {
+    "info": {
+      "id": "string",
+      "agent": "string",
+      "cost": 0.0,
+      "mode": "string",
+      "modelID": "string",
+      "parentID": "string",
+      "path": {
+        "cwd": "string",
+        "root": "string"
+      },
+      "providerID": "string",
+      "role": "assistant",
+      "sessionID": "string",
+      "time": {
+        "created": 0.0,
+        "completed": 0.0
+      },
+      "tokens": {
+        "cache": {
+          "read": 0.0,
+          "write": 0.0
+        },
+        "input": 0.0,
+        "output": 0.0,
+        "reasoning": 0.0,
+        "total": 0.0
+      },
+      "error": {
+        "data": {
+          "message": "string",
+          "providerID": "string"
+        },
+        "name": "ProviderAuthError"
+      },
+      "finish": "string",
+      "structured": {},
+      "summary": false,
+      "variant": "string"
+    },
+    "parts": [
+      {
+        "id": "string",
+        "messageID": "string",
+        "sessionID": "string",
+        "text": "string",
+        "type": "text",
+        "ignored": false,
+        "metadata": {},
+        "synthetic": false,
+        "time": {
+          "start": 0,
+          "end": 0
+        }
+      }
+    ]
+  },
+  "SessionSummarizeResponse": false,
+  "SessionChildrenResponse": [
+    {
+      "id": "string",
+      "directory": "string",
+      "projectID": "string",
+      "slug": "string",
+      "time": {
+        "created": 0.0,
+        "updated": 0.0,
+        "archived": 0.0,
+        "compacting": 0.0
+      },
+      "title": "string",
+      "version": "string",
+      "agent": "string",
+      "cost": 0.0,
+      "metadata": {},
+      "model": {
+        "id": "string",
+        "providerID": "string",
+        "variant": "string"
+      },
+      "parentID": "string",
+      "path": "string",
+      "permission": [
+        {
+          "action": "allow",
+          "pattern": "string",
+          "permission": "string"
+        }
+      ],
+      "revert": {
+        "messageID": "string",
+        "diff": "string",
+        "partID": "string",
+        "snapshot": "string"
+      },
+      "share": {
+        "url": "string"
+      },
+      "summary": {
+        "additions": 0.0,
+        "deletions": 0.0,
+        "files": 0.0,
+        "diffs": [
+          {
+            "additions": 0.0,
+            "deletions": 0.0,
+            "file": "string",
+            "patch": "string",
+            "status": "added"
+          }
+        ]
+      },
+      "tokens": {
+        "cache": {
+          "read": 0.0,
+          "write": 0.0
+        },
+        "input": 0.0,
+        "output": 0.0,
+        "reasoning": 0.0
+      },
+      "workspaceID": "string"
+    }
+  ],
+  "SessionCommandResponse": {
+    "info": {
+      "id": "string",
+      "agent": "string",
+      "cost": 0.0,
+      "mode": "string",
+      "modelID": "string",
+      "parentID": "string",
+      "path": {
+        "cwd": "string",
+        "root": "string"
+      },
+      "providerID": "string",
+      "role": "assistant",
+      "sessionID": "string",
+      "time": {
+        "created": 0.0,
+        "completed": 0.0
+      },
+      "tokens": {
+        "cache": {
+          "read": 0.0,
+          "write": 0.0
+        },
+        "input": 0.0,
+        "output": 0.0,
+        "reasoning": 0.0,
+        "total": 0.0
+      },
+      "error": {
+        "data": {
+          "message": "string",
+          "providerID": "string"
+        },
+        "name": "ProviderAuthError"
+      },
+      "finish": "string",
+      "structured": {},
+      "summary": false,
+      "variant": "string"
+    },
+    "parts": [
+      {
+        "id": "string",
+        "messageID": "string",
+        "sessionID": "string",
+        "text": "string",
+        "type": "text",
+        "ignored": false,
+        "metadata": {},
+        "synthetic": false,
+        "time": {
+          "start": 0,
+          "end": 0
+        }
+      }
+    ]
+  },
+  "SessionDeleteMessageResponse": false,
+  "SessionDeletePartResponse": false,
+  "SessionDiffResponse": [
+    {
+      "additions": 0.0,
+      "deletions": 0.0,
+      "file": "string",
+      "patch": "string",
+      "status": "added"
+    }
+  ],
+  "SessionMessagesResponseItem": {
+    "info": {
+      "id": "string",
+      "agent": "string",
+      "model": {
+        "modelID": "string",
+        "providerID": "string",
+        "variant": "string"
+      },
+      "role": "user",
+      "sessionID": "string",
+      "time": {
+        "created": 0.0
+      },
+      "format": {},
+      "summary": {},
+      "system": "string",
+      "tools": {
+        "<key>": false
+      }
+    },
+    "parts": [
+      {
+        "id": "string",
+        "messageID": "string",
+        "sessionID": "string",
+        "text": "string",
+        "type": "text",
+        "ignored": false,
+        "metadata": {},
+        "synthetic": false,
+        "time": {
+          "start": 0,
+          "end": 0
+        }
+      }
+    ]
+  },
+  "SessionRespondPermissionResponse": false,
+  "SessionShellResponse": {
+    "info": {
+      "id": "string",
+      "agent": "string",
+      "model": {
+        "modelID": "string",
+        "providerID": "string",
+        "variant": "string"
+      },
+      "role": "user",
+      "sessionID": "string",
+      "time": {
+        "created": 0.0
+      },
+      "format": {},
+      "summary": {},
+      "system": "string",
+      "tools": {
+        "<key>": false
+      }
+    },
+    "parts": [
+      {
+        "id": "string",
+        "messageID": "string",
+        "sessionID": "string",
+        "text": "string",
+        "type": "text",
+        "ignored": false,
+        "metadata": {},
+        "synthetic": false,
+        "time": {
+          "start": 0,
+          "end": 0
+        }
+      }
+    ]
+  },
+  "SessionStatusResponse": {
+    "<key>": {
+      "type": "idle"
+    }
+  },
+  "SessionTodoResponse": [
+    {
+      "content": "string",
+      "status": "string",
+      "priority": "string"
+    }
+  ],
+  "Project": {
+    "id": "string",
+    "sandboxes": [
+      "string"
+    ],
+    "time": {
+      "created": 0.0,
+      "updated": 0.0,
+      "initialized": 0.0
+    },
+    "worktree": "string",
+    "commands": {
+      "start": "string"
+    },
+    "icon": {
+      "color": "string",
+      "override": "string",
+      "url": "string"
+    },
+    "name": "string",
+    "vcs": "git"
+  },
+  "ProjectListResponse": [
+    {
+      "id": "string",
+      "sandboxes": [
+        "string"
+      ],
+      "time": {
+        "created": 0.0,
+        "updated": 0.0,
+        "initialized": 0.0
+      },
+      "worktree": "string",
+      "commands": {
+        "start": "string"
+      },
+      "icon": {
+        "color": "string",
+        "override": "string",
+        "url": "string"
+      },
+      "name": "string",
+      "vcs": "git"
+    }
+  ],
+  "ProjectDirectoriesResponse": [
+    "string"
+  ],
+  "ProviderAuthMethod": {
+    "label": "string",
+    "type": "oauth",
+    "prompts": [
+      {
+        "key": "string",
+        "message": "string",
+        "type": "text",
+        "placeholder": "string",
+        "when": {
+          "key": "string",
+          "op": "eq",
+          "value": "string"
+        }
+      }
+    ]
+  },
+  "ProviderListResponse": {
+    "all": [
+      {
+        "id": "string",
+        "env": [
+          "string"
+        ],
+        "models": {
+          "<key>": {
+            "id": "string",
+            "attachment": false,
+            "cost": {
+              "input": 0.0,
+              "output": 0.0,
+              "cache_read": 0.0,
+              "cache_write": 0.0
+            },
+            "limit": {
+              "context": 0.0,
+              "output": 0.0
+            },
+            "name": "string",
+            "options": {
+              "<key>": {}
+            },
+            "reasoning": false,
+            "release_date": "string",
+            "temperature": false,
+            "tool_call": false
+          }
+        },
+        "name": "string",
+        "options": {
+          "<key>": {}
+        },
+        "source": "env",
+        "key": "string"
+      }
+    ],
+    "connected": [
+      "string"
+    ],
+    "default": {
+      "<key>": "string"
+    }
+  },
+  "ProviderAuthResponse": {
+    "<key>": [
+      {
+        "label": "string",
+        "type": "oauth",
+        "prompts": [
+          {
+            "key": "string",
+            "message": "string",
+            "type": "text",
+            "placeholder": "string",
+            "when": {
+              "key": "string",
+              "op": "eq",
+              "value": "string"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ProviderAuthAuthorization": {
+    "instructions": "string",
+    "method": "auto",
+    "url": "string"
+  },
+  "ProviderOAuthCallbackResponse": false,
+  "SyncHistoryListResponse": [
+    {
+      "id": "string",
+      "aggregate_id": "string",
+      "data": {},
+      "seq": 0,
+      "type": "string"
+    }
+  ],
+  "SyncReplayResponse": {
+    "sessionID": "string"
+  },
+  "SyncStartResponse": false,
+  "SyncStealResponse": {
+    "sessionID": "string"
+  },
+  "MCPStatusConnected": {
+    "status": "connected"
+  },
+  "MCPStatusDisabled": {
+    "status": "disabled"
+  },
+  "MCPStatusFailed": {
+    "error": "string",
+    "status": "failed"
+  },
+  "MCPStatusNeedsAuth": {
+    "status": "needs_auth"
+  },
+  "MCPStatusNeedsClientRegistration": {
+    "error": "string",
+    "status": "needs_client_registration"
+  },
+  "McpAddResponse": {
+    "<key>": {
+      "status": "connected"
+    }
+  },
+  "McpAuthRemoveResponse": {
+    "success": true
+  },
+  "McpAuthStartResponse": {
+    "authorizationUrl": "string",
+    "oauthState": "string"
+  },
+  "McpConnectResponse": false,
+  "McpDisconnectResponse": false,
+  "McpStatusResponse": {
+    "<key>": {
+      "status": "connected"
+    }
+  },
+  "Pty": {
+    "id": "string",
+    "args": [
+      "string"
+    ],
+    "command": "string",
+    "cwd": "string",
+    "pid": 0,
+    "status": "running",
+    "title": "string"
+  },
+  "PtyListResponse": [
+    {
+      "id": "string",
+      "args": [
+        "string"
+      ],
+      "command": "string",
+      "cwd": "string",
+      "pid": 0,
+      "status": "running",
+      "title": "string"
+    }
+  ],
+  "PtyConnectResponse": false,
+  "PtyConnectTokenResponse": {
+    "expires_in": 0,
+    "ticket": "string"
+  },
+  "PtyDeleteResponse": false,
+  "PtyShellsResponse": [
+    {
+      "acceptable": false,
+      "name": "string",
+      "path": "string"
+    }
+  ],
+  "TuiAppendPromptResponse": false,
+  "TuiOpenHelpResponse": false,
+  "TuiOpenSessionsResponse": false,
+  "TuiOpenThemesResponse": false,
+  "TuiOpenModelsResponse": false,
+  "TuiSubmitPromptResponse": false,
+  "TuiClearPromptResponse": false,
+  "TuiExecuteCommandResponse": false,
+  "TuiShowToastResponse": false,
+  "TuiPublishResponse": false,
+  "TuiSelectSessionResponse": false,
+  "TuiControlNextResponse": {
+    "path": "string",
+    "body": {}
+  },
+  "TuiControlResponseResponse": false,
+  "QuestionInfo": {
+    "header": "string",
+    "options": [
+      {
+        "description": "string",
+        "label": "string"
+      }
+    ],
+    "question": "string",
+    "custom": false,
+    "multiple": false
+  },
+  "QuestionOption": {
+    "description": "string",
+    "label": "string"
+  },
+  "QuestionRequest": {
+    "id": "string",
+    "questions": [
+      {
+        "header": "string",
+        "options": [
+          {
+            "description": "string",
+            "label": "string"
+          }
+        ],
+        "question": "string",
+        "custom": false,
+        "multiple": false
+      }
+    ],
+    "sessionID": "string",
+    "tool": {
+      "callID": "string",
+      "messageID": "string"
+    }
+  },
+  "QuestionTool": {
+    "callID": "string",
+    "messageID": "string"
+  },
+  "QuestionListResponse": [
+    {
+      "id": "string",
+      "questions": [
+        {
+          "header": "string",
+          "options": [
+            {
+              "description": "string",
+              "label": "string"
+            }
+          ],
+          "question": "string",
+          "custom": false,
+          "multiple": false
+        }
+      ],
+      "sessionID": "string",
+      "tool": {
+        "callID": "string",
+        "messageID": "string"
+      }
+    }
+  ],
+  "QuestionRejectResponse": false,
+  "QuestionReplyResponse": false,
+  "PermissionRequest": {
+    "id": "string",
+    "always": [
+      "string"
+    ],
+    "metadata": {},
+    "patterns": [
+      "string"
+    ],
+    "permission": "string",
+    "sessionID": "string",
+    "tool": {
+      "callID": "string",
+      "messageID": "string"
+    }
+  },
+  "PermissionListResponse": [
+    {
+      "id": "string",
+      "always": [
+        "string"
+      ],
+      "metadata": {},
+      "patterns": [
+        "string"
+      ],
+      "permission": "string",
+      "sessionID": "string",
+      "tool": {
+        "callID": "string",
+        "messageID": "string"
+      }
+    }
+  ],
+  "PermissionReplyResponse": false,
+  "Path": {
+    "config": "string",
+    "directory": "string",
+    "home": "string",
+    "state": "string",
+    "worktree": "string"
+  },
+  "VcsInfo": {
+    "branch": "string",
+    "default_branch": "string"
+  },
+  "VcsFileStatus": {
+    "additions": 0.0,
+    "deletions": 0.0,
+    "file": "string",
+    "status": "added"
+  },
+  "VcsFileDiff": {
+    "additions": 0.0,
+    "deletions": 0.0,
+    "file": "string",
+    "patch": "string",
+    "status": "added"
+  },
+  "VcsStatusResponse": [
+    {
+      "additions": 0.0,
+      "deletions": 0.0,
+      "file": "string",
+      "status": "added"
+    }
+  ],
+  "VcsDiffResponse": [
+    {
+      "additions": 0.0,
+      "deletions": 0.0,
+      "file": "string",
+      "patch": "string",
+      "status": "added"
+    }
+  ],
+  "VcsApplyResponse": {
+    "applied": false
+  },
+  "Command": {
+    "hints": [
+      "string"
+    ],
+    "name": "string",
+    "template": "string",
+    "agent": "string",
+    "description": "string",
+    "model": "string",
+    "source": "command",
+    "subtask": false
+  },
+  "CommandListResponse": [
+    {
+      "hints": [
+        "string"
+      ],
+      "name": "string",
+      "template": "string",
+      "agent": "string",
+      "description": "string",
+      "model": "string",
+      "source": "command",
+      "subtask": false
+    }
+  ],
+  "LSPStatus": {
+    "id": "string",
+    "name": "string",
+    "root": "string",
+    "status": "connected"
+  },
+  "LspStatusResponse": [
+    {
+      "id": "string",
+      "name": "string",
+      "root": "string",
+      "status": "connected"
+    }
+  ],
+  "FormatterStatus": {
+    "enabled": false,
+    "extensions": [
+      "string"
+    ],
+    "name": "string"
+  },
+  "FormatterStatusResponse": [
+    {
+      "enabled": false,
+      "extensions": [
+        "string"
+      ],
+      "name": "string"
+    }
+  ],
+  "InstanceDisposeResponse": false,
+  "AuthSetResponse": false,
+  "AuthRemoveResponse": false
+}

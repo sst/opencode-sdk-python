@@ -1,7 +1,7 @@
 [project]
-name = "opencode-ai"
+name = "opencode-ai-wg"
 version = "0.2.0"
-description = "The official Python library for the opencode API"
+description = "Walzen Group fork of the Python library for the opencode API"
 dynamic = ["readme"]
 license = "MIT"
 authors = [
@@ -35,8 +35,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sst/opencode-sdk-python"
-Repository = "https://github.com/sst/opencode-sdk-python"
+Homepage = "https://github.com/Walzen-Group/opencode-sdk-python"
+Repository = "https://github.com/Walzen-Group/opencode-sdk-python"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.8"]
@@ -125,7 +125,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/sst/opencode-sdk-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/Walzen-Group/opencode-sdk-python/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
