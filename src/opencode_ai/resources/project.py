@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import project_update_params
+from ..types import project_update_params, addressing_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -46,6 +46,8 @@ class ProjectResource(SyncAPIResource):
     def list(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,7 +59,17 @@ class ProjectResource(SyncAPIResource):
         return self._get(
             "/project",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=ProjectListResponse,
         )
@@ -69,6 +81,8 @@ class ProjectResource(SyncAPIResource):
         commands: project_update_params.Commands | NotGiven = NOT_GIVEN,
         icon: project_update_params.Icon | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,7 +115,17 @@ class ProjectResource(SyncAPIResource):
                 project_update_params.ProjectUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Project,
         )
@@ -109,6 +133,8 @@ class ProjectResource(SyncAPIResource):
     def current(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,7 +146,17 @@ class ProjectResource(SyncAPIResource):
         return self._get(
             "/project/current",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Project,
         )
@@ -129,6 +165,8 @@ class ProjectResource(SyncAPIResource):
         self,
         project_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -153,7 +191,17 @@ class ProjectResource(SyncAPIResource):
         return self._get(
             f"/project/{project_id}/directories",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=ProjectDirectoriesResponse,
         )
@@ -161,6 +209,8 @@ class ProjectResource(SyncAPIResource):
     def init_git(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -172,7 +222,17 @@ class ProjectResource(SyncAPIResource):
         return self._post(
             "/project/git/init",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Project,
         )
@@ -201,6 +261,8 @@ class AsyncProjectResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -212,7 +274,17 @@ class AsyncProjectResource(AsyncAPIResource):
         return await self._get(
             "/project",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=ProjectListResponse,
         )
@@ -224,6 +296,8 @@ class AsyncProjectResource(AsyncAPIResource):
         commands: project_update_params.Commands | NotGiven = NOT_GIVEN,
         icon: project_update_params.Icon | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,7 +330,17 @@ class AsyncProjectResource(AsyncAPIResource):
                 project_update_params.ProjectUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Project,
         )
@@ -264,6 +348,8 @@ class AsyncProjectResource(AsyncAPIResource):
     async def current(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -275,7 +361,17 @@ class AsyncProjectResource(AsyncAPIResource):
         return await self._get(
             "/project/current",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Project,
         )
@@ -284,6 +380,8 @@ class AsyncProjectResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -308,7 +406,17 @@ class AsyncProjectResource(AsyncAPIResource):
         return await self._get(
             f"/project/{project_id}/directories",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=ProjectDirectoriesResponse,
         )
@@ -316,6 +424,8 @@ class AsyncProjectResource(AsyncAPIResource):
     async def init_git(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -327,7 +437,17 @@ class AsyncProjectResource(AsyncAPIResource):
         return await self._post(
             "/project/git/init",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Project,
         )

@@ -8,6 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import (
+    addressing_params,
     tui_publish_params,
     tui_show_toast_params,
     tui_append_prompt_params,
@@ -67,6 +68,8 @@ class TuiResource(SyncAPIResource):
         self,
         *,
         text: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -90,7 +93,17 @@ class TuiResource(SyncAPIResource):
             "/tui/append-prompt",
             body=maybe_transform({"text": text}, tui_append_prompt_params.TuiAppendPromptParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiAppendPromptResponse,
         )
@@ -98,6 +111,8 @@ class TuiResource(SyncAPIResource):
     def open_help(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -109,7 +124,17 @@ class TuiResource(SyncAPIResource):
         return self._post(
             "/tui/open-help",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenHelpResponse,
         )
@@ -117,6 +142,8 @@ class TuiResource(SyncAPIResource):
     def open_sessions(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -128,7 +155,17 @@ class TuiResource(SyncAPIResource):
         return self._post(
             "/tui/open-sessions",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenSessionsResponse,
         )
@@ -136,6 +173,8 @@ class TuiResource(SyncAPIResource):
     def open_themes(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,7 +186,17 @@ class TuiResource(SyncAPIResource):
         return self._post(
             "/tui/open-themes",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenThemesResponse,
         )
@@ -155,6 +204,8 @@ class TuiResource(SyncAPIResource):
     def open_models(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,7 +217,17 @@ class TuiResource(SyncAPIResource):
         return self._post(
             "/tui/open-models",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenModelsResponse,
         )
@@ -174,6 +235,8 @@ class TuiResource(SyncAPIResource):
     def submit_prompt(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,7 +248,17 @@ class TuiResource(SyncAPIResource):
         return self._post(
             "/tui/submit-prompt",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiSubmitPromptResponse,
         )
@@ -193,6 +266,8 @@ class TuiResource(SyncAPIResource):
     def clear_prompt(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -204,7 +279,17 @@ class TuiResource(SyncAPIResource):
         return self._post(
             "/tui/clear-prompt",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiClearPromptResponse,
         )
@@ -213,6 +298,8 @@ class TuiResource(SyncAPIResource):
         self,
         *,
         command: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,7 +323,17 @@ class TuiResource(SyncAPIResource):
             "/tui/execute-command",
             body=maybe_transform({"command": command}, tui_execute_command_params.TuiExecuteCommandParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiExecuteCommandResponse,
         )
@@ -248,6 +345,8 @@ class TuiResource(SyncAPIResource):
         variant: Literal["info", "success", "warning", "error"],
         duration: int | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -279,7 +378,17 @@ class TuiResource(SyncAPIResource):
                 tui_show_toast_params.TuiShowToastParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiShowToastResponse,
         )
@@ -288,6 +397,8 @@ class TuiResource(SyncAPIResource):
         self,
         body: tui_publish_params.TuiPublishParams | NotGiven = NOT_GIVEN,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -314,7 +425,17 @@ class TuiResource(SyncAPIResource):
             "/tui/publish",
             body=maybe_transform(body, tui_publish_params.TuiPublishParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiPublishResponse,
         )
@@ -323,6 +444,8 @@ class TuiResource(SyncAPIResource):
         self,
         *,
         session_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -348,7 +471,17 @@ class TuiResource(SyncAPIResource):
             "/tui/select-session",
             body=maybe_transform({"session_id": session_id}, tui_select_session_params.TuiSelectSessionParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiSelectSessionResponse,
         )
@@ -356,6 +489,8 @@ class TuiResource(SyncAPIResource):
     def control_next(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -367,7 +502,17 @@ class TuiResource(SyncAPIResource):
         return self._get(
             "/tui/control/next",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiControlNextResponse,
         )
@@ -376,6 +521,8 @@ class TuiResource(SyncAPIResource):
         self,
         body: Dict[str, object] | NotGiven = NOT_GIVEN,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -401,7 +548,17 @@ class TuiResource(SyncAPIResource):
             "/tui/control/response",
             body=maybe_transform(body, tui_control_response_params.TuiControlResponseParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiControlResponseResponse,
         )
@@ -431,6 +588,8 @@ class AsyncTuiResource(AsyncAPIResource):
         self,
         *,
         text: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -454,7 +613,17 @@ class AsyncTuiResource(AsyncAPIResource):
             "/tui/append-prompt",
             body=await async_maybe_transform({"text": text}, tui_append_prompt_params.TuiAppendPromptParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiAppendPromptResponse,
         )
@@ -462,6 +631,8 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_help(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -473,7 +644,17 @@ class AsyncTuiResource(AsyncAPIResource):
         return await self._post(
             "/tui/open-help",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenHelpResponse,
         )
@@ -481,6 +662,8 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_sessions(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -492,7 +675,17 @@ class AsyncTuiResource(AsyncAPIResource):
         return await self._post(
             "/tui/open-sessions",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenSessionsResponse,
         )
@@ -500,6 +693,8 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_themes(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -511,7 +706,17 @@ class AsyncTuiResource(AsyncAPIResource):
         return await self._post(
             "/tui/open-themes",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenThemesResponse,
         )
@@ -519,6 +724,8 @@ class AsyncTuiResource(AsyncAPIResource):
     async def open_models(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -530,7 +737,17 @@ class AsyncTuiResource(AsyncAPIResource):
         return await self._post(
             "/tui/open-models",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiOpenModelsResponse,
         )
@@ -538,6 +755,8 @@ class AsyncTuiResource(AsyncAPIResource):
     async def submit_prompt(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -549,7 +768,17 @@ class AsyncTuiResource(AsyncAPIResource):
         return await self._post(
             "/tui/submit-prompt",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiSubmitPromptResponse,
         )
@@ -557,6 +786,8 @@ class AsyncTuiResource(AsyncAPIResource):
     async def clear_prompt(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -568,7 +799,17 @@ class AsyncTuiResource(AsyncAPIResource):
         return await self._post(
             "/tui/clear-prompt",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiClearPromptResponse,
         )
@@ -577,6 +818,8 @@ class AsyncTuiResource(AsyncAPIResource):
         self,
         *,
         command: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -600,7 +843,17 @@ class AsyncTuiResource(AsyncAPIResource):
             "/tui/execute-command",
             body=await async_maybe_transform({"command": command}, tui_execute_command_params.TuiExecuteCommandParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiExecuteCommandResponse,
         )
@@ -612,6 +865,8 @@ class AsyncTuiResource(AsyncAPIResource):
         variant: Literal["info", "success", "warning", "error"],
         duration: int | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -643,7 +898,17 @@ class AsyncTuiResource(AsyncAPIResource):
                 tui_show_toast_params.TuiShowToastParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiShowToastResponse,
         )
@@ -652,6 +917,8 @@ class AsyncTuiResource(AsyncAPIResource):
         self,
         body: tui_publish_params.TuiPublishParams | NotGiven = NOT_GIVEN,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -678,7 +945,17 @@ class AsyncTuiResource(AsyncAPIResource):
             "/tui/publish",
             body=await async_maybe_transform(body, tui_publish_params.TuiPublishParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiPublishResponse,
         )
@@ -687,6 +964,8 @@ class AsyncTuiResource(AsyncAPIResource):
         self,
         *,
         session_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -714,7 +993,17 @@ class AsyncTuiResource(AsyncAPIResource):
                 {"session_id": session_id}, tui_select_session_params.TuiSelectSessionParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiSelectSessionResponse,
         )
@@ -722,6 +1011,8 @@ class AsyncTuiResource(AsyncAPIResource):
     async def control_next(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -733,7 +1024,17 @@ class AsyncTuiResource(AsyncAPIResource):
         return await self._get(
             "/tui/control/next",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiControlNextResponse,
         )
@@ -742,6 +1043,8 @@ class AsyncTuiResource(AsyncAPIResource):
         self,
         body: Dict[str, object] | NotGiven = NOT_GIVEN,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -767,7 +1070,17 @@ class AsyncTuiResource(AsyncAPIResource):
             "/tui/control/response",
             body=await async_maybe_transform(body, tui_control_response_params.TuiControlResponseParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=TuiControlResponseResponse,
         )

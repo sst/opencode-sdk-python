@@ -6,7 +6,7 @@ from typing import List
 
 import httpx
 
-from ..types import question_reply_params
+from ..types import addressing_params, question_reply_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -48,6 +48,8 @@ class QuestionResource(SyncAPIResource):
     def list(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,7 +61,17 @@ class QuestionResource(SyncAPIResource):
         return self._get(
             "/question",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=QuestionListResponse,
         )
@@ -68,6 +80,8 @@ class QuestionResource(SyncAPIResource):
         self,
         request_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -92,7 +106,17 @@ class QuestionResource(SyncAPIResource):
         return self._post(
             f"/question/{request_id}/reject",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=QuestionRejectResponse,
         )
@@ -102,6 +126,8 @@ class QuestionResource(SyncAPIResource):
         request_id: str,
         *,
         answers: List[List[str]],
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,7 +156,17 @@ class QuestionResource(SyncAPIResource):
             f"/question/{request_id}/reply",
             body=maybe_transform({"answers": answers}, question_reply_params.QuestionReplyParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=QuestionReplyResponse,
         )
@@ -159,6 +195,8 @@ class AsyncQuestionResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,7 +208,17 @@ class AsyncQuestionResource(AsyncAPIResource):
         return await self._get(
             "/question",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=QuestionListResponse,
         )
@@ -179,6 +227,8 @@ class AsyncQuestionResource(AsyncAPIResource):
         self,
         request_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,7 +253,17 @@ class AsyncQuestionResource(AsyncAPIResource):
         return await self._post(
             f"/question/{request_id}/reject",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=QuestionRejectResponse,
         )
@@ -213,6 +273,8 @@ class AsyncQuestionResource(AsyncAPIResource):
         request_id: str,
         *,
         answers: List[List[str]],
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,7 +303,17 @@ class AsyncQuestionResource(AsyncAPIResource):
             f"/question/{request_id}/reply",
             body=await async_maybe_transform({"answers": answers}, question_reply_params.QuestionReplyParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=QuestionReplyResponse,
         )

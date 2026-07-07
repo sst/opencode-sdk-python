@@ -194,6 +194,13 @@ class TestAppWire:
         assert_matches_type(AppAgentsResponse, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)
+    def test_agents_sends_directory_and_workspace_query(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/agent").mock(return_value=httpx.Response(200, json=[]))
+        client.app.agents(directory="/repo", workspace="ws1")
+        assert route_request(route).url.params.get("directory") == "/repo"
+        assert route_request(route).url.params.get("workspace") == "ws1"
+
+    @pytest.mark.respx(base_url=base_url)
     def test_skills_hits_skill_path(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/skill").mock(return_value=httpx.Response(200, json=[]))
         result = client.app.skills()

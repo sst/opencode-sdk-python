@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 
 import httpx
 
-from ..types import sync_replay_params, sync_steal_params, sync_history_list_params
+from ..types import addressing_params, sync_replay_params, sync_steal_params, sync_history_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -50,6 +50,8 @@ class SyncResource(SyncAPIResource):
         self,
         body: Dict[str, int] | NotGiven = NOT_GIVEN,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,7 +80,17 @@ class SyncResource(SyncAPIResource):
             "/sync/history",
             body=maybe_transform(body, sync_history_list_params.SyncHistoryListParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncHistoryListResponse,
         )
@@ -88,6 +100,8 @@ class SyncResource(SyncAPIResource):
         *,
         directory: str,
         events: Iterable[sync_replay_params.Event],
+        query_directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,7 +138,17 @@ class SyncResource(SyncAPIResource):
                 sync_replay_params.SyncReplayParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": query_directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncReplayResponse,
         )
@@ -132,6 +156,8 @@ class SyncResource(SyncAPIResource):
     def start(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -146,7 +172,17 @@ class SyncResource(SyncAPIResource):
         return self._post(
             "/sync/start",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncStartResponse,
         )
@@ -155,6 +191,8 @@ class SyncResource(SyncAPIResource):
         self,
         *,
         session_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,7 +219,17 @@ class SyncResource(SyncAPIResource):
             "/sync/steal",
             body=maybe_transform({"session_id": session_id}, sync_steal_params.SyncStealParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncStealResponse,
         )
@@ -211,6 +259,8 @@ class AsyncSyncResource(AsyncAPIResource):
         self,
         body: Dict[str, int] | NotGiven = NOT_GIVEN,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,7 +289,17 @@ class AsyncSyncResource(AsyncAPIResource):
             "/sync/history",
             body=await async_maybe_transform(body, sync_history_list_params.SyncHistoryListParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncHistoryListResponse,
         )
@@ -249,6 +309,8 @@ class AsyncSyncResource(AsyncAPIResource):
         *,
         directory: str,
         events: Iterable[sync_replay_params.Event],
+        query_directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -285,7 +347,17 @@ class AsyncSyncResource(AsyncAPIResource):
                 sync_replay_params.SyncReplayParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": query_directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncReplayResponse,
         )
@@ -293,6 +365,8 @@ class AsyncSyncResource(AsyncAPIResource):
     async def start(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -307,7 +381,17 @@ class AsyncSyncResource(AsyncAPIResource):
         return await self._post(
             "/sync/start",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncStartResponse,
         )
@@ -316,6 +400,8 @@ class AsyncSyncResource(AsyncAPIResource):
         self,
         *,
         session_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -342,7 +428,17 @@ class AsyncSyncResource(AsyncAPIResource):
             "/sync/steal",
             body=await async_maybe_transform({"session_id": session_id}, sync_steal_params.SyncStealParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SyncStealResponse,
         )

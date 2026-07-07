@@ -11,3 +11,7 @@ class SessionMessagesParams(TypedDict, total=False):
     before: str
 
     limit: int
+
+    directory: str
+
+    workspace: str

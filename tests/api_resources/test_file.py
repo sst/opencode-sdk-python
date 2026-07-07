@@ -252,5 +252,12 @@ class TestFileWire:
         assert route_request(route).url.params.get("path") == "a.py"
         assert_matches_type(FileContentResponse, result, path=["response"])
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_status_sends_directory_and_workspace_query(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/file/status").mock(return_value=httpx.Response(200, json=[]))
+        client.file.status(directory="/repo", workspace="ws1")
+        assert route_request(route).url.params.get("directory") == "/repo"
+        assert route_request(route).url.params.get("workspace") == "ws1"
+
     def test_read_is_removed(self, client: Opencode) -> None:
         assert not hasattr(client.file, "read")

@@ -6,7 +6,7 @@ from typing import Dict, List
 
 import httpx
 
-from ..types import pty_create_params, pty_update_params, pty_connect_params
+from ..types import addressing_params, pty_create_params, pty_update_params, pty_connect_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -51,6 +51,8 @@ class PtyResource(SyncAPIResource):
     def list(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,7 +64,17 @@ class PtyResource(SyncAPIResource):
         return self._get(
             "/pty",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyListResponse,
         )
@@ -75,6 +87,8 @@ class PtyResource(SyncAPIResource):
         cwd: str | NotGiven = NOT_GIVEN,
         env: Dict[str, str] | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,7 +122,17 @@ class PtyResource(SyncAPIResource):
                 pty_create_params.PtyCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Pty,
         )
@@ -117,6 +141,8 @@ class PtyResource(SyncAPIResource):
         self,
         pty_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,7 +167,17 @@ class PtyResource(SyncAPIResource):
         return self._get(
             f"/pty/{pty_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Pty,
         )
@@ -152,6 +188,8 @@ class PtyResource(SyncAPIResource):
         *,
         size: pty_update_params.Size | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -183,7 +221,17 @@ class PtyResource(SyncAPIResource):
                 pty_update_params.PtyUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Pty,
         )
@@ -192,6 +240,8 @@ class PtyResource(SyncAPIResource):
         self,
         pty_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -216,7 +266,17 @@ class PtyResource(SyncAPIResource):
         return self._delete(
             f"/pty/{pty_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyDeleteResponse,
         )
@@ -227,6 +287,8 @@ class PtyResource(SyncAPIResource):
         *,
         cursor: str | NotGiven = NOT_GIVEN,
         ticket: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -266,6 +328,8 @@ class PtyResource(SyncAPIResource):
                     {
                         "cursor": cursor,
                         "ticket": ticket,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     pty_connect_params.PtyConnectParams,
                 ),
@@ -277,6 +341,8 @@ class PtyResource(SyncAPIResource):
         self,
         pty_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -301,7 +367,17 @@ class PtyResource(SyncAPIResource):
         return self._post(
             f"/pty/{pty_id}/connect-token",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyConnectTokenResponse,
         )
@@ -309,6 +385,8 @@ class PtyResource(SyncAPIResource):
     def shells(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -320,7 +398,17 @@ class PtyResource(SyncAPIResource):
         return self._get(
             "/pty/shells",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyShellsResponse,
         )
@@ -349,6 +437,8 @@ class AsyncPtyResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,7 +450,17 @@ class AsyncPtyResource(AsyncAPIResource):
         return await self._get(
             "/pty",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyListResponse,
         )
@@ -373,6 +473,8 @@ class AsyncPtyResource(AsyncAPIResource):
         cwd: str | NotGiven = NOT_GIVEN,
         env: Dict[str, str] | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -406,7 +508,17 @@ class AsyncPtyResource(AsyncAPIResource):
                 pty_create_params.PtyCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Pty,
         )
@@ -415,6 +527,8 @@ class AsyncPtyResource(AsyncAPIResource):
         self,
         pty_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -439,7 +553,17 @@ class AsyncPtyResource(AsyncAPIResource):
         return await self._get(
             f"/pty/{pty_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Pty,
         )
@@ -450,6 +574,8 @@ class AsyncPtyResource(AsyncAPIResource):
         *,
         size: pty_update_params.Size | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -481,7 +607,17 @@ class AsyncPtyResource(AsyncAPIResource):
                 pty_update_params.PtyUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Pty,
         )
@@ -490,6 +626,8 @@ class AsyncPtyResource(AsyncAPIResource):
         self,
         pty_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -514,7 +652,17 @@ class AsyncPtyResource(AsyncAPIResource):
         return await self._delete(
             f"/pty/{pty_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyDeleteResponse,
         )
@@ -525,6 +673,8 @@ class AsyncPtyResource(AsyncAPIResource):
         *,
         cursor: str | NotGiven = NOT_GIVEN,
         ticket: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -564,6 +714,8 @@ class AsyncPtyResource(AsyncAPIResource):
                     {
                         "cursor": cursor,
                         "ticket": ticket,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     pty_connect_params.PtyConnectParams,
                 ),
@@ -575,6 +727,8 @@ class AsyncPtyResource(AsyncAPIResource):
         self,
         pty_id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -599,7 +753,17 @@ class AsyncPtyResource(AsyncAPIResource):
         return await self._post(
             f"/pty/{pty_id}/connect-token",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyConnectTokenResponse,
         )
@@ -607,6 +771,8 @@ class AsyncPtyResource(AsyncAPIResource):
     async def shells(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -618,7 +784,17 @@ class AsyncPtyResource(AsyncAPIResource):
         return await self._get(
             "/pty/shells",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=PtyShellsResponse,
         )

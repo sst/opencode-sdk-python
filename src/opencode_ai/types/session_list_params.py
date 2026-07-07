@@ -19,3 +19,7 @@ class SessionListParams(TypedDict, total=False):
     search: str
 
     start: float
+
+    directory: str
+
+    workspace: str

@@ -100,6 +100,17 @@ class TestTui:
 
 class TestTuiWire:
     @pytest.mark.respx(base_url=base_url)
+    def test_open_help_sends_directory_and_workspace_query(
+        self, client: Opencode, respx_mock: MockRouter
+    ) -> None:
+        route = respx_mock.post("/tui/open-help").mock(return_value=httpx.Response(200, json=True))
+        result = client.tui.open_help(directory="/repo", workspace="ws1")
+        assert route.called
+        assert route_request(route).url.params.get("directory") == "/repo"
+        assert route_request(route).url.params.get("workspace") == "ws1"
+        assert_matches_type(TuiOpenHelpResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
     def test_open_sessions_wire_shape(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.post("/tui/open-sessions").mock(return_value=httpx.Response(200, json=True))
         result = client.tui.open_sessions()

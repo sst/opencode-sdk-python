@@ -11,3 +11,7 @@ class PtyConnectParams(TypedDict, total=False):
     cursor: str
 
     ticket: str
+
+    directory: str
+
+    workspace: str

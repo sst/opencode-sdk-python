@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import file_content_params
+from ..types import addressing_params, file_content_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -47,6 +47,8 @@ class FileResource(SyncAPIResource):
         self,
         *,
         path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,7 +75,14 @@ class FileResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"path": path}, file_content_params.FileContentParams),
+                query=maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
             ),
             cast_to=FileListResponse,
         )
@@ -82,6 +91,8 @@ class FileResource(SyncAPIResource):
         self,
         *,
         path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,7 +119,14 @@ class FileResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"path": path}, file_content_params.FileContentParams),
+                query=maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
             ),
             cast_to=FileContentResponse,
         )
@@ -116,6 +134,8 @@ class FileResource(SyncAPIResource):
     def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -127,7 +147,17 @@ class FileResource(SyncAPIResource):
         return self._get(
             "/file/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=FileStatusResponse,
         )
@@ -157,6 +187,8 @@ class AsyncFileResource(AsyncAPIResource):
         self,
         *,
         path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -183,7 +215,14 @@ class AsyncFileResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"path": path}, file_content_params.FileContentParams),
+                query=await async_maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
             ),
             cast_to=FileListResponse,
         )
@@ -192,6 +231,8 @@ class AsyncFileResource(AsyncAPIResource):
         self,
         *,
         path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -218,7 +259,14 @@ class AsyncFileResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"path": path}, file_content_params.FileContentParams),
+                query=await async_maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
             ),
             cast_to=FileContentResponse,
         )
@@ -226,6 +274,8 @@ class AsyncFileResource(AsyncAPIResource):
     async def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -237,7 +287,17 @@ class AsyncFileResource(AsyncAPIResource):
         return await self._get(
             "/file/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=FileStatusResponse,
         )

@@ -5,10 +5,13 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
+from respx import MockRouter
 
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
+from tests.wire_helpers import route_request
 from opencode_ai.types import (
     FindTextResponse,
     FindFilesResponse,
@@ -122,6 +125,16 @@ class TestFind:
             assert_matches_type(FindTextResponse, find, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+
+class TestFindWire:
+    @pytest.mark.respx(base_url=base_url)
+    def test_files_sends_directory_and_workspace_query(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/find/file").mock(return_value=httpx.Response(200, json=[]))
+        client.find.files(query="foo", directory="/repo", workspace="ws1")
+        assert route_request(route).url.params.get("query") == "foo"
+        assert route_request(route).url.params.get("directory") == "/repo"
+        assert route_request(route).url.params.get("workspace") == "ws1"
 
 
 class TestAsyncFind:

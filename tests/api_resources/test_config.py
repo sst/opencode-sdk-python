@@ -59,6 +59,14 @@ class TestConfigWire:
         assert route.calls.last.request.method == "GET"
 
     @pytest.mark.respx(base_url=base_url)
+    def test_get_sends_directory_and_workspace_query(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/config").mock(return_value=httpx.Response(200, json={}))
+        client.config.get(directory="/repo", workspace="ws1")
+        params = route.calls.last.request.url.params
+        assert params.get("directory") == "/repo"
+        assert params.get("workspace") == "ws1"
+
+    @pytest.mark.respx(base_url=base_url)
     def test_update_wire_shape(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.patch("/config").mock(return_value=httpx.Response(200, json={"username": "sam"}))
         config = client.config.update(

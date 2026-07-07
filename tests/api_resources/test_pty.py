@@ -116,6 +116,26 @@ class TestPtyWire:
         assert_matches_type(PtyConnectResponse, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)
+    def test_connect_sends_addressing_query_params(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/pty/pty_123/connect").mock(return_value=httpx.Response(200, json=True))
+        result = client.pty.connect(
+            "pty_123",
+            cursor="abc",
+            ticket="ticket-123",
+            directory="/tmp/my-project",
+            workspace="my-workspace",
+        )
+        assert route.called
+        request = route_request(route)
+        assert dict(request.url.params) == {
+            "cursor": "abc",
+            "ticket": "ticket-123",
+            "directory": "/tmp/my-project",
+            "workspace": "my-workspace",
+        }
+        assert_matches_type(PtyConnectResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
     def test_connect_token_wire_shape(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.post("/pty/pty_123/connect-token").mock(
             return_value=httpx.Response(200, json=CONNECT_TOKEN_SAMPLE)
@@ -226,6 +246,28 @@ class TestAsyncPtyWire:
         request = route_request(route)
         assert request.method == "GET"
         assert dict(request.url.params) == {"cursor": "abc", "ticket": "ticket-123"}
+        assert_matches_type(PtyConnectResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_connect_sends_addressing_query_params(
+        self, async_client: AsyncOpencode, respx_mock: MockRouter
+    ) -> None:
+        route = respx_mock.get("/pty/pty_123/connect").mock(return_value=httpx.Response(200, json=True))
+        result = await async_client.pty.connect(
+            "pty_123",
+            cursor="abc",
+            ticket="ticket-123",
+            directory="/tmp/my-project",
+            workspace="my-workspace",
+        )
+        assert route.called
+        request = route_request(route)
+        assert dict(request.url.params) == {
+            "cursor": "abc",
+            "ticket": "ticket-123",
+            "directory": "/tmp/my-project",
+            "workspace": "my-workspace",
+        }
         assert_matches_type(PtyConnectResponse, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)

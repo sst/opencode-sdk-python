@@ -50,6 +50,15 @@ class TestMcpWire:
         assert_matches_type(McpStatusResponse, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)
+    def test_status_sends_addressing_query_params(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/mcp").mock(return_value=httpx.Response(200, json=STATUS_MAP_SAMPLE))
+        result = client.mcp.status(directory="/tmp/my-project", workspace="my-workspace")
+        assert route.called
+        request = route_request(route)
+        assert dict(request.url.params) == {"directory": "/tmp/my-project", "workspace": "my-workspace"}
+        assert_matches_type(McpStatusResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
     def test_add_sends_body(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.post("/mcp").mock(return_value=httpx.Response(200, json=STATUS_MAP_SAMPLE))
         result = client.mcp.add(
@@ -185,6 +194,17 @@ class TestAsyncMcpWire:
         assert route.called
         request = route_request(route)
         assert request.method == "GET"
+        assert_matches_type(McpStatusResponse, result, path=["response"])
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_status_sends_addressing_query_params(
+        self, async_client: AsyncOpencode, respx_mock: MockRouter
+    ) -> None:
+        route = respx_mock.get("/mcp").mock(return_value=httpx.Response(200, json=STATUS_MAP_SAMPLE))
+        result = await async_client.mcp.status(directory="/tmp/my-project", workspace="my-workspace")
+        assert route.called
+        request = route_request(route)
+        assert dict(request.url.params) == {"directory": "/tmp/my-project", "workspace": "my-workspace"}
         assert_matches_type(McpStatusResponse, result, path=["response"])
 
     @pytest.mark.respx(base_url=base_url)

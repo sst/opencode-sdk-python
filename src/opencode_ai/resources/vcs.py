@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 from typing_extensions import Literal
 
-from ..types import vcs_diff_params, vcs_apply_params
+from ..types import addressing_params, vcs_diff_params, vcs_apply_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -48,6 +48,8 @@ class VcsResource(SyncAPIResource):
     def get(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,7 +61,17 @@ class VcsResource(SyncAPIResource):
         return self._get(
             "/vcs",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=VcsInfo,
         )
@@ -68,6 +80,8 @@ class VcsResource(SyncAPIResource):
         self,
         *,
         patch: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,7 +107,17 @@ class VcsResource(SyncAPIResource):
             "/vcs/apply",
             body=maybe_transform({"patch": patch}, vcs_apply_params.VcsApplyParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=VcsApplyResponse,
         )
@@ -103,6 +127,8 @@ class VcsResource(SyncAPIResource):
         *,
         mode: Literal["git", "branch"],
         context: int | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,6 +163,8 @@ class VcsResource(SyncAPIResource):
                     {
                         "mode": mode,
                         "context": context,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     vcs_diff_params.VcsDiffParams,
                 ),
@@ -147,6 +175,8 @@ class VcsResource(SyncAPIResource):
     def diff_raw(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,7 +188,17 @@ class VcsResource(SyncAPIResource):
         return self._get(
             "/vcs/diff/raw",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=str,
         )
@@ -166,6 +206,8 @@ class VcsResource(SyncAPIResource):
     def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,7 +219,17 @@ class VcsResource(SyncAPIResource):
         return self._get(
             "/vcs/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=VcsStatusResponse,
         )
@@ -206,6 +258,8 @@ class AsyncVcsResource(AsyncAPIResource):
     async def get(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,7 +271,17 @@ class AsyncVcsResource(AsyncAPIResource):
         return await self._get(
             "/vcs",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=VcsInfo,
         )
@@ -226,6 +290,8 @@ class AsyncVcsResource(AsyncAPIResource):
         self,
         *,
         patch: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,7 +317,17 @@ class AsyncVcsResource(AsyncAPIResource):
             "/vcs/apply",
             body=await async_maybe_transform({"patch": patch}, vcs_apply_params.VcsApplyParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=VcsApplyResponse,
         )
@@ -261,6 +337,8 @@ class AsyncVcsResource(AsyncAPIResource):
         *,
         mode: Literal["git", "branch"],
         context: int | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -295,6 +373,8 @@ class AsyncVcsResource(AsyncAPIResource):
                     {
                         "mode": mode,
                         "context": context,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     vcs_diff_params.VcsDiffParams,
                 ),
@@ -305,6 +385,8 @@ class AsyncVcsResource(AsyncAPIResource):
     async def diff_raw(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -316,7 +398,17 @@ class AsyncVcsResource(AsyncAPIResource):
         return await self._get(
             "/vcs/diff/raw",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=str,
         )
@@ -324,6 +416,8 @@ class AsyncVcsResource(AsyncAPIResource):
     async def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -335,7 +429,17 @@ class AsyncVcsResource(AsyncAPIResource):
         return await self._get(
             "/vcs/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=VcsStatusResponse,
         )

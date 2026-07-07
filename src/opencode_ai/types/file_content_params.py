@@ -9,3 +9,7 @@ __all__ = ["FileContentParams"]
 
 class FileContentParams(TypedDict, total=False):
     path: Required[str]
+
+    directory: str
+
+    workspace: str

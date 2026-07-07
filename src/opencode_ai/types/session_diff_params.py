@@ -11,3 +11,7 @@ __all__ = ["SessionDiffParams"]
 
 class SessionDiffParams(TypedDict, total=False):
     message_id: Annotated[str, PropertyInfo(alias="messageID")]
+
+    directory: str
+
+    workspace: str

@@ -11,3 +11,7 @@ class VcsDiffParams(TypedDict, total=False):
     mode: Required[Literal["git", "branch"]]
 
     context: int
+
+    directory: str
+
+    workspace: str

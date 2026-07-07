@@ -5,10 +5,13 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
+from respx import MockRouter
 
 from opencode_ai import Opencode, AsyncOpencode
 from opencode_ai.types import EventListResponse
+from tests.wire_helpers import route_request
 from opencode_ai._models import construct_type
 from opencode_ai.types.event_list_response import EventUnknown, EventInstallationUpdated
 
@@ -62,6 +65,18 @@ class TestEvent:
             stream.close()
 
         assert cast(Any, response.is_closed) is True
+
+
+class TestEventWire:
+    @pytest.mark.respx(base_url=base_url)
+    def test_list_sends_directory_and_workspace_query(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/event").mock(
+            return_value=httpx.Response(200, headers={"content-type": "text/event-stream"}, content=b"")
+        )
+        stream = client.event.list(directory="/repo", workspace="ws1")
+        assert route_request(route).url.params.get("directory") == "/repo"
+        assert route_request(route).url.params.get("workspace") == "ws1"
+        stream.response.close()
 
 
 class TestAsyncEvent:

@@ -8,6 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import (
+    addressing_params,
     session_diff_params,
     session_fork_params,
     session_init_params,
@@ -80,6 +81,8 @@ class SessionResource(SyncAPIResource):
     def create(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,7 +94,17 @@ class SessionResource(SyncAPIResource):
         return self._post(
             "/session",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -105,6 +118,8 @@ class SessionResource(SyncAPIResource):
         scope: Literal["project"] | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         start: float | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -139,6 +154,8 @@ class SessionResource(SyncAPIResource):
                         "scope": scope,
                         "search": search,
                         "start": start,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     session_list_params.SessionListParams,
                 ),
@@ -150,6 +167,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,7 +193,17 @@ class SessionResource(SyncAPIResource):
         return self._delete(
             f"/session/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionDeleteResponse,
         )
@@ -183,6 +212,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -207,7 +238,17 @@ class SessionResource(SyncAPIResource):
         return self._post(
             f"/session/{id}/abort",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionAbortResponse,
         )
@@ -224,6 +265,8 @@ class SessionResource(SyncAPIResource):
         system: str | NotGiven = NOT_GIVEN,
         tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
         variant: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -264,7 +307,17 @@ class SessionResource(SyncAPIResource):
                 session_prompt_params.SessionPromptParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionPromptResponse,
         )
@@ -276,6 +329,8 @@ class SessionResource(SyncAPIResource):
         message_id: str,
         model_id: str,
         provider_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -310,7 +365,17 @@ class SessionResource(SyncAPIResource):
                 session_init_params.SessionInitParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionInitResponse,
         )
@@ -321,6 +386,8 @@ class SessionResource(SyncAPIResource):
         *,
         before: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -355,6 +422,8 @@ class SessionResource(SyncAPIResource):
                     {
                         "before": before,
                         "limit": limit,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     session_messages_params.SessionMessagesParams,
                 ),
@@ -368,6 +437,8 @@ class SessionResource(SyncAPIResource):
         *,
         message_id: str,
         part_id: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -399,7 +470,17 @@ class SessionResource(SyncAPIResource):
                 session_revert_params.SessionRevertParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -408,6 +489,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -432,7 +515,17 @@ class SessionResource(SyncAPIResource):
         return self._post(
             f"/session/{id}/share",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -444,6 +537,8 @@ class SessionResource(SyncAPIResource):
         model_id: str,
         provider_id: str,
         auto: bool | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -478,7 +573,17 @@ class SessionResource(SyncAPIResource):
                 session_summarize_params.SessionSummarizeParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionSummarizeResponse,
         )
@@ -487,6 +592,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -511,7 +618,17 @@ class SessionResource(SyncAPIResource):
         return self._post(
             f"/session/{id}/unrevert",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -520,6 +637,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -544,7 +663,17 @@ class SessionResource(SyncAPIResource):
         return self._delete(
             f"/session/{id}/share",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -552,6 +681,8 @@ class SessionResource(SyncAPIResource):
     def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -563,7 +694,17 @@ class SessionResource(SyncAPIResource):
         return self._get(
             "/session/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionStatusResponse,
         )
@@ -572,6 +713,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -598,7 +741,17 @@ class SessionResource(SyncAPIResource):
         return self._get(
             f"/session/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -611,6 +764,8 @@ class SessionResource(SyncAPIResource):
         permission: Iterable[session_update_params.Permission] | NotGiven = NOT_GIVEN,
         time: session_update_params.Time | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -647,7 +802,17 @@ class SessionResource(SyncAPIResource):
                 session_update_params.SessionUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -656,6 +821,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -682,7 +849,17 @@ class SessionResource(SyncAPIResource):
         return self._get(
             f"/session/{id}/children",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionChildrenResponse,
         )
@@ -698,6 +875,8 @@ class SessionResource(SyncAPIResource):
         model: str | NotGiven = NOT_GIVEN,
         parts: Iterable[FilePartInputParam] | NotGiven = NOT_GIVEN,
         variant: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -742,7 +921,17 @@ class SessionResource(SyncAPIResource):
                 session_command_params.SessionCommandParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionCommandResponse,
         )
@@ -752,6 +941,8 @@ class SessionResource(SyncAPIResource):
         id: str,
         *,
         message_id: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -785,7 +976,14 @@ class SessionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"message_id": message_id}, session_diff_params.SessionDiffParams),
+                query=maybe_transform(
+                    {
+                        "message_id": message_id,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    session_diff_params.SessionDiffParams,
+                ),
             ),
             cast_to=SessionDiffResponse,
         )
@@ -795,6 +993,8 @@ class SessionResource(SyncAPIResource):
         id: str,
         *,
         message_id: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -824,7 +1024,17 @@ class SessionResource(SyncAPIResource):
             f"/session/{id}/fork",
             body=maybe_transform({"message_id": message_id}, session_fork_params.SessionForkParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -834,6 +1044,8 @@ class SessionResource(SyncAPIResource):
         id: str,
         *,
         message_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -864,7 +1076,17 @@ class SessionResource(SyncAPIResource):
         return self._delete(
             f"/session/{id}/message/{message_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionDeleteMessageResponse,
         )
@@ -874,6 +1096,8 @@ class SessionResource(SyncAPIResource):
         id: str,
         *,
         message_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -904,7 +1128,17 @@ class SessionResource(SyncAPIResource):
         return self._get(
             f"/session/{id}/message/{message_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionMessagesResponseItem,
         )
@@ -915,6 +1149,8 @@ class SessionResource(SyncAPIResource):
         *,
         message_id: str,
         part_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -949,7 +1185,17 @@ class SessionResource(SyncAPIResource):
         return self._delete(
             f"/session/{id}/message/{message_id}/part/{part_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionDeletePartResponse,
         )
@@ -961,6 +1207,8 @@ class SessionResource(SyncAPIResource):
         message_id: str,
         part_id: str,
         part: session_update_part_params.SessionUpdatePartParams,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1005,7 +1253,17 @@ class SessionResource(SyncAPIResource):
                 f"/session/{id}/message/{message_id}/part/{part_id}",
                 body=maybe_transform(part, session_update_part_params.SessionUpdatePartParams),
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "directory": directory,
+                            "workspace": workspace,
+                        },
+                        addressing_params.AddressingParams,
+                    ),
                 ),
                 cast_to=cast(Any, Part),  # Union types cannot be passed in as arguments in the type system
             ),
@@ -1017,6 +1275,8 @@ class SessionResource(SyncAPIResource):
         *,
         permission_id: str,
         response: Literal["once", "always", "reject"],
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1055,7 +1315,17 @@ class SessionResource(SyncAPIResource):
                 {"response": response}, session_respond_permission_params.SessionRespondPermissionParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionRespondPermissionResponse,
         )
@@ -1073,6 +1343,8 @@ class SessionResource(SyncAPIResource):
         system: str | NotGiven = NOT_GIVEN,
         tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
         variant: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1114,7 +1386,17 @@ class SessionResource(SyncAPIResource):
                 session_prompt_async_params.SessionPromptAsyncParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=NoneType,
         )
@@ -1127,6 +1409,8 @@ class SessionResource(SyncAPIResource):
         command: str,
         message_id: str | NotGiven = NOT_GIVEN,
         model: session_shell_params.Model | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1162,7 +1446,17 @@ class SessionResource(SyncAPIResource):
                 session_shell_params.SessionShellParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionShellResponse,
         )
@@ -1171,6 +1465,8 @@ class SessionResource(SyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1197,7 +1493,17 @@ class SessionResource(SyncAPIResource):
         return self._get(
             f"/session/{id}/todo",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionTodoResponse,
         )
@@ -1226,6 +1532,8 @@ class AsyncSessionResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1237,7 +1545,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._post(
             "/session",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1251,6 +1569,8 @@ class AsyncSessionResource(AsyncAPIResource):
         scope: Literal["project"] | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         start: float | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1285,6 +1605,8 @@ class AsyncSessionResource(AsyncAPIResource):
                         "scope": scope,
                         "search": search,
                         "start": start,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     session_list_params.SessionListParams,
                 ),
@@ -1296,6 +1618,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1320,7 +1644,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._delete(
             f"/session/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionDeleteResponse,
         )
@@ -1329,6 +1663,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1353,7 +1689,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._post(
             f"/session/{id}/abort",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionAbortResponse,
         )
@@ -1370,6 +1716,8 @@ class AsyncSessionResource(AsyncAPIResource):
         system: str | NotGiven = NOT_GIVEN,
         tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
         variant: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1410,7 +1758,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_prompt_params.SessionPromptParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionPromptResponse,
         )
@@ -1422,6 +1780,8 @@ class AsyncSessionResource(AsyncAPIResource):
         message_id: str,
         model_id: str,
         provider_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1456,7 +1816,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_init_params.SessionInitParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionInitResponse,
         )
@@ -1467,6 +1837,8 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         before: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1501,6 +1873,8 @@ class AsyncSessionResource(AsyncAPIResource):
                     {
                         "before": before,
                         "limit": limit,
+                        "directory": directory,
+                        "workspace": workspace,
                     },
                     session_messages_params.SessionMessagesParams,
                 ),
@@ -1514,6 +1888,8 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         message_id: str,
         part_id: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1545,7 +1921,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_revert_params.SessionRevertParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1554,6 +1940,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1578,7 +1966,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._post(
             f"/session/{id}/share",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1590,6 +1988,8 @@ class AsyncSessionResource(AsyncAPIResource):
         model_id: str,
         provider_id: str,
         auto: bool | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1624,7 +2024,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_summarize_params.SessionSummarizeParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionSummarizeResponse,
         )
@@ -1633,6 +2043,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1657,7 +2069,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._post(
             f"/session/{id}/unrevert",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1666,6 +2088,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1690,7 +2114,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._delete(
             f"/session/{id}/share",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1698,6 +2132,8 @@ class AsyncSessionResource(AsyncAPIResource):
     async def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1709,7 +2145,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._get(
             "/session/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionStatusResponse,
         )
@@ -1718,6 +2164,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1744,7 +2192,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._get(
             f"/session/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1757,6 +2215,8 @@ class AsyncSessionResource(AsyncAPIResource):
         permission: Iterable[session_update_params.Permission] | NotGiven = NOT_GIVEN,
         time: session_update_params.Time | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1793,7 +2253,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_update_params.SessionUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1802,6 +2272,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1828,7 +2300,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._get(
             f"/session/{id}/children",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionChildrenResponse,
         )
@@ -1844,6 +2326,8 @@ class AsyncSessionResource(AsyncAPIResource):
         model: str | NotGiven = NOT_GIVEN,
         parts: Iterable[FilePartInputParam] | NotGiven = NOT_GIVEN,
         variant: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1888,7 +2372,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_command_params.SessionCommandParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionCommandResponse,
         )
@@ -1898,6 +2392,8 @@ class AsyncSessionResource(AsyncAPIResource):
         id: str,
         *,
         message_id: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1931,7 +2427,14 @@ class AsyncSessionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"message_id": message_id}, session_diff_params.SessionDiffParams),
+                query=await async_maybe_transform(
+                    {
+                        "message_id": message_id,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    session_diff_params.SessionDiffParams,
+                ),
             ),
             cast_to=SessionDiffResponse,
         )
@@ -1941,6 +2444,8 @@ class AsyncSessionResource(AsyncAPIResource):
         id: str,
         *,
         message_id: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1970,7 +2475,17 @@ class AsyncSessionResource(AsyncAPIResource):
             f"/session/{id}/fork",
             body=await async_maybe_transform({"message_id": message_id}, session_fork_params.SessionForkParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=Session,
         )
@@ -1980,6 +2495,8 @@ class AsyncSessionResource(AsyncAPIResource):
         id: str,
         *,
         message_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2010,7 +2527,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._delete(
             f"/session/{id}/message/{message_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionDeleteMessageResponse,
         )
@@ -2020,6 +2547,8 @@ class AsyncSessionResource(AsyncAPIResource):
         id: str,
         *,
         message_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2050,7 +2579,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._get(
             f"/session/{id}/message/{message_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionMessagesResponseItem,
         )
@@ -2061,6 +2600,8 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         message_id: str,
         part_id: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2095,7 +2636,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._delete(
             f"/session/{id}/message/{message_id}/part/{part_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionDeletePartResponse,
         )
@@ -2107,6 +2658,8 @@ class AsyncSessionResource(AsyncAPIResource):
         message_id: str,
         part_id: str,
         part: session_update_part_params.SessionUpdatePartParams,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2151,7 +2704,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 f"/session/{id}/message/{message_id}/part/{part_id}",
                 body=await async_maybe_transform(part, session_update_part_params.SessionUpdatePartParams),
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "directory": directory,
+                            "workspace": workspace,
+                        },
+                        addressing_params.AddressingParams,
+                    ),
                 ),
                 cast_to=cast(Any, Part),  # Union types cannot be passed in as arguments in the type system
             ),
@@ -2163,6 +2726,8 @@ class AsyncSessionResource(AsyncAPIResource):
         *,
         permission_id: str,
         response: Literal["once", "always", "reject"],
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2201,7 +2766,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 {"response": response}, session_respond_permission_params.SessionRespondPermissionParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionRespondPermissionResponse,
         )
@@ -2219,6 +2794,8 @@ class AsyncSessionResource(AsyncAPIResource):
         system: str | NotGiven = NOT_GIVEN,
         tools: Dict[str, bool] | NotGiven = NOT_GIVEN,
         variant: str | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2260,7 +2837,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_prompt_async_params.SessionPromptAsyncParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=NoneType,
         )
@@ -2273,6 +2860,8 @@ class AsyncSessionResource(AsyncAPIResource):
         command: str,
         message_id: str | NotGiven = NOT_GIVEN,
         model: session_shell_params.Model | NotGiven = NOT_GIVEN,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2308,7 +2897,17 @@ class AsyncSessionResource(AsyncAPIResource):
                 session_shell_params.SessionShellParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionShellResponse,
         )
@@ -2317,6 +2916,8 @@ class AsyncSessionResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2343,7 +2944,17 @@ class AsyncSessionResource(AsyncAPIResource):
         return await self._get(
             f"/session/{id}/todo",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=SessionTodoResponse,
         )

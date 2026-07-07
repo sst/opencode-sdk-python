@@ -685,6 +685,14 @@ class TestSessionParamGaps:
         assert params.get("before") == "msg_1"
         assert params.get("limit") == "5"
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_get_sends_directory_and_workspace(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/session/ses_1").mock(return_value=httpx.Response(200, json=MINIMAL_SESSION))
+        client.session.get("ses_1", directory="d", workspace="w")
+        params = route_request(route).url.params
+        assert params.get("directory") == "d"
+        assert params.get("workspace") == "w"
+
 
 class TestSessionNewOperationsWire:
     @pytest.mark.respx(base_url=base_url)

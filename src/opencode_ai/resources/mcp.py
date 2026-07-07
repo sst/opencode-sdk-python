@@ -6,7 +6,7 @@ from typing import Any, Union, cast
 
 import httpx
 
-from ..types import mcp_add_params, mcp_auth_callback_params
+from ..types import addressing_params, mcp_add_params, mcp_auth_callback_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -54,6 +54,8 @@ class McpResource(SyncAPIResource):
     def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,7 +67,17 @@ class McpResource(SyncAPIResource):
         return self._get(
             "/mcp",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpStatusResponse,
         )
@@ -75,6 +87,8 @@ class McpResource(SyncAPIResource):
         *,
         name: str,
         config: Union[McpLocalConfigParam, McpRemoteConfigParam],
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,7 +122,17 @@ class McpResource(SyncAPIResource):
                 mcp_add_params.McpAddParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpAddResponse,
         )
@@ -117,6 +141,8 @@ class McpResource(SyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,7 +167,17 @@ class McpResource(SyncAPIResource):
         return self._post(
             f"/mcp/{name}/auth",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpAuthStartResponse,
         )
@@ -150,6 +186,8 @@ class McpResource(SyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,7 +212,17 @@ class McpResource(SyncAPIResource):
         return self._delete(
             f"/mcp/{name}/auth",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpAuthRemoveResponse,
         )
@@ -184,6 +232,8 @@ class McpResource(SyncAPIResource):
         name: str,
         *,
         code: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -214,7 +264,17 @@ class McpResource(SyncAPIResource):
                 f"/mcp/{name}/auth/callback",
                 body=maybe_transform({"code": code}, mcp_auth_callback_params.McpAuthCallbackParams),
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "directory": directory,
+                            "workspace": workspace,
+                        },
+                        addressing_params.AddressingParams,
+                    ),
                 ),
                 cast_to=cast(Any, MCPStatus),  # Union types cannot be passed in as arguments in the type system
             ),
@@ -224,6 +284,8 @@ class McpResource(SyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,7 +312,17 @@ class McpResource(SyncAPIResource):
             self._post(
                 f"/mcp/{name}/auth/authenticate",
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "directory": directory,
+                            "workspace": workspace,
+                        },
+                        addressing_params.AddressingParams,
+                    ),
                 ),
                 cast_to=cast(Any, MCPStatus),  # Union types cannot be passed in as arguments in the type system
             ),
@@ -260,6 +332,8 @@ class McpResource(SyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -284,7 +358,17 @@ class McpResource(SyncAPIResource):
         return self._post(
             f"/mcp/{name}/connect",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpConnectResponse,
         )
@@ -293,6 +377,8 @@ class McpResource(SyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,7 +403,17 @@ class McpResource(SyncAPIResource):
         return self._post(
             f"/mcp/{name}/disconnect",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpDisconnectResponse,
         )
@@ -346,6 +442,8 @@ class AsyncMcpResource(AsyncAPIResource):
     async def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -357,7 +455,17 @@ class AsyncMcpResource(AsyncAPIResource):
         return await self._get(
             "/mcp",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpStatusResponse,
         )
@@ -367,6 +475,8 @@ class AsyncMcpResource(AsyncAPIResource):
         *,
         name: str,
         config: Union[McpLocalConfigParam, McpRemoteConfigParam],
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -400,7 +510,17 @@ class AsyncMcpResource(AsyncAPIResource):
                 mcp_add_params.McpAddParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpAddResponse,
         )
@@ -409,6 +529,8 @@ class AsyncMcpResource(AsyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,7 +555,17 @@ class AsyncMcpResource(AsyncAPIResource):
         return await self._post(
             f"/mcp/{name}/auth",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpAuthStartResponse,
         )
@@ -442,6 +574,8 @@ class AsyncMcpResource(AsyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -466,7 +600,17 @@ class AsyncMcpResource(AsyncAPIResource):
         return await self._delete(
             f"/mcp/{name}/auth",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpAuthRemoveResponse,
         )
@@ -476,6 +620,8 @@ class AsyncMcpResource(AsyncAPIResource):
         name: str,
         *,
         code: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -506,7 +652,17 @@ class AsyncMcpResource(AsyncAPIResource):
                 f"/mcp/{name}/auth/callback",
                 body=await async_maybe_transform({"code": code}, mcp_auth_callback_params.McpAuthCallbackParams),
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "directory": directory,
+                            "workspace": workspace,
+                        },
+                        addressing_params.AddressingParams,
+                    ),
                 ),
                 cast_to=cast(Any, MCPStatus),  # Union types cannot be passed in as arguments in the type system
             ),
@@ -516,6 +672,8 @@ class AsyncMcpResource(AsyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -542,7 +700,17 @@ class AsyncMcpResource(AsyncAPIResource):
             await self._post(
                 f"/mcp/{name}/auth/authenticate",
                 options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "directory": directory,
+                            "workspace": workspace,
+                        },
+                        addressing_params.AddressingParams,
+                    ),
                 ),
                 cast_to=cast(Any, MCPStatus),  # Union types cannot be passed in as arguments in the type system
             ),
@@ -552,6 +720,8 @@ class AsyncMcpResource(AsyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -576,7 +746,17 @@ class AsyncMcpResource(AsyncAPIResource):
         return await self._post(
             f"/mcp/{name}/connect",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpConnectResponse,
         )
@@ -585,6 +765,8 @@ class AsyncMcpResource(AsyncAPIResource):
         self,
         name: str,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -609,7 +791,17 @@ class AsyncMcpResource(AsyncAPIResource):
         return await self._post(
             f"/mcp/{name}/disconnect",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=McpDisconnectResponse,
         )
