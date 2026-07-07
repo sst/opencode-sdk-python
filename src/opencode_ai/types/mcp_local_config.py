@@ -20,3 +20,6 @@ class McpLocalConfig(BaseModel):
 
     environment: Optional[Dict[str, str]] = None
     """Environment variables to set when running the MCP server"""
+
+    timeout: Optional[int] = None
+    """Timeout for the MCP server connection"""

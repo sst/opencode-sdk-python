@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.2.0 (2026-07-06)
+
+This is a correctness release that aligns the SDK with the current opencode server
+API. See [docs/MIGRATION-v1.md](docs/MIGRATION-v1.md) for upgrade instructions.
+
+### BREAKING CHANGES
+
+* **session:** rename `session.chat` to `session.prompt`; the request now takes a
+  nested `model` object and an `agent` field instead of flat `model_id`/`provider_id`/
+  `mode`, and the response is now `{info, parts}` instead of a bare assistant message
+* **file:** split `file.read` into `file.list` (`GET /file`, directory listing) and
+  `file.content` (`GET /file/content`, file content)
+* **app:** remove `app.get` and `app.init`; the server no longer exposes `GET /app` or
+  `POST /app/init`
+* **app:** rename `app.modes` to `app.agents` (`GET /agent`); add `app.skills`
+  (`GET /skill`)
+* **types:** correct `AssistantMessage` (`system` removed; `parentID`/`agent` now
+  required; `structured`/`variant`/`finish`/`tokens.total` added) and `UserMessage`
+  (`model`/`agent` now required) to match the current spec
+
+### Features
+
+* **client:** tolerate unknown event variant types in the event stream instead of
+  raising
+* **session:** add optional `scope`/`path`/`roots`/`start`/`search`/`limit` params to
+  `session.list`, `before`/`limit` to `session.messages`, and `auto` to
+  `session.summarize`
+
 ## 0.1.0-alpha.36 (2025-08-27)
 
 Full Changelog: [v0.1.0-alpha.35...v0.1.0-alpha.36](https://github.com/sst/opencode-sdk-python/compare/v0.1.0-alpha.35...v0.1.0-alpha.36)

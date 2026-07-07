@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import file_read_params
+from ..types import addressing_params, file_content_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -16,8 +16,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.file_read_response import FileReadResponse
+from ..types.file_list_response import FileListResponse
 from ..types.file_status_response import FileStatusResponse
+from ..types.file_content_response import FileContentResponse
 
 __all__ = ["FileResource", "AsyncFileResource"]
 
@@ -42,19 +43,21 @@ class FileResource(SyncAPIResource):
         """
         return FileResourceWithStreamingResponse(self)
 
-    def read(
+    def list(
         self,
         *,
         path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FileReadResponse:
+    ) -> FileListResponse:
         """
-        Read a file
+        List files in a directory
 
         Args:
           extra_headers: Send extra headers
@@ -72,14 +75,67 @@ class FileResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"path": path}, file_read_params.FileReadParams),
+                query=maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
             ),
-            cast_to=FileReadResponse,
+            cast_to=FileListResponse,
+        )
+
+    def content(
+        self,
+        *,
+        path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FileContentResponse:
+        """
+        Read a file's content
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/file/content",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
+            ),
+            cast_to=FileContentResponse,
         )
 
     def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,7 +147,17 @@ class FileResource(SyncAPIResource):
         return self._get(
             "/file/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=FileStatusResponse,
         )
@@ -117,19 +183,21 @@ class AsyncFileResource(AsyncAPIResource):
         """
         return AsyncFileResourceWithStreamingResponse(self)
 
-    async def read(
+    async def list(
         self,
         *,
         path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FileReadResponse:
+    ) -> FileListResponse:
         """
-        Read a file
+        List files in a directory
 
         Args:
           extra_headers: Send extra headers
@@ -147,14 +215,67 @@ class AsyncFileResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"path": path}, file_read_params.FileReadParams),
+                query=await async_maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
             ),
-            cast_to=FileReadResponse,
+            cast_to=FileListResponse,
+        )
+
+    async def content(
+        self,
+        *,
+        path: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FileContentResponse:
+        """
+        Read a file's content
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/file/content",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "path": path,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    file_content_params.FileContentParams,
+                ),
+            ),
+            cast_to=FileContentResponse,
         )
 
     async def status(
         self,
         *,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,7 +287,17 @@ class AsyncFileResource(AsyncAPIResource):
         return await self._get(
             "/file/status",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    addressing_params.AddressingParams,
+                ),
             ),
             cast_to=FileStatusResponse,
         )
@@ -176,8 +307,11 @@ class FileResourceWithRawResponse:
     def __init__(self, file: FileResource) -> None:
         self._file = file
 
-        self.read = to_raw_response_wrapper(
-            file.read,
+        self.list = to_raw_response_wrapper(
+            file.list,
+        )
+        self.content = to_raw_response_wrapper(
+            file.content,
         )
         self.status = to_raw_response_wrapper(
             file.status,
@@ -188,8 +322,11 @@ class AsyncFileResourceWithRawResponse:
     def __init__(self, file: AsyncFileResource) -> None:
         self._file = file
 
-        self.read = async_to_raw_response_wrapper(
-            file.read,
+        self.list = async_to_raw_response_wrapper(
+            file.list,
+        )
+        self.content = async_to_raw_response_wrapper(
+            file.content,
         )
         self.status = async_to_raw_response_wrapper(
             file.status,
@@ -200,8 +337,11 @@ class FileResourceWithStreamingResponse:
     def __init__(self, file: FileResource) -> None:
         self._file = file
 
-        self.read = to_streamed_response_wrapper(
-            file.read,
+        self.list = to_streamed_response_wrapper(
+            file.list,
+        )
+        self.content = to_streamed_response_wrapper(
+            file.content,
         )
         self.status = to_streamed_response_wrapper(
             file.status,
@@ -212,8 +352,11 @@ class AsyncFileResourceWithStreamingResponse:
     def __init__(self, file: AsyncFileResource) -> None:
         self._file = file
 
-        self.read = async_to_streamed_response_wrapper(
-            file.read,
+        self.list = async_to_streamed_response_wrapper(
+            file.list,
+        )
+        self.content = async_to_streamed_response_wrapper(
+            file.content,
         )
         self.status = async_to_streamed_response_wrapper(
             file.status,

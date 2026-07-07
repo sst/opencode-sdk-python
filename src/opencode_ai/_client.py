@@ -21,7 +21,29 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import app, tui, file, find, event, config, session
+from .resources import (
+    app,
+    lsp,
+    mcp,
+    pty,
+    tui,
+    vcs,
+    auth,
+    file,
+    find,
+    path,
+    sync,
+    event,
+    config,
+    command,
+    project,
+    session,
+    instance,
+    provider,
+    question,
+    formatter,
+    permission,
+)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -50,6 +72,20 @@ class Opencode(SyncAPIClient):
     config: config.ConfigResource
     session: session.SessionResource
     tui: tui.TuiResource
+    project: project.ProjectResource
+    provider: provider.ProviderResource
+    sync: sync.SyncResource
+    mcp: mcp.McpResource
+    pty: pty.PtyResource
+    question: question.QuestionResource
+    permission: permission.PermissionResource
+    path: path.PathResource
+    vcs: vcs.VcsResource
+    command: command.CommandResource
+    lsp: lsp.LspResource
+    formatter: formatter.FormatterResource
+    instance: instance.InstanceResource
+    auth: auth.AuthResource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -103,6 +139,20 @@ class Opencode(SyncAPIClient):
         self.config = config.ConfigResource(self)
         self.session = session.SessionResource(self)
         self.tui = tui.TuiResource(self)
+        self.project = project.ProjectResource(self)
+        self.provider = provider.ProviderResource(self)
+        self.sync = sync.SyncResource(self)
+        self.mcp = mcp.McpResource(self)
+        self.pty = pty.PtyResource(self)
+        self.question = question.QuestionResource(self)
+        self.permission = permission.PermissionResource(self)
+        self.path = path.PathResource(self)
+        self.vcs = vcs.VcsResource(self)
+        self.command = command.CommandResource(self)
+        self.lsp = lsp.LspResource(self)
+        self.formatter = formatter.FormatterResource(self)
+        self.instance = instance.InstanceResource(self)
+        self.auth = auth.AuthResource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -211,6 +261,20 @@ class AsyncOpencode(AsyncAPIClient):
     config: config.AsyncConfigResource
     session: session.AsyncSessionResource
     tui: tui.AsyncTuiResource
+    project: project.AsyncProjectResource
+    provider: provider.AsyncProviderResource
+    sync: sync.AsyncSyncResource
+    mcp: mcp.AsyncMcpResource
+    pty: pty.AsyncPtyResource
+    question: question.AsyncQuestionResource
+    permission: permission.AsyncPermissionResource
+    path: path.AsyncPathResource
+    vcs: vcs.AsyncVcsResource
+    command: command.AsyncCommandResource
+    lsp: lsp.AsyncLspResource
+    formatter: formatter.AsyncFormatterResource
+    instance: instance.AsyncInstanceResource
+    auth: auth.AsyncAuthResource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -264,6 +328,20 @@ class AsyncOpencode(AsyncAPIClient):
         self.config = config.AsyncConfigResource(self)
         self.session = session.AsyncSessionResource(self)
         self.tui = tui.AsyncTuiResource(self)
+        self.project = project.AsyncProjectResource(self)
+        self.provider = provider.AsyncProviderResource(self)
+        self.sync = sync.AsyncSyncResource(self)
+        self.mcp = mcp.AsyncMcpResource(self)
+        self.pty = pty.AsyncPtyResource(self)
+        self.question = question.AsyncQuestionResource(self)
+        self.permission = permission.AsyncPermissionResource(self)
+        self.path = path.AsyncPathResource(self)
+        self.vcs = vcs.AsyncVcsResource(self)
+        self.command = command.AsyncCommandResource(self)
+        self.lsp = lsp.AsyncLspResource(self)
+        self.formatter = formatter.AsyncFormatterResource(self)
+        self.instance = instance.AsyncInstanceResource(self)
+        self.auth = auth.AsyncAuthResource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
@@ -373,6 +451,20 @@ class OpencodeWithRawResponse:
         self.config = config.ConfigResourceWithRawResponse(client.config)
         self.session = session.SessionResourceWithRawResponse(client.session)
         self.tui = tui.TuiResourceWithRawResponse(client.tui)
+        self.project = project.ProjectResourceWithRawResponse(client.project)
+        self.provider = provider.ProviderResourceWithRawResponse(client.provider)
+        self.sync = sync.SyncResourceWithRawResponse(client.sync)
+        self.mcp = mcp.McpResourceWithRawResponse(client.mcp)
+        self.pty = pty.PtyResourceWithRawResponse(client.pty)
+        self.question = question.QuestionResourceWithRawResponse(client.question)
+        self.permission = permission.PermissionResourceWithRawResponse(client.permission)
+        self.path = path.PathResourceWithRawResponse(client.path)
+        self.vcs = vcs.VcsResourceWithRawResponse(client.vcs)
+        self.command = command.CommandResourceWithRawResponse(client.command)
+        self.lsp = lsp.LspResourceWithRawResponse(client.lsp)
+        self.formatter = formatter.FormatterResourceWithRawResponse(client.formatter)
+        self.instance = instance.InstanceResourceWithRawResponse(client.instance)
+        self.auth = auth.AuthResourceWithRawResponse(client.auth)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -384,6 +476,20 @@ class AsyncOpencodeWithRawResponse:
         self.config = config.AsyncConfigResourceWithRawResponse(client.config)
         self.session = session.AsyncSessionResourceWithRawResponse(client.session)
         self.tui = tui.AsyncTuiResourceWithRawResponse(client.tui)
+        self.project = project.AsyncProjectResourceWithRawResponse(client.project)
+        self.provider = provider.AsyncProviderResourceWithRawResponse(client.provider)
+        self.sync = sync.AsyncSyncResourceWithRawResponse(client.sync)
+        self.mcp = mcp.AsyncMcpResourceWithRawResponse(client.mcp)
+        self.pty = pty.AsyncPtyResourceWithRawResponse(client.pty)
+        self.question = question.AsyncQuestionResourceWithRawResponse(client.question)
+        self.permission = permission.AsyncPermissionResourceWithRawResponse(client.permission)
+        self.path = path.AsyncPathResourceWithRawResponse(client.path)
+        self.vcs = vcs.AsyncVcsResourceWithRawResponse(client.vcs)
+        self.command = command.AsyncCommandResourceWithRawResponse(client.command)
+        self.lsp = lsp.AsyncLspResourceWithRawResponse(client.lsp)
+        self.formatter = formatter.AsyncFormatterResourceWithRawResponse(client.formatter)
+        self.instance = instance.AsyncInstanceResourceWithRawResponse(client.instance)
+        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
 
 
 class OpencodeWithStreamedResponse:
@@ -395,6 +501,20 @@ class OpencodeWithStreamedResponse:
         self.config = config.ConfigResourceWithStreamingResponse(client.config)
         self.session = session.SessionResourceWithStreamingResponse(client.session)
         self.tui = tui.TuiResourceWithStreamingResponse(client.tui)
+        self.project = project.ProjectResourceWithStreamingResponse(client.project)
+        self.provider = provider.ProviderResourceWithStreamingResponse(client.provider)
+        self.sync = sync.SyncResourceWithStreamingResponse(client.sync)
+        self.mcp = mcp.McpResourceWithStreamingResponse(client.mcp)
+        self.pty = pty.PtyResourceWithStreamingResponse(client.pty)
+        self.question = question.QuestionResourceWithStreamingResponse(client.question)
+        self.permission = permission.PermissionResourceWithStreamingResponse(client.permission)
+        self.path = path.PathResourceWithStreamingResponse(client.path)
+        self.vcs = vcs.VcsResourceWithStreamingResponse(client.vcs)
+        self.command = command.CommandResourceWithStreamingResponse(client.command)
+        self.lsp = lsp.LspResourceWithStreamingResponse(client.lsp)
+        self.formatter = formatter.FormatterResourceWithStreamingResponse(client.formatter)
+        self.instance = instance.InstanceResourceWithStreamingResponse(client.instance)
+        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -406,6 +526,20 @@ class AsyncOpencodeWithStreamedResponse:
         self.config = config.AsyncConfigResourceWithStreamingResponse(client.config)
         self.session = session.AsyncSessionResourceWithStreamingResponse(client.session)
         self.tui = tui.AsyncTuiResourceWithStreamingResponse(client.tui)
+        self.project = project.AsyncProjectResourceWithStreamingResponse(client.project)
+        self.provider = provider.AsyncProviderResourceWithStreamingResponse(client.provider)
+        self.sync = sync.AsyncSyncResourceWithStreamingResponse(client.sync)
+        self.mcp = mcp.AsyncMcpResourceWithStreamingResponse(client.mcp)
+        self.pty = pty.AsyncPtyResourceWithStreamingResponse(client.pty)
+        self.question = question.AsyncQuestionResourceWithStreamingResponse(client.question)
+        self.permission = permission.AsyncPermissionResourceWithStreamingResponse(client.permission)
+        self.path = path.AsyncPathResourceWithStreamingResponse(client.path)
+        self.vcs = vcs.AsyncVcsResourceWithStreamingResponse(client.vcs)
+        self.command = command.AsyncCommandResourceWithStreamingResponse(client.command)
+        self.lsp = lsp.AsyncLspResourceWithStreamingResponse(client.lsp)
+        self.formatter = formatter.AsyncFormatterResourceWithStreamingResponse(client.formatter)
+        self.instance = instance.AsyncInstanceResourceWithStreamingResponse(client.instance)
+        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
 
 
 Client = Opencode

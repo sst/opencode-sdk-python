@@ -47,6 +47,8 @@ class FindResource(SyncAPIResource):
         self,
         *,
         query: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,7 +75,14 @@ class FindResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query": query}, find_files_params.FindFilesParams),
+                query=maybe_transform(
+                    {
+                        "query": query,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    find_files_params.FindFilesParams,
+                ),
             ),
             cast_to=FindFilesResponse,
         )
@@ -82,6 +91,8 @@ class FindResource(SyncAPIResource):
         self,
         *,
         query: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,7 +119,14 @@ class FindResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query": query}, find_symbols_params.FindSymbolsParams),
+                query=maybe_transform(
+                    {
+                        "query": query,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    find_symbols_params.FindSymbolsParams,
+                ),
             ),
             cast_to=FindSymbolsResponse,
         )
@@ -117,6 +135,8 @@ class FindResource(SyncAPIResource):
         self,
         *,
         pattern: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -143,7 +163,14 @@ class FindResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"pattern": pattern}, find_text_params.FindTextParams),
+                query=maybe_transform(
+                    {
+                        "pattern": pattern,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    find_text_params.FindTextParams,
+                ),
             ),
             cast_to=FindTextResponse,
         )
@@ -173,6 +200,8 @@ class AsyncFindResource(AsyncAPIResource):
         self,
         *,
         query: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,7 +228,14 @@ class AsyncFindResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"query": query}, find_files_params.FindFilesParams),
+                query=await async_maybe_transform(
+                    {
+                        "query": query,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    find_files_params.FindFilesParams,
+                ),
             ),
             cast_to=FindFilesResponse,
         )
@@ -208,6 +244,8 @@ class AsyncFindResource(AsyncAPIResource):
         self,
         *,
         query: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,7 +272,14 @@ class AsyncFindResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"query": query}, find_symbols_params.FindSymbolsParams),
+                query=await async_maybe_transform(
+                    {
+                        "query": query,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    find_symbols_params.FindSymbolsParams,
+                ),
             ),
             cast_to=FindSymbolsResponse,
         )
@@ -243,6 +288,8 @@ class AsyncFindResource(AsyncAPIResource):
         self,
         *,
         pattern: str,
+        directory: str | NotGiven = NOT_GIVEN,
+        workspace: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -269,7 +316,14 @@ class AsyncFindResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"pattern": pattern}, find_text_params.FindTextParams),
+                query=await async_maybe_transform(
+                    {
+                        "pattern": pattern,
+                        "directory": directory,
+                        "workspace": workspace,
+                    },
+                    find_text_params.FindTextParams,
+                ),
             ),
             cast_to=FindTextResponse,
         )
