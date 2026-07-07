@@ -4,6 +4,27 @@
 from opencode_ai.types import MessageAbortedError, ProviderAuthError, UnknownError
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class MessageAbortedError(BaseModel):
+    data: object
+    name: Literal['MessageAbortedError']</code></pre>
+
+<pre><code>class ProviderAuthError(BaseModel):
+    data: <a href="./src/opencode_ai/types/shared/provider_auth_error.py#L12">Data</a>
+    name: Literal['ProviderAuthError']</code></pre>
+
+<pre><code>class UnknownError(BaseModel):
+    data: <a href="./src/opencode_ai/types/shared/unknown_error.py#L10">Data</a>
+    name: Literal['UnknownError']</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 # Event
 
 Types:
@@ -11,6 +32,106 @@ Types:
 ```python
 from opencode_ai.types import EventListResponse
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>EventListResponse: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/event_list_response.py#L2470">EventUnknown</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L288">EventPluginAdded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L414">EventCatalogModelUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L428">EventSessionCreated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L442">EventSessionUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L456">EventSessionDeleted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L470">EventMessageUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L484">EventMessageRemoved</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L500">EventMessagePartUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L516">EventMessagePartRemoved</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L524">EventModelsDevRefreshed</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L542">EventSessionNextAgentSwitched</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L568">EventSessionNextModelSwitched</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L592">EventSessionNextMoved</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L684">EventSessionNextPrompted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L776">EventSessionNextPromptAdmitted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L868">EventSessionNextPromptPromoted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L886">EventSessionNextContextUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L904">EventSessionNextSynthetic</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L924">EventSessionNextShellStarted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L942">EventSessionNextShellEnded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L972">EventSessionNextStepStarted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1012">EventSessionNextStepEnded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1036">EventSessionNextStepFailed</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1054">EventSessionNextTextStarted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1074">EventSessionNextTextDelta</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1094">EventSessionNextTextEnded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1114">EventSessionNextReasoningStarted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1134">EventSessionNextReasoningDelta</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1156">EventSessionNextReasoningEnded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1176">EventSessionNextToolInputStarted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1196">EventSessionNextToolInputDelta</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1216">EventSessionNextToolInputEnded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1246">EventSessionNextToolCalled</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1321">EventSessionNextToolProgress</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1406">EventSessionNextToolSuccess</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1442">EventSessionNextToolFailed</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1474">EventSessionNextRetried</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1492">EventSessionNextCompactionStarted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1508">EventSessionNextCompactionDelta</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1526">EventSessionNextCompactionEnded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1558">EventPermissionV2Asked</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1574">EventPermissionV2Replied</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1623">EventAccountAdded</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1672">EventAccountRemoved</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1688">EventAccountSwitched</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1718">EventPermissionAsked</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1734">EventPermissionReplied</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1754">EventMessagePartDelta</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1780">EventSessionDiff</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1814">EventSessionError</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1822">EventLspUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1836">EventFileWatcherUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1848">EventFileEdited</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1876">EventPtyCreated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1904">EventPtyUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1918">EventPtyExited</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1930">EventPtyDeleted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1972">EventQuestionV2Asked</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L1988">EventQuestionV2Replied</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2002">EventQuestionV2Rejected</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2024">EventTodoUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2036">EventInstallationUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2048">EventInstallationUpdateAvailable</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2060">EventTuiPromptAppend</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2072">EventTuiCommandExecute</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2090">EventTuiToastShow</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2102">EventTuiSessionSelect</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2114">EventMcpToolsChanged</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2128">EventMcpBrowserOpenFailed</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2170">EventQuestionAsked</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2186">EventQuestionReplied</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2200">EventQuestionRejected</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2218">EventCommandExecuted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2276">EventSessionStatus</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2288">EventSessionIdle</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2300">EventSessionCompacted</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2312">EventProjectDirectoriesUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2358">EventProjectUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2370">EventVcsBranchUpdated</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2382">EventWorkspaceReady</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2394">EventWorkspaceFailed</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2408">EventWorkspaceStatus</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2422">EventWorktreeReady</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2434">EventWorktreeFailed</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2442">EventServerConnected</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2450">EventGlobalDisposed</a>,
+    <a href="./src/opencode_ai/types/event_list_response.py#L2462">EventServerInstanceDisposed</a>,
+]  # discriminated by "type"</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 
@@ -31,6 +152,48 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class Model(BaseModel):
+    id: str
+    attachment: bool
+    cost: <a href="./src/opencode_ai/types/model.py#L10">Cost</a>
+    limit: <a href="./src/opencode_ai/types/model.py#L20">Limit</a>
+    name: str
+    options: Dict[str, object]
+    reasoning: bool
+    release_date: str
+    temperature: bool
+    tool_call: bool</code></pre>
+
+<pre><code>class Provider(BaseModel):
+    api: Optional[str]
+    blacklist: Optional[List[str]]
+    env: Optional[List[str]]
+    id: Optional[str]
+    models: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L243">ProviderModels</a>]]
+    name: Optional[str]
+    npm: Optional[str]
+    options: Optional[<a href="./src/opencode_ai/types/config.py#L286">ProviderOptions</a>]
+    whitelist: Optional[List[str]]</code></pre>
+
+<pre><code>AppAgentsResponse: TypeAlias = List[<a href="./src/opencode_ai/types/app_agents_response.py#L27">Agent</a>]</code></pre>
+
+<pre><code>AppLogResponse: TypeAlias = bool</code></pre>
+
+<pre><code>class AppProvidersResponse(BaseModel):
+    default: Dict[str, str]
+    providers: List[<a href="./src/opencode_ai/types/config.py#L317">Provider</a>]</code></pre>
+
+<pre><code>AppSkillsResponse: TypeAlias = List[<a href="./src/opencode_ai/types/app_skills_response.py#L11">Skill</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /agent">client.app.<a href="./src/opencode_ai/resources/app.py">agents</a>() -> <a href="./src/opencode_ai/types/app_agents_response.py">AppAgentsResponse</a></code>
@@ -46,6 +209,26 @@ Types:
 from opencode_ai.types import Symbol, FindFilesResponse, FindSymbolsResponse, FindTextResponse
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class Symbol(BaseModel):
+    kind: float
+    location: <a href="./src/opencode_ai/types/symbol.py#L26">Location</a>
+    name: str</code></pre>
+
+<pre><code>FindFilesResponse: TypeAlias = List[str]</code></pre>
+
+<pre><code>FindSymbolsResponse: TypeAlias = List[<a href="./src/opencode_ai/types/symbol.py#L32">Symbol</a>]</code></pre>
+
+<pre><code>FindTextResponse: TypeAlias = List[<a href="./src/opencode_ai/types/find_text_response.py#L38">FindTextResponseItem</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /find/file">client.find.<a href="./src/opencode_ai/resources/find.py">files</a>(\*\*<a href="src/opencode_ai/types/find_files_params.py">params</a>) -> <a href="./src/opencode_ai/types/find_files_response.py">FindFilesResponse</a></code>
@@ -59,6 +242,33 @@ Types:
 ```python
 from opencode_ai.types import File, FileListResponse, FileContentResponse, FileStatusResponse
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class File(BaseModel):
+    added: int
+    path: str
+    removed: int
+    status: Literal['added', 'deleted', 'modified']</code></pre>
+
+<pre><code>FileListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/file_list_response.py#L11">FileNode</a>]</code></pre>
+
+<pre><code>class FileContentResponse(BaseModel):
+    content: str
+    type: Literal['text', 'binary']
+    diff: Optional[str]
+    encoding: Optional[Literal['base64']]
+    mime_type: Optional[str]  # wire name: "mimeType"
+    patch: Optional[object]</code></pre>
+
+<pre><code>FileStatusResponse: TypeAlias = List[<a href="./src/opencode_ai/types/file.py#L10">File</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 
@@ -83,6 +293,113 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class AgentConfig(BaseModel):
+    color: Optional[str]
+    description: Optional[str]
+    disable: Optional[bool]
+    hidden: Optional[bool]
+    max_steps: Optional[int]  # wire name: "maxSteps"
+    mode: Optional[Literal['subagent', 'primary', 'all']]
+    model: Optional[str]
+    options: Optional[object]
+    permission: Optional[<a href="./src/opencode_ai/types/permission_config.py#L61">PermissionConfig</a>]
+    prompt: Optional[str]
+    steps: Optional[int]
+    temperature: Optional[float]
+    tools: Optional[Dict[str, bool]]
+    top_p: Optional[float]
+    variant: Optional[str]</code></pre>
+
+<pre><code>class Config(BaseModel):
+    schema_: Optional[str]  # wire name: "$schema"
+    agent: Optional[<a href="./src/opencode_ai/types/config.py#L50">Agent</a>]
+    attachment: Optional[<a href="./src/opencode_ai/types/config.py#L83">Attachment</a>]
+    autoshare: Optional[bool]
+    autoupdate: Optional[Union[bool, Literal['notify']]]
+    command: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L87">CommandConfig</a>]]
+    compaction: Optional[<a href="./src/opencode_ai/types/config.py#L101">Compaction</a>]
+    default_agent: Optional[str]
+    disabled_providers: Optional[List[str]]
+    enabled_providers: Optional[List[str]]
+    enterprise: Optional[<a href="./src/opencode_ai/types/config.py#L113">Enterprise</a>]
+    experimental: Optional[<a href="./src/opencode_ai/types/config.py#L125">Experimental</a>]
+    formatter: Optional[Union[bool, Dict[str, <a href="./src/opencode_ai/types/config.py#L141">FormatterConfig</a>]]]
+    instructions: Optional[List[str]]
+    layout: Optional[Literal['auto', 'stretch']]
+    log_level: Optional[Literal['DEBUG', 'INFO', 'WARN', 'ERROR']]  # wire name: "logLevel"
+    lsp: Optional[Union[bool, Dict[str, <a href="./src/opencode_ai/types/config.py#L167">LspConfig</a>]]]
+    mcp: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L174">Mcp</a>]]
+    mode: Optional[<a href="./src/opencode_ai/types/config.py#L177">Mode</a>]
+    model: Optional[str]
+    permission: Optional[<a href="./src/opencode_ai/types/permission_config.py#L61">PermissionConfig</a>]
+    plugin: Optional[List[Union[str, Tuple[str, object]]]]
+    provider: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L317">Provider</a>]]
+    reference: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L349">ReferenceConfigEntry</a>]]
+    server: Optional[<a href="./src/opencode_ai/types/config.py#L354">Server</a>]
+    share: Optional[Literal['manual', 'auto', 'disabled']]
+    shell: Optional[str]
+    skills: Optional[<a href="./src/opencode_ai/types/config.py#L366">Skills</a>]
+    small_model: Optional[str]
+    snapshot: Optional[bool]
+    tool_output: Optional[<a href="./src/opencode_ai/types/config.py#L372">ToolOutput</a>]
+    tools: Optional[Dict[str, bool]]
+    username: Optional[str]
+    watcher: Optional[<a href="./src/opencode_ai/types/config.py#L378">Watcher</a>]</code></pre>
+
+<pre><code>class McpLocalConfig(BaseModel):
+    command: List[str]
+    type: Literal['local']
+    enabled: Optional[bool]
+    environment: Optional[Dict[str, str]]
+    timeout: Optional[int]</code></pre>
+
+<pre><code>class McpRemoteConfig(BaseModel):
+    type: Literal['remote']
+    url: str
+    enabled: Optional[bool]
+    headers: Optional[Dict[str, str]]
+    oauth: Optional[<a href="./src/opencode_ai/types/mcp_remote_config.py#L25">OAuth</a>]
+    timeout: Optional[int]</code></pre>
+
+<pre><code>PermissionActionConfig: TypeAlias = Literal['ask', 'allow', 'deny']</code></pre>
+
+<pre><code>PermissionConfig: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>,
+    <a href="./src/opencode_ai/types/permission_config.py#L22">PermissionConfigObject</a>,
+]</code></pre>
+
+<pre><code>class PermissionConfigObject(BaseModel):
+    bash: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    doom_loop: Optional[<a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>]
+    edit: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    external_directory: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    glob: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    grep: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    list: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    lsp: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    question: Optional[<a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>]
+    read: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    skill: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    task: Optional[<a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]
+    todowrite: Optional[<a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>]
+    webfetch: Optional[<a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>]
+    websearch: Optional[<a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>]
+    __pydantic_extra__: Dict[str, <a href="./src/opencode_ai/types/permission_config.py#L19">PermissionRuleConfig</a>]</code></pre>
+
+<pre><code>PermissionRuleConfig: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>,
+    Dict[str, <a href="./src/opencode_ai/types/permission_config.py#L17">PermissionActionConfig</a>],
+]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /config">client.config.<a href="./src/opencode_ai/resources/config.py">get</a>() -> <a href="./src/opencode_ai/types/config.py">Config</a></code>
@@ -98,7 +415,7 @@ from opencode_ai.types import (
     AssistantMessage,
     CompactionPart,
     FilePart,
-    FilePartInput,
+    FilePartInputParam,
     FilePartSource,
     FilePartSourceText,
     FileSource,
@@ -116,7 +433,7 @@ from opencode_ai.types import (
     SubtaskPart,
     SymbolSource,
     TextPart,
-    TextPartInput,
+    TextPartInputParam,
     ToolPart,
     ToolStateCompleted,
     ToolStateError,
@@ -143,6 +460,324 @@ from opencode_ai.types import (
     SessionTodoResponse,
 )
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class AgentPart(BaseModel):
+    id: str
+    message_id: str  # wire name: "messageID"
+    name: str
+    session_id: str  # wire name: "sessionID"
+    type: Literal['agent']
+    source: Optional[<a href="./src/opencode_ai/types/part.py#L238">AgentPartSource</a>]</code></pre>
+
+<pre><code>class AssistantMessage(BaseModel):
+    id: str
+    agent: str
+    cost: float
+    mode: str
+    api_model_id: str  # wire name: "modelID"
+    parent_id: str  # wire name: "parentID"
+    path: <a href="./src/opencode_ai/types/assistant_message.py#L20">Path</a>
+    provider_id: str  # wire name: "providerID"
+    role: Literal['assistant']
+    session_id: str  # wire name: "sessionID"
+    time: <a href="./src/opencode_ai/types/assistant_message.py#L26">Time</a>
+    tokens: <a href="./src/opencode_ai/types/assistant_message.py#L38">Tokens</a>
+    error: Optional[<a href="./src/opencode_ai/types/assistant_message.py#L56">Error</a>]
+    finish: Optional[str]
+    structured: Optional[object]
+    summary: Optional[bool]
+    variant: Optional[str]</code></pre>
+
+<pre><code>class CompactionPart(BaseModel):
+    id: str
+    auto: bool
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    type: Literal['compaction']
+    overflow: Optional[bool]
+    tail_start_id: Optional[str]</code></pre>
+
+<pre><code>class FilePart(BaseModel):
+    id: str
+    message_id: str  # wire name: "messageID"
+    mime: str
+    session_id: str  # wire name: "sessionID"
+    type: Literal['file']
+    url: str
+    filename: Optional[str]
+    source: Optional[<a href="./src/opencode_ai/types/file_part_source.py#L13">FilePartSource</a>]</code></pre>
+
+<pre><code>class FilePartInputParam(TypedDict):
+    mime: Required[str]
+    type: Required[Literal['file']]
+    url: Required[str]
+    id: str
+    filename: str
+    source: <a href="./src/opencode_ai/types/file_part_source_param.py#L14">FilePartSourceParam</a></code></pre>
+
+<pre><code>FilePartSource: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/file_source.py#L11">FileSource</a>,
+    <a href="./src/opencode_ai/types/symbol_source.py#L29">SymbolSource</a>,
+    <a href="./src/opencode_ai/types/resource_source.py#L13">ResourceSource</a>,
+]  # discriminated by "type"</code></pre>
+
+<pre><code>class FilePartSourceText(BaseModel):
+    end: int
+    start: int
+    value: str</code></pre>
+
+<pre><code>class FileSource(BaseModel):
+    path: str
+    text: <a href="./src/opencode_ai/types/file_part_source_text.py#L8">FilePartSourceText</a>
+    type: Literal['file']</code></pre>
+
+<pre><code>Message: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/user_message.py#L25">UserMessage</a>,
+    <a href="./src/opencode_ai/types/assistant_message.py#L70">AssistantMessage</a>,
+]  # discriminated by "role"</code></pre>
+
+<pre><code>Part: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/part.py#L296">PartUnknown</a>,
+    <a href="./src/opencode_ai/types/part.py#L55">TextPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L81">SubtaskPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L107">ReasoningPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L123">FilePart</a>,
+    <a href="./src/opencode_ai/types/part.py#L146">ToolPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L164">StepStartPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L194">StepFinishPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L212">SnapshotPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L224">PatchPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L246">AgentPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L264">RetryPart</a>,
+    <a href="./src/opencode_ai/types/part.py#L280">CompactionPart</a>,
+]  # discriminated by "type"</code></pre>
+
+<pre><code>class PartUnknown(BaseModel):
+    """Permissive fallback for `Part` `type` values not yet enumerated by this SDK.
+
+    The server's part union may grow beyond the variants modeled here. Rather
+    than raising when an unrecognized `type` is encountered, unmatched parts
+    deserialize into this open-ended model so message/session responses keep
+    working as the server adds new part kinds. See `EventUnknown` in
+    `event_list_response.py` for the sibling pattern and the ordering rationale
+    reproduced below."""
+    type: str</code></pre>
+
+<pre><code>class PatchPart(BaseModel):
+    id: str
+    files: List[str]
+    hash: str
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    type: Literal['patch']</code></pre>
+
+<pre><code>class ReasoningPart(BaseModel):
+    id: str
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    text: str
+    time: <a href="./src/opencode_ai/types/part.py#L101">ReasoningPartTime</a>
+    type: Literal['reasoning']
+    metadata: Optional[object]</code></pre>
+
+<pre><code>class ResourceSource(BaseModel):
+    client_name: str  # wire name: "clientName"
+    text: <a href="./src/opencode_ai/types/file_part_source_text.py#L8">FilePartSourceText</a>
+    type: Literal['resource']
+    uri: str</code></pre>
+
+<pre><code>class RetryPart(BaseModel):
+    id: str
+    attempt: int
+    error: <a href="./src/opencode_ai/types/shared/api_error.py#L27">APIError</a>
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    time: <a href="./src/opencode_ai/types/part.py#L260">RetryPartTime</a>
+    type: Literal['retry']</code></pre>
+
+<pre><code>class Session(BaseModel):
+    id: str
+    directory: str
+    project_id: str  # wire name: "projectID"
+    slug: str
+    time: <a href="./src/opencode_ai/types/session.py#L70">Time</a>
+    title: str
+    version: str
+    agent: Optional[str]
+    cost: Optional[float]
+    metadata: Optional[object]
+    model: Optional[<a href="./src/opencode_ai/types/session.py#L62">Model</a>]
+    parent_id: Optional[str]  # wire name: "parentID"
+    path: Optional[str]
+    permission: Optional[List[<a href="./src/opencode_ai/types/session.py#L80">PermissionRule</a>]]
+    revert: Optional[<a href="./src/opencode_ai/types/session.py#L88">Revert</a>]
+    share: Optional[<a href="./src/opencode_ai/types/session.py#L98">Share</a>]
+    summary: Optional[<a href="./src/opencode_ai/types/session.py#L36">Summary</a>]
+    tokens: Optional[<a href="./src/opencode_ai/types/session.py#L52">Tokens</a>]
+    workspace_id: Optional[str]  # wire name: "workspaceID"</code></pre>
+
+<pre><code>class SnapshotPart(BaseModel):
+    id: str
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    snapshot: str
+    type: Literal['snapshot']</code></pre>
+
+<pre><code>class StepFinishPart(BaseModel):
+    id: str
+    cost: float
+    message_id: str  # wire name: "messageID"
+    reason: str
+    session_id: str  # wire name: "sessionID"
+    tokens: <a href="./src/opencode_ai/types/part.py#L182">StepFinishPartTokens</a>
+    type: Literal['step-finish']
+    snapshot: Optional[str]</code></pre>
+
+<pre><code>class StepStartPart(BaseModel):
+    id: str
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    type: Literal['step-start']
+    snapshot: Optional[str]</code></pre>
+
+<pre><code>class SubtaskPart(BaseModel):
+    id: str
+    agent: str
+    description: str
+    message_id: str  # wire name: "messageID"
+    prompt: str
+    session_id: str  # wire name: "sessionID"
+    type: Literal['subtask']
+    command: Optional[str]
+    model: Optional[<a href="./src/opencode_ai/types/part.py#L75">SubtaskPartModel</a>]</code></pre>
+
+<pre><code>class SymbolSource(BaseModel):
+    kind: int
+    name: str
+    path: str
+    range: <a href="./src/opencode_ai/types/symbol_source.py#L23">Range</a>
+    text: <a href="./src/opencode_ai/types/file_part_source_text.py#L8">FilePartSourceText</a>
+    type: Literal['symbol']</code></pre>
+
+<pre><code>class TextPart(BaseModel):
+    id: str
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    text: str
+    type: Literal['text']
+    ignored: Optional[bool]
+    metadata: Optional[object]
+    synthetic: Optional[bool]
+    time: Optional[<a href="./src/opencode_ai/types/part.py#L49">TextPartTime</a>]</code></pre>
+
+<pre><code>class TextPartInputParam(TypedDict):
+    text: Required[str]
+    type: Required[Literal['text']]
+    id: str
+    synthetic: bool
+    time: <a href="./src/opencode_ai/types/text_part_input_param.py#L10">Time</a></code></pre>
+
+<pre><code>class ToolPart(BaseModel):
+    id: str
+    call_id: str  # wire name: "callID"
+    message_id: str  # wire name: "messageID"
+    session_id: str  # wire name: "sessionID"
+    state: <a href="./src/opencode_ai/types/part.py#L141">ToolPartState</a>
+    tool: str
+    type: Literal['tool']
+    metadata: Optional[object]</code></pre>
+
+<pre><code>class ToolStateCompleted(BaseModel):
+    input: Dict[str, object]
+    metadata: Dict[str, object]
+    output: str
+    status: Literal['completed']
+    time: <a href="./src/opencode_ai/types/tool_state_completed.py#L11">Time</a>
+    title: str</code></pre>
+
+<pre><code>class ToolStateError(BaseModel):
+    error: str
+    input: Dict[str, object]
+    status: Literal['error']
+    time: <a href="./src/opencode_ai/types/tool_state_error.py#L11">Time</a></code></pre>
+
+<pre><code>class ToolStatePending(BaseModel):
+    status: Literal['pending']</code></pre>
+
+<pre><code>class ToolStateRunning(BaseModel):
+    status: Literal['running']
+    time: <a href="./src/opencode_ai/types/tool_state_running.py#L11">Time</a>
+    input: Optional[object]
+    metadata: Optional[Dict[str, object]]
+    title: Optional[str]</code></pre>
+
+<pre><code>class Todo(BaseModel):
+    content: str
+    status: str
+    priority: str</code></pre>
+
+<pre><code>class UserMessage(BaseModel):
+    id: str
+    agent: str
+    model: <a href="./src/opencode_ai/types/user_message.py#L17">Model</a>
+    role: Literal['user']
+    session_id: str  # wire name: "sessionID"
+    time: <a href="./src/opencode_ai/types/user_message.py#L13">Time</a>
+    format: Optional[object]
+    summary: Optional[object]
+    system: Optional[str]
+    tools: Optional[Dict[str, bool]]</code></pre>
+
+<pre><code>SessionListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/session.py#L102">Session</a>]</code></pre>
+
+<pre><code>SessionDeleteResponse: TypeAlias = bool</code></pre>
+
+<pre><code>SessionAbortResponse: TypeAlias = bool</code></pre>
+
+<pre><code>SessionInitResponse: TypeAlias = bool</code></pre>
+
+<pre><code>SessionMessagesResponse: TypeAlias = List[<a href="./src/opencode_ai/types/session_messages_response.py#L13">SessionMessagesResponseItem</a>]</code></pre>
+
+<pre><code>class SessionPromptResponse(BaseModel):
+    info: <a href="./src/opencode_ai/types/assistant_message.py#L70">AssistantMessage</a>
+    parts: List[<a href="./src/opencode_ai/types/part.py#L331">Part</a>]</code></pre>
+
+<pre><code>SessionSummarizeResponse: TypeAlias = bool</code></pre>
+
+<pre><code>SessionChildrenResponse: TypeAlias = List[<a href="./src/opencode_ai/types/session.py#L102">Session</a>]</code></pre>
+
+<pre><code>class SessionCommandResponse(BaseModel):
+    info: <a href="./src/opencode_ai/types/assistant_message.py#L70">AssistantMessage</a>
+    parts: List[<a href="./src/opencode_ai/types/part.py#L331">Part</a>]</code></pre>
+
+<pre><code>SessionDeleteMessageResponse: TypeAlias = bool</code></pre>
+
+<pre><code>SessionDeletePartResponse: TypeAlias = bool</code></pre>
+
+<pre><code>SessionDiffResponse: TypeAlias = List[<a href="./src/opencode_ai/types/snapshot_file_diff.py#L11">SnapshotFileDiff</a>]</code></pre>
+
+<pre><code>class SessionMessagesResponseItem(BaseModel):
+    info: <a href="./src/opencode_ai/types/message.py#L12">Message</a>
+    parts: List[<a href="./src/opencode_ai/types/part.py#L331">Part</a>]</code></pre>
+
+<pre><code>SessionRespondPermissionResponse: TypeAlias = bool</code></pre>
+
+<pre><code>class SessionShellResponse(BaseModel):
+    info: <a href="./src/opencode_ai/types/message.py#L12">Message</a>
+    parts: List[<a href="./src/opencode_ai/types/part.py#L331">Part</a>]</code></pre>
+
+<pre><code>SessionStatusResponse: TypeAlias = Dict[str, <a href="./src/opencode_ai/types/session_status_response.py#L53">SessionStatus</a>]</code></pre>
+
+<pre><code>SessionTodoResponse: TypeAlias = List[<a href="./src/opencode_ai/types/todo.py#L8">Todo</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 
@@ -182,6 +817,29 @@ Types:
 from opencode_ai.types import Project, ProjectListResponse, ProjectDirectoriesResponse
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class Project(BaseModel):
+    id: str
+    sandboxes: List[str]
+    time: <a href="./src/opencode_ai/types/project.py#L24">Time</a>
+    worktree: str
+    commands: Optional[<a href="./src/opencode_ai/types/project.py#L11">Commands</a>]
+    icon: Optional[<a href="./src/opencode_ai/types/project.py#L16">Icon</a>]
+    name: Optional[str]
+    vcs: Optional[Literal['git']]</code></pre>
+
+<pre><code>ProjectListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/project.py#L32">Project</a>]</code></pre>
+
+<pre><code>ProjectDirectoriesResponse: TypeAlias = List[str]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /project">client.project.<a href="./src/opencode_ai/resources/project.py">list</a>() -> <a href="./src/opencode_ai/types/project_list_response.py">ProjectListResponse</a></code>
@@ -204,6 +862,34 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class ProviderAuthMethod(BaseModel):
+    label: str
+    type: Literal['oauth', 'api']
+    prompts: Optional[List[<a href="./src/opencode_ai/types/provider_auth_method.py#L68">Prompt</a>]]</code></pre>
+
+<pre><code>class ProviderListResponse(BaseModel):
+    all: List[<a href="./src/opencode_ai/types/provider_list_response.py#L12">ProviderListResponseProvider</a>]
+    connected: List[str]
+    default: Dict[str, str]</code></pre>
+
+<pre><code>ProviderAuthResponse: TypeAlias = Dict[str, List[<a href="./src/opencode_ai/types/provider_auth_method.py#L74">ProviderAuthMethod</a>]]</code></pre>
+
+<pre><code>class ProviderAuthAuthorization(BaseModel):
+    instructions: str
+    method: Literal['auto', 'code']
+    url: str</code></pre>
+
+<pre><code>ProviderOAuthCallbackResponse: TypeAlias = bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /provider">client.provider.<a href="./src/opencode_ai/resources/provider.py">list</a>() -> <a href="./src/opencode_ai/types/provider_list_response.py">ProviderListResponse</a></code>
@@ -223,6 +909,25 @@ from opencode_ai.types import (
     SyncStealResponse,
 )
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>SyncHistoryListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/sync_history_list_response.py#L11">SyncHistoryListResponseItem</a>]</code></pre>
+
+<pre><code>class SyncReplayResponse(BaseModel):
+    session_id: str  # wire name: "sessionID"</code></pre>
+
+<pre><code>SyncStartResponse: TypeAlias = bool</code></pre>
+
+<pre><code>class SyncStealResponse(BaseModel):
+    session_id: str  # wire name: "sessionID"</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 
@@ -254,6 +959,70 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>MCPStatus: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/mcp_status_connected.py#L10">MCPStatusConnected</a>,
+    <a href="./src/opencode_ai/types/mcp_status_disabled.py#L10">MCPStatusDisabled</a>,
+    <a href="./src/opencode_ai/types/mcp_status_failed.py#L10">MCPStatusFailed</a>,
+    <a href="./src/opencode_ai/types/mcp_status_needs_auth.py#L10">MCPStatusNeedsAuth</a>,
+    <a href="./src/opencode_ai/types/mcp_status_needs_client_registration.py#L10">MCPStatusNeedsClientRegistration</a>,
+]  # discriminated by "status"</code></pre>
+
+<pre><code>class MCPStatusConnected(BaseModel):
+    status: Literal['connected']</code></pre>
+
+<pre><code>class MCPStatusDisabled(BaseModel):
+    status: Literal['disabled']</code></pre>
+
+<pre><code>class MCPStatusFailed(BaseModel):
+    error: str
+    status: Literal['failed']</code></pre>
+
+<pre><code>class MCPStatusNeedsAuth(BaseModel):
+    status: Literal['needs_auth']</code></pre>
+
+<pre><code>class MCPStatusNeedsClientRegistration(BaseModel):
+    error: str
+    status: Literal['needs_client_registration']</code></pre>
+
+<pre><code>class McpLocalConfig(BaseModel):
+    command: List[str]
+    type: Literal['local']
+    enabled: Optional[bool]
+    environment: Optional[Dict[str, str]]
+    timeout: Optional[int]</code></pre>
+
+<pre><code>class McpRemoteConfig(BaseModel):
+    type: Literal['remote']
+    url: str
+    enabled: Optional[bool]
+    headers: Optional[Dict[str, str]]
+    oauth: Optional[<a href="./src/opencode_ai/types/mcp_remote_config.py#L25">OAuth</a>]
+    timeout: Optional[int]</code></pre>
+
+<pre><code>McpAddResponse: TypeAlias = Dict[str, <a href="./src/opencode_ai/types/mcp_status.py#L15">MCPStatus</a>]</code></pre>
+
+<pre><code>class McpAuthRemoveResponse(BaseModel):
+    success: Literal[True]</code></pre>
+
+<pre><code>class McpAuthStartResponse(BaseModel):
+    authorization_url: str  # wire name: "authorizationUrl"
+    oauth_state: str  # wire name: "oauthState"</code></pre>
+
+<pre><code>McpConnectResponse: TypeAlias = bool</code></pre>
+
+<pre><code>McpDisconnectResponse: TypeAlias = bool</code></pre>
+
+<pre><code>McpStatusResponse: TypeAlias = Dict[str, <a href="./src/opencode_ai/types/mcp_status.py#L15">MCPStatus</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /mcp">client.mcp.<a href="./src/opencode_ai/resources/mcp.py">status</a>() -> <a href="./src/opencode_ai/types/mcp_status_response.py">McpStatusResponse</a></code>
@@ -279,6 +1048,36 @@ from opencode_ai.types import (
     PtyShellsResponse,
 )
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class Pty(BaseModel):
+    id: str
+    args: List[str]
+    command: str
+    cwd: str
+    pid: int
+    status: Literal['running', 'exited']
+    title: str</code></pre>
+
+<pre><code>PtyListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/pty.py#L11">Pty</a>]</code></pre>
+
+<pre><code>PtyConnectResponse: TypeAlias = bool</code></pre>
+
+<pre><code>class PtyConnectTokenResponse(BaseModel):
+    expires_in: int
+    ticket: str</code></pre>
+
+<pre><code>PtyDeleteResponse: TypeAlias = bool</code></pre>
+
+<pre><code>PtyShellsResponse: TypeAlias = List[<a href="./src/opencode_ai/types/pty_shells_response_item.py#L8">PtyShellsResponseItem</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 
@@ -313,6 +1112,43 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>TuiAppendPromptResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiOpenHelpResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiOpenSessionsResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiOpenThemesResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiOpenModelsResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiSubmitPromptResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiClearPromptResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiExecuteCommandResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiShowToastResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiPublishResponse: TypeAlias = bool</code></pre>
+
+<pre><code>TuiSelectSessionResponse: TypeAlias = bool</code></pre>
+
+<pre><code>class TuiControlNextResponse(BaseModel):
+    path: str
+    body: object</code></pre>
+
+<pre><code>TuiControlResponseResponse: TypeAlias = bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="post /tui/append-prompt">client.tui.<a href="./src/opencode_ai/resources/tui.py">append_prompt</a>(\*\*<a href="src/opencode_ai/types/tui_append_prompt_params.py">params</a>) -> <a href="./src/opencode_ai/types/tui_append_prompt_response.py">TuiAppendPromptResponse</a></code>
@@ -345,6 +1181,42 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class QuestionInfo(BaseModel):
+    header: str
+    options: List[<a href="./src/opencode_ai/types/question_option.py#L8">QuestionOption</a>]
+    question: str
+    custom: Optional[bool]
+    multiple: Optional[bool]</code></pre>
+
+<pre><code>class QuestionOption(BaseModel):
+    description: str
+    label: str</code></pre>
+
+<pre><code>class QuestionRequest(BaseModel):
+    id: str
+    questions: List[<a href="./src/opencode_ai/types/question_info.py#L11">QuestionInfo</a>]
+    session_id: str  # wire name: "sessionID"
+    tool: Optional[<a href="./src/opencode_ai/types/question_tool.py#L10">QuestionTool</a>]</code></pre>
+
+<pre><code>class QuestionTool(BaseModel):
+    call_id: str  # wire name: "callID"
+    message_id: str  # wire name: "messageID"</code></pre>
+
+<pre><code>QuestionListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/question_request.py#L14">QuestionRequest</a>]</code></pre>
+
+<pre><code>QuestionRejectResponse: TypeAlias = bool</code></pre>
+
+<pre><code>QuestionReplyResponse: TypeAlias = bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /question">client.question.<a href="./src/opencode_ai/resources/question.py">list</a>() -> <a href="./src/opencode_ai/types/question_list_response.py">QuestionListResponse</a></code>
@@ -363,6 +1235,28 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class PermissionRequest(BaseModel):
+    id: str
+    always: List[str]
+    metadata: object
+    patterns: List[str]
+    permission: str
+    session_id: str  # wire name: "sessionID"
+    tool: Optional[<a href="./src/opencode_ai/types/permission_request.py#L12">PermissionRequestTool</a>]</code></pre>
+
+<pre><code>PermissionListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/permission_request.py#L18">PermissionRequest</a>]</code></pre>
+
+<pre><code>PermissionReplyResponse: TypeAlias = bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /permission">client.permission.<a href="./src/opencode_ai/resources/permission.py">list</a>() -> <a href="./src/opencode_ai/types/permission_list_response.py">PermissionListResponse</a></code>
@@ -375,6 +1269,19 @@ Types:
 ```python
 from opencode_ai.types import Path
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class Path(BaseModel):
+    cwd: str
+    root: str</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 
@@ -395,6 +1302,39 @@ from opencode_ai.types import (
 )
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class VcsInfo(BaseModel):
+    branch: Optional[str]
+    default_branch: Optional[str]</code></pre>
+
+<pre><code>class VcsFileStatus(BaseModel):
+    additions: float
+    deletions: float
+    file: str
+    status: Literal['added', 'deleted', 'modified']</code></pre>
+
+<pre><code>class VcsFileDiff(BaseModel):
+    additions: float
+    deletions: float
+    file: str
+    patch: Optional[str]
+    status: Optional[Literal['added', 'deleted', 'modified']]</code></pre>
+
+<pre><code>VcsStatusResponse: TypeAlias = List[<a href="./src/opencode_ai/types/vcs_file_status.py#L10">VcsFileStatus</a>]</code></pre>
+
+<pre><code>VcsDiffResponse: TypeAlias = List[<a href="./src/opencode_ai/types/vcs_file_diff.py#L11">VcsFileDiff</a>]</code></pre>
+
+<pre><code>class VcsApplyResponse(BaseModel):
+    applied: bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /vcs">client.vcs.<a href="./src/opencode_ai/resources/vcs.py">get</a>() -> <a href="./src/opencode_ai/types/vcs_info.py">VcsInfo</a></code>
@@ -411,6 +1351,27 @@ Types:
 from opencode_ai.types import Command, CommandListResponse
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class Command(BaseModel):
+    hints: List[str]
+    name: str
+    template: str
+    agent: Optional[str]
+    description: Optional[str]
+    model: Optional[str]
+    source: Optional[Literal['command', 'mcp', 'skill']]
+    subtask: Optional[bool]</code></pre>
+
+<pre><code>CommandListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/command.py#L11">Command</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /command">client.command.<a href="./src/opencode_ai/resources/command.py">list</a>() -> <a href="./src/opencode_ai/types/command_list_response.py">CommandListResponse</a></code>
@@ -422,6 +1383,23 @@ Types:
 ```python
 from opencode_ai.types import LSPStatus, LspStatusResponse
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class LSPStatus(BaseModel):
+    id: str
+    name: str
+    root: str
+    status: Literal['connected', 'error']</code></pre>
+
+<pre><code>LspStatusResponse: TypeAlias = List[<a href="./src/opencode_ai/types/lsp_status.py#L10">LSPStatus</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 
@@ -435,6 +1413,22 @@ Types:
 from opencode_ai.types import FormatterStatus, FormatterStatusResponse
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class FormatterStatus(BaseModel):
+    enabled: bool
+    extensions: List[str]
+    name: str</code></pre>
+
+<pre><code>FormatterStatusResponse: TypeAlias = List[<a href="./src/opencode_ai/types/formatter_status.py#L10">FormatterStatus</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="get /formatter">client.formatter.<a href="./src/opencode_ai/resources/formatter.py">status</a>() -> <a href="./src/opencode_ai/types/formatter_status_response.py">FormatterStatusResponse</a></code>
@@ -447,6 +1441,17 @@ Types:
 from opencode_ai.types import InstanceDisposeResponse
 ```
 
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>InstanceDisposeResponse: TypeAlias = bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
 Methods:
 
 - <code title="post /instance/dispose">client.instance.<a href="./src/opencode_ai/resources/instance.py">dispose</a>() -> bool</code>
@@ -458,6 +1463,19 @@ Types:
 ```python
 from opencode_ai.types import AuthSetResponse, AuthRemoveResponse
 ```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>AuthSetResponse: TypeAlias = bool</code></pre>
+
+<pre><code>AuthRemoveResponse: TypeAlias = bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
 
 Methods:
 

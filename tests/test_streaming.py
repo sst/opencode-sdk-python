@@ -184,7 +184,7 @@ async def test_special_new_line_character(
 
     sse = await iter_next(iterator)
     assert sse.event is None
-    assert sse.json() == {"content": "  "}
+    assert sse.json() == {"content": " "}
 
     sse = await iter_next(iterator)
     assert sse.event is None
