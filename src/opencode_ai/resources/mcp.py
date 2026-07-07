@@ -6,7 +6,7 @@ from typing import Any, Union, cast
 
 import httpx
 
-from ..types import addressing_params, mcp_add_params, mcp_auth_callback_params
+from ..types import mcp_add_params, addressing_params, mcp_auth_callback_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -25,8 +25,8 @@ from ..types.mcp_connect_response import McpConnectResponse
 from ..types.mcp_local_config_param import McpLocalConfigParam
 from ..types.mcp_auth_start_response import McpAuthStartResponse
 from ..types.mcp_disconnect_response import McpDisconnectResponse
-from ..types.mcp_auth_remove_response import McpAuthRemoveResponse
 from ..types.mcp_remote_config_param import McpRemoteConfigParam
+from ..types.mcp_auth_remove_response import McpAuthRemoveResponse
 
 __all__ = ["McpResource", "AsyncMcpResource"]
 

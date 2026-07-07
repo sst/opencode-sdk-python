@@ -12,9 +12,9 @@ from respx import MockRouter
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
 from opencode_ai.types import (
-    SyncReplayResponse,
     SyncStartResponse,
     SyncStealResponse,
+    SyncReplayResponse,
     SyncHistoryListResponse,
 )
 from tests.wire_helpers import route_request, read_json_body

@@ -23,16 +23,16 @@ from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
     app,
-    auth,
-    vcs,
     lsp,
     mcp,
     pty,
     tui,
-    sync,
+    vcs,
+    auth,
     file,
     find,
     path,
+    sync,
     event,
     config,
     command,
@@ -40,8 +40,8 @@ from .resources import (
     session,
     instance,
     provider,
-    formatter,
     question,
+    formatter,
     permission,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream

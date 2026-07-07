@@ -11,8 +11,8 @@ from .shared.api_error import APIError
 from .shared.unknown_error import UnknownError
 from .shared.provider_auth_error import ProviderAuthError
 from .shared.message_aborted_error import MessageAbortedError
-from .shared.structured_output_error import StructuredOutputError
 from .shared.context_overflow_error import ContextOverflowError
+from .shared.structured_output_error import StructuredOutputError
 
 __all__ = ["AssistantMessage", "Path", "Time", "Tokens", "TokensCache", "Error", "ErrorMessageOutputLengthError"]
 

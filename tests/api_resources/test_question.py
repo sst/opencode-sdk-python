@@ -12,8 +12,8 @@ from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
 from opencode_ai.types import (
     QuestionListResponse,
-    QuestionRejectResponse,
     QuestionReplyResponse,
+    QuestionRejectResponse,
 )
 from tests.wire_helpers import route_request, read_json_body
 

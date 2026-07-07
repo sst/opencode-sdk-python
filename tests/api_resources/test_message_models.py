@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import cast
 
-from opencode_ai.types import AssistantMessage, FilePartSource, ResourceSource, UserMessage
+from opencode_ai.types import UserMessage, FilePartSource, ResourceSource, AssistantMessage
 from opencode_ai._models import construct_type
 
 ASSISTANT_PAYLOAD: dict[str, object] = {

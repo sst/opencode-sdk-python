@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import project_update_params, addressing_params
+from ..types import addressing_params, project_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property

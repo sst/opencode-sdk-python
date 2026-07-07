@@ -8,7 +8,6 @@ from typing import Any, cast
 
 import httpx
 import pytest
-
 from respx import MockRouter
 
 from opencode_ai import Opencode, AsyncOpencode

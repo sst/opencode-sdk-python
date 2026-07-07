@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-import httpx
 from typing_extensions import Literal
 
-from ..types import addressing_params, vcs_diff_params, vcs_apply_params
+import httpx
+
+from ..types import vcs_diff_params, vcs_apply_params, addressing_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property

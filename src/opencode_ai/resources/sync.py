@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 
 import httpx
 
-from ..types import addressing_params, sync_replay_params, sync_steal_params, sync_history_list_params
+from ..types import addressing_params, sync_steal_params, sync_replay_params, sync_history_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,9 +18,9 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.sync_replay_response import SyncReplayResponse
 from ..types.sync_start_response import SyncStartResponse
 from ..types.sync_steal_response import SyncStealResponse
+from ..types.sync_replay_response import SyncReplayResponse
 from ..types.sync_history_list_response import SyncHistoryListResponse
 
 __all__ = ["SyncResource", "AsyncSyncResource"]

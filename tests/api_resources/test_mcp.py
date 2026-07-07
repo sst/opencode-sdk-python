@@ -13,11 +13,11 @@ from tests.utils import assert_matches_type
 from opencode_ai.types import (
     MCPStatus,
     McpAddResponse,
-    McpAuthRemoveResponse,
-    McpAuthStartResponse,
-    McpConnectResponse,
-    McpDisconnectResponse,
     McpStatusResponse,
+    McpConnectResponse,
+    McpAuthStartResponse,
+    McpAuthRemoveResponse,
+    McpDisconnectResponse,
 )
 from tests.wire_helpers import route_request, read_json_body
 

@@ -11,12 +11,12 @@ from respx import MockRouter
 
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
-from tests.wire_helpers import route_request
 from opencode_ai.types import (
     FindTextResponse,
     FindFilesResponse,
     FindSymbolsResponse,
 )
+from tests.wire_helpers import route_request
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

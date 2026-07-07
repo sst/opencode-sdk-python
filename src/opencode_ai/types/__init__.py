@@ -50,18 +50,11 @@ from .symbol_source import SymbolSource as SymbolSource
 from .vcs_file_diff import VcsFileDiff as VcsFileDiff
 from .app_log_params import AppLogParams as AppLogParams
 from .mcp_add_params import McpAddParams as McpAddParams
-from .addressing_params import AddressingParams as AddressingParams
-from .permission_config import (
-    PermissionConfig as PermissionConfig,
-    PermissionRuleConfig as PermissionRuleConfig,
-    PermissionConfigObject as PermissionConfigObject,
-    PermissionActionConfig as PermissionActionConfig,
-)
+from .auth_set_params import AuthSetParams as AuthSetParams
 from .question_option import QuestionOption as QuestionOption
 from .resource_source import ResourceSource as ResourceSource
 from .vcs_diff_params import VcsDiffParams as VcsDiffParams
 from .vcs_file_status import VcsFileStatus as VcsFileStatus
-from .auth_set_params import AuthSetParams as AuthSetParams
 from .app_log_response import AppLogResponse as AppLogResponse
 from .file_part_source import FilePartSource as FilePartSource
 from .find_text_params import FindTextParams as FindTextParams
@@ -71,12 +64,19 @@ from .mcp_local_config import McpLocalConfig as McpLocalConfig
 from .question_request import QuestionRequest as QuestionRequest
 from .tool_state_error import ToolStateError as ToolStateError
 from .vcs_apply_params import VcsApplyParams as VcsApplyParams
+from .addressing_params import AddressingParams as AddressingParams
 from .assistant_message import AssistantMessage as AssistantMessage
+from .auth_set_response import AuthSetResponse as AuthSetResponse
 from .file_source_param import FileSourceParam as FileSourceParam
 from .find_files_params import FindFilesParams as FindFilesParams
-from .auth_set_response import AuthSetResponse as AuthSetResponse
 from .mcp_remote_config import McpRemoteConfig as McpRemoteConfig
 from .mcp_status_failed import MCPStatusFailed as MCPStatusFailed
+from .permission_config import (
+    PermissionConfig as PermissionConfig,
+    PermissionRuleConfig as PermissionRuleConfig,
+    PermissionActionConfig as PermissionActionConfig,
+    PermissionConfigObject as PermissionConfigObject,
+)
 from .pty_create_params import PtyCreateParams as PtyCreateParams
 from .pty_list_response import PtyListResponse as PtyListResponse
 from .pty_update_params import PtyUpdateParams as PtyUpdateParams

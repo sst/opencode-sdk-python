@@ -19,8 +19,8 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.question_list_response import QuestionListResponse
-from ..types.question_reject_response import QuestionRejectResponse
 from ..types.question_reply_response import QuestionReplyResponse
+from ..types.question_reject_response import QuestionRejectResponse
 
 __all__ = ["QuestionResource", "AsyncQuestionResource"]
 

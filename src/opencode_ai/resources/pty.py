@@ -17,8 +17,8 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
 from ..types.pty import Pty
+from .._base_client import make_request_options
 from ..types.pty_list_response import PtyListResponse
 from ..types.pty_delete_response import PtyDeleteResponse
 from ..types.pty_shells_response import PtyShellsResponse
