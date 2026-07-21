@@ -7,6 +7,9 @@ The Opencode Python library provides convenient access to the Opencode REST API 
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
+The client talks to a running opencode server. By default it connects to `http://localhost:54321`, so
+start `opencode serve` (or point the client at another host) before making requests.
+
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
@@ -15,9 +18,22 @@ The REST API documentation can be found on [opencode.ai](https://opencode.ai/doc
 
 ## Installation
 
+This is the Walzen-Group fork, distributed as `opencode-ai-wg`:
+
 ```sh
-# install from PyPI
-pip install --pre opencode-ai
+pip install opencode-ai-wg
+```
+
+You can also install straight from GitHub, for example to track `main` or a specific commit:
+
+```sh
+pip install "git+https://github.com/Walzen-Group/opencode-sdk-python.git@main"
+```
+
+The distribution is named `opencode-ai-wg`, but you still import it as `opencode_ai`:
+
+```python
+from opencode_ai import Opencode
 ```
 
 ## Usage
@@ -30,6 +46,83 @@ from opencode_ai import Opencode
 client = Opencode()
 
 sessions = client.session.list()
+```
+
+The base URL defaults to `http://localhost:54321`. Override it with the `base_url` argument or the
+`OPENCODE_BASE_URL` environment variable:
+
+```python
+from opencode_ai import Opencode
+
+client = Opencode(base_url="http://localhost:4096")
+```
+
+## Resources
+
+The client exposes one namespace per area of the opencode server. Each is available as an attribute on
+the client (for example `client.session`, `client.file`):
+
+| Namespace | Purpose |
+| ------------ | ------------------------------------------------------------ |
+| `session` | Create sessions, send prompts, run shell/commands, manage messages, share and revert |
+| `event` | Stream server events (SSE) |
+| `app` | Application-level info and actions |
+| `find` | Search files, symbols, and text in the workspace |
+| `file` | Read file contents and status |
+| `config` | Read the resolved opencode configuration |
+| `project` | List and inspect projects |
+| `provider` | List available model providers |
+| `question` | List, reply to, and reject pending questions |
+| `permission` | List and reply to permission requests |
+| `mcp` | Inspect configured MCP servers |
+| `path` | Resolve server paths |
+| `vcs` | Version-control status and operations |
+| `command` | List available commands |
+| `lsp` | Language-server information |
+| `formatter` | Configured formatters |
+| `instance` | Instance details |
+| `auth` | Set and remove provider credentials (`auth.set`, `auth.remove`) |
+| `sync` | Synchronization operations |
+| `pty` / `tui` | Pseudo-terminal and TUI control |
+
+The full method list for each namespace is in [api.md](api.md).
+
+## Sending a prompt to a session
+
+Create a session, then send it a message. Message content is a list of parts; a plain text prompt is a
+single `text` part:
+
+```python
+from opencode_ai import Opencode
+
+client = Opencode()
+
+session = client.session.create()
+
+response = client.session.prompt(
+    session.id,
+    parts=[{"type": "text", "text": "Explain what this project does."}],
+)
+print(response)
+```
+
+`session.prompt` accepts an optional `model`, `agent`, `tools`, and more. See [api.md](api.md) for the
+full parameter set.
+
+## Directory and workspace addressing
+
+Every v1 method accepts optional `directory` and `workspace` arguments. They are sent as query
+parameters and tell the server which directory or workspace the request applies to, which is useful when
+a single server manages more than one:
+
+```python
+sessions = client.session.list(directory="/path/to/project")
+
+client.session.prompt(
+    session_id,
+    parts=[{"type": "text", "text": "Run the tests."}],
+    workspace="my-workspace",
+)
 ```
 
 ## Async usage
@@ -56,11 +149,10 @@ Functionality between the synchronous and asynchronous clients is otherwise iden
 
 By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
 
-You can enable this by installing `aiohttp`:
+You can enable this by installing the `aiohttp` extra:
 
 ```sh
-# install from PyPI
-pip install --pre opencode-ai[aiohttp]
+pip install opencode-ai-wg[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
@@ -372,3 +464,7 @@ Python 3.8 or higher.
 ## Contributing
 
 See [the contributing documentation](./CONTRIBUTING.md).
+
+## Publishing
+
+See [the publishing guide](./PUBLISHING.md) for how to build and release `opencode-ai-wg` to PyPI with `uv`.

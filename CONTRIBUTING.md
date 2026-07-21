@@ -34,13 +34,14 @@ $ pip install -r requirements-dev.lock
 
 ## Modifying/Adding code
 
-Most of the SDK is generated code. Modifications to code will be persisted between generations, but may
-result in merge conflicts between manual patches and changes from the generator. The generator will never
-modify the contents of the `src/opencode_ai/lib/` and `examples/` directories.
+This fork is maintained by hand. The code under `src/opencode_ai/` was originally generated from the
+opencode OpenAPI spec with [Stainless](https://www.stainless.com/), but the fork no longer regenerates
+it, so edit the source directly. When you add or change a resource, keep `api.md` in sync so the
+documentation matches the code.
 
 ## Adding and running examples
 
-All files in the `examples/` directory are not modified by the generator and can be freely edited or added to.
+Files in the `examples/` directory can be freely edited or added to.
 
 ```py
 # add an example to examples/<your-example>.py
@@ -62,7 +63,7 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```sh
-$ pip install git+ssh://git@github.com/sst/opencode-sdk-python.git
+$ pip install git+ssh://git@github.com/Walzen-Group/opencode-sdk-python.git
 ```
 
 Alternatively, you can build from source and install the wheel file:
@@ -72,9 +73,9 @@ Building this package will create two files in the `dist/` directory, a `.tar.gz
 To create a distributable version of the library, all you have to do is run this command:
 
 ```sh
-$ rye build
+$ uv build
 # or
-$ python -m build
+$ rye build
 ```
 
 Then to install:
@@ -98,8 +99,7 @@ $ ./scripts/test
 
 ## Linting and formatting
 
-This repository uses [ruff](https://github.com/astral-sh/ruff) and
-[black](https://github.com/psf/black) to format the code in the repository.
+This repository uses [ruff](https://github.com/astral-sh/ruff) to lint and format the code.
 
 To lint:
 
@@ -115,14 +115,6 @@ $ ./scripts/format
 
 ## Publishing and releases
 
-Changes made to this repository via the automated release PR pipeline should publish to PyPI automatically. If
-the changes aren't made through the automated pipeline, you may want to make releases manually.
-
-### Publish with a GitHub workflow
-
-You can release to package managers by using [the `Publish PyPI` GitHub action](https://www.github.com/sst/opencode-sdk-python/actions/workflows/publish-pypi.yml). This requires a setup organization or repository secret to be set up.
-
-### Publish manually
-
-If you need to manually release a package, you can run the `bin/publish-pypi` script with a `PYPI_TOKEN` set on
-the environment.
+Releases are cut by hand with `uv`. See [the publishing guide](./PUBLISHING.md) for the full flow: bump
+`__version__` in `src/opencode_ai/_version.py`, `uv build`, rehearse on TestPyPI, then `uv publish` to
+PyPI.

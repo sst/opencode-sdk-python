@@ -1,11 +1,10 @@
 [project]
 name = "opencode-ai-wg"
-version = "0.2.0"
 description = "Walzen Group fork of the Python library for the opencode API"
-dynamic = ["readme"]
+dynamic = ["readme", "version"]
 license = "MIT"
 authors = [
-{ name = "Opencode", email = "support@sst.dev" },
+{ name = "Walzen Group", email = "mail@walzen.org" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
@@ -92,6 +91,9 @@ typecheck = { chain = [
 [build-system]
 requires = ["hatchling==1.26.3", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/opencode_ai/_version.py"
 
 [tool.hatch.build]
 include = [
