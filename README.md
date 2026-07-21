@@ -1,7 +1,7 @@
 # Opencode Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/opencode-ai.svg?label=pypi%20(stable))](https://pypi.org/project/opencode-ai/)
+[![PyPI version](https://img.shields.io/pypi/v/opencode-ai-wg.svg?label=pypi%20(stable))](https://pypi.org/project/opencode-ai-wg/)
 
 The Opencode Python library provides convenient access to the Opencode REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
