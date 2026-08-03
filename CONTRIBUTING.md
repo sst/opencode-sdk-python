@@ -32,6 +32,14 @@ Alternatively if you don't want to install `Rye`, you can stick with the standar
 $ pip install -r requirements-dev.lock
 ```
 
+### With Nix
+
+`nix develop` enters a dev shell with python3 3.13, uv, ruff, mypy, pyright, and nodejs_22. The venv uses the flake's python 3.13.14, and .python-version is 3.13. The flake binds mypy to the venv interpreter with --python-executable, so `nix develop --command mypy .` works bare.
+
+`uv sync --frozen` installs only the runtime dependencies. The full dev venv adds the dev extras on top: run `uv pip install -r requirements-dev.lock`, then the two pins missing from that lock and required on Python 3.13: httpx-aiohttp==0.1.12 and time-machine==3.3.0 (the 2.9.0 pin crashes on Python 3.13).
+
+A plain `uv sync` removes those extras, so reinstall them after any sync.
+
 ## Modifying/Adding code
 
 The SDK is maintained by hand from the opencode OpenAPI spec (spec/openapi-opencode.json). Edit
