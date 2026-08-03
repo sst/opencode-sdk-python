@@ -1482,3 +1482,526 @@ Methods:
 
 - <code title="put /auth/{providerID}">client.auth.<a href="./src/opencode_ai/resources/auth.py">set</a>(id, \*\*<a href="src/opencode_ai/types/auth_set_params.py">params</a>) -> bool</code>
 - <code title="delete /auth/{providerID}">client.auth.<a href="./src/opencode_ai/resources/auth.py">remove</a>(id) -> bool</code>
+
+# Global
+
+Types:
+
+```python
+from opencode_ai.types import (
+    GlobalConfigGetResponse,
+    Config,
+    GlobalHealthResponse,
+    GlobalEventResponse,
+    GlobalDisposeResponse,
+    GlobalUpgradeResponse,
+)
+```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>GlobalConfigGetResponse: TypeAlias = <a href="./src/opencode_ai/types/config.py#L382">Config</a></code></pre>
+
+<pre><code>class Config(BaseModel):
+    schema_: Optional[str]  # wire name: "$schema"
+    agent: Optional[<a href="./src/opencode_ai/types/config.py#L50">Agent</a>]
+    attachment: Optional[<a href="./src/opencode_ai/types/config.py#L83">Attachment</a>]
+    autoshare: Optional[bool]
+    autoupdate: Optional[Union[bool, Literal['notify']]]
+    command: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L87">CommandConfig</a>]]
+    compaction: Optional[<a href="./src/opencode_ai/types/config.py#L101">Compaction</a>]
+    default_agent: Optional[str]
+    disabled_providers: Optional[List[str]]
+    enabled_providers: Optional[List[str]]
+    enterprise: Optional[<a href="./src/opencode_ai/types/config.py#L113">Enterprise</a>]
+    experimental: Optional[<a href="./src/opencode_ai/types/config.py#L125">Experimental</a>]
+    formatter: Optional[Union[bool, Dict[str, <a href="./src/opencode_ai/types/config.py#L141">FormatterConfig</a>]]]
+    instructions: Optional[List[str]]
+    layout: Optional[Literal['auto', 'stretch']]
+    log_level: Optional[Literal['DEBUG', 'INFO', 'WARN', 'ERROR']]  # wire name: "logLevel"
+    lsp: Optional[Union[bool, Dict[str, <a href="./src/opencode_ai/types/config.py#L167">LspConfig</a>]]]
+    mcp: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L174">Mcp</a>]]
+    mode: Optional[<a href="./src/opencode_ai/types/config.py#L177">Mode</a>]
+    model: Optional[str]
+    permission: Optional[<a href="./src/opencode_ai/types/permission_config.py#L61">PermissionConfig</a>]
+    plugin: Optional[List[Union[str, Tuple[str, object]]]]
+    provider: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L317">Provider</a>]]
+    reference: Optional[Dict[str, <a href="./src/opencode_ai/types/config.py#L349">ReferenceConfigEntry</a>]]
+    server: Optional[<a href="./src/opencode_ai/types/config.py#L354">Server</a>]
+    share: Optional[Literal['manual', 'auto', 'disabled']]
+    shell: Optional[str]
+    skills: Optional[<a href="./src/opencode_ai/types/config.py#L366">Skills</a>]
+    small_model: Optional[str]
+    snapshot: Optional[bool]
+    subagent_depth: Optional[int]
+    tool_output: Optional[<a href="./src/opencode_ai/types/config.py#L372">ToolOutput</a>]
+    tools: Optional[Dict[str, bool]]
+    username: Optional[str]
+    watcher: Optional[<a href="./src/opencode_ai/types/config.py#L378">Watcher</a>]</code></pre>
+
+<pre><code>class GlobalHealthResponse(BaseModel):
+    healthy: Literal[True]
+    version: str</code></pre>
+
+<pre><code>class GlobalEventResponse(BaseModel):
+    """A single event emitted on the `GET /global/event` SSE stream.
+
+    `payload` carries the same discriminated event union as `GET /event`
+    (see `EventListResponse`); the wrapper adds the addressing context the
+    event was emitted for."""
+    directory: str
+    payload: <a href="./src/opencode_ai/types/event_list_response.py#L2506">EventListResponse</a>
+    project: Optional[str]
+    workspace: Optional[str]</code></pre>
+
+<pre><code>GlobalDisposeResponse: TypeAlias = bool</code></pre>
+
+<pre><code>GlobalUpgradeResponse: TypeAlias = Union[
+    <a href="./src/opencode_ai/types/global_upgrade_response.py#L12">GlobalUpgradeSuccess</a>,
+    <a href="./src/opencode_ai/types/global_upgrade_response.py#L18">GlobalUpgradeFailure</a>,
+]  # discriminated by "success"</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
+Methods:
+- <code title="get /global/config">client.global_.<a href="./src/opencode_ai/resources/global_.py">config.get</a>() -> <a href="./src/opencode_ai/types/global_config_get_response.py">GlobalConfigGetResponse</a></code>
+- <code title="patch /global/config">client.global_.<a href="./src/opencode_ai/resources/global_.py">config.update</a>(\*\*<a href="src/opencode_ai/types/config_update_params.py">params</a>) -> <a href="./src/opencode_ai/types/config.py">Config</a></code>
+- <code title="get /global/health">client.global_.<a href="./src/opencode_ai/resources/global_.py">health</a>() -> <a href="./src/opencode_ai/types/global_health_response.py">GlobalHealthResponse</a></code>
+- <code title="get /global/event">client.global_.<a href="./src/opencode_ai/resources/global_.py">event</a>() -> <a href="./src/opencode_ai/types/global_event_response.py">GlobalEventResponse</a></code>
+- <code title="post /global/dispose">client.global_.<a href="./src/opencode_ai/resources/global_.py">dispose</a>() -> <a href="./src/opencode_ai/types/global_dispose_response.py">GlobalDisposeResponse</a></code>
+- <code title="post /global/upgrade">client.global_.<a href="./src/opencode_ai/resources/global_.py">upgrade</a>(\*\*<a href="src/opencode_ai/types/global_upgrade_params.py">params</a>) -> <a href="./src/opencode_ai/types/global_upgrade_response.py">GlobalUpgradeResponse</a></code>
+
+# Tool
+
+Types:
+
+```python
+from opencode_ai.types import ToolListResponse, ToolIDsResponse
+```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>ToolListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/tool_list_response.py#L11">ToolListResponseItem</a>]</code></pre>
+
+<pre><code>ToolIDsResponse: TypeAlias = List[str]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
+Methods:
+- <code title="get /experimental/tool">client.tool.<a href="./src/opencode_ai/resources/tool.py">list</a>(\*, provider, model, \*\*<a href="src/opencode_ai/types/tool_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/tool_list_response.py">ToolListResponse</a></code>
+- <code title="get /experimental/tool/ids">client.tool.<a href="./src/opencode_ai/resources/tool.py">ids</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/tool_ids_response.py">ToolIDsResponse</a></code>
+
+# Worktree
+
+Types:
+
+```python
+from opencode_ai.types import (
+    WorktreeListResponse,
+    Worktree,
+    WorktreeRemoveResponse,
+    WorktreeResetResponse,
+)
+```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>WorktreeListResponse: TypeAlias = List[str]</code></pre>
+
+<pre><code>class Worktree(BaseModel):
+    name: str
+    directory: str
+    branch: Optional[str]</code></pre>
+
+<pre><code>WorktreeRemoveResponse: TypeAlias = bool</code></pre>
+
+<pre><code>WorktreeResetResponse: TypeAlias = bool</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
+Methods:
+- <code title="get /experimental/worktree">client.worktree.<a href="./src/opencode_ai/resources/worktree.py">list</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/worktree_list_response.py">WorktreeListResponse</a></code>
+- <code title="post /experimental/worktree">client.worktree.<a href="./src/opencode_ai/resources/worktree.py">create</a>(\*\*<a href="src/opencode_ai/types/worktree_create_params.py">params</a>) -> <a href="./src/opencode_ai/types/worktree.py">Worktree</a></code>
+- <code title="delete /experimental/worktree">client.worktree.<a href="./src/opencode_ai/resources/worktree.py">remove</a>(\*, directory, \*\*<a href="src/opencode_ai/types/worktree_remove_params.py">params</a>) -> <a href="./src/opencode_ai/types/worktree_remove_response.py">WorktreeRemoveResponse</a></code>
+- <code title="post /experimental/worktree/reset">client.worktree.<a href="./src/opencode_ai/resources/worktree.py">reset</a>(\*, directory, \*\*<a href="src/opencode_ai/types/worktree_reset_params.py">params</a>) -> <a href="./src/opencode_ai/types/worktree_reset_response.py">WorktreeResetResponse</a></code>
+
+# Experimental
+
+Types:
+
+```python
+from opencode_ai.types import (
+    ExperimentalCapabilitiesResponse,
+    ConsoleState,
+    ExperimentalConsoleListOrgsResponse,
+    ExperimentalConsoleSwitchOrgResponse,
+    ExperimentalSessionListResponse,
+    ExperimentalSessionBackgroundResponse,
+    ExperimentalResourceListResponse,
+    ExperimentalProjectCopyGenerateNameResponse,
+    ExperimentalWorkspaceListResponse,
+    ExperimentalWorkspaceCreateResponse,
+    ExperimentalWorkspaceStatusResponse,
+    ExperimentalWorkspaceRemoveResponse,
+    ExperimentalWorkspaceAdapterListResponse,
+)
+```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class ExperimentalCapabilitiesResponse(BaseModel):
+    background_subagents: bool  # wire name: "backgroundSubagents"</code></pre>
+
+<pre><code>class ConsoleState(BaseModel):
+    console_managed_providers: List[str]  # wire name: "consoleManagedProviders"
+    switchable_org_count: int  # wire name: "switchableOrgCount"
+    active_org_name: Optional[str]  # wire name: "activeOrgName"</code></pre>
+
+<pre><code>class ExperimentalConsoleListOrgsResponse(BaseModel):
+    orgs: List[<a href="./src/opencode_ai/types/experimental_console_list_orgs_response.py#L12">ConsoleOrg</a>]</code></pre>
+
+<pre><code>ExperimentalConsoleSwitchOrgResponse: TypeAlias = bool</code></pre>
+
+<pre><code>ExperimentalSessionListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/experimental_session_list_response.py#L91">GlobalSession</a>]</code></pre>
+
+<pre><code>ExperimentalSessionBackgroundResponse: TypeAlias = bool</code></pre>
+
+<pre><code>ExperimentalResourceListResponse: TypeAlias = Dict[str, <a href="./src/opencode_ai/types/experimental_resource_list_response.py#L13">McpResource</a>]</code></pre>
+
+<pre><code>class ExperimentalProjectCopyGenerateNameResponse(BaseModel):
+    name: str</code></pre>
+
+<pre><code>ExperimentalWorkspaceListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/experimental_workspace_list_response.py#L13">Workspace</a>]</code></pre>
+
+<pre><code>ExperimentalWorkspaceCreateResponse: TypeAlias = <a href="./src/opencode_ai/types/experimental_workspace_list_response.py#L13">Workspace</a></code></pre>
+
+<pre><code>ExperimentalWorkspaceStatusResponse: TypeAlias = List[<a href="./src/opencode_ai/types/experimental_workspace_status_response.py#L13">WorkspaceEventConnectionStatus</a>]</code></pre>
+
+<pre><code>ExperimentalWorkspaceRemoveResponse: TypeAlias = <a href="./src/opencode_ai/types/experimental_workspace_list_response.py#L13">Workspace</a></code></pre>
+
+<pre><code>ExperimentalWorkspaceAdapterListResponse: TypeAlias = List[<a href="./src/opencode_ai/types/experimental_workspace_adapter_list_response.py#L11">WorkspaceAdapter</a>]</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
+Methods:
+- <code title="get /experimental/capabilities">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">capabilities_get</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_capabilities_response.py">ExperimentalCapabilitiesResponse</a></code>
+- <code title="get /experimental/console">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">console_get</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_console_get_response.py">ConsoleState</a></code>
+- <code title="get /experimental/console/orgs">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">console_list_orgs</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_console_list_orgs_response.py">ExperimentalConsoleListOrgsResponse</a></code>
+- <code title="post /experimental/console/switch">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">console_switch_org</a>(\*, account_id, org_id, \*\*<a href="src/opencode_ai/types/experimental_console_switch_org_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_console_switch_org_response.py">ExperimentalConsoleSwitchOrgResponse</a></code>
+- <code title="get /experimental/session">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">session_list</a>(\*\*<a href="src/opencode_ai/types/experimental_session_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_session_list_response.py">ExperimentalSessionListResponse</a></code>
+- <code title="post /experimental/session/{session_id}/background">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">session_background</a>(session_id, \*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_session_background_response.py">ExperimentalSessionBackgroundResponse</a></code>
+- <code title="get /experimental/resource">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">resource_list</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_resource_list_response.py">ExperimentalResourceListResponse</a></code>
+- <code title="post /experimental/control-plane/move-session">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">control_plane_move_session</a>(\*, session_id, destination, \*\*<a href="src/opencode_ai/types/experimental_control_plane_move_session_params.py">params</a>) -> None</code>
+- <code title="post /experimental/project/{project_id}/copy/generate-name">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">project_copy_generate_name</a>(project_id, \*\*<a href="src/opencode_ai/types/experimental_project_copy_generate_name_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_project_copy_generate_name_response.py">ExperimentalProjectCopyGenerateNameResponse</a></code>
+- <code title="get /experimental/workspace">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">workspace_list</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_workspace_list_response.py">ExperimentalWorkspaceListResponse</a></code>
+- <code title="post /experimental/workspace">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">workspace_create</a>(\*, type, \*\*<a href="src/opencode_ai/types/experimental_workspace_create_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_workspace_create_response.py">ExperimentalWorkspaceCreateResponse</a></code>
+- <code title="post /experimental/workspace/sync-list">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">workspace_sync_list</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> None</code>
+- <code title="get /experimental/workspace/status">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">workspace_status</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_workspace_status_response.py">ExperimentalWorkspaceStatusResponse</a></code>
+- <code title="delete /experimental/workspace/{id}">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">workspace_remove</a>(id, \*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_workspace_remove_response.py">ExperimentalWorkspaceRemoveResponse</a></code>
+- <code title="post /experimental/workspace/warp">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">workspace_warp</a>(\*, id, session_id, \*\*<a href="src/opencode_ai/types/experimental_workspace_warp_params.py">params</a>) -> None</code>
+- <code title="get /experimental/workspace/adapter">client.experimental.<a href="./src/opencode_ai/resources/experimental.py">workspace_adapter_list</a>(\*\*<a href="src/opencode_ai/types/addressing_params.py">params</a>) -> <a href="./src/opencode_ai/types/experimental_workspace_adapter_list_response.py">ExperimentalWorkspaceAdapterListResponse</a></code>
+
+# V2
+
+Types:
+
+```python
+from opencode_ai.types import (
+    V2SessionActiveResponse,
+    V2SessionContextResponse,
+    V2SessionCreateResponse,
+    V2SessionEventsResponse,
+    V2SessionGetResponse,
+    V2SessionHistoryResponse,
+    V2SessionListResponse,
+    V2SessionMessageResponse,
+    V2SessionMessagesResponse,
+    V2SessionPermissionCreateResponse,
+    V2SessionPermissionGetResponse,
+    V2SessionPermissionListResponse,
+    V2SessionPromptResponse,
+    V2SessionQuestionListResponse,
+    V2SessionRevertStageResponse,
+    V2IntegrationAttemptStatusResponse,
+    V2IntegrationConnectOauthResponse,
+    V2IntegrationGetResponse,
+    V2IntegrationListResponse,
+    V2PtyConnectTokenResponse,
+    V2PtyCreateResponse,
+    V2PtyGetResponse,
+    V2PtyListResponse,
+    V2PtyUpdateResponse,
+    V2PermissionRequestListResponse,
+    V2PermissionSavedListResponse,
+    V2FsFindResponse,
+    V2FsListResponse,
+    V2QuestionRequestListResponse,
+    V2ProviderGetResponse,
+    V2ProviderListResponse,
+    V2HealthGetResponse,
+    V2LocationGetResponse,
+    V2AgentListResponse,
+    V2ModelListResponse,
+    V2CommandListResponse,
+    V2SkillListResponse,
+    V2EventSubscribeResponse,
+    V2ReferenceListResponse,
+    V2ProjectCopyCreateResponse,
+)
+```
+
+<!-- expanded:start -->
+
+<details>
+<summary>Expanded definitions (top-level types; referenced subtypes link to source)</summary>
+
+<pre><code>class V2SessionActiveResponse(BaseModel):
+    data: Dict[str, object]</code></pre>
+
+<pre><code>class V2SessionContextResponse(BaseModel):
+    data: List[object]</code></pre>
+
+<pre><code>class V2SessionCreateResponse(BaseModel):
+    data: object</code></pre>
+
+<pre><code>class V2SessionEventsResponse(BaseModel):
+    id: str
+    event: str
+    data: str</code></pre>
+
+<pre><code>class V2SessionGetResponse(BaseModel):
+    data: object</code></pre>
+
+<pre><code>class V2SessionHistoryResponse(BaseModel):
+    data: List[object]
+    has_more: bool  # wire name: "hasMore"</code></pre>
+
+<pre><code>class V2SessionListResponse(BaseModel):
+    data: List[object]
+    cursor: <a href="./src/opencode_ai/types/v2_session_list_response.py#L10">V2SessionListResponseCursor</a></code></pre>
+
+<pre><code>class V2SessionMessageResponse(BaseModel):
+    data: object</code></pre>
+
+<pre><code>class V2SessionMessagesResponse(BaseModel):
+    data: List[object]
+    cursor: <a href="./src/opencode_ai/types/v2_session_messages_response.py#L10">V2SessionMessagesResponseCursor</a></code></pre>
+
+<pre><code>class V2SessionPermissionCreateResponse(BaseModel):
+    data: object</code></pre>
+
+<pre><code>class V2SessionPermissionGetResponse(BaseModel):
+    data: object</code></pre>
+
+<pre><code>class V2SessionPermissionListResponse(BaseModel):
+    data: List[object]</code></pre>
+
+<pre><code>class V2SessionPromptResponse(BaseModel):
+    data: object</code></pre>
+
+<pre><code>class V2SessionQuestionListResponse(BaseModel):
+    data: List[object]</code></pre>
+
+<pre><code>class V2SessionRevertStageResponse(BaseModel):
+    data: object</code></pre>
+
+<pre><code>class V2IntegrationAttemptStatusResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2IntegrationConnectOauthResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2IntegrationGetResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2IntegrationListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2PtyConnectTokenResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2PtyCreateResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2PtyGetResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2PtyListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2PtyUpdateResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2PermissionRequestListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2PermissionSavedListResponse(BaseModel):
+    data: List[object]</code></pre>
+
+<pre><code>class V2FsFindResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2FsListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2QuestionRequestListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2ProviderGetResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: object</code></pre>
+
+<pre><code>class V2ProviderListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2HealthGetResponse(BaseModel):
+    healthy: bool</code></pre>
+
+<pre><code>class V2LocationGetResponse(BaseModel):
+    directory: str
+    workspace_id: Optional[str]  # wire name: "workspaceID"
+    project: object</code></pre>
+
+<pre><code>class V2AgentListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2ModelListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2CommandListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2SkillListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2EventSubscribeResponse(BaseModel):
+    type: Optional[str]</code></pre>
+
+<pre><code>class V2ReferenceListResponse(BaseModel):
+    location: <a href="./src/opencode_ai/types/v2_location_info.py#L18">V2LocationInfo</a>
+    data: List[object]</code></pre>
+
+<pre><code>class V2ProjectCopyCreateResponse(BaseModel):
+    directory: str</code></pre>
+
+</details>
+
+<!-- expanded:end -->
+
+Methods:
+#### session
+- <code title="get /api/session/active">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">active</a>() -> <a href="./src/opencode_ai/types/v2_session_active_response.py">V2SessionActiveResponse</a></code>
+- <code title="post /api/session/{session_id}/compact">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">compact</a>(session_id) -> None</code>
+- <code title="get /api/session/{session_id}/context">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">context</a>(session_id) -> <a href="./src/opencode_ai/types/v2_session_context_response.py">V2SessionContextResponse</a></code>
+- <code title="post /api/session">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">create</a>(\*\*<a href="src/opencode_ai/types/v2_session_create_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_create_response.py">V2SessionCreateResponse</a></code>
+- <code title="get /api/session/{session_id}/event">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">events</a>(session_id, \*\*<a href="src/opencode_ai/types/v2_session_events_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_events_response.py">V2SessionEventsResponse</a></code>
+- <code title="get /api/session/{session_id}">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">get</a>(session_id) -> <a href="./src/opencode_ai/types/v2_session_get_response.py">V2SessionGetResponse</a></code>
+- <code title="get /api/session/{session_id}/history">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">history</a>(session_id, \*\*<a href="src/opencode_ai/types/v2_session_history_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_history_response.py">V2SessionHistoryResponse</a></code>
+- <code title="post /api/session/{session_id}/interrupt">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">interrupt</a>(session_id) -> None</code>
+- <code title="get /api/session">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_session_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_list_response.py">V2SessionListResponse</a></code>
+- <code title="get /api/session/{session_id}/message/{message_id}">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">message</a>(session_id, message_id) -> <a href="./src/opencode_ai/types/v2_session_message_response.py">V2SessionMessageResponse</a></code>
+- <code title="get /api/session/{session_id}/message">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">messages</a>(session_id, \*\*<a href="src/opencode_ai/types/v2_session_messages_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_messages_response.py">V2SessionMessagesResponse</a></code>
+- <code title="post /api/session/{session_id}/permission">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">permission_create</a>(session_id, \*, action, resources, \*\*<a href="src/opencode_ai/types/v2_session_permission_create_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_permission_create_response.py">V2SessionPermissionCreateResponse</a></code>
+- <code title="get /api/session/{session_id}/permission/{request_id}">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">permission_get</a>(session_id, request_id) -> <a href="./src/opencode_ai/types/v2_session_permission_get_response.py">V2SessionPermissionGetResponse</a></code>
+- <code title="get /api/session/{session_id}/permission">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">permission_list</a>(session_id) -> <a href="./src/opencode_ai/types/v2_session_permission_list_response.py">V2SessionPermissionListResponse</a></code>
+- <code title="post /api/session/{session_id}/permission/{request_id}/reply">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">permission_reply</a>(session_id, request_id, \*, reply, \*\*<a href="src/opencode_ai/types/v2_session_permission_reply_params.py">params</a>) -> None</code>
+- <code title="post /api/session/{session_id}/prompt">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">prompt</a>(session_id, \*, prompt, \*\*<a href="src/opencode_ai/types/v2_session_prompt_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_prompt_response.py">V2SessionPromptResponse</a></code>
+- <code title="get /api/session/{session_id}/question">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">question_list</a>(session_id) -> <a href="./src/opencode_ai/types/v2_session_question_list_response.py">V2SessionQuestionListResponse</a></code>
+- <code title="post /api/session/{session_id}/question/{request_id}/reject">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">question_reject</a>(session_id, request_id) -> None</code>
+- <code title="post /api/session/{session_id}/question/{request_id}/reply">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">question_reply</a>(session_id, request_id, \*, answers, \*\*<a href="src/opencode_ai/types/v2_session_question_reply_params.py">params</a>) -> None</code>
+- <code title="post /api/session/{session_id}/revert/clear">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">revert_clear</a>(session_id) -> None</code>
+- <code title="post /api/session/{session_id}/revert/commit">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">revert_commit</a>(session_id) -> None</code>
+- <code title="post /api/session/{session_id}/revert/stage">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">revert_stage</a>(session_id, \*, message_id, \*\*<a href="src/opencode_ai/types/v2_session_revert_stage_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_session_revert_stage_response.py">V2SessionRevertStageResponse</a></code>
+- <code title="post /api/session/{session_id}/agent">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">switch_agent</a>(session_id, \*, agent, \*\*<a href="src/opencode_ai/types/v2_session_switch_agent_params.py">params</a>) -> None</code>
+- <code title="post /api/session/{session_id}/model">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">switch_model</a>(session_id, \*, model, \*\*<a href="src/opencode_ai/types/v2_session_switch_model_params.py">params</a>) -> None</code>
+- <code title="post /api/session/{session_id}/wait">client.v2.session.<a href="./src/opencode_ai/resources/v2/session.py">wait</a>(session_id) -> None</code>
+#### integration
+- <code title="delete /api/integration/attempt/{attempt_id}">client.v2.integration.<a href="./src/opencode_ai/resources/v2/integration.py">attempt_cancel</a>(attempt_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> None</code>
+- <code title="post /api/integration/attempt/{attempt_id}/complete">client.v2.integration.<a href="./src/opencode_ai/resources/v2/integration.py">attempt_complete</a>(attempt_id, \*\*<a href="src/opencode_ai/types/v2_integration_attempt_complete_params.py">params</a>) -> None</code>
+- <code title="get /api/integration/attempt/{attempt_id}">client.v2.integration.<a href="./src/opencode_ai/resources/v2/integration.py">attempt_status</a>(attempt_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_integration_attempt_status_response.py">V2IntegrationAttemptStatusResponse</a></code>
+- <code title="post /api/integration/{integration_id}/connect/key">client.v2.integration.<a href="./src/opencode_ai/resources/v2/integration.py">connect_key</a>(integration_id, \*, key, \*\*<a href="src/opencode_ai/types/v2_integration_connect_key_params.py">params</a>) -> None</code>
+- <code title="post /api/integration/{integration_id}/connect/oauth">client.v2.integration.<a href="./src/opencode_ai/resources/v2/integration.py">connect_oauth</a>(integration_id, \*, method_id, inputs, \*\*<a href="src/opencode_ai/types/v2_integration_connect_oauth_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_integration_connect_oauth_response.py">V2IntegrationConnectOauthResponse</a></code>
+- <code title="get /api/integration/{integration_id}">client.v2.integration.<a href="./src/opencode_ai/resources/v2/integration.py">get</a>(integration_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_integration_get_response.py">V2IntegrationGetResponse</a></code>
+- <code title="get /api/integration">client.v2.integration.<a href="./src/opencode_ai/resources/v2/integration.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_integration_list_response.py">V2IntegrationListResponse</a></code>
+#### pty
+- <code title="get /api/pty/{pty_id}/connect">client.v2.pty.<a href="./src/opencode_ai/resources/v2/pty.py">connect</a>(pty_id, \*\*<a href="src/opencode_ai/types/v2_pty_connect_params.py">params</a>) -> bool</code>
+- <code title="post /api/pty/{pty_id}/connect-token">client.v2.pty.<a href="./src/opencode_ai/resources/v2/pty.py">connect_token</a>(pty_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_pty_connect_token_response.py">V2PtyConnectTokenResponse</a></code>
+- <code title="post /api/pty">client.v2.pty.<a href="./src/opencode_ai/resources/v2/pty.py">create</a>(\*\*<a href="src/opencode_ai/types/v2_pty_create_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_pty_create_response.py">V2PtyCreateResponse</a></code>
+- <code title="get /api/pty/{pty_id}">client.v2.pty.<a href="./src/opencode_ai/resources/v2/pty.py">get</a>(pty_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_pty_get_response.py">V2PtyGetResponse</a></code>
+- <code title="get /api/pty">client.v2.pty.<a href="./src/opencode_ai/resources/v2/pty.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_pty_list_response.py">V2PtyListResponse</a></code>
+- <code title="delete /api/pty/{pty_id}">client.v2.pty.<a href="./src/opencode_ai/resources/v2/pty.py">remove</a>(pty_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> None</code>
+- <code title="put /api/pty/{pty_id}">client.v2.pty.<a href="./src/opencode_ai/resources/v2/pty.py">update</a>(pty_id, \*\*<a href="src/opencode_ai/types/v2_pty_update_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_pty_update_response.py">V2PtyUpdateResponse</a></code>
+#### permission
+- <code title="get /api/permission/request">client.v2.permission.<a href="./src/opencode_ai/resources/v2/permission.py">request_list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_permission_request_list_response.py">V2PermissionRequestListResponse</a></code>
+- <code title="get /api/permission/saved">client.v2.permission.<a href="./src/opencode_ai/resources/v2/permission.py">saved_list</a>(\*\*<a href="src/opencode_ai/types/v2_permission_saved_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_permission_saved_list_response.py">V2PermissionSavedListResponse</a></code>
+- <code title="delete /api/permission/saved/{id}">client.v2.permission.<a href="./src/opencode_ai/resources/v2/permission.py">saved_remove</a>(id) -> None</code>
+#### fs
+- <code title="get /api/fs/find">client.v2.fs.<a href="./src/opencode_ai/resources/v2/fs.py">find</a>(\*, query, \*\*<a href="src/opencode_ai/types/v2_fs_find_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_fs_find_response.py">V2FsFindResponse</a></code>
+- <code title="get /api/fs/list">client.v2.fs.<a href="./src/opencode_ai/resources/v2/fs.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_fs_list_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_fs_list_response.py">V2FsListResponse</a></code>
+- <code title="get /api/fs/read/*">client.v2.fs.<a href="./src/opencode_ai/resources/v2/fs.py">read</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> str</code>
+#### question
+- <code title="get /api/question/request">client.v2.question.<a href="./src/opencode_ai/resources/v2/question.py">request_list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_question_request_list_response.py">V2QuestionRequestListResponse</a></code>
+#### provider
+- <code title="get /api/provider/{provider_id}">client.v2.provider.<a href="./src/opencode_ai/resources/v2/provider.py">get</a>(provider_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_provider_get_response.py">V2ProviderGetResponse</a></code>
+- <code title="get /api/provider">client.v2.provider.<a href="./src/opencode_ai/resources/v2/provider.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_provider_list_response.py">V2ProviderListResponse</a></code>
+#### credential
+- <code title="delete /api/credential/{credential_id}">client.v2.credential.<a href="./src/opencode_ai/resources/v2/credential.py">remove</a>(credential_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> None</code>
+- <code title="patch /api/credential/{credential_id}">client.v2.credential.<a href="./src/opencode_ai/resources/v2/credential.py">update</a>(credential_id, \*, label, \*\*<a href="src/opencode_ai/types/v2_credential_update_params.py">params</a>) -> None</code>
+#### health
+- <code title="get /api/health">client.v2.health.<a href="./src/opencode_ai/resources/v2/health.py">get</a>() -> <a href="./src/opencode_ai/types/v2_health_get_response.py">V2HealthGetResponse</a></code>
+#### location
+- <code title="get /api/location">client.v2.location.<a href="./src/opencode_ai/resources/v2/location.py">get</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_location_get_response.py">V2LocationGetResponse</a></code>
+#### agent
+- <code title="get /api/agent">client.v2.agent.<a href="./src/opencode_ai/resources/v2/agent.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_agent_list_response.py">V2AgentListResponse</a></code>
+#### model
+- <code title="get /api/model">client.v2.model.<a href="./src/opencode_ai/resources/v2/model.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_model_list_response.py">V2ModelListResponse</a></code>
+#### command
+- <code title="get /api/command">client.v2.command.<a href="./src/opencode_ai/resources/v2/command.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_command_list_response.py">V2CommandListResponse</a></code>
+#### skill
+- <code title="get /api/skill">client.v2.skill.<a href="./src/opencode_ai/resources/v2/skill.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_skill_list_response.py">V2SkillListResponse</a></code>
+#### event
+- <code title="get /api/event">client.v2.event.<a href="./src/opencode_ai/resources/v2/event.py">subscribe</a>() -> <a href="./src/opencode_ai/types/v2_event_subscribe_response.py">V2EventSubscribeResponse</a></code>
+#### reference
+- <code title="get /api/reference">client.v2.reference.<a href="./src/opencode_ai/resources/v2/reference.py">list</a>(\*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_reference_list_response.py">V2ReferenceListResponse</a></code>
+#### project_copy
+- <code title="post /experimental/project/{project_id}/copy">client.v2.project_copy.<a href="./src/opencode_ai/resources/v2/project_copy.py">create</a>(project_id, \*, strategy, directory, \*\*<a href="src/opencode_ai/types/v2_project_copy_create_params.py">params</a>) -> <a href="./src/opencode_ai/types/v2_project_copy_create_response.py">V2ProjectCopyCreateResponse</a></code>
+- <code title="post /experimental/project/{project_id}/copy/refresh">client.v2.project_copy.<a href="./src/opencode_ai/resources/v2/project_copy.py">refresh</a>(project_id, \*\*<a href="src/opencode_ai/types/v2_location_query_params.py">params</a>) -> None</code>
+- <code title="delete /experimental/project/{project_id}/copy">client.v2.project_copy.<a href="./src/opencode_ai/resources/v2/project_copy.py">remove</a>(project_id, \*, directory, force, \*\*<a href="src/opencode_ai/types/v2_project_copy_remove_params.py">params</a>) -> None</code>

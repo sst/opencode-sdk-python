@@ -1,5 +1,13 @@
 # Hand-maintained fork of the Stainless-era opencode SDK. Generated code was replaced by manual maintenance; see CONTRIBUTING.md.
 
+from .v2 import (
+    V2Resource,
+    AsyncV2Resource,
+    V2ResourceWithRawResponse,
+    AsyncV2ResourceWithRawResponse,
+    V2ResourceWithStreamingResponse,
+    AsyncV2ResourceWithStreamingResponse,
+)
 from .app import (
     AppResource,
     AsyncAppResource,
@@ -88,6 +96,14 @@ from .sync import (
     SyncResourceWithStreamingResponse,
     AsyncSyncResourceWithStreamingResponse,
 )
+from .tool import (
+    ToolResource,
+    AsyncToolResource,
+    ToolResourceWithRawResponse,
+    AsyncToolResourceWithRawResponse,
+    ToolResourceWithStreamingResponse,
+    AsyncToolResourceWithStreamingResponse,
+)
 from .event import (
     EventResource,
     AsyncEventResource,
@@ -111,6 +127,14 @@ from .command import (
     AsyncCommandResourceWithRawResponse,
     CommandResourceWithStreamingResponse,
     AsyncCommandResourceWithStreamingResponse,
+)
+from .global_ import (
+    GlobalResource,
+    AsyncGlobalResource,
+    GlobalResourceWithRawResponse,
+    AsyncGlobalResourceWithRawResponse,
+    GlobalResourceWithStreamingResponse,
+    AsyncGlobalResourceWithStreamingResponse,
 )
 from .project import (
     ProjectResource,
@@ -152,6 +176,14 @@ from .question import (
     QuestionResourceWithStreamingResponse,
     AsyncQuestionResourceWithStreamingResponse,
 )
+from .worktree import (
+    WorktreeResource,
+    AsyncWorktreeResource,
+    WorktreeResourceWithRawResponse,
+    AsyncWorktreeResourceWithRawResponse,
+    WorktreeResourceWithStreamingResponse,
+    AsyncWorktreeResourceWithStreamingResponse,
+)
 from .formatter import (
     FormatterResource,
     AsyncFormatterResource,
@@ -167,6 +199,14 @@ from .permission import (
     AsyncPermissionResourceWithRawResponse,
     PermissionResourceWithStreamingResponse,
     AsyncPermissionResourceWithStreamingResponse,
+)
+from .experimental import (
+    ExperimentalResource,
+    AsyncExperimentalResource,
+    ExperimentalResourceWithRawResponse,
+    AsyncExperimentalResourceWithRawResponse,
+    ExperimentalResourceWithStreamingResponse,
+    AsyncExperimentalResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -296,4 +336,34 @@ __all__ = [
     "AsyncAuthResourceWithRawResponse",
     "AuthResourceWithStreamingResponse",
     "AsyncAuthResourceWithStreamingResponse",
+    "GlobalResource",
+    "AsyncGlobalResource",
+    "GlobalResourceWithRawResponse",
+    "AsyncGlobalResourceWithRawResponse",
+    "GlobalResourceWithStreamingResponse",
+    "AsyncGlobalResourceWithStreamingResponse",
+    "ToolResource",
+    "AsyncToolResource",
+    "ToolResourceWithRawResponse",
+    "AsyncToolResourceWithRawResponse",
+    "ToolResourceWithStreamingResponse",
+    "AsyncToolResourceWithStreamingResponse",
+    "WorktreeResource",
+    "AsyncWorktreeResource",
+    "WorktreeResourceWithRawResponse",
+    "AsyncWorktreeResourceWithRawResponse",
+    "WorktreeResourceWithStreamingResponse",
+    "AsyncWorktreeResourceWithStreamingResponse",
+    "ExperimentalResource",
+    "AsyncExperimentalResource",
+    "ExperimentalResourceWithRawResponse",
+    "AsyncExperimentalResourceWithRawResponse",
+    "ExperimentalResourceWithStreamingResponse",
+    "AsyncExperimentalResourceWithStreamingResponse",
+    "V2Resource",
+    "AsyncV2Resource",
+    "V2ResourceWithRawResponse",
+    "AsyncV2ResourceWithRawResponse",
+    "V2ResourceWithStreamingResponse",
+    "AsyncV2ResourceWithStreamingResponse",
 ]

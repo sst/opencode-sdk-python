@@ -22,6 +22,7 @@ from ._types import (
 from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
+    v2,
     app,
     lsp,
     mcp,
@@ -33,16 +34,20 @@ from .resources import (
     find,
     path,
     sync,
+    tool,
     event,
     config,
     command,
+    global_,
     project,
     session,
     instance,
     provider,
     question,
+    worktree,
     formatter,
     permission,
+    experimental,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
@@ -86,6 +91,11 @@ class Opencode(SyncAPIClient):
     formatter: formatter.FormatterResource
     instance: instance.InstanceResource
     auth: auth.AuthResource
+    global_: global_.GlobalResource
+    tool: tool.ToolResource
+    worktree: worktree.WorktreeResource
+    experimental: experimental.ExperimentalResource
+    v2: v2.V2Resource
     with_raw_response: OpencodeWithRawResponse
     with_streaming_response: OpencodeWithStreamedResponse
 
@@ -153,6 +163,11 @@ class Opencode(SyncAPIClient):
         self.formatter = formatter.FormatterResource(self)
         self.instance = instance.InstanceResource(self)
         self.auth = auth.AuthResource(self)
+        self.global_ = global_.GlobalResource(self)
+        self.tool = tool.ToolResource(self)
+        self.worktree = worktree.WorktreeResource(self)
+        self.experimental = experimental.ExperimentalResource(self)
+        self.v2 = v2.V2Resource(self)
         self.with_raw_response = OpencodeWithRawResponse(self)
         self.with_streaming_response = OpencodeWithStreamedResponse(self)
 
@@ -275,6 +290,11 @@ class AsyncOpencode(AsyncAPIClient):
     formatter: formatter.AsyncFormatterResource
     instance: instance.AsyncInstanceResource
     auth: auth.AsyncAuthResource
+    global_: global_.AsyncGlobalResource
+    tool: tool.AsyncToolResource
+    worktree: worktree.AsyncWorktreeResource
+    experimental: experimental.AsyncExperimentalResource
+    v2: v2.AsyncV2Resource
     with_raw_response: AsyncOpencodeWithRawResponse
     with_streaming_response: AsyncOpencodeWithStreamedResponse
 
@@ -342,6 +362,11 @@ class AsyncOpencode(AsyncAPIClient):
         self.formatter = formatter.AsyncFormatterResource(self)
         self.instance = instance.AsyncInstanceResource(self)
         self.auth = auth.AsyncAuthResource(self)
+        self.global_ = global_.AsyncGlobalResource(self)
+        self.tool = tool.AsyncToolResource(self)
+        self.worktree = worktree.AsyncWorktreeResource(self)
+        self.experimental = experimental.AsyncExperimentalResource(self)
+        self.v2 = v2.AsyncV2Resource(self)
         self.with_raw_response = AsyncOpencodeWithRawResponse(self)
         self.with_streaming_response = AsyncOpencodeWithStreamedResponse(self)
 
