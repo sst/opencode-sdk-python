@@ -13,6 +13,7 @@ from tests.wire_helpers import route_request, read_json_body
 from opencode_ai._models import construct_type
 from opencode_ai.resources.global_ import GlobalResource, AsyncGlobalResource
 from opencode_ai.types.event_list_response import EventInstallationUpdated
+from opencode_ai.types.config_update_params import ConfigUpdateParams
 from opencode_ai.types.global_event_response import GlobalEventResponse
 from opencode_ai.types.global_health_response import GlobalHealthResponse
 from opencode_ai.types.global_upgrade_response import GlobalUpgradeFailure, GlobalUpgradeSuccess, GlobalUpgradeResponse
@@ -105,6 +106,40 @@ class TestGlobalWire:
         assert result is not None
 
     @pytest.mark.respx(base_url=base_url)
+    def test_config_update_sends_subagent_depth(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.patch("/global/config").mock(return_value=httpx.Response(200, json={}))
+        result = GlobalResource(client).config.update(subagent_depth=4)
+        assert route.called
+        request = route_request(route)
+        assert request.method == "PATCH"
+        assert request.url.path == "/global/config"
+        assert read_json_body(route)["subagent_depth"] == 4
+        assert result is not None
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_config_update_params_typed_dict_accepts_subagent_depth(
+        self, client: Opencode, respx_mock: MockRouter
+    ) -> None:
+        params: ConfigUpdateParams = {"subagent_depth": 4}
+        route = respx_mock.patch("/global/config").mock(return_value=httpx.Response(200, json={}))
+        result = GlobalResource(client).config.update(**params)
+        assert route.called
+        assert read_json_body(route)["subagent_depth"] == 4
+        assert result is not None
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_with_raw_response_global_health(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/global/health").mock(
+            return_value=httpx.Response(200, json={"healthy": True, "version": "1.18.11"})
+        )
+        response = client.with_raw_response.global_.health()
+        assert route.called
+        assert response.is_closed is True
+        result = response.parse()
+        assert isinstance(result, GlobalHealthResponse)
+        assert result.healthy is True
+
+    @pytest.mark.respx(base_url=base_url)
     def test_dispose_hits_path(self, client: Opencode, respx_mock: MockRouter) -> None:
         route = respx_mock.post("/global/dispose").mock(return_value=httpx.Response(200, json=True))
         result = GlobalResource(client).dispose()
@@ -184,6 +219,29 @@ class TestAsyncGlobalWire:
         request = route_request(route)
         assert request.method == "PATCH"
         assert read_json_body(route)["shell"] == "/bin/bash"
+        assert result is not None
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_config_update_sends_subagent_depth(
+        self, async_client: AsyncOpencode, respx_mock: MockRouter
+    ) -> None:
+        route = respx_mock.patch("/global/config").mock(return_value=httpx.Response(200, json={}))
+        result = await AsyncGlobalResource(async_client).config.update(subagent_depth=4)
+        assert route.called
+        assert read_json_body(route)["subagent_depth"] == 4
+        assert result is not None
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_with_raw_response_global_config_update(
+        self, async_client: AsyncOpencode, respx_mock: MockRouter
+    ) -> None:
+        route = respx_mock.patch("/global/config").mock(
+            return_value=httpx.Response(200, json={"shell": "/bin/zsh"})
+        )
+        response = await async_client.with_raw_response.global_.config.update(shell="/bin/zsh")
+        assert route.called
+        assert response.is_closed is True
+        result = await response.parse()
         assert result is not None
 
     @pytest.mark.respx(base_url=base_url)

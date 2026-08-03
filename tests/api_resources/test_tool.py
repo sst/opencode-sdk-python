@@ -71,6 +71,15 @@ class TestToolWire:
         assert isinstance(result, list)
         assert result == ["bash", "edit"]
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_with_raw_response_ids(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/experimental/tool/ids").mock(return_value=httpx.Response(200, json=["bash", "edit"]))
+        response = client.with_raw_response.tool.ids()
+        assert route.called
+        assert response.is_closed is True
+        result = response.parse()
+        assert result == ["bash", "edit"]
+
 
 class TestAsyncToolWire:
     @pytest.mark.respx(base_url=base_url)

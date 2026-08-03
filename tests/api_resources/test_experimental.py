@@ -49,6 +49,17 @@ class TestExperimentalWire:
         assert result.background_subagents is True
 
     @pytest.mark.respx(base_url=base_url)
+    def test_with_raw_response_capabilities_get(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/experimental/capabilities").mock(
+            return_value=httpx.Response(200, json={"backgroundSubagents": True})
+        )
+        response = client.with_raw_response.experimental.capabilities_get()
+        assert route.called
+        assert response.is_closed is True
+        result = response.parse()
+        assert result.background_subagents is True
+
+    @pytest.mark.respx(base_url=base_url)
     def test_console_get(self, experimental: ExperimentalResource, respx_mock: MockRouter) -> None:
         route = respx_mock.get("/experimental/console").mock(
             return_value=httpx.Response(

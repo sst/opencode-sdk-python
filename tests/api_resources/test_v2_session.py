@@ -27,6 +27,15 @@ class TestV2SessionWire:
         assert result is not None
 
     @pytest.mark.respx(base_url=base_url)
+    def test_with_raw_response_session_active(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/api/session/active").mock(return_value=httpx.Response(200, json={"data": {}}))
+        response = client.with_raw_response.v2.session.active()
+        assert route.called
+        assert response.is_closed is True
+        result = response.parse()
+        assert result is not None
+
+    @pytest.mark.respx(base_url=base_url)
     def test_session_compact(self, client: Opencode, respx_mock: MockRouter) -> None:
         v2 = V2Resource(client)
         route = respx_mock.post("/api/session/session_id_1/compact").mock(return_value=httpx.Response(200, json=None))

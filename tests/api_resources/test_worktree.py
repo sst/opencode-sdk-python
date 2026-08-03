@@ -99,6 +99,17 @@ class TestWorktreeWire:
         assert read_json_body(route) == {"directory": "/repo/.worktrees/feature"}
         assert result is True
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_with_raw_response_list(self, client: Opencode, respx_mock: MockRouter) -> None:
+        route = respx_mock.get("/experimental/worktree").mock(
+            return_value=httpx.Response(200, json=["/repo/.worktrees/feature"])
+        )
+        response = client.with_raw_response.worktree.list()
+        assert route.called
+        assert response.is_closed is True
+        result = response.parse()
+        assert result == ["/repo/.worktrees/feature"]
+
 
 class TestAsyncWorktreeWire:
     @pytest.mark.respx(base_url=base_url)

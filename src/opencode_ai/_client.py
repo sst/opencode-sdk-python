@@ -490,6 +490,11 @@ class OpencodeWithRawResponse:
         self.formatter = formatter.FormatterResourceWithRawResponse(client.formatter)
         self.instance = instance.InstanceResourceWithRawResponse(client.instance)
         self.auth = auth.AuthResourceWithRawResponse(client.auth)
+        self.global_ = global_.GlobalResourceWithRawResponse(client.global_)
+        self.tool = tool.ToolResourceWithRawResponse(client.tool)
+        self.worktree = worktree.WorktreeResourceWithRawResponse(client.worktree)
+        self.experimental = experimental.ExperimentalResourceWithRawResponse(client.experimental)
+        self.v2 = v2.V2ResourceWithRawResponse(client.v2)
 
 
 class AsyncOpencodeWithRawResponse:
@@ -515,6 +520,11 @@ class AsyncOpencodeWithRawResponse:
         self.formatter = formatter.AsyncFormatterResourceWithRawResponse(client.formatter)
         self.instance = instance.AsyncInstanceResourceWithRawResponse(client.instance)
         self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
+        self.global_ = global_.AsyncGlobalResourceWithRawResponse(client.global_)
+        self.tool = tool.AsyncToolResourceWithRawResponse(client.tool)
+        self.worktree = worktree.AsyncWorktreeResourceWithRawResponse(client.worktree)
+        self.experimental = experimental.AsyncExperimentalResourceWithRawResponse(client.experimental)
+        self.v2 = v2.AsyncV2ResourceWithRawResponse(client.v2)
 
 
 class OpencodeWithStreamedResponse:
@@ -540,6 +550,11 @@ class OpencodeWithStreamedResponse:
         self.formatter = formatter.FormatterResourceWithStreamingResponse(client.formatter)
         self.instance = instance.InstanceResourceWithStreamingResponse(client.instance)
         self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
+        self.global_ = global_.GlobalResourceWithStreamingResponse(client.global_)
+        self.tool = tool.ToolResourceWithStreamingResponse(client.tool)
+        self.worktree = worktree.WorktreeResourceWithStreamingResponse(client.worktree)
+        self.experimental = experimental.ExperimentalResourceWithStreamingResponse(client.experimental)
+        self.v2 = v2.V2ResourceWithStreamingResponse(client.v2)
 
 
 class AsyncOpencodeWithStreamedResponse:
@@ -565,6 +580,11 @@ class AsyncOpencodeWithStreamedResponse:
         self.formatter = formatter.AsyncFormatterResourceWithStreamingResponse(client.formatter)
         self.instance = instance.AsyncInstanceResourceWithStreamingResponse(client.instance)
         self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
+        self.global_ = global_.AsyncGlobalResourceWithStreamingResponse(client.global_)
+        self.tool = tool.AsyncToolResourceWithStreamingResponse(client.tool)
+        self.worktree = worktree.AsyncWorktreeResourceWithStreamingResponse(client.worktree)
+        self.experimental = experimental.AsyncExperimentalResourceWithStreamingResponse(client.experimental)
+        self.v2 = v2.AsyncV2ResourceWithStreamingResponse(client.v2)
 
 
 Client = Opencode
