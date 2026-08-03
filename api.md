@@ -346,6 +346,7 @@ from opencode_ai.types import (
     skills: Optional[<a href="./src/opencode_ai/types/config.py#L366">Skills</a>]
     small_model: Optional[str]
     snapshot: Optional[bool]
+    subagent_depth: Optional[int]
     tool_output: Optional[<a href="./src/opencode_ai/types/config.py#L372">ToolOutput</a>]
     tools: Optional[Dict[str, bool]]
     username: Optional[str]

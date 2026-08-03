@@ -491,6 +491,8 @@ class Config(BaseModel):
     snapshot: Optional[bool] = None
     """Enable or disable automatic snapshot creation"""
 
+    subagent_depth: Optional[int] = None
+
     tool_output: Optional[ToolOutput] = None
     """Limits applied to tool output before it is truncated"""
 

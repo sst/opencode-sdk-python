@@ -13,6 +13,7 @@ from respx import MockRouter
 from opencode_ai import Opencode, AsyncOpencode
 from tests.utils import assert_matches_type
 from opencode_ai.types import Config
+from opencode_ai._models import construct_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -123,6 +124,14 @@ class TestConfigWire:
         assert body["mcp"]["remote-server"]["oauth"] is False
         assert body["mcp"]["disabled-server"]["enabled"] is False
         assert_matches_type(Config, config, path=["response"])
+
+
+def test_config_subagent_depth() -> None:
+    config = cast(Config, construct_type(type_=Config, value={"subagent_depth": 4}))
+    assert config.subagent_depth == 4
+
+    config_missing = cast(Config, construct_type(type_=Config, value={}))
+    assert config_missing.subagent_depth is None
 
 
 class TestAsyncConfig:

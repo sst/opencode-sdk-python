@@ -583,6 +583,8 @@ class ConfigUpdateParams(TypedDict, total=False):
     snapshot: bool
     """Enable or disable automatic snapshot creation"""
 
+    subagent_depth: int
+
     tool_output: ToolOutput
     """Limits applied to tool output before it is truncated"""
 
