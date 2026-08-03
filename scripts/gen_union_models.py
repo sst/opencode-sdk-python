@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Reusable generator for Stainless-style discriminated-union variant models.
+"""Reusable generator for discriminated-union variant models.
 
 Given the path to the OpenAPI spec and the name of a top-level ``anyOf`` union
 schema (e.g. ``Part``, ``Event``), this script resolves every variant in the
@@ -24,7 +24,7 @@ Design notes (why it looks the way it does):
 * Every variant in the union is required to be a ``$ref`` to a named
   ``components/schemas`` entry whose own schema is a plain ``object`` with a
   single-value ``enum`` (or ``const``) on a ``type`` property -- exactly the
-  Stainless discriminated-union convention this SDK follows everywhere else.
+  discriminated-union convention this SDK follows everywhere else.
 * Nested anonymous objects (``{"type": "object", "properties": {...}}`` with
   no ``$ref``) are recursively turned into their own nested classes named
   ``<ParentClass><PropertyNameInPascalCase>``, so two variants can each have a
@@ -44,7 +44,7 @@ Design notes (why it looks the way it does):
   Any ``$ref`` that is neither is inlined as if it were an anonymous object
   (best-effort fallback for schemas the registry doesn't know about yet).
 * Field ordering follows the convention already established by every
-  hand/Stainless-written model in this repo: ``id`` first (if present), then
+  hand-written model in this repo: ``id`` first (if present), then
   the rest of the *required* fields alphabetically by their Python
   (snake_case) name, then a blank line, then the *optional* fields
   alphabetically.

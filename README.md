@@ -10,7 +10,8 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 The client talks to a running opencode server. By default it connects to `http://localhost:54321`, so
 start `opencode serve` (or point the client at another host) before making requests.
 
-It is generated with [Stainless](https://www.stainless.com/).
+Hand-maintained from the opencode OpenAPI spec (spec/openapi-opencode.json), tracked to the
+opencode release line.
 
 ## Documentation
 

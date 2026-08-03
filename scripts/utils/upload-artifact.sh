@@ -19,8 +19,7 @@ UPLOAD_RESPONSE=$(curl -v -X PUT \
   --data-binary "@dist/$FILENAME" "$SIGNED_URL" 2>&1)
 
 if echo "$UPLOAD_RESPONSE" | grep -q "HTTP/[0-9.]* 200"; then
-  echo -e "\033[32mUploaded build to Stainless storage.\033[0m"
-  echo -e "\033[32mInstallation: pip install 'https://pkg.stainless.com/s/opencode-python/$SHA/$FILENAME'\033[0m"
+  echo -e "\033[32mUploaded build.\033[0m"
 else
   echo -e "\033[31mFailed to upload artifact.\033[0m"
   exit 1

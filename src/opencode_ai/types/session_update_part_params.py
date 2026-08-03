@@ -1,4 +1,4 @@
-# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+# Hand-maintained fork of the Stainless-era opencode SDK. Generated code was replaced by manual maintenance; see CONTRIBUTING.md.
 #
 # NOTE: `part.update`'s request body IS the full `Part` discriminated union (a
 # read-modify-write replacement of the part, not a partial patch), so this

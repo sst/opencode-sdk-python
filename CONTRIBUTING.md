@@ -34,10 +34,24 @@ $ pip install -r requirements-dev.lock
 
 ## Modifying/Adding code
 
-This fork is maintained by hand. The code under `src/opencode_ai/` was originally generated from the
-opencode OpenAPI spec with [Stainless](https://www.stainless.com/), but the fork no longer regenerates
-it, so edit the source directly. When you add or change a resource, keep `api.md` in sync so the
-documentation matches the code.
+The SDK is maintained by hand from the opencode OpenAPI spec (spec/openapi-opencode.json). Edit
+src/opencode_ai/resources/* and src/opencode_ai/types/* directly to change the API surface. After
+changing a resource, regenerate the expanded API reference:
+
+```sh
+$ uv run python scripts/gen_api_expanded.py
+```
+
+Then run the checks:
+
+```sh
+$ uv run ruff check .
+$ uv run mypy .
+$ uv run pyright
+$ uv run pytest
+```
+
+Keep api.md in sync so the documentation matches the code.
 
 ## Adding and running examples
 

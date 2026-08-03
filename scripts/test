@@ -40,10 +40,8 @@ elif ! prism_is_running ; then
   echo -e "${RED}ERROR:${NC} The test suite will not run without a mock Prism server"
   echo -e "running against your OpenAPI spec."
   echo
-  echo -e "To run the server, pass in the path or url of your OpenAPI"
-  echo -e "spec to the prism command:"
-  echo
-  echo -e "  \$ ${YELLOW}npm exec --package=@stainless-api/prism-cli@5.15.0 -- prism mock path/to/your.openapi.yml${NC}"
+  echo -e "Start it with ${YELLOW}./scripts/mock${NC} (defaults to spec/openapi-opencode.json;"
+  echo -e "pass a spec path or URL as the first argument to override)."
   echo
 
   exit 1

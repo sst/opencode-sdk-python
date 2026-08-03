@@ -8,12 +8,12 @@ if [[ -n "$1" && "$1" != '--'* ]]; then
   URL="$1"
   shift
 else
-  URL="$(grep 'openapi_spec_url' .stats.yml | cut -d' ' -f2)"
+  URL="spec/openapi-opencode.json"
 fi
 
 # Check if the URL is empty
 if [ -z "$URL" ]; then
-  echo "Error: No OpenAPI spec path/url provided or found in .stats.yml"
+  echo "Error: No OpenAPI spec path/url provided"
   exit 1
 fi
 
