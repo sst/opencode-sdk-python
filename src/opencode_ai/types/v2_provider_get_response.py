@@ -1,0 +1,13 @@
+# Hand-maintained fork of the Stainless-era opencode SDK. Generated code was replaced by manual maintenance; see CONTRIBUTING.md.
+
+
+from .._models import BaseModel
+from .v2_location_info import V2LocationInfo
+
+__all__ = ["V2ProviderGetResponse"]
+
+
+class V2ProviderGetResponse(BaseModel):
+    location: V2LocationInfo
+
+    data: object
