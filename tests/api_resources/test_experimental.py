@@ -2,6 +2,8 @@
 # The resource is constructed directly because client.experimental wiring is task-7's.
 from __future__ import annotations
 
+from typing import cast
+
 import httpx
 import pytest
 from respx import MockRouter
@@ -202,7 +204,7 @@ class TestExperimentalWire:
         assert "workspace" not in request.url.params
         body = read_json_body(route)
         assert body["sessionID"] == "ses_x"
-        assert body["destination"]["directory"] == "/tmp/proj"
+        assert cast(dict[str, object], body["destination"])["directory"] == "/tmp/proj"
         assert body["moveChanges"] is True
         assert result is None
 
@@ -484,7 +486,7 @@ class TestAsyncExperimentalWire:
         assert "workspace" not in request.url.params
         body = read_json_body(route)
         assert body["sessionID"] == "ses_x"
-        assert body["destination"]["directory"] == "/tmp/proj"
+        assert cast(dict[str, object], body["destination"])["directory"] == "/tmp/proj"
         assert result is None
 
     @pytest.mark.respx(base_url=base_url)

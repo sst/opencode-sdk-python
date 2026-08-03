@@ -220,7 +220,7 @@ class TestV2MiscWire:
         route = respx_mock.get("/api/event").mock(
             return_value=httpx.Response(200, content=b"", headers={"content-type": "text/event-stream"})
         )
-        result = v2.event.subscribe()
+        v2.event.subscribe()
         assert route.called
         request = route_request(route)
         assert request.method == "GET"
@@ -497,7 +497,7 @@ class TestAsyncV2MiscWire:
         route = respx_mock.get("/api/event").mock(
             return_value=httpx.Response(200, content=b"", headers={"content-type": "text/event-stream"})
         )
-        result = await v2.event.subscribe()
+        await v2.event.subscribe()
         assert route.called
         request = route_request(route)
         assert request.method == "GET"

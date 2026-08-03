@@ -64,7 +64,7 @@ class TestV2SessionWire:
         route = respx_mock.get("/api/session/session_id_1/event").mock(
             return_value=httpx.Response(200, content=b"", headers={"content-type": "text/event-stream"})
         )
-        result = v2.session.events("session_id_1", after="qv")
+        v2.session.events("session_id_1", after="qv")
         assert route.called
         request = route_request(route)
         assert request.method == "GET"
@@ -364,7 +364,7 @@ class TestAsyncV2SessionWire:
         route = respx_mock.get("/api/session/session_id_1/event").mock(
             return_value=httpx.Response(200, content=b"", headers={"content-type": "text/event-stream"})
         )
-        result = await v2.session.events("session_id_1", after="qv")
+        await v2.session.events("session_id_1", after="qv")
         assert route.called
         request = route_request(route)
         assert request.method == "GET"
