@@ -167,7 +167,7 @@ def unwrap_annotated(node: ast.expr) -> Tuple[ast.expr, Optional[str]]:
             for meta in sl.elts[1:]:
                 if isinstance(meta, ast.Call) and isinstance(meta.func, ast.Name) and meta.func.id == "PropertyInfo":
                     for kw in meta.keywords:
-                        if kw.arg == "discriminator" and isinstance(kw.value, ast.Constant):
+                        if kw.arg == "discriminator" and isinstance(kw.value, ast.Constant) and isinstance(kw.value.value, str):
                             note = f'discriminated by "{kw.value.value}"'
             return inner, note
     return node, None
