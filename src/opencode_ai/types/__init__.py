@@ -39,6 +39,7 @@ from .project import Project as Project
 from .session import Session as Session
 from .provider import Provider as Provider
 from .vcs_info import VcsInfo as VcsInfo
+from .worktree import Worktree as Worktree
 from .lsp_status import LSPStatus as LSPStatus
 from .mcp_status import MCPStatus as MCPStatus
 from .file_source import FileSource as FileSource
@@ -149,6 +150,7 @@ from .session_todo_response import SessionTodoResponse as SessionTodoResponse
 from .session_update_params import SessionUpdateParams as SessionUpdateParams
 from .text_part_input_param import TextPartInputParam as TextPartInputParam
 from .tui_show_toast_params import TuiShowToastParams as TuiShowToastParams
+from .worktree_reset_params import WorktreeResetParams as WorktreeResetParams
 from .agent_part_input_param import AgentPartInputParam as AgentPartInputParam
 from .app_providers_response import AppProvidersResponse as AppProvidersResponse
 from .file_part_source_param import FilePartSourceParam as FilePartSourceParam
@@ -161,6 +163,9 @@ from .session_abort_response import SessionAbortResponse as SessionAbortResponse
 from .session_command_params import SessionCommandParams as SessionCommandParams
 from .session_shell_response import SessionShellResponse as SessionShellResponse
 from .tui_open_help_response import TuiOpenHelpResponse as TuiOpenHelpResponse
+from .worktree_create_params import WorktreeCreateParams as WorktreeCreateParams
+from .worktree_list_response import WorktreeListResponse as WorktreeListResponse
+from .worktree_remove_params import WorktreeRemoveParams as WorktreeRemoveParams
 from .global_dispose_response import GlobalDisposeResponse as GlobalDisposeResponse
 from .global_upgrade_response import (
     GlobalUpgradeFailure as GlobalUpgradeFailure,
@@ -177,6 +182,7 @@ from .session_messages_params import SessionMessagesParams as SessionMessagesPar
 from .session_prompt_response import SessionPromptResponse as SessionPromptResponse
 from .session_status_response import SessionStatusResponse as SessionStatusResponse
 from .tui_show_toast_response import TuiShowToastResponse as TuiShowToastResponse
+from .worktree_reset_response import WorktreeResetResponse as WorktreeResetResponse
 from .mcp_auth_callback_params import McpAuthCallbackParams as McpAuthCallbackParams
 from .mcp_auth_remove_response import McpAuthRemoveResponse as McpAuthRemoveResponse
 from .permission_list_response import PermissionListResponse as PermissionListResponse
@@ -189,6 +195,7 @@ from .sync_history_list_params import SyncHistoryListParams as SyncHistoryListPa
 from .tui_append_prompt_params import TuiAppendPromptParams as TuiAppendPromptParams
 from .tui_open_models_response import TuiOpenModelsResponse as TuiOpenModelsResponse
 from .tui_open_themes_response import TuiOpenThemesResponse as TuiOpenThemesResponse
+from .worktree_remove_response import WorktreeRemoveResponse as WorktreeRemoveResponse
 from .formatter_status_response import FormatterStatusResponse as FormatterStatusResponse
 from .instance_dispose_response import InstanceDisposeResponse as InstanceDisposeResponse
 from .permission_reply_response import PermissionReplyResponse as PermissionReplyResponse
