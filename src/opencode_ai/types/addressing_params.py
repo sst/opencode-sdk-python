@@ -11,3 +11,9 @@ class AddressingParams(TypedDict, total=False):
     directory: str
 
     workspace: str
+
+    project: str
+
+    subpath: str
+
+    cursor: str
