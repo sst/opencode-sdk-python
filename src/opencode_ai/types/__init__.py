@@ -62,6 +62,7 @@ from .formatter_status import FormatterStatus as FormatterStatus
 from .mcp_add_response import McpAddResponse as McpAddResponse
 from .mcp_local_config import McpLocalConfig as McpLocalConfig
 from .question_request import QuestionRequest as QuestionRequest
+from .tool_list_params import ToolListParams as ToolListParams
 from .tool_state_error import ToolStateError as ToolStateError
 from .vcs_apply_params import VcsApplyParams as VcsApplyParams
 from .addressing_params import AddressingParams as AddressingParams
@@ -81,6 +82,7 @@ from .pty_create_params import PtyCreateParams as PtyCreateParams
 from .pty_list_response import PtyListResponse as PtyListResponse
 from .pty_update_params import PtyUpdateParams as PtyUpdateParams
 from .sync_steal_params import SyncStealParams as SyncStealParams
+from .tool_ids_response import ToolIDsResponse as ToolIDsResponse
 from .vcs_diff_response import VcsDiffResponse as VcsDiffResponse
 from .file_list_response import FileListResponse as FileListResponse
 from .find_text_response import FindTextResponse as FindTextResponse
@@ -88,6 +90,10 @@ from .permission_request import PermissionRequest as PermissionRequest
 from .pty_connect_params import PtyConnectParams as PtyConnectParams
 from .snapshot_file_diff import SnapshotFileDiff as SnapshotFileDiff
 from .sync_replay_params import SyncReplayParams as SyncReplayParams
+from .tool_list_response import (
+    ToolListResponse as ToolListResponse,
+    ToolListResponseItem as ToolListResponseItem,
+)
 from .tool_state_pending import ToolStatePending as ToolStatePending
 from .tool_state_running import ToolStateRunning as ToolStateRunning
 from .tui_publish_params import TuiPublishParams as TuiPublishParams
