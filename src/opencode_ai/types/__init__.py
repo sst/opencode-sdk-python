@@ -127,6 +127,8 @@ from .file_content_response import FileContentResponse as FileContentResponse
 from .file_part_input_param import FilePartInputParam as FilePartInputParam
 from .file_part_source_text import FilePartSourceText as FilePartSourceText
 from .find_symbols_response import FindSymbolsResponse as FindSymbolsResponse
+from .global_event_response import GlobalEventResponse as GlobalEventResponse
+from .global_upgrade_params import GlobalUpgradeParams as GlobalUpgradeParams
 from .mcp_status_needs_auth import MCPStatusNeedsAuth as MCPStatusNeedsAuth
 from .project_list_response import ProjectListResponse as ProjectListResponse
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
@@ -144,6 +146,7 @@ from .tui_show_toast_params import TuiShowToastParams as TuiShowToastParams
 from .agent_part_input_param import AgentPartInputParam as AgentPartInputParam
 from .app_providers_response import AppProvidersResponse as AppProvidersResponse
 from .file_part_source_param import FilePartSourceParam as FilePartSourceParam
+from .global_health_response import GlobalHealthResponse as GlobalHealthResponse
 from .mcp_local_config_param import McpLocalConfigParam as McpLocalConfigParam
 from .provider_auth_response import ProviderAuthResponse as ProviderAuthResponse
 from .provider_list_response import ProviderListResponse as ProviderListResponse
@@ -152,6 +155,12 @@ from .session_abort_response import SessionAbortResponse as SessionAbortResponse
 from .session_command_params import SessionCommandParams as SessionCommandParams
 from .session_shell_response import SessionShellResponse as SessionShellResponse
 from .tui_open_help_response import TuiOpenHelpResponse as TuiOpenHelpResponse
+from .global_dispose_response import GlobalDisposeResponse as GlobalDisposeResponse
+from .global_upgrade_response import (
+    GlobalUpgradeFailure as GlobalUpgradeFailure,
+    GlobalUpgradeSuccess as GlobalUpgradeSuccess,
+    GlobalUpgradeResponse as GlobalUpgradeResponse,
+)
 from .mcp_auth_start_response import McpAuthStartResponse as McpAuthStartResponse
 from .mcp_disconnect_response import McpDisconnectResponse as McpDisconnectResponse
 from .mcp_remote_config_param import McpRemoteConfigParam as McpRemoteConfigParam
@@ -185,6 +194,7 @@ from .session_messages_response import (
 from .tui_clear_prompt_response import TuiClearPromptResponse as TuiClearPromptResponse
 from .tui_control_next_response import TuiControlNextResponse as TuiControlNextResponse
 from .tui_select_session_params import TuiSelectSessionParams as TuiSelectSessionParams
+from .global_config_get_response import GlobalConfigGetResponse as GlobalConfigGetResponse
 from .pty_connect_token_response import PtyConnectTokenResponse as PtyConnectTokenResponse
 from .session_summarize_response import SessionSummarizeResponse as SessionSummarizeResponse
 from .session_update_part_params import SessionUpdatePartParams as SessionUpdatePartParams
