@@ -1,0 +1,447 @@
+[
+ {
+  "m": "post",
+  "path": "/experimental/control-plane/move-session",
+  "id": "experimental.controlPlane.moveSession"
+ },
+ {
+  "m": "get",
+  "path": "/global/health",
+  "id": "global.health"
+ },
+ {
+  "m": "get",
+  "path": "/global/event",
+  "id": "global.event"
+ },
+ {
+  "m": "get",
+  "path": "/global/config",
+  "id": "global.config.get"
+ },
+ {
+  "m": "patch",
+  "path": "/global/config",
+  "id": "global.config.update"
+ },
+ {
+  "m": "post",
+  "path": "/global/dispose",
+  "id": "global.dispose"
+ },
+ {
+  "m": "post",
+  "path": "/global/upgrade",
+  "id": "global.upgrade"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/capabilities",
+  "id": "experimental.capabilities.get"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/console",
+  "id": "experimental.console.get"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/console/orgs",
+  "id": "experimental.console.listOrgs"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/console/switch",
+  "id": "experimental.console.switchOrg"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/tool",
+  "id": "tool.list"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/tool/ids",
+  "id": "tool.ids"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/worktree",
+  "id": "worktree.list"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/worktree",
+  "id": "worktree.create"
+ },
+ {
+  "m": "delete",
+  "path": "/experimental/worktree",
+  "id": "worktree.remove"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/worktree/reset",
+  "id": "worktree.reset"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/session",
+  "id": "experimental.session.list"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/session/{sessionID}/background",
+  "id": "experimental.session.background"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/resource",
+  "id": "experimental.resource.list"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/project/{projectID}/copy/generate-name",
+  "id": "experimental.projectCopy.generateName"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/workspace/adapter",
+  "id": "experimental.workspace.adapter.list"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/workspace",
+  "id": "experimental.workspace.list"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/workspace",
+  "id": "experimental.workspace.create"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/workspace/sync-list",
+  "id": "experimental.workspace.syncList"
+ },
+ {
+  "m": "get",
+  "path": "/experimental/workspace/status",
+  "id": "experimental.workspace.status"
+ },
+ {
+  "m": "delete",
+  "path": "/experimental/workspace/{id}",
+  "id": "experimental.workspace.remove"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/workspace/warp",
+  "id": "experimental.workspace.warp"
+ },
+ {
+  "m": "get",
+  "path": "/api/health",
+  "id": "v2.health.get"
+ },
+ {
+  "m": "get",
+  "path": "/api/location",
+  "id": "v2.location.get"
+ },
+ {
+  "m": "get",
+  "path": "/api/agent",
+  "id": "v2.agent.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/session",
+  "id": "v2.session.list"
+ },
+ {
+  "m": "post",
+  "path": "/api/session",
+  "id": "v2.session.create"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/active",
+  "id": "v2.session.active"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}",
+  "id": "v2.session.get"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/agent",
+  "id": "v2.session.switchAgent"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/model",
+  "id": "v2.session.switchModel"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/prompt",
+  "id": "v2.session.prompt"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/compact",
+  "id": "v2.session.compact"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/wait",
+  "id": "v2.session.wait"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/revert/stage",
+  "id": "v2.session.revert.stage"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/revert/clear",
+  "id": "v2.session.revert.clear"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/revert/commit",
+  "id": "v2.session.revert.commit"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/context",
+  "id": "v2.session.context"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/history",
+  "id": "v2.session.history"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/event",
+  "id": "v2.session.events"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/interrupt",
+  "id": "v2.session.interrupt"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/message/{messageID}",
+  "id": "v2.session.message"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/message",
+  "id": "v2.session.messages"
+ },
+ {
+  "m": "get",
+  "path": "/api/model",
+  "id": "v2.model.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/provider",
+  "id": "v2.provider.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/provider/{providerID}",
+  "id": "v2.provider.get"
+ },
+ {
+  "m": "get",
+  "path": "/api/integration",
+  "id": "v2.integration.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/integration/{integrationID}",
+  "id": "v2.integration.get"
+ },
+ {
+  "m": "post",
+  "path": "/api/integration/{integrationID}/connect/key",
+  "id": "v2.integration.connect.key"
+ },
+ {
+  "m": "post",
+  "path": "/api/integration/{integrationID}/connect/oauth",
+  "id": "v2.integration.connect.oauth"
+ },
+ {
+  "m": "get",
+  "path": "/api/integration/attempt/{attemptID}",
+  "id": "v2.integration.attempt.status"
+ },
+ {
+  "m": "delete",
+  "path": "/api/integration/attempt/{attemptID}",
+  "id": "v2.integration.attempt.cancel"
+ },
+ {
+  "m": "post",
+  "path": "/api/integration/attempt/{attemptID}/complete",
+  "id": "v2.integration.attempt.complete"
+ },
+ {
+  "m": "delete",
+  "path": "/api/credential/{credentialID}",
+  "id": "v2.credential.remove"
+ },
+ {
+  "m": "patch",
+  "path": "/api/credential/{credentialID}",
+  "id": "v2.credential.update"
+ },
+ {
+  "m": "get",
+  "path": "/api/permission/request",
+  "id": "v2.permission.request.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/permission/saved",
+  "id": "v2.permission.saved.list"
+ },
+ {
+  "m": "delete",
+  "path": "/api/permission/saved/{id}",
+  "id": "v2.permission.saved.remove"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/permission",
+  "id": "v2.session.permission.list"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/permission",
+  "id": "v2.session.permission.create"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/permission/{requestID}",
+  "id": "v2.session.permission.get"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/permission/{requestID}/reply",
+  "id": "v2.session.permission.reply"
+ },
+ {
+  "m": "get",
+  "path": "/api/fs/read/*",
+  "id": "v2.fs.read"
+ },
+ {
+  "m": "get",
+  "path": "/api/fs/list",
+  "id": "v2.fs.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/fs/find",
+  "id": "v2.fs.find"
+ },
+ {
+  "m": "get",
+  "path": "/api/command",
+  "id": "v2.command.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/skill",
+  "id": "v2.skill.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/event",
+  "id": "v2.event.subscribe"
+ },
+ {
+  "m": "get",
+  "path": "/api/pty",
+  "id": "v2.pty.list"
+ },
+ {
+  "m": "post",
+  "path": "/api/pty",
+  "id": "v2.pty.create"
+ },
+ {
+  "m": "get",
+  "path": "/api/pty/{ptyID}",
+  "id": "v2.pty.get"
+ },
+ {
+  "m": "put",
+  "path": "/api/pty/{ptyID}",
+  "id": "v2.pty.update"
+ },
+ {
+  "m": "delete",
+  "path": "/api/pty/{ptyID}",
+  "id": "v2.pty.remove"
+ },
+ {
+  "m": "post",
+  "path": "/api/pty/{ptyID}/connect-token",
+  "id": "v2.pty.connectToken"
+ },
+ {
+  "m": "get",
+  "path": "/api/pty/{ptyID}/connect",
+  "id": "v2.pty.connect"
+ },
+ {
+  "m": "get",
+  "path": "/api/question/request",
+  "id": "v2.question.request.list"
+ },
+ {
+  "m": "get",
+  "path": "/api/session/{sessionID}/question",
+  "id": "v2.session.question.list"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/question/{requestID}/reply",
+  "id": "v2.session.question.reply"
+ },
+ {
+  "m": "post",
+  "path": "/api/session/{sessionID}/question/{requestID}/reject",
+  "id": "v2.session.question.reject"
+ },
+ {
+  "m": "get",
+  "path": "/api/reference",
+  "id": "v2.reference.list"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/project/{projectID}/copy",
+  "id": "v2.projectCopy.create"
+ },
+ {
+  "m": "delete",
+  "path": "/experimental/project/{projectID}/copy",
+  "id": "v2.projectCopy.remove"
+ },
+ {
+  "m": "post",
+  "path": "/experimental/project/{projectID}/copy/refresh",
+  "id": "v2.projectCopy.refresh"
+ }
+]

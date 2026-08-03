@@ -1,0 +1,6329 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "opencode",
+  "version": "1.0.0",
+  "description": "opencode api"
+ },
+ "operations": [
+  {
+   "path": "/auth/{providerID}",
+   "method": "put",
+   "id": "auth.set",
+   "params": [
+    {
+     "name": "providerID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": "Auth"
+  },
+  {
+   "path": "/auth/{providerID}",
+   "method": "delete",
+   "id": "auth.remove",
+   "params": [
+    {
+     "name": "providerID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/log",
+   "method": "post",
+   "id": "app.log",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/control-plane/move-session",
+   "method": "post",
+   "id": "experimental.controlPlane.moveSession",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/global/health",
+   "method": "get",
+   "id": "global.health",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/global/event",
+   "method": "get",
+   "id": "global.event",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/global/config",
+   "method": "get",
+   "id": "global.config.get",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/global/config",
+   "method": "patch",
+   "id": "global.config.update",
+   "params": [],
+   "body": "Config"
+  },
+  {
+   "path": "/global/dispose",
+   "method": "post",
+   "id": "global.dispose",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/global/upgrade",
+   "method": "post",
+   "id": "global.upgrade",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/event",
+   "method": "get",
+   "id": "event.subscribe",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/config",
+   "method": "get",
+   "id": "config.get",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/config",
+   "method": "patch",
+   "id": "config.update",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": "Config"
+  },
+  {
+   "path": "/config/providers",
+   "method": "get",
+   "id": "config.providers",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/capabilities",
+   "method": "get",
+   "id": "experimental.capabilities.get",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/console",
+   "method": "get",
+   "id": "experimental.console.get",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/console/orgs",
+   "method": "get",
+   "id": "experimental.console.listOrgs",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/console/switch",
+   "method": "post",
+   "id": "experimental.console.switchOrg",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/tool",
+   "method": "get",
+   "id": "tool.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "provider",
+     "in": "query",
+     "required": true
+    },
+    {
+     "name": "model",
+     "in": "query",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/tool/ids",
+   "method": "get",
+   "id": "tool.ids",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/worktree",
+   "method": "get",
+   "id": "worktree.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/worktree",
+   "method": "post",
+   "id": "worktree.create",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": "WorktreeCreateInput"
+  },
+  {
+   "path": "/experimental/worktree",
+   "method": "delete",
+   "id": "worktree.remove",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": "WorktreeRemoveInput"
+  },
+  {
+   "path": "/experimental/worktree/reset",
+   "method": "post",
+   "id": "worktree.reset",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": "WorktreeResetInput"
+  },
+  {
+   "path": "/experimental/session",
+   "method": "get",
+   "id": "experimental.session.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "roots",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "start",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "cursor",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "search",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "archived",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/session/{sessionID}/background",
+   "method": "post",
+   "id": "experimental.session.background",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/resource",
+   "method": "get",
+   "id": "experimental.resource.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/find",
+   "method": "get",
+   "id": "find.text",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "pattern",
+     "in": "query",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/find/file",
+   "method": "get",
+   "id": "find.files",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "query",
+     "in": "query",
+     "required": true
+    },
+    {
+     "name": "dirs",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "type",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/find/symbol",
+   "method": "get",
+   "id": "find.symbols",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "query",
+     "in": "query",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/file",
+   "method": "get",
+   "id": "file.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "path",
+     "in": "query",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/file/content",
+   "method": "get",
+   "id": "file.read",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "path",
+     "in": "query",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/file/status",
+   "method": "get",
+   "id": "file.status",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/instance/dispose",
+   "method": "post",
+   "id": "instance.dispose",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/path",
+   "method": "get",
+   "id": "path.get",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/vcs",
+   "method": "get",
+   "id": "vcs.get",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/vcs/status",
+   "method": "get",
+   "id": "vcs.status",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/vcs/diff",
+   "method": "get",
+   "id": "vcs.diff",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "mode",
+     "in": "query",
+     "required": true
+    },
+    {
+     "name": "context",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/vcs/diff/raw",
+   "method": "get",
+   "id": "vcs.diff.raw",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/vcs/apply",
+   "method": "post",
+   "id": "vcs.apply",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/command",
+   "method": "get",
+   "id": "command.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/agent",
+   "method": "get",
+   "id": "app.agents",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/skill",
+   "method": "get",
+   "id": "app.skills",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/lsp",
+   "method": "get",
+   "id": "lsp.status",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/formatter",
+   "method": "get",
+   "id": "formatter.status",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp",
+   "method": "get",
+   "id": "mcp.status",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp",
+   "method": "post",
+   "id": "mcp.add",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp/{name}/auth",
+   "method": "post",
+   "id": "mcp.auth.start",
+   "params": [
+    {
+     "name": "name",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp/{name}/auth",
+   "method": "delete",
+   "id": "mcp.auth.remove",
+   "params": [
+    {
+     "name": "name",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp/{name}/auth/callback",
+   "method": "post",
+   "id": "mcp.auth.callback",
+   "params": [
+    {
+     "name": "name",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp/{name}/auth/authenticate",
+   "method": "post",
+   "id": "mcp.auth.authenticate",
+   "params": [
+    {
+     "name": "name",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp/{name}/connect",
+   "method": "post",
+   "id": "mcp.connect",
+   "params": [
+    {
+     "name": "name",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/mcp/{name}/disconnect",
+   "method": "post",
+   "id": "mcp.disconnect",
+   "params": [
+    {
+     "name": "name",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/project",
+   "method": "get",
+   "id": "project.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/project/current",
+   "method": "get",
+   "id": "project.current",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/project/git/init",
+   "method": "post",
+   "id": "project.initGit",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/project/{projectID}",
+   "method": "patch",
+   "id": "project.update",
+   "params": [
+    {
+     "name": "projectID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/project/{projectID}/directories",
+   "method": "get",
+   "id": "project.directories",
+   "params": [
+    {
+     "name": "projectID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/project/{projectID}/copy/generate-name",
+   "method": "post",
+   "id": "experimental.projectCopy.generateName",
+   "params": [
+    {
+     "name": "projectID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty/shells",
+   "method": "get",
+   "id": "pty.shells",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty",
+   "method": "get",
+   "id": "pty.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty",
+   "method": "post",
+   "id": "pty.create",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty/{ptyID}",
+   "method": "get",
+   "id": "pty.get",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty/{ptyID}",
+   "method": "put",
+   "id": "pty.update",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty/{ptyID}",
+   "method": "delete",
+   "id": "pty.remove",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty/{ptyID}/connect-token",
+   "method": "post",
+   "id": "pty.connectToken",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/question",
+   "method": "get",
+   "id": "question.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/question/{requestID}/reply",
+   "method": "post",
+   "id": "question.reply",
+   "params": [
+    {
+     "name": "requestID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/question/{requestID}/reject",
+   "method": "post",
+   "id": "question.reject",
+   "params": [
+    {
+     "name": "requestID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/permission",
+   "method": "get",
+   "id": "permission.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/permission/{requestID}/reply",
+   "method": "post",
+   "id": "permission.reply",
+   "params": [
+    {
+     "name": "requestID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/provider",
+   "method": "get",
+   "id": "provider.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/provider/auth",
+   "method": "get",
+   "id": "provider.auth",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/provider/{providerID}/oauth/authorize",
+   "method": "post",
+   "id": "provider.oauth.authorize",
+   "params": [
+    {
+     "name": "providerID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/provider/{providerID}/oauth/callback",
+   "method": "post",
+   "id": "provider.oauth.callback",
+   "params": [
+    {
+     "name": "providerID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session",
+   "method": "get",
+   "id": "session.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "scope",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "path",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "roots",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "start",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "search",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session",
+   "method": "post",
+   "id": "session.create",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/status",
+   "method": "get",
+   "id": "session.status",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}",
+   "method": "get",
+   "id": "session.get",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}",
+   "method": "delete",
+   "id": "session.delete",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}",
+   "method": "patch",
+   "id": "session.update",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/children",
+   "method": "get",
+   "id": "session.children",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/todo",
+   "method": "get",
+   "id": "session.todo",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/diff",
+   "method": "get",
+   "id": "session.diff",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "messageID",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/message",
+   "method": "get",
+   "id": "session.messages",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "before",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/message",
+   "method": "post",
+   "id": "session.prompt",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/message/{messageID}",
+   "method": "get",
+   "id": "session.message",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "messageID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/message/{messageID}",
+   "method": "delete",
+   "id": "session.deleteMessage",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "messageID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/fork",
+   "method": "post",
+   "id": "session.fork",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/abort",
+   "method": "post",
+   "id": "session.abort",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/init",
+   "method": "post",
+   "id": "session.init",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/share",
+   "method": "post",
+   "id": "session.share",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/share",
+   "method": "delete",
+   "id": "session.unshare",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/summarize",
+   "method": "post",
+   "id": "session.summarize",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/prompt_async",
+   "method": "post",
+   "id": "session.prompt_async",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/command",
+   "method": "post",
+   "id": "session.command",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/shell",
+   "method": "post",
+   "id": "session.shell",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/revert",
+   "method": "post",
+   "id": "session.revert",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/unrevert",
+   "method": "post",
+   "id": "session.unrevert",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/permissions/{permissionID}",
+   "method": "post",
+   "id": "permission.respond",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "permissionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/message/{messageID}/part/{partID}",
+   "method": "delete",
+   "id": "part.delete",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "messageID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "partID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/session/{sessionID}/message/{messageID}/part/{partID}",
+   "method": "patch",
+   "id": "part.update",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "messageID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "partID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": "Part"
+  },
+  {
+   "path": "/sync/start",
+   "method": "post",
+   "id": "sync.start",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/sync/replay",
+   "method": "post",
+   "id": "sync.replay",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/sync/steal",
+   "method": "post",
+   "id": "sync.steal",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/sync/history",
+   "method": "post",
+   "id": "sync.history.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/append-prompt",
+   "method": "post",
+   "id": "tui.appendPrompt",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/open-help",
+   "method": "post",
+   "id": "tui.openHelp",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/open-sessions",
+   "method": "post",
+   "id": "tui.openSessions",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/open-themes",
+   "method": "post",
+   "id": "tui.openThemes",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/open-models",
+   "method": "post",
+   "id": "tui.openModels",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/submit-prompt",
+   "method": "post",
+   "id": "tui.submitPrompt",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/clear-prompt",
+   "method": "post",
+   "id": "tui.clearPrompt",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/execute-command",
+   "method": "post",
+   "id": "tui.executeCommand",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/show-toast",
+   "method": "post",
+   "id": "tui.showToast",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/publish",
+   "method": "post",
+   "id": "tui.publish",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/select-session",
+   "method": "post",
+   "id": "tui.selectSession",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/control/next",
+   "method": "get",
+   "id": "tui.control.next",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/tui/control/response",
+   "method": "post",
+   "id": "tui.control.response",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/workspace/adapter",
+   "method": "get",
+   "id": "experimental.workspace.adapter.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/workspace",
+   "method": "get",
+   "id": "experimental.workspace.list",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/workspace",
+   "method": "post",
+   "id": "experimental.workspace.create",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/workspace/sync-list",
+   "method": "post",
+   "id": "experimental.workspace.syncList",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/workspace/status",
+   "method": "get",
+   "id": "experimental.workspace.status",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/workspace/{id}",
+   "method": "delete",
+   "id": "experimental.workspace.remove",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/workspace/warp",
+   "method": "post",
+   "id": "experimental.workspace.warp",
+   "params": [
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/health",
+   "method": "get",
+   "id": "v2.health.get",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/api/location",
+   "method": "get",
+   "id": "v2.location.get",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/agent",
+   "method": "get",
+   "id": "v2.agent.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session",
+   "method": "get",
+   "id": "v2.session.list",
+   "params": [
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "order",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "search",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "project",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "subpath",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "cursor",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session",
+   "method": "post",
+   "id": "v2.session.create",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/api/session/active",
+   "method": "get",
+   "id": "v2.session.active",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}",
+   "method": "get",
+   "id": "v2.session.get",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/agent",
+   "method": "post",
+   "id": "v2.session.switchAgent",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/model",
+   "method": "post",
+   "id": "v2.session.switchModel",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/prompt",
+   "method": "post",
+   "id": "v2.session.prompt",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/compact",
+   "method": "post",
+   "id": "v2.session.compact",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/wait",
+   "method": "post",
+   "id": "v2.session.wait",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/revert/stage",
+   "method": "post",
+   "id": "v2.session.revert.stage",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/revert/clear",
+   "method": "post",
+   "id": "v2.session.revert.clear",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/revert/commit",
+   "method": "post",
+   "id": "v2.session.revert.commit",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/context",
+   "method": "get",
+   "id": "v2.session.context",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/history",
+   "method": "get",
+   "id": "v2.session.history",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "after",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/event",
+   "method": "get",
+   "id": "v2.session.events",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "after",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/interrupt",
+   "method": "post",
+   "id": "v2.session.interrupt",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/message/{messageID}",
+   "method": "get",
+   "id": "v2.session.message",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "messageID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/message",
+   "method": "get",
+   "id": "v2.session.messages",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "order",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "cursor",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/model",
+   "method": "get",
+   "id": "v2.model.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/provider",
+   "method": "get",
+   "id": "v2.provider.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/provider/{providerID}",
+   "method": "get",
+   "id": "v2.provider.get",
+   "params": [
+    {
+     "name": "providerID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/integration",
+   "method": "get",
+   "id": "v2.integration.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/integration/{integrationID}",
+   "method": "get",
+   "id": "v2.integration.get",
+   "params": [
+    {
+     "name": "integrationID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/integration/{integrationID}/connect/key",
+   "method": "post",
+   "id": "v2.integration.connect.key",
+   "params": [
+    {
+     "name": "integrationID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/integration/{integrationID}/connect/oauth",
+   "method": "post",
+   "id": "v2.integration.connect.oauth",
+   "params": [
+    {
+     "name": "integrationID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/integration/attempt/{attemptID}",
+   "method": "get",
+   "id": "v2.integration.attempt.status",
+   "params": [
+    {
+     "name": "attemptID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/integration/attempt/{attemptID}",
+   "method": "delete",
+   "id": "v2.integration.attempt.cancel",
+   "params": [
+    {
+     "name": "attemptID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/integration/attempt/{attemptID}/complete",
+   "method": "post",
+   "id": "v2.integration.attempt.complete",
+   "params": [
+    {
+     "name": "attemptID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/credential/{credentialID}",
+   "method": "delete",
+   "id": "v2.credential.remove",
+   "params": [
+    {
+     "name": "credentialID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/credential/{credentialID}",
+   "method": "patch",
+   "id": "v2.credential.update",
+   "params": [
+    {
+     "name": "credentialID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/permission/request",
+   "method": "get",
+   "id": "v2.permission.request.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/permission/saved",
+   "method": "get",
+   "id": "v2.permission.saved.list",
+   "params": [
+    {
+     "name": "projectID",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/permission/saved/{id}",
+   "method": "delete",
+   "id": "v2.permission.saved.remove",
+   "params": [
+    {
+     "name": "id",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/permission",
+   "method": "get",
+   "id": "v2.session.permission.list",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/permission",
+   "method": "post",
+   "id": "v2.session.permission.create",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/permission/{requestID}",
+   "method": "get",
+   "id": "v2.session.permission.get",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "requestID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/permission/{requestID}/reply",
+   "method": "post",
+   "id": "v2.session.permission.reply",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "requestID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/fs/read/*",
+   "method": "get",
+   "id": "v2.fs.read",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/fs/list",
+   "method": "get",
+   "id": "v2.fs.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "path",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/fs/find",
+   "method": "get",
+   "id": "v2.fs.find",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "query",
+     "in": "query",
+     "required": true
+    },
+    {
+     "name": "type",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "limit",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/command",
+   "method": "get",
+   "id": "v2.command.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/skill",
+   "method": "get",
+   "id": "v2.skill.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/event",
+   "method": "get",
+   "id": "v2.event.subscribe",
+   "params": [],
+   "body": null
+  },
+  {
+   "path": "/api/pty",
+   "method": "get",
+   "id": "v2.pty.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/pty",
+   "method": "post",
+   "id": "v2.pty.create",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/pty/{ptyID}",
+   "method": "get",
+   "id": "v2.pty.get",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/pty/{ptyID}",
+   "method": "put",
+   "id": "v2.pty.update",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/pty/{ptyID}",
+   "method": "delete",
+   "id": "v2.pty.remove",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/pty/{ptyID}/connect-token",
+   "method": "post",
+   "id": "v2.pty.connectToken",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/pty/{ptyID}/connect",
+   "method": "get",
+   "id": "v2.pty.connect",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location[directory]",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "location[workspace]",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "cursor",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "ticket",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/question/request",
+   "method": "get",
+   "id": "v2.question.request.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/question",
+   "method": "get",
+   "id": "v2.session.question.list",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/session/{sessionID}/question/{requestID}/reply",
+   "method": "post",
+   "id": "v2.session.question.reply",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "requestID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": "QuestionV2Reply"
+  },
+  {
+   "path": "/api/session/{sessionID}/question/{requestID}/reject",
+   "method": "post",
+   "id": "v2.session.question.reject",
+   "params": [
+    {
+     "name": "sessionID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "requestID",
+     "in": "path",
+     "required": true
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/api/reference",
+   "method": "get",
+   "id": "v2.reference.list",
+   "params": [
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/project/{projectID}/copy",
+   "method": "post",
+   "id": "v2.projectCopy.create",
+   "params": [
+    {
+     "name": "projectID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/project/{projectID}/copy",
+   "method": "delete",
+   "id": "v2.projectCopy.remove",
+   "params": [
+    {
+     "name": "projectID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/experimental/project/{projectID}/copy/refresh",
+   "method": "post",
+   "id": "v2.projectCopy.refresh",
+   "params": [
+    {
+     "name": "projectID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "location",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  },
+  {
+   "path": "/pty/{ptyID}/connect",
+   "method": "get",
+   "id": "pty.connect",
+   "params": [
+    {
+     "name": "ptyID",
+     "in": "path",
+     "required": true
+    },
+    {
+     "name": "directory",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "workspace",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "cursor",
+     "in": "query",
+     "required": false
+    },
+    {
+     "name": "ticket",
+     "in": "query",
+     "required": false
+    }
+   ],
+   "body": null
+  }
+ ],
+ "schemas": {
+  "Event": [],
+  "QuestionReplied": [
+   "sessionID",
+   "requestID",
+   "answers"
+  ],
+  "QuestionRejected": [
+   "sessionID",
+   "requestID"
+  ],
+  "OAuth": [
+   "type",
+   "refresh",
+   "access",
+   "expires",
+   "accountId",
+   "enterpriseUrl"
+  ],
+  "ApiAuth": [
+   "type",
+   "key",
+   "metadata"
+  ],
+  "WellKnownAuth": [
+   "type",
+   "key",
+   "token"
+  ],
+  "Auth": [],
+  "effect_HttpApiError_BadRequest": [
+   "_tag"
+  ],
+  "InvalidRequestError": [
+   "_tag",
+   "message",
+   "kind",
+   "field"
+  ],
+  "MoveSessionError": [
+   "name",
+   "data"
+  ],
+  "SnapshotFileDiff": [
+   "file",
+   "patch",
+   "additions",
+   "deletions",
+   "status"
+  ],
+  "PermissionAction": [],
+  "PermissionRule": [
+   "permission",
+   "pattern",
+   "action"
+  ],
+  "PermissionRuleset": [],
+  "Session": [
+   "id",
+   "slug",
+   "projectID",
+   "workspaceID",
+   "directory",
+   "path",
+   "parentID",
+   "summary",
+   "cost",
+   "tokens",
+   "share",
+   "title",
+   "agent",
+   "model",
+   "version",
+   "metadata",
+   "time",
+   "permission",
+   "revert"
+  ],
+  "OutputFormatText": [
+   "type"
+  ],
+  "JSONSchema": [],
+  "OutputFormatJsonSchema": [
+   "type",
+   "schema",
+   "retryCount"
+  ],
+  "OutputFormat": [],
+  "UserMessage": [
+   "id",
+   "sessionID",
+   "role",
+   "time",
+   "format",
+   "summary",
+   "agent",
+   "model",
+   "system",
+   "tools"
+  ],
+  "ProviderAuthError": [
+   "name",
+   "data"
+  ],
+  "UnknownError": [
+   "name",
+   "data"
+  ],
+  "MessageOutputLengthError": [
+   "name",
+   "data"
+  ],
+  "MessageAbortedError": [
+   "name",
+   "data"
+  ],
+  "StructuredOutputError": [
+   "name",
+   "data"
+  ],
+  "ContextOverflowError": [
+   "name",
+   "data"
+  ],
+  "ContentFilterError": [
+   "name",
+   "data"
+  ],
+  "APIError": [
+   "name",
+   "data"
+  ],
+  "AssistantMessage": [
+   "id",
+   "sessionID",
+   "role",
+   "time",
+   "error",
+   "parentID",
+   "modelID",
+   "providerID",
+   "mode",
+   "agent",
+   "path",
+   "summary",
+   "cost",
+   "tokens",
+   "structured",
+   "variant",
+   "finish"
+  ],
+  "Message": [],
+  "TextPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "text",
+   "synthetic",
+   "ignored",
+   "time",
+   "metadata"
+  ],
+  "SubtaskPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "prompt",
+   "description",
+   "agent",
+   "model",
+   "command"
+  ],
+  "ReasoningPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "text",
+   "metadata",
+   "time"
+  ],
+  "FilePartSourceText": [
+   "value",
+   "start",
+   "end"
+  ],
+  "FileSource": [
+   "text",
+   "type",
+   "path"
+  ],
+  "Range": [
+   "start",
+   "end"
+  ],
+  "SymbolSource": [
+   "text",
+   "type",
+   "path",
+   "range",
+   "name",
+   "kind"
+  ],
+  "ResourceSource": [
+   "text",
+   "type",
+   "clientName",
+   "uri"
+  ],
+  "FilePartSource": [],
+  "FilePart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "mime",
+   "filename",
+   "url",
+   "source"
+  ],
+  "ToolStatePending": [
+   "status",
+   "input",
+   "raw"
+  ],
+  "ToolStateRunning": [
+   "status",
+   "input",
+   "title",
+   "metadata",
+   "time"
+  ],
+  "ToolStateCompleted": [
+   "status",
+   "input",
+   "output",
+   "title",
+   "metadata",
+   "time",
+   "attachments"
+  ],
+  "ToolStateError": [
+   "status",
+   "input",
+   "error",
+   "metadata",
+   "time"
+  ],
+  "ToolState": [],
+  "ToolPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "callID",
+   "tool",
+   "state",
+   "metadata"
+  ],
+  "StepStartPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "snapshot"
+  ],
+  "StepFinishPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "reason",
+   "snapshot",
+   "cost",
+   "tokens"
+  ],
+  "SnapshotPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "snapshot"
+  ],
+  "PatchPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "hash",
+   "files"
+  ],
+  "AgentPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "name",
+   "source"
+  ],
+  "RetryPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "attempt",
+   "error",
+   "time"
+  ],
+  "CompactionPart": [
+   "id",
+   "sessionID",
+   "messageID",
+   "type",
+   "auto",
+   "overflow",
+   "tail_start_id"
+  ],
+  "Part": [],
+  "Prompt": [
+   "text",
+   "files",
+   "agents"
+  ],
+  "Pty": [
+   "id",
+   "title",
+   "command",
+   "args",
+   "cwd",
+   "status",
+   "pid",
+   "exitCode"
+  ],
+  "Todo": [
+   "content",
+   "status",
+   "priority"
+  ],
+  "SessionStatus": [],
+  "QuestionOption": [
+   "label",
+   "description"
+  ],
+  "QuestionInfo": [
+   "question",
+   "header",
+   "options",
+   "multiple",
+   "custom"
+  ],
+  "QuestionTool": [
+   "messageID",
+   "callID"
+  ],
+  "QuestionAnswer": [],
+  "GlobalEvent": [
+   "directory",
+   "project",
+   "workspace",
+   "payload"
+  ],
+  "LogLevel": [],
+  "ServerConfig": [
+   "port",
+   "hostname",
+   "mdns",
+   "mdnsDomain",
+   "cors"
+  ],
+  "PermissionActionConfig": [],
+  "PermissionObjectConfig": [],
+  "PermissionRuleConfig": [],
+  "PermissionConfig": [],
+  "AgentConfig": [
+   "model",
+   "variant",
+   "temperature",
+   "top_p",
+   "prompt",
+   "tools",
+   "disable",
+   "description",
+   "mode",
+   "hidden",
+   "options",
+   "color",
+   "steps",
+   "maxSteps",
+   "permission"
+  ],
+  "ProviderConfig": [
+   "api",
+   "name",
+   "env",
+   "id",
+   "npm",
+   "whitelist",
+   "blacklist",
+   "options",
+   "models"
+  ],
+  "McpLocalConfig": [
+   "type",
+   "command",
+   "cwd",
+   "environment",
+   "enabled",
+   "timeout"
+  ],
+  "McpOAuthConfig": [
+   "clientId",
+   "clientSecret",
+   "scope",
+   "callbackPort",
+   "redirectUri"
+  ],
+  "McpRemoteConfig": [
+   "type",
+   "url",
+   "enabled",
+   "headers",
+   "oauth",
+   "timeout"
+  ],
+  "LayoutConfig": [],
+  "ImageAttachmentConfig": [
+   "auto_resize",
+   "max_width",
+   "max_height",
+   "max_base64_bytes"
+  ],
+  "AttachmentConfig": [
+   "image"
+  ],
+  "Config": [
+   "$schema",
+   "shell",
+   "logLevel",
+   "server",
+   "command",
+   "skills",
+   "references",
+   "reference",
+   "watcher",
+   "snapshot",
+   "plugin",
+   "share",
+   "autoshare",
+   "autoupdate",
+   "disabled_providers",
+   "enabled_providers",
+   "model",
+   "small_model",
+   "default_agent",
+   "subagent_depth",
+   "username",
+   "mode",
+   "agent",
+   "provider",
+   "mcp",
+   "formatter",
+   "lsp",
+   "instructions",
+   "layout",
+   "permission",
+   "tools",
+   "attachment",
+   "enterprise",
+   "tool_output",
+   "compaction",
+   "experimental"
+  ],
+  "Model": [
+   "id",
+   "providerID",
+   "api",
+   "name",
+   "family",
+   "capabilities",
+   "cost",
+   "limit",
+   "status",
+   "options",
+   "headers",
+   "release_date",
+   "variants"
+  ],
+  "Provider": [
+   "id",
+   "name",
+   "source",
+   "env",
+   "key",
+   "options",
+   "models"
+  ],
+  "ExperimentalCapabilities": [
+   "backgroundSubagents"
+  ],
+  "ConsoleState": [
+   "consoleManagedProviders",
+   "activeOrgName",
+   "switchableOrgCount"
+  ],
+  "effect_HttpApiError_InternalServerError": [
+   "_tag"
+  ],
+  "ToolListItem": [
+   "id",
+   "description",
+   "parameters"
+  ],
+  "ToolList": [],
+  "ToolIDs": [],
+  "WorktreeError": [
+   "name",
+   "data"
+  ],
+  "WorktreeCreateInput": [
+   "name",
+   "startCommand"
+  ],
+  "Worktree": [
+   "name",
+   "branch",
+   "directory"
+  ],
+  "WorktreeRemoveInput": [
+   "directory"
+  ],
+  "WorktreeResetInput": [
+   "directory"
+  ],
+  "ProjectSummary": [
+   "id",
+   "name",
+   "worktree"
+  ],
+  "GlobalSession": [
+   "id",
+   "slug",
+   "projectID",
+   "workspaceID",
+   "directory",
+   "path",
+   "parentID",
+   "summary",
+   "cost",
+   "tokens",
+   "share",
+   "title",
+   "agent",
+   "model",
+   "version",
+   "metadata",
+   "time",
+   "permission",
+   "revert",
+   "project"
+  ],
+  "McpResource": [
+   "name",
+   "uri",
+   "description",
+   "mimeType",
+   "client"
+  ],
+  "Symbol": [
+   "name",
+   "kind",
+   "location"
+  ],
+  "FileNode": [
+   "name",
+   "path",
+   "absolute",
+   "type",
+   "ignored"
+  ],
+  "FileContent": [
+   "type",
+   "content",
+   "diff",
+   "patch",
+   "encoding",
+   "mimeType"
+  ],
+  "File": [
+   "path",
+   "added",
+   "removed",
+   "status"
+  ],
+  "Path": [
+   "home",
+   "state",
+   "config",
+   "worktree",
+   "directory"
+  ],
+  "VcsInfo": [
+   "branch",
+   "default_branch"
+  ],
+  "VcsFileStatus": [
+   "file",
+   "additions",
+   "deletions",
+   "status"
+  ],
+  "VcsFileDiff": [
+   "file",
+   "patch",
+   "additions",
+   "deletions",
+   "status"
+  ],
+  "VcsApplyError": [
+   "name",
+   "data"
+  ],
+  "Command": [
+   "name",
+   "description",
+   "agent",
+   "model",
+   "source",
+   "template",
+   "subtask",
+   "hints"
+  ],
+  "Agent": [
+   "name",
+   "description",
+   "mode",
+   "native",
+   "hidden",
+   "topP",
+   "temperature",
+   "color",
+   "permission",
+   "model",
+   "variant",
+   "prompt",
+   "options",
+   "steps"
+  ],
+  "LSPStatus": [
+   "id",
+   "name",
+   "root",
+   "status"
+  ],
+  "FormatterStatus": [
+   "name",
+   "extensions",
+   "enabled"
+  ],
+  "MCPStatusConnected": [
+   "status"
+  ],
+  "MCPStatusDisabled": [
+   "status"
+  ],
+  "MCPStatusFailed": [
+   "status",
+   "error"
+  ],
+  "MCPStatusNeedsAuth": [
+   "status"
+  ],
+  "MCPStatusNeedsClientRegistration": [
+   "status",
+   "error"
+  ],
+  "MCPStatus": [],
+  "McpUnsupportedOAuthError": [
+   "error"
+  ],
+  "McpServerNotFoundError": [
+   "_tag",
+   "name",
+   "message"
+  ],
+  "Project": [
+   "id",
+   "worktree",
+   "vcs",
+   "name",
+   "icon",
+   "commands",
+   "time",
+   "sandboxes"
+  ],
+  "ProjectNotFoundError": [
+   "_tag",
+   "projectID",
+   "message"
+  ],
+  "PtyNotFoundError": [
+   "_tag",
+   "ptyID",
+   "message"
+  ],
+  "PtyForbiddenError": [
+   "_tag",
+   "message"
+  ],
+  "QuestionRequest": [
+   "id",
+   "sessionID",
+   "questions",
+   "tool"
+  ],
+  "QuestionNotFoundError": [
+   "_tag",
+   "requestID",
+   "message"
+  ],
+  "PermissionRequest": [
+   "id",
+   "sessionID",
+   "permission",
+   "patterns",
+   "metadata",
+   "always",
+   "tool"
+  ],
+  "PermissionNotFoundError": [
+   "_tag",
+   "requestID",
+   "message"
+  ],
+  "ProviderAuthMethod": [
+   "type",
+   "label",
+   "prompts"
+  ],
+  "ProviderAuthAuthorization": [
+   "url",
+   "method",
+   "instructions"
+  ],
+  "ProviderAuthError1": [
+   "name",
+   "data"
+  ],
+  "NotFoundError": [
+   "name",
+   "data"
+  ],
+  "TextPartInput": [
+   "id",
+   "type",
+   "text",
+   "synthetic",
+   "ignored",
+   "time",
+   "metadata"
+  ],
+  "FilePartInput": [
+   "id",
+   "type",
+   "mime",
+   "filename",
+   "url",
+   "source"
+  ],
+  "AgentPartInput": [
+   "id",
+   "type",
+   "name",
+   "source"
+  ],
+  "SubtaskPartInput": [
+   "id",
+   "type",
+   "prompt",
+   "description",
+   "agent",
+   "model",
+   "command"
+  ],
+  "SessionBusyError": [
+   "_tag",
+   "sessionID",
+   "message"
+  ],
+  "EventTuiPromptAppend": [
+   "type",
+   "properties"
+  ],
+  "EventTuiCommandExecute": [
+   "type",
+   "properties"
+  ],
+  "EventTuiToastShow": [
+   "type",
+   "properties"
+  ],
+  "EventTuiSessionSelect": [
+   "type",
+   "properties"
+  ],
+  "Workspace": [
+   "id",
+   "type",
+   "name",
+   "branch",
+   "directory",
+   "extra",
+   "projectID",
+   "timeUsed"
+  ],
+  "WorkspaceCreateError": [
+   "name",
+   "data"
+  ],
+  "WorkspaceWarpError": [
+   "name",
+   "data"
+  ],
+  "UnauthorizedError": [
+   "_tag",
+   "message"
+  ],
+  "SessionsResponse": [
+   "data",
+   "cursor"
+  ],
+  "InvalidCursorError": [
+   "_tag",
+   "message"
+  ],
+  "SessionActive": [
+   "type"
+  ],
+  "SessionNotFoundError": [
+   "_tag",
+   "sessionID",
+   "message"
+  ],
+  "PromptInput": [
+   "text",
+   "files",
+   "agents"
+  ],
+  "ConflictError": [
+   "_tag",
+   "message",
+   "resource"
+  ],
+  "ServiceUnavailableError": [
+   "_tag",
+   "message",
+   "service"
+  ],
+  "MessageNotFoundError": [
+   "_tag",
+   "sessionID",
+   "messageID",
+   "message"
+  ],
+  "UnknownError1": [
+   "_tag",
+   "message",
+   "ref"
+  ],
+  "SessionDurableEvent": [],
+  "SessionHistory": [
+   "data",
+   "hasMore"
+  ],
+  "SessionDurableEventStream": [],
+  "SessionMessagesResponse": [
+   "data",
+   "cursor"
+  ],
+  "ProviderNotFoundError": [
+   "_tag",
+   "providerID",
+   "message"
+  ],
+  "OutputFormat1": [],
+  "session.status": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "question.replied": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "question.rejected": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "V2Event": [],
+  "V2EventStream": [],
+  "ForbiddenError": [
+   "_tag",
+   "message"
+  ],
+  "ProjectCopyError": [
+   "name",
+   "data"
+  ],
+  "effect_HttpApiError_Forbidden": [
+   "_tag"
+  ],
+  "Event.tui.prompt.append": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "Event.tui.command.execute": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "Event.tui.toast.show": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "Event.tui.session.select": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "CredentialValue": [],
+  "IntegrationInputs": [],
+  "IntegrationMethod": [],
+  "IntegrationRef": [
+   "id",
+   "name"
+  ],
+  "SkillV2Source": [],
+  "MoveSessionDestination": [
+   "directory"
+  ],
+  "ModelRef": [
+   "id",
+   "providerID",
+   "variant"
+  ],
+  "LocationRef": [
+   "directory",
+   "workspaceID"
+  ],
+  "PromptSource": [
+   "start",
+   "end",
+   "text"
+  ],
+  "PromptFileAttachment": [
+   "uri",
+   "mime",
+   "name",
+   "description",
+   "source"
+  ],
+  "PromptAgentAttachment": [
+   "name",
+   "source"
+  ],
+  "SessionErrorUnknown": [
+   "type",
+   "message"
+  ],
+  "LLMProviderMetadata": [],
+  "ToolTextContent": [
+   "type",
+   "text"
+  ],
+  "ToolFileContent": [
+   "type",
+   "uri",
+   "mime",
+   "name"
+  ],
+  "LLMToolContent": [],
+  "SessionNextRetry_error": [
+   "message",
+   "statusCode",
+   "isRetryable",
+   "responseHeaders",
+   "responseBody",
+   "metadata"
+  ],
+  "FileDiff": [
+   "path",
+   "status",
+   "additions",
+   "deletions",
+   "patch"
+  ],
+  "RevertState": [
+   "messageID",
+   "partID",
+   "snapshot",
+   "diff",
+   "files"
+  ],
+  "PermissionV2Source": [
+   "type",
+   "messageID",
+   "callID"
+  ],
+  "PermissionV2Reply": [],
+  "QuestionV2Option": [
+   "label",
+   "description"
+  ],
+  "QuestionV2Info": [
+   "question",
+   "header",
+   "options",
+   "multiple",
+   "custom"
+  ],
+  "QuestionV2Tool": [
+   "messageID",
+   "callID"
+  ],
+  "QuestionV2Answer": [],
+  "ProjectVcs": [],
+  "ProjectIcon": [
+   "url",
+   "override",
+   "color"
+  ],
+  "ProjectCommands": [
+   "start"
+  ],
+  "ProjectTime": [
+   "created",
+   "updated",
+   "initialized"
+  ],
+  "EventServerInstanceDisposed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "SyncEventSessionCreated": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionUpdated": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionDeleted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventMessageUpdated": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventMessageRemoved": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventMessagePartUpdated": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventMessagePartRemoved": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextAgentSwitched": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextModelSwitched": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextMoved": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextPrompted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextPromptAdmitted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextContextUpdated": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextSynthetic": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextShellStarted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextShellEnded": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextStepStarted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextStepEnded": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextStepFailed": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextTextStarted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextTextEnded": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextReasoningStarted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextReasoningEnded": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextToolInputStarted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextToolInputEnded": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextToolCalled": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextToolProgress": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextToolSuccess": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextToolFailed": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextRetried": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextCompactionStarted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextCompactionEnded": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextRevertStaged": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextRevertCleared": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "SyncEventSessionNextRevertCommitted": [
+   "type",
+   "id",
+   "syncEvent"
+  ],
+  "ConfigV2ReferenceGit": [
+   "repository",
+   "branch",
+   "description",
+   "hidden"
+  ],
+  "ConfigV2ReferenceLocal": [
+   "path",
+   "description",
+   "hidden"
+  ],
+  "PolicyEffect": [],
+  "ConfigV2ExperimentalPolicy": [
+   "action",
+   "effect",
+   "resource"
+  ],
+  "ProjectDirectories": [],
+  "PtyTicketConnectToken": [
+   "ticket",
+   "expires_in"
+  ],
+  "WorkspaceEventConnectionStatus": [
+   "workspaceID",
+   "status"
+  ],
+  "LocationInfo": [
+   "directory",
+   "workspaceID",
+   "project"
+  ],
+  "ProviderRequest": [
+   "headers",
+   "body"
+  ],
+  "AgentColor": [],
+  "PermissionV2Effect": [],
+  "PermissionV2Rule": [
+   "action",
+   "resource",
+   "effect"
+  ],
+  "PermissionV2Ruleset": [],
+  "AgentV2Info": [
+   "id",
+   "model",
+   "request",
+   "system",
+   "description",
+   "mode",
+   "hidden",
+   "color",
+   "steps",
+   "permissions"
+  ],
+  "SessionV2Info": [
+   "id",
+   "parentID",
+   "projectID",
+   "agent",
+   "model",
+   "cost",
+   "tokens",
+   "time",
+   "title",
+   "location",
+   "subpath",
+   "revert"
+  ],
+  "PromptInputFileAttachment": [
+   "uri",
+   "name",
+   "description",
+   "source"
+  ],
+  "SessionInputAdmitted": [
+   "admittedSeq",
+   "id",
+   "sessionID",
+   "prompt",
+   "delivery",
+   "timeCreated",
+   "promotedSeq"
+  ],
+  "SessionMessageAgentSwitched": [
+   "id",
+   "metadata",
+   "time",
+   "type",
+   "agent"
+  ],
+  "SessionMessageModelSwitched": [
+   "id",
+   "metadata",
+   "time",
+   "type",
+   "model"
+  ],
+  "SessionMessageUser": [
+   "id",
+   "metadata",
+   "time",
+   "text",
+   "files",
+   "agents",
+   "type"
+  ],
+  "SessionMessageSynthetic": [
+   "id",
+   "metadata",
+   "time",
+   "sessionID",
+   "text",
+   "type"
+  ],
+  "SessionMessageSystem": [
+   "id",
+   "metadata",
+   "time",
+   "type",
+   "text"
+  ],
+  "SessionMessageShell": [
+   "id",
+   "metadata",
+   "time",
+   "type",
+   "callID",
+   "command",
+   "output"
+  ],
+  "SessionMessageAssistantText": [
+   "type",
+   "id",
+   "text"
+  ],
+  "SessionMessageAssistantReasoning": [
+   "type",
+   "id",
+   "text",
+   "providerMetadata",
+   "time"
+  ],
+  "SessionMessageToolStatePending": [
+   "status",
+   "input"
+  ],
+  "SessionMessageToolStateRunning": [
+   "status",
+   "input",
+   "structured",
+   "content"
+  ],
+  "SessionMessageToolStateCompleted": [
+   "status",
+   "input",
+   "attachments",
+   "content",
+   "outputPaths",
+   "structured",
+   "result"
+  ],
+  "SessionMessageToolStateError": [
+   "status",
+   "input",
+   "content",
+   "structured",
+   "error",
+   "result"
+  ],
+  "SessionMessageAssistantTool": [
+   "type",
+   "id",
+   "name",
+   "provider",
+   "state",
+   "time"
+  ],
+  "SessionMessageAssistant": [
+   "id",
+   "metadata",
+   "time",
+   "type",
+   "agent",
+   "model",
+   "content",
+   "snapshot",
+   "finish",
+   "cost",
+   "tokens",
+   "error"
+  ],
+  "SessionMessageCompaction": [
+   "type",
+   "reason",
+   "summary",
+   "recent",
+   "id",
+   "metadata",
+   "time"
+  ],
+  "SessionMessage": [],
+  "SessionNextAgentSwitched": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextModelSwitched": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextMoved": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextPrompted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextPromptAdmitted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextContextUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextSynthetic": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextShellStarted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextShellEnded": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextStepStarted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextStepEnded": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextStepFailed": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextTextStarted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextTextEnded": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextToolInputStarted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextToolInputEnded": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextToolCalled": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextToolProgress": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextToolSuccess": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextToolFailed": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextReasoningStarted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextReasoningEnded": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextRetried": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextCompactionStarted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextCompactionEnded": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextRevertStaged": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextRevertCleared": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextRevertCommitted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "ModelApi": [],
+  "ModelCapabilities": [
+   "tools",
+   "input",
+   "output"
+  ],
+  "ModelCost": [
+   "tier",
+   "input",
+   "output",
+   "cache"
+  ],
+  "ModelV2Info": [
+   "id",
+   "providerID",
+   "family",
+   "name",
+   "api",
+   "capabilities",
+   "request",
+   "variants",
+   "time",
+   "cost",
+   "status",
+   "enabled",
+   "limit"
+  ],
+  "ProviderAISDK": [
+   "type",
+   "package",
+   "url",
+   "settings"
+  ],
+  "ProviderNative": [
+   "type",
+   "url",
+   "settings"
+  ],
+  "ProviderApi": [],
+  "ProviderV2Info": [
+   "id",
+   "integrationID",
+   "name",
+   "disabled",
+   "api",
+   "request"
+  ],
+  "IntegrationWhen": [
+   "key",
+   "op",
+   "value"
+  ],
+  "IntegrationTextPrompt": [
+   "type",
+   "key",
+   "message",
+   "placeholder",
+   "when"
+  ],
+  "IntegrationSelectPrompt": [
+   "type",
+   "key",
+   "message",
+   "options",
+   "when"
+  ],
+  "IntegrationOAuthMethod": [
+   "id",
+   "type",
+   "label",
+   "prompts"
+  ],
+  "IntegrationKeyMethod": [
+   "type",
+   "label"
+  ],
+  "IntegrationEnvMethod": [
+   "type",
+   "names"
+  ],
+  "ConnectionCredentialInfo": [
+   "type",
+   "id",
+   "label"
+  ],
+  "ConnectionEnvInfo": [
+   "type",
+   "name"
+  ],
+  "ConnectionInfo": [],
+  "IntegrationInfo": [
+   "id",
+   "name",
+   "methods",
+   "connections"
+  ],
+  "IntegrationAttempt": [
+   "attemptID",
+   "url",
+   "instructions",
+   "mode",
+   "time"
+  ],
+  "IntegrationAttemptStatus": [],
+  "PermissionV2Request": [
+   "id",
+   "sessionID",
+   "action",
+   "resources",
+   "save",
+   "metadata",
+   "source"
+  ],
+  "PermissionSavedInfo": [
+   "id",
+   "projectID",
+   "action",
+   "resource"
+  ],
+  "FileSystemEntry": [
+   "path",
+   "type"
+  ],
+  "CommandV2Info": [
+   "name",
+   "template",
+   "description",
+   "agent",
+   "model",
+   "subtask"
+  ],
+  "SkillV2Info": [
+   "name",
+   "description",
+   "slash",
+   "location",
+   "content"
+  ],
+  "Models-devRefreshed": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "IntegrationUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "IntegrationConnectionUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "CatalogUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionCreated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionDeleted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "MessageUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "MessageRemoved": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "MessagePartUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "MessagePartRemoved": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextTextDelta": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextReasoningDelta": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextToolInputDelta": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionNextCompactionDelta": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "MessagePartDelta": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionDiff": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionError": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "InstallationUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "InstallationUpdate-available": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "FileEdited": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "ReferenceUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PermissionV2Asked": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PermissionV2Replied": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PluginAdded": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "ProjectDirectoriesUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "FileWatcherUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PtyCreated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PtyUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PtyExited": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PtyDeleted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "QuestionV2Asked": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "QuestionV2Replied": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "QuestionV2Rejected": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "TodoUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "LspUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PermissionAsked": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "PermissionReplied": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "TuiPromptAppend": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "TuiCommandExecute": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "TuiToastShow": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "TuiSessionSelect": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "McpToolsChanged": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "McpBrowserOpenFailed": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "CommandExecuted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "ProjectUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionIdle": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "QuestionAsked": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "SessionCompacted": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "VcsBranchUpdated": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "WorkspaceReady": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "WorkspaceFailed": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "WorkspaceStatus": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "WorktreeReady": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "WorktreeFailed": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "ServerConnected": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "GlobalDisposed": [
+   "id",
+   "metadata",
+   "type",
+   "durable",
+   "location",
+   "data"
+  ],
+  "QuestionV2Request": [
+   "id",
+   "sessionID",
+   "questions",
+   "tool"
+  ],
+  "QuestionV2Reply": [
+   "answers"
+  ],
+  "ReferenceLocalSource": [
+   "type",
+   "path",
+   "description",
+   "hidden"
+  ],
+  "ReferenceGitSource": [
+   "type",
+   "repository",
+   "branch",
+   "description",
+   "hidden"
+  ],
+  "ReferenceSource": [],
+  "ReferenceInfo": [
+   "name",
+   "path",
+   "description",
+   "hidden",
+   "source"
+  ],
+  "ProjectCopyCopy": [
+   "directory"
+  ],
+  "EventModels-devRefreshed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventIntegrationUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventIntegrationConnectionUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventCatalogUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionCreated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionDeleted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventMessageUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventMessageRemoved": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventMessagePartUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventMessagePartRemoved": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextAgentSwitched": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextModelSwitched": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextMoved": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextPrompted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextPromptAdmitted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextContextUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextSynthetic": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextShellStarted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextShellEnded": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextStepStarted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextStepEnded": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextStepFailed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextTextStarted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextTextDelta": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextTextEnded": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextReasoningStarted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextReasoningDelta": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextReasoningEnded": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextToolInputStarted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextToolInputDelta": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextToolInputEnded": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextToolCalled": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextToolProgress": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextToolSuccess": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextToolFailed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextRetried": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextCompactionStarted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextCompactionDelta": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextCompactionEnded": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextRevertStaged": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextRevertCleared": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionNextRevertCommitted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventMessagePartDelta": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionDiff": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionError": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventInstallationUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventInstallationUpdate-available": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventFileEdited": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventReferenceUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPermissionV2Asked": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPermissionV2Replied": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPluginAdded": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventProjectDirectoriesUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventFileWatcherUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPtyCreated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPtyUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPtyExited": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPtyDeleted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventQuestionV2Asked": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventQuestionV2Replied": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventQuestionV2Rejected": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventTodoUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventLspUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPermissionAsked": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventPermissionReplied": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventMcpToolsChanged": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventMcpBrowserOpenFailed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventCommandExecuted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventProjectUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionStatus": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionIdle": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventQuestionAsked": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventQuestionReplied": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventQuestionRejected": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventSessionCompacted": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventVcsBranchUpdated": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventWorkspaceReady": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventWorkspaceFailed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventWorkspaceStatus": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventWorktreeReady": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventWorktreeFailed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventServerConnected": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "EventGlobalDisposed": [
+   "id",
+   "type",
+   "properties"
+  ],
+  "CredentialOAuth": [
+   "type",
+   "methodID",
+   "refresh",
+   "access",
+   "expires",
+   "metadata"
+  ],
+  "CredentialKey": [
+   "type",
+   "key",
+   "metadata"
+  ],
+  "SkillV2DirectorySource": [
+   "type",
+   "path"
+  ],
+  "SkillV2UrlSource": [
+   "type",
+   "url"
+  ],
+  "SkillV2EmbeddedSource": [
+   "type",
+   "skill"
+  ],
+  "BadRequestError": [
+   "name",
+   "data"
+  ]
+ }
+}
